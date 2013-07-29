@@ -1,0 +1,3 @@
+_etc/*
+pmc_error.log
+config/database.php

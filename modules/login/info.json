@@ -1,0 +1,27 @@
+{	
+	"name":"login module",
+	"version":"1.0.0",
+	"author":"prevdev@gmail.com",
+	"actions":[
+		{
+			"name":"dispLoginPage",
+			"view":"LoginPageView",
+			"default":true
+		},
+		{
+			"name":"procLogin",
+			"controller":"LoginController",
+			"layout":"blank"
+		},
+		{
+			"name":"procSecureLogin",
+			"controller":"LoginController",
+			"layout":"blank"
+		},
+		{
+			"name":"procLogout",
+			"controller":"LoginController",
+			"layout":"blank"
+		}
+	]
+}

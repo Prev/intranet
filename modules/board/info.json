@@ -1,0 +1,29 @@
+{	
+	"name":"board module",
+	"version":"1.0.0",
+	"author":"prevdev@gmail.com",
+
+	"actions":[
+		{
+			"name":"dispList",
+			"model":"BoardListModel",
+			"view":"BoardListView",
+			"controller":"BoardController",
+			"default":true
+		},
+		{
+			"name":"dispArticle",
+			"model":"BoardArticleModel",
+			"view":"BoardArticleView",
+			"controller":"BoardController"
+		},
+		{
+			"name":"dispEditor",
+			"view":"BoardEditorView"
+		},
+		{
+			"name":"procSaveArticle",
+			"controller":"BoardEditorController"
+		}
+	]
+}
