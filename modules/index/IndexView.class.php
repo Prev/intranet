@@ -7,7 +7,7 @@
 		var $loggedin;
 		
 		public function dispDefault() {
-			$this->execTemplate('welcome');
+			$this->execTemplate('home');
 		}
 		
 	}

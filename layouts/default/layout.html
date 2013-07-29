@@ -4,39 +4,77 @@
 <import path="stylesheet.css">
 <import path="favicon.ico">
 
-<div id="wrap">
-	<div id="header" class="clearfix">
-		<div id="logo" class="fl">
+<title>한국디지털미디어고등학교 교내 인트라넷</title>
+
+<div id="header">
+	<div id="header-line"></div>
+	<div id="header-content">
+		<div id="header-logo">
 			<a href="/">
-				<img src="./img/logo_150x60.png" width="150" height="60" alt="engine pmc">
+				<img src="./img/header_logo.png" alt="한국디지털미디어고등학교 교내 인트라넷">
 			</a>
 		</div>
-		<ul id="gnb" class="fl clearfix">
-			{getMenuTag(1)}
+		<div id="header-sidetext" class="clearfix">
+			<div class="child">
+				<condition do="$user = User::getCurrent()">
+					<condition do="$user->user_type == 's'">
+						{$user->user_name}({$user->grade}학년&nbsp;{$user->class}반&nbsp;{$user->number}번)님 환영합니다.
+					</condition>
+
+					<condition do="$user->user_type == 't'">
+						{$user->user_name}({$user->department_kr} {$user->position_kr}반 {$user->number}번)님 환영합니다.
+					</condition>
+
+					<condition do="$user->user_type == 't'">
+						{$user->user_name}님 환영합니다.
+					</condition>
+				</condition>
+				<condition do="!$user">
+					로그인이 필요합니다
+				</condition>
+			</div>
+
+			<ul class="child">
+				<li>로그아웃</li>
+				<li>마이페이지</li>
+				<li class="final">사이트맵</li>
+			</ul>
+		</div>
+	</div>
+	<div id="gnb">
+		<ul class="clearfix">
+			{@ foreach(Context::getMenu(1) as $key => $menu): }
+				<a href="/{@ echo (USE_SHORT_URL ? '' : '?menu=') . $menu->title}">
+					<li class="{$menu->className}">
+						{$menu->title_locale}
+					</li>
+				</a>
+			{@ endforeach; }
 		</ul>
 	</div>
-	
-	<div id="content">
-		{getContent()}
-	</div>
+</div>
+<div id="wrap">
+	{getContent()}
 </div>
 <div id="footer">
-	<div id="footer-content" class="clearfix">
-		<div class="fl">&copy; Powered by engine pmc.</div>
-		<div id="footer-locale" class="fr">
-			<condition do="getLocale('en')">
-				<span class="selected-locale">English</span> 
-			</condition>
-			<condition do="!getLocale('en')">
-				<span><a href="{getUrlA('locale=en', REAL_URI)}">English</a></span> 
-			</condition>
-			
-			<condition do="getLocale('kr')">
-				<span class="selected-locale">Korean</span> 
-			</condition>
-			<condition do="!getLocale('kr')">
-				<span><a href="{getUrlA('locale=kr', REAL_URI)}">Korean</a></span> 
-			</condition>
+	<div id="footer-left">
+		<a href="/credit" target="_blank"><img src="./img/footer_copyright.png" width="596" height="30" /></a>
+	</div>
+	<div id="footer-right">
+		<div class="footer-right-child">
+			<ul>
+				<a href="https://developer.dimigo.hs.kr" target="_blank"><li id="frc1-3">API</li></a>
+				<li class="frc1-border"></li>
+				<a href="#"><li id="frc1-2">개인정보취급방침</li></a>
+				<li class="frc1-border"></li>
+				<a href="#"><li id="frc1-1">이용약관</li></a>
+			</ul>
+		</div>
+		<div class="footer-right-child">
+			<ul>
+				<a href="http://hangeul.naver.com/font" target="_blank"><li id="frc2-2">설치하기</li></a>
+				<li id="frc2-1">이 웹사이트는 나눔고딕을 설치하시면 더욱 아름답습니다.</li>
+			</ul>
 		</div>
 	</div>
 </div>

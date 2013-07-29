@@ -61,6 +61,34 @@
 		$obj->userData->{$key} = $value;
 	}
 
+	switch ($userData->user_type) {
+		case 's':
+			$appendData = execQueryOne('
+				SELECT * FROM (#)user_student
+				WHERE user_id="'.$user_id.'"
+			');
+			break;
+		
+		case 'p':
+			$appendData = execQueryOne('
+				SELECT * FROM (#)user_parent
+				WHERE user_id="'.$user_id.'"
+			');
+			break;
+
+		case 't':
+			$appendData = execQueryOne('
+				SELECT * FROM (#)user_teacher
+				WHERE user_id="'.$user_id.'"
+			');
+			break;
+	}
+
+	foreach ($appendData as $key => $value) {
+		if ($key == 'id' || $key == 'user_id') continue;
+		$obj->userData->{$key} = $value;
+	}
+
 	$groupDatas = execQuery("
 		SELECT (#)user_group_user.*, (#)user_group.*
 		FROM (#)user_group_user, (#)user_group

@@ -4,7 +4,7 @@
 		"protocol":"http",
 		"host":"127.0.0.1",
 		"session_domain":"127.0.0.1",
-		"uri":"/pmc"
+		"uri":"/intranet"
 	},
 	{
 		"type":"test",

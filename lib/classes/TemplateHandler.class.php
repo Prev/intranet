@@ -56,6 +56,9 @@
 			
 			// <link>http://google.com</link> -> <a href="http://google.com">http://google.com</a>
 			$html = preg_replace('`<link(.*?)>(.*?)</link>`', '<a href="$2"$1>$2</a>', $html);
+			
+			// <title>title</title> proc
+			$html = preg_replace_callback('`<title>(.*?)</title>`', array($this, 'setTitle'), $html);
 
 
 			$html = join('$_SERVER', explode('$__attr->_SERVER', $html));
@@ -177,6 +180,10 @@
 				return '<?php if ($func = ModuleHandler::getModule(\''.$this->module->moduleID.'\')->view->'.$function.'('.$args.')) echo $func; ?>';
 			}
 		}
+
+		private function setTitle($matches) {
+			Context::getInstance()->setTitle($matches[1]);
+		}
 		
 
 		private function deleteWhiteSpace($content) {
@@ -205,7 +212,6 @@
 				$content = join('<', explode("\r\n<", $content));
 				return $this->deleteWhiteSpace($content);
 			}
-			
 			
 			return $content;
 		}

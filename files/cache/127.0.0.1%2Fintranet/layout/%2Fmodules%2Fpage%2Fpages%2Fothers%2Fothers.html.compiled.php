@@ -1,0 +1,2 @@
+<?php if (!defined('PMC')) exit; ?>
+<?php Context::getInstance()->addHeaderFile('/modules/page/pages/others/../lnb-layout.css', -1, 'head', NULL,NULL); ?><div class="clearfix"><ul id="lnb" class="fl"><?php if ($func = getMenuTag(2)) echo $func; ?></ul><div id="page-content" class="fl"><h1>Others</h1><?php if ($func = getMenuTag(2)) echo $func; ?></div></div>
