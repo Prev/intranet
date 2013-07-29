@@ -46,7 +46,7 @@
 			{@ foreach(Context::getMenu(1) as $key => $menu): }
 				<a href="/{@ echo (USE_SHORT_URL ? '' : '?menu=') . $menu->title}">
 					<li class="{$menu->className}">
-						{$menu->title_locale}
+						<span class="menu-alt">{$menu->title_locale}</span>
 					</li>
 				</a>
 			{@ endforeach; }

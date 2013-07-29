@@ -48,8 +48,34 @@ body{
 
 #header #gnb{ height: 35px; margin: 0; padding:0; background: #fcfcfc url(./img/header_gnb_bg_pattern.png) repeat-x; }
 #header #gnb ul { width:1000px; margin:0 auto; padding: 0; list-style: none; }
-#header #gnb ul li{ margin:8px 20px; padding:0; font-size:14px; float:left; }
+#header #gnb ul li { margin:0; padding:0; font-size:14px; background: url(./img/gnb_menu.png) no-repeat; min-width: 45px; list-style: none; float: left; height: 32px; line-height: 100% }
 #header #gnb ul li.selected a{ color:#06C !important; font-weight:bold; }
+#header #gnb ul li .menu-alt{ visibility: hidden; }
+
+#header #gnb ul li.menu-home { background-position:-0px 0px; width:45px }
+#header #gnb ul li.menu-home-selected,
+#header #gnb ul li.menu-home:hover { background-position:-0px -32px; width:45px }
+#header #gnb ul li.menu-home-disabled { background-position:-0px -64px; width:45px }
+
+#header #gnb ul li.menu-dormitory { background-position:-129px 0px; width:70px }
+#header #gnb ul li.menu-dormitory-selected,
+#header #gnb ul li.menu-dormitory:hover { background-position:-129px -32px; width:70px }
+#header #gnb ul li.menu-dormitory-disabled { background-position:-129px -64px; width:70px }
+
+#header #gnb ul li.menu-cafeteria { background-position:-199px 0px; width:68px }
+#header #gnb ul li.menu-cafeteria-selected,
+#header #gnb ul li.menu-cafeteria:hover { background-position:-199px -32px; width:68px }
+#header #gnb ul li.menu-cafeteria-disabled { background-position:-199px -64px; width:68px }
+
+#header #gnb ul li.menu-u-learning { background-position:-358px 0px; width:72px }
+#header #gnb ul li.menu-u-learning-selected,
+#header #gnb ul li.menu-u-learning:hover { background-position:-358px -32px; width:72px }
+#header #gnb ul li.menu-u-learning-disabled { background-position:-358px -64px; width:72px }
+
+#header #gnb ul li.menu-els { background-position:-430px 0px; width:116px }
+#header #gnb ul li.menu-els-selected,
+#header #gnb ul li.menu-els:hover { background-position:-430px -32px; width:116px }
+#header #gnb ul li.menu-els-disabled { background-position:-430px -64px; width:116px }
 
 #wrap { width: 1000px; margin: 30px auto 20px auto; }
 

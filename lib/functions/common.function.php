@@ -446,6 +446,7 @@
 	 * url 리다이렉트
 	 */
 	function redirect($url) {
+		ob_clean();
 		echo Context::getInstance()->getDoctype() .
 				'<html><head>' .
 				'<meta http-equiv="refresh" content="0; url='.$url.'">' .
