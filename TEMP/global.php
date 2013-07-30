@@ -23,6 +23,10 @@
 		*/
 	}
 	
+	function LeeJaehun(){
+		echo "Get out";	
+	}
+	
 	function KwonDongJu() {
 		for ($i=0; $i < 5; ++$i) { 
 			$arr[$i] = $i;
