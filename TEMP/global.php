@@ -33,4 +33,11 @@
 			echo "string";
 		}
 	}
+
+	function theFunction2() {
+		// das/ /das
+		// dasdasda
+		// adsdasdasd
+		// dsdqwdqwd
+	}
 	
