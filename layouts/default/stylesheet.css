@@ -50,7 +50,7 @@ body{
 #header #gnb ul { width:1000px; margin:0 auto; padding: 0; list-style: none; }
 #header #gnb ul li { margin:0; padding:0; font-size:14px; background: url(./img/gnb_menu.png) no-repeat; min-width: 45px; list-style: none; float: left; height: 32px; line-height: 100% }
 #header #gnb ul li.selected a{ color:#06C !important; font-weight:bold; }
-#header #gnb ul li .menu-alt{ visibility: hidden; }
+#header #gnb ul li .menu-alt{ display: inline-block; width: inherit; height: 23px; visibility: hidden; text-align: center; font-size: 12px; padding-top: 9px }
 
 #header #gnb ul li.menu-home { background-position:-0px 0px; width:45px }
 #header #gnb ul li.menu-home-selected,

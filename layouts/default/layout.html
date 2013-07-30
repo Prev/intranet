@@ -51,11 +51,20 @@
 	<div id="gnb">
 		<ul class="clearfix">
 			{@ foreach(Context::getMenu(1) as $key => $menu): }
-				<a href="/{@ echo (USE_SHORT_URL ? '' : '?menu=') . $menu->title}">
-					<li class="{$menu->className}">
-						<span class="menu-alt">{$menu->title_locale}</span>
-					</li>
-				</a>
+				<condition do="$user">
+					<true>
+						<a href="/{@ echo (USE_SHORT_URL ? '' : '?menu=') . $menu->title}">
+							<li class="{$menu->className}">
+								<span class="menu-alt">{$menu->title_locale}</span>
+							</li>
+						</a>
+					</true>
+					<false>
+						<li class="{$menu->className}-disabled">
+							<span class="menu-alt">{$menu->title_locale}</span>
+						</li>
+					</false>
+				</condition>
 			{@ endforeach; }
 		</ul>
 	</div>
