@@ -17,37 +17,56 @@
 		<input type="hidden" name="check_sum">
 		<input type="hidden" name="next" value="{$next}">
 		<div id="login-title">
-			로그인
+			<img src="./img/login_title.png" width="198" height="66" alt="로그인">
 		</div>
-		<div id="input-wrap">
-			<div class="input-warp-content">
-				<condition targetie="lte IE 9">
-					<span class="ie-alternative-label">아이디</span>
-				</condition>
-				<input name="id" type="text" placeholder="아이디">
-			</div>
-			<div class="input-warp-content">
-				<condition targetie="lte IE 9">
-					<span class="ie-alternative-label">비밀번호</span>
-				</condition>
-				<input name="pw" type="password" placeholder="비밀번호">
-			</div>
+		<div id="login-description">
+			<img src="./img/login_description.png" width="507" height="39" alt="로그인">
 		</div>
-		<div id="submit-wrap">
-			<div id="sl-wrap">
-				<input type="checkbox" name="auto_login" checked="checked">
-				<label for="auto_login">로그인 상태 유지</label>
-				
-				<input type="checkbox" name="secure_login" checked="checked" onclick="toggleSecureLogin(this)">
-				<label for="secure_login">보안 로그인</label>
-			</div>
-			<div class="clearfix">
-				<div id="submit-btn-wrap" class="fr">
-					<button onclick="return procLogin()">로그인</button>
+		<div id="login-contents" class="clearfix">
+			<div class="fl">
+				<div id="input-wrap" class="clearfix">
+					<div class="input-warp-content fl">
+						<condition targetie="lte IE 9">
+							<span class="ie-alternative-label">아이디</span>
+						</condition>
+						<input name="id" type="text" placeholder="아이디">
+					</div>
+					<div class="input-warp-content fl">
+						<condition targetie="lte IE 9">
+							<span class="ie-alternative-label">비밀번호</span>
+						</condition>
+						<input name="pw" type="password" placeholder="비밀번호">
+					</div>
+				</div>
+				<div id="checkbox-wrap" class="cleafix">
+					<div class="fl">
+						<input type="checkbox" name="auto_login" checked="checked">
+						<label for="auto_login">로그인 상태 유지</label>
+						
+						<input type="checkbox" name="secure_login" checked="checked" onclick="toggleSecureLogin(this)">
+						<label for="secure_login">보안 로그인</label>
+					</div>
+					<div class="fr" class="clearfix">
+						<div class="fl">아이디/비밀번호 찾기</div>
+						<div class="fl login-bar">|</div>
+						<div class="fl">회원가입</div>
+					</div>
 				</div>
 			</div>
+			<div id="submit-wrap" class="fr">
+				<button onclick="return procLogin()">
+					<span class="hidden">
+						로그인
+					</span>
+				</button>
+			</div>
+		</div>
+		<div id="redirect-home">
+			<p>본교 재학생이 아니신가요?</p>
+			<a href="http://dimigo.hs.kr">본교 홈페이지 바로가기</a>
 		</div>
 	</form>
+	* 개발팀 임시 아이디 : tester / 비밀번호 : 1234 
 </div>
 <condition do="$errorType">
 	<div id="error-message">

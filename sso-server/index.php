@@ -95,7 +95,7 @@
 		WHERE (#)user_group_user.user_id='${user_id}'
 		AND (#)user_group.id = (#)user_group_user.group_id
 	");
-
+	
 	$obj->userData->groups = array();	
 	for ($i=0; $i < count($groupDatas); $i++) {
 		$tmp = $groupDatas[$i];

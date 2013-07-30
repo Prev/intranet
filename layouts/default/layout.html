@@ -15,30 +15,37 @@
 			</a>
 		</div>
 		<div id="header-sidetext" class="clearfix">
-			<div class="child">
-				<condition do="$user = User::getCurrent()">
-					<condition do="$user->user_type == 's'">
-						{$user->user_name}({$user->grade}학년&nbsp;{$user->class}반&nbsp;{$user->number}번)님 환영합니다.
-					</condition>
+			<condition do="$user = User::getCurrent()">
+				<true>
+					<div class="child">
+						<switch var="$user->user_type">
+							<case value="s">
+								{$user->user_name}({$user->grade}학년&nbsp;{$user->class}반&nbsp;{$user->number}번)님 환영합니다.
+							</case>
+							<case value="t">
+								{$user->user_name}({$user->department_kr} {$user->position_kr}반 {$user->number}번)님 환영합니다.
+							</case>
+							<case value="p">
+								{$user->user_name}님 환영합니다.
+							</case>
+						</switch>
+					</div>
 
-					<condition do="$user->user_type == 't'">
-						{$user->user_name}({$user->department_kr} {$user->position_kr}반 {$user->number}번)님 환영합니다.
-					</condition>
-
-					<condition do="$user->user_type == 't'">
-						{$user->user_name}님 환영합니다.
-					</condition>
-				</condition>
-				<condition do="!$user">
+					<ul class="child">
+						<li>
+							<a href="{getUrl('login', 'procLogout')}">
+								로그아웃
+							</a>
+						</li>
+						<li>마이페이지</li>
+						<li class="final">사이트맵</li>
+					</ul>
+				</true>
+				<false>
 					로그인이 필요합니다
-				</condition>
-			</div>
-
-			<ul class="child">
-				<li>로그아웃</li>
-				<li>마이페이지</li>
-				<li class="final">사이트맵</li>
-			</ul>
+					{@ if (Context::getInstance()->moduleID != 'login') goLogin(); }
+				</false>
+			</condition>
 		</div>
 	</div>
 	<div id="gnb">
