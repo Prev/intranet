@@ -1,0 +1,28 @@
+{
+	"name" : "test module",
+	"model":"TestModel",
+
+	"actions" : [
+		{
+			"name" : "dispDefault",
+			"view" : "TestView",
+			"controller" : "TestController"
+		},
+		{
+			"name" : "dispTemplate",
+			"view" : "TestView"
+		},
+		{
+			"name" : "dispDimigo",
+			"view" : "TestDimigoView"
+		},
+		{
+			"name" : "procDual",
+			"controller" : "TestController"
+		},
+		{
+			"name" : "dispLoginLog",
+			"view" : "TestView"
+		}
+	]
+}

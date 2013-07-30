@@ -45,8 +45,10 @@
 
 		public function __construct($data) {
 			if (isset($data->input_id) &&
+				isset($data->nick_name) &&
 				isset($data->user_name) &&
-				isset($data->email_address)
+				isset($data->email_address) &&
+				isset($data->phone_number)
 			){
 				foreach ($data as $key => $value) {
 					$this->{$key} = $value;

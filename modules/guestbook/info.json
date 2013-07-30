@@ -1,0 +1,20 @@
+{
+	"name" : "Guest Book",
+	"actions" : [
+		{
+			"name" : "dispDefault",
+			"view" : "GuestbookView",
+			"model" : "GuestbookModel",
+			"default" : true
+		},
+		{
+			"name" : "dispWritePage",
+			"view" : "GuestbookView"
+		},
+		{
+			"name" : "procAddData",
+			"controller" : "GuestbookController",
+			"layout" : "blank"
+		}
+	]
+}

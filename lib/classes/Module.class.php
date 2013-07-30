@@ -33,11 +33,12 @@
 			foreach(array('model', 'view', 'controller') as $key => $mvc) {
 				if (isset($actionData->{$mvc}))
 					$this->{$mvc} = $this->loadMVCClass(ucfirst($actionData->{$mvc}), false);
-				else if (isset($this->moduleInfo->{'default_'.$mvc}))
-					$this->{$mvc} = $this->loadMVCClass($this->moduleInfo->{'default_'.$mvc}, false);
+				else if (isset($this->moduleInfo->{$mvc}))
+					$this->{$mvc} = $this->loadMVCClass($this->moduleInfo->{$mvc}, false);
 				else
 					$this->{$mvc} = $this->loadMVCClass(ucfirst($mvc), true);
-
+			}
+			foreach(array('model', 'view', 'controller') as $key => $mvc) {
 				$this->{$mvc}->setMMVC(
 					$this,
 					$this->model,
@@ -66,7 +67,9 @@
 						'kr'=>'클래스 "'. $className . '" 를 불러 올 수 없습니다. - 파일을 불러 올 수 없음'
 					)); 
 				}else {
-					require $classPath;
+					if (!class_exists($className))
+						require $classPath;
+					
 					if (!class_exists($className)) {
 						Context::printErrorPage(array(
 							'en'=>'Cannot load lass "'. $className . '" - cannot find class',

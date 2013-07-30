@@ -23,7 +23,12 @@
 		private function _compileTemplate($html, $module=NULL, $relativePath='/') {
 			$this->module = $module;
 			$this->relativePath = $relativePath;
+			
+			// comment ignore
+			$html = preg_replace('`\n//(.*)`', ' ', $html);
+			$html = preg_replace('`/\*([\s\S]*?)\*/`', '', $html);
 
+			
 			// import css/js... header file
 			$html = preg_replace_callback('/\#? ?<import([^>]+)>/', array($this, 'handleImportTags'), $html);
 			
@@ -35,7 +40,7 @@
 			$html = preg_replace_callback('/{@([\s\S]+?)}/', array($this, 'parseCode'), $html);
 			
 			// {$a} -> echo  $__attr->a ( Context::get('a') or View->a )
-			$html = preg_replace('/{\$([\>a-zA-Z0-9_-]*)}/', '<?php echo \$__attr->$1; ?>', $html);
+			$html = preg_replace_callback('/{(\$.*?)}/', array($this, 'parseVar'), $html);
 			
 			// {func()} -> Context::execFunction('func', array())
 			$html = preg_replace_callback("`{([a-zA-Z0-9_\s]+)\((.*)\)}`", array($this, 'parseFunc'), $html);
@@ -44,15 +49,17 @@
 			// insert RELATIVE_URL in absolute src (/.*), href and action
 			// insert module realitve url in upper relative src (../.*), href and action
 			// insert module realitve url in relative src (./.*), href and action
-			$html = preg_replace_callback("`(src|href|action)=\"(.*?)\"`i", array($this, 'parseUrl'), $html);
+			$html = preg_replace_callback('`(src|href|action)="(.*?)"`i', array($this, 'parseUrl'), $html);
 			
 
 			// targetie condition
-			$html = preg_replace('`<condition\s+targetie="([^"]+)"\s*>([\s\S]*?)</condition>`', '<!--[if $1]>$2<![endif]-->', $html);
-
-			// condition
-			$html = preg_replace_callback('/<condition\s+do="([^"]+)"\s*>/', array($this, 'parseConditions'), $html);
-			$html = str_replace('</condition>', '<?php } ?>', $html);
+			$html = preg_replace('`<condition\s+targetie="([^"]+)"\s*>([\s\S]*?)</condition>`i', '<!--[if $1]>$2<![endif]-->', $html);
+			
+			// condition tag
+			$html = preg_replace_callback('/<condition\s+do="([^"]+)"\s*>([\s\S]*?)<\/condition>/i', array($this, 'parseConditions'), $html);
+			
+			// switch tag
+			$html = preg_replace_callback('/<swtich\s+var="([^"]+)"\s*>([\s\S]*?)<\/switch>/i', array($this, 'parseSwitches'), $html);
 			
 			// <link>http://google.com</link> -> <a href="http://google.com">http://google.com</a>
 			$html = preg_replace('`<link(.*?)>(.*?)</link>`', '<a href="$2"$1>$2</a>', $html);
@@ -133,6 +140,34 @@
 			
 		}
 
+		private function parseVar($matches) {
+			$args = $matches[1];
+			$args = preg_replace('/\$([\>a-zA-Z0-9_-]*)/', '\$__attr->$1', $args, -1);
+
+			return '<?php echo ' . $args . '; ?>';
+		}
+
+		private function parseFunc($matches) {
+			if (!$matches[1]) return;
+			
+			$function = $matches[1];
+			$args = $matches[2];
+			$args = preg_replace('/\$([\>a-zA-Z0-9_-]*)/', '\$__attr->$1', $args, -1);
+			$args = preg_replace('/\${([\>a-zA-Z0-9_-]*)}/', '\${__attr->$1}', $args, -1);
+
+
+			if (function_exists($function))
+				return '<?php if ($func = '.$function.'('.$args.')) echo $func; ?>';
+
+			else if ($this->module && method_exists($this->module, $function))
+				return '<?php if ($func = ModuleHandler::getModule(\''.$this->module->moduleID.'\', \''.$this->module->moduleAction.'\')->'.$function.'('.$args.')) echo $func; ?>';
+			
+			foreach (array('model', 'controller', 'view') as $key => $mvc) {
+				if ($this->module && $this->module->{$mvc} && method_exists($this->module->{$mvc}, $function))
+					return '<?php if ($func = ModuleHandler::getModule(\''.$this->module->moduleID.'\', \''.$this->module->moduleAction.'\')->'.$mvc.'->'.$function.'('.$args.')) echo $func; ?>';
+			}
+		}
+
 		private function parseCode($matches) {
 			if (!$matches[1]) return;
 			
@@ -152,34 +187,44 @@
 			$c = $matches[1];
 			$c = preg_replace('/\$([\>a-zA-Z0-9_-]*)/', '\$__attr->$1', $c, -1);
 			$c = preg_replace('/\${([\>a-zA-Z0-9_-]*)}/', '\${__attr->$1}', $c, -1);
-				
-			return '<?php if('.$c.') { ?>';
+			
+			$code = $matches[2];
+
+			if ($pos = strpos($code, '<else>')) {
+				$trueCode = substr($code, 0, $pos);
+				$falseCode = substr($code, $pos + 6);
+
+				return '<?php if ('.$c.') { ?>' .$trueCode . '<?php }else { ?>'.$falseCode.'<?php } ?>';
+
+			}else if (strpos($code, '<false>')) {
+				$tempArr = explode('<true>', $code);
+				$tempArr = explode('</true>', $tempArr[1]);
+				$trueCode = $tempArr[0];
+
+				$tempArr = explode('<false>', $code);
+				$tempArr = explode('</false>', $tempArr[1]);
+				$falseCode = $tempArr[0];
+
+				return '<?php if ('.$c.') { ?>' .$trueCode . '<?php }else { ?>'.$falseCode.'<?php } ?>';
+
+			}else
+				return '<?php if ('.$c.') { ?>' . $code . '<?php } ?>';
+		}
+
+		private function parseSwitches($matches) {
+			if (!$matches[1]) return;
+
+			$c = $matches[1];
+			$c = preg_replace('/\$([\>a-zA-Z0-9_-]*)/', '\$__attr->$1', $c, -1);
+			$c = preg_replace('/\${([\>a-zA-Z0-9_-]*)}/', '\${__attr->$1}', $c, -1);
+
+			$code = $matches[2];
+			$code = preg_replace('/<case value="(.*?)">([\s\S]*?)<\/case>/', 'case \'$1\' : ?>$2<?php break; ?>', $code, 1);
+			$code = preg_replace('/<case value="(.*?)">([\s\S]*?)<\/case>/', '<?php case \'$1\' : ?>$2<?php break; ?>', $code);
+
+			return '<?php switch ('.$c.') :' . $code . '<?php endswitch; ?>';
 		}
 		
-		private function parseFunc($matches) {
-			if (!$matches[1]) return;
-			
-			$function = $matches[1];
-			$args = $matches[2];
-			$args = preg_replace('/\$([\>a-zA-Z0-9_-]*)/', '\$__attr->$1', $args, -1);
-			$args = preg_replace('/\${([\>a-zA-Z0-9_-]*)}/', '\${__attr->$1}', $args, -1);
-
-
-			if ($function == 'getUrl' || $function == 'getUrlA') {
-				// compile
-				$ufunc = create_function('', 'return '.$function.'('.$args.');');
-				$url = $ufunc();
-				return $url;
-			}else if (function_exists($function))
-				return '<?php if ($func = '.$function.'('.$args.')) echo $func; ?>';
-
-			else if ($this->module && method_exists($this->module, $function))
-				return '<?php if ($func = ModuleHandler::getModule(\''.$this->module->moduleID.'\')->'.$function.'('.$args.')) echo $func; ?>';
-			
-			else if ($this->module && $this->module->view && method_exists($this->module->view, $function)) {
-				return '<?php if ($func = ModuleHandler::getModule(\''.$this->module->moduleID.'\')->view->'.$function.'('.$args.')) echo $func; ?>';
-			}
-		}
 
 		private function setTitle($matches) {
 			Context::getInstance()->setTitle($matches[1]);
