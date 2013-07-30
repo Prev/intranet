@@ -22,5 +22,11 @@
 			as
 		*/
 	}
-
+	
+	function KwonDongJu() {
+		for ($i=0; $i < 5; ++$i) { 
+			$arr[$i] = $i;
+			echo "string";
+		}
+	}
 	
