@@ -17,8 +17,8 @@
 			'host' => 'localhost',
 			'username' => 'root',
 			'password' => 'apmsetup',
-			'database_name' => 'pmc_test',
-			'prefix' => 'pmc_'
+			'database_name' => 'intranet',
+			'prefix' => 'intra_'
 		);
 	
 	}
