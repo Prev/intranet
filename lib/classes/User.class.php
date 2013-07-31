@@ -1,7 +1,7 @@
 <?php
 	
 	/**
-	 * @author luaviskang@gmail.com, prevdev@gmail.com
+	 * @author prevdev@gmail.com, luaviskang@gmail.com
 	 * @2013.07
 	 *
 	 *

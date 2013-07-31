@@ -80,16 +80,37 @@
 		case 't':
 			$appendData = execQueryOne('
 				SELECT * FROM (#)user_teacher
-				WHERE user_id="'.$user_id.'"
+				WHERE (#)user_teacher.user_id="'.$user_id.'"
 			');
-			break;
 	}
 
 	foreach ($appendData as $key => $value) {
 		if ($key == 'id' || $key == 'user_id') continue;
-
+				
 		$key = preg_replace_callback('/(.)_([a-z])/', create_function('$m', 'return $m[1].strtoupper($m[2]);'), $key);
 		$obj->userData->{$key} = $value;
+	}
+
+	if ($userData->user_type == 't') {
+		if ($obj->userData->department !== NULL) {
+			$appendData2 = execQueryOne("
+				SELECT (#)user_teacher_department.name_locales, (#)user_teacher_position.name_locales
+				FROM (#)user_teacher_department, (#)user_teacher_position
+				WHERE (#)user_teacher_department.name = '{$obj->userData->department}'
+				AND (#)user_teacher_position.name = '{$obj->userData->position}'
+			", 'row');
+			$obj->userData->departmentLocale = $obj->userData->departmentKr = $appendData2[0];
+			$obj->userData->positionLocale = $obj->userData->positionKr = $appendData2[1];
+		}else {
+			$appendData2 = execQueryOne("
+				SELECT name_locales
+				FROM (#)user_teacher_position
+				WHERE name = '{$obj->userData->position}'
+			", 'row');
+
+			$obj->userData->departmentLocale = $obj->userData->departmentKr = NULL;
+			$obj->userData->positionLocale = $obj->userData->positionKr = $appendData2[0];
+		}
 	}
 
 	$groupDatas = execQuery("

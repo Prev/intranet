@@ -23,7 +23,11 @@
 								{$user->userName}({$user->grade}학년&nbsp;{$user->class}반&nbsp;{$user->number}번)님 환영합니다.
 							</case>
 							<case value="t">
-								{$user->userName}({$user->departmentKr} {$user->positionKr}반 {$user->number}번)님 환영합니다.
+								<condition do="$user->department">
+									{$user->userName}({$user->departmentKr} {$user->positionKr})님 환영합니다.
+								<else>
+									{$user->userName}({$user->positionKr})님 환영합니다.
+								</condition>
 							</case>
 							<case value="p">
 								{$user->userName}님 환영합니다.
@@ -73,7 +77,6 @@
 		</ul>
 	</div>
 </div>
-
 <condition do="$selectedTopMenu && $lnb = Context::getMenu(2)">
 	<true>
 		<div id="wrap" class="styled">
