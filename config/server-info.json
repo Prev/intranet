@@ -11,13 +11,13 @@
 		"protocol":"http",
 		"host":"localhost",
 		"session_domain":"localhost",
-		"uri":"/engine-pmc"
+		"uri":"/intranet"
 	},
 	{
-		"type":"test",
+		"type":"running",
 		"protocol":"http",
-		"host":"engine-pmc.parameter.kr",
-		"session_domain":"parameter.kr",
+		"host":"intranet.dimigobeta.kr",
+		"session_domain":"dimigobeta.kr",
 		"uri":""
 	}
 ]
