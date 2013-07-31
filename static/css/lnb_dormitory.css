@@ -1,0 +1,28 @@
+#side-menu #side-menu-top{ background-image: url(../img/lnb_top_dormitory.png) }
+
+#side-menu ul li{ background-image: url(../img/lnb_menu_dormitory.png) }
+
+#side-menu ul li.lnb-dormitory-notice{ background-position: 0 0 }
+#side-menu ul li.lnb-dormitory-notice:hover{ background-position: -249px 0 }
+#side-menu ul li.lnb-dormitory-notice.selected{ background-position: -498px 0 }
+
+#side-menu ul li.lnb-stay-request{ background-position: 0 -45px }
+#side-menu ul li.lnb-stay-request:hover{ background-position: -249px -45px }
+#side-menu ul li.lnb-stay-request.selected{ background-position: -498px -45px }
+
+#side-menu ul li.lnb-stay-inquiry{ background-position: 0 -90px }
+#side-menu ul li.lnb-stay-inquiry:hover{ background-position: -249px -90px }
+#side-menu ul li.lnb-stay-inquiry.selected{ background-position: -498px -90px }
+
+#side-menu ul li.lnb-stay-manage{ background-position: 0 -135px }
+#side-menu ul li.lnb-stay-manage:hover{ background-position: -249px -135px }
+#side-menu ul li.lnb-stay-manage.selected{ background-position: -498px -135px }
+
+#side-menu ul li.lnb-morning-song{ background-position: 0 -180px }
+#side-menu ul li.lnb-morning-song:hover{ background-position: -249px -180px }
+#side-menu ul li.lnb-morning-song.selected{ background-position: -498px -180px }
+
+#side-menu ul li.lnb-morning-song-manage{ background-position: 0 -225px }
+#side-menu ul li.lnb-morning-song-manage:hover{ background-position: -249px -225px }
+#side-menu ul li.lnb-morning-song-manage.selected{ background-position: -498px -225px }
+

@@ -51,6 +51,7 @@
 	<div id="gnb">
 		<ul class="clearfix">
 			{@ foreach(Context::getMenu(1) as $key => $menu): }
+				{@ if ($menu->selected == true) $selectedTopMenu = $menu; }
 				<condition do="$user">
 					<true>
 						<a href="/{@ echo (USE_SHORT_URL ? '' : '?menu=') . $menu->title}">
@@ -69,9 +70,39 @@
 		</ul>
 	</div>
 </div>
-<div id="wrap">
-	{getContent()}
-</div>
+
+<condition do="$selectedTopMenu && $lnb = Context::getMenu(2)">
+	<true>
+		<div id="wrap" class="styled">
+			{@ Context::getInstance()->addHeaderFile('/static/css/lnb_'.$selectedTopMenu->title.'.css'); }
+			<div class="clearfix">
+				<div id="side-menu" class="fl">
+					<div id="side-menu-top">
+						<span class="hidden">{$selectedTopMenu->title_locale}</span>
+					</div>
+					<ul>
+						{@ foreach ($lnb as $key => $menu) : }
+							<a href="/{@ echo USE_SHORT_URL ? '' : '?menu='}{$menu->title}">
+								<li class="lnb-{$menu->title}{@ if ($menu->selected) echo ' selected'}">
+									<span class="hidden">{$menu->title_locale}</span>
+								</li>
+							</a>
+						{@ endforeach; }
+					</ul>
+				</div>
+				<div id="main-content" class="fl">
+					{getContent()}
+				</div>
+			</div>
+		</div>
+	</true>
+
+	<false>
+		<div id="wrap">
+			{getContent()}
+		</div>
+	</false>
+</condition>
 <div id="footer">
 	<div id="footer-left">
 		<a href="/credit" target="_blank"><img src="./img/footer_copyright.png" width="596" height="30" /></a>

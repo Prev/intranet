@@ -165,6 +165,14 @@
 					}else
 						$moduleID = $data->module;
 				}
+				if ($data && $data->extra_vars) {
+					$extraVars = json_decode($data->extra_vars);
+					if ($extraVars && $extraVars->linkToSubMenu == true) {
+						$subMenu = self::getMenu(2);
+						if ($subMenu && count($subMenu) > 0)
+							redirect(getUrl() . (USE_SHORT_URL ? '/' : '/?menu=') . $subMenu[0]->title);
+					}
+				}
 				if ($data && $data->module && $data->action && !$moduleAction)
 					$moduleAction = $data->action;
 			}
@@ -179,6 +187,7 @@
 		 * Add cached CSS
 		 */
 		static public function getMenu($level) {
+			
 			$menuHash = $level . ':' . self::getInstance()->selectedMenu;
 			if (isset(self::$menuDatas->{$menuHash})) return self::$menuDatas->{$menuHash};
 

@@ -77,8 +77,26 @@ body{
 #header #gnb ul li.menu-els:hover { background-position:-430px -32px; width:116px }
 #header #gnb ul li.menu-els-disabled { background-position:-430px -64px; width:116px }
 
-#wrap { width: 1000px; margin: 30px auto 20px auto; }
+#wrap {
+	width: 1000px;
+	margin: 30px auto 20px auto;
+}
 
+#wrap.styled{
+	background-color: white;
+	border: #999;
+	border-radius: 5px;
+	box-shadow: 0px 0px 6px rgb(102, 102, 102);
+	text-align: left;
+	font-size: 13px;
+}
+
+#wrap #side-menu{ width: 249px }
+#wrap #side-menu #side-menu-top{ height: 372px; text-align: right; }
+#wrap #side-menu #side-menu-top .hidden{ display: inline-block; font-size: 32px; padding-top: 330px; *zoom:1; }
+
+#wrap #side-menu ul li{ height: 45px; }
+#wrap #side-menu ul li .hidden{ display: inline-block; padding: 15px 0 0 12px; font-size: 14px; *zoom:1; }
 
 #footer{ width:1000px; margin:0 auto; font-size:10px; *zoom:1 }
 #footer:after{ display:block; clear:both; content:"" }

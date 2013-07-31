@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-.board{ width: 900px; margin:20px 0; }
+.board{ width: 750px; margin:20px 0; }
 .board .pink{ color: #ec137f; font-weight: bold; }
 
 .board .board-article ul{ border-bottom: 1px solid #e0e0e0; margin: 0; padding-left: 10px; padding-top: 8px; }

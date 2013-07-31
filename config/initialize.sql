@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 호스트: localhost
--- 처리한 시간: 13-07-29 17:03
+-- 처리한 시간: 13-07-31 10:02
 -- 서버 버전: 5.1.41-community
 -- PHP 버전: 5.2.12
 
@@ -47,23 +47,7 @@ CREATE TABLE IF NOT EXISTS `intra_article` (
   KEY `board_id` (`board_id`),
   KEY `writer_id` (`writer_id`),
   KEY `top_no` (`top_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
-
---
--- 테이블의 덤프 데이터 `intra_article`
---
-
-INSERT INTO `intra_article` (`no`, `board_id`, `category`, `title`, `content`, `writer_id`, `top_no`, `order_key`, `is_secret`, `is_notice`, `allow_comment`, `upload_time`, `hits`, `files`) VALUES
-(1, 1, NULL, '안녕하세요. 게시판을 오픈했습니다', '컨텐츠', 1, 1, NULL, 0, 1, 1, '2013-03-06 08:40:14', 0, NULL),
-(2, 1, NULL, '알려드립니다', 'ㅇㅇ', 1, 2, NULL, 0, 0, 1, '2013-03-20 12:51:29', 0, NULL),
-(3, 1, NULL, '질문있습니다.', 'ㅇㅁㄴㅇ', 1, 2, 'AA', 0, 0, 1, '2013-03-20 12:52:47', 0, NULL),
-(4, 1, NULL, '저도있습니다!', 'ㅇㅁㄴ', 1, 2, 'AAAA', 0, 0, 1, '2013-03-24 12:36:57', 0, NULL),
-(6, 1, '안내', '게시판 안내', 'ㅇㅁㄴㅇㅁ', 1, 6, NULL, 0, 0, 1, '2013-03-24 12:41:40', 0, NULL),
-(9, 1, NULL, '운영진이 알립니다', 'dasdasd', 1, 9, NULL, 0, 0, 1, '2013-03-24 14:04:09', 0, NULL),
-(12, 1, NULL, 'ㅁㄴㅇㅁㄴㅇㅁㄴㅇ', 'ㅁㄴ', 1, 12, NULL, 0, 0, 1, '2013-03-24 14:25:35', 0, NULL),
-(13, 1, NULL, 'ㅇㅁㅇㅁㄴㅁㅇ2', 'ㅇㅇㅁ', 1, 13, NULL, 0, 0, 1, '2013-03-24 14:28:44', 0, NULL),
-(14, 1, NULL, 'ㅇㅁㄴㅇㅁㄴㅇㅁㅇ2', '', 1, 14, NULL, 0, 0, 1, '2013-03-24 14:30:18', 0, NULL),
-(15, 1, NULL, 'ㅇㅁㅇㅁㄴㅇㅁㄴㅇㅁ3', '', 1, 15, NULL, 0, 0, 1, '2013-06-21 13:59:28', 0, NULL);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -81,13 +65,6 @@ CREATE TABLE IF NOT EXISTS `intra_article_comment` (
   KEY `writer_id` (`writer_id`),
   KEY `article_no` (`article_no`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 테이블의 덤프 데이터 `intra_article_comment`
---
-
-INSERT INTO `intra_article_comment` (`id`, `article_no`, `content`, `writer_id`, `regtime`) VALUES
-(1, 2, 'ㅇㅁㄴㅇ', 1, '2013-03-20 12:51:39');
 
 -- --------------------------------------------------------
 
@@ -107,14 +84,6 @@ CREATE TABLE IF NOT EXISTS `intra_board` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_en` (`name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- 테이블의 덤프 데이터 `intra_board`
---
-
-INSERT INTO `intra_board` (`id`, `name`, `name_locales`, `categorys`, `read_permission`, `comment_permission`, `write_permission`, `extra_vars`) VALUES
-(1, 'freeboard', '{"en":"Freeboard", "kr":"자유게시판"}', NULL, '["*"]', '["*"]', '["*"]', NULL),
-(2, 'notice', '{"en":"Notice", "kr":"공지사항"}', NULL, '["*"]', '["*"]', '["*"]', NULL);
 
 -- --------------------------------------------------------
 
@@ -146,18 +115,7 @@ CREATE TABLE IF NOT EXISTS `intra_login_log` (
   `auto_login` tinyint(1) NOT NULL,
   `login_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
-
---
--- 테이블의 덤프 데이터 `intra_login_log`
---
-
-INSERT INTO `intra_login_log` (`id`, `ip_address`, `input_id`, `succeed`, `auto_login`, `login_time`) VALUES
-(1, '127.0.0.1', 'tester', 1, 1, '2013-07-29 03:06:44'),
-(2, '127.0.0.1', 'tester', 1, 1, '2013-07-29 06:45:59'),
-(3, '127.0.0.1', 'tester', 1, 1, '2013-07-29 06:47:12'),
-(4, '127.0.0.1', 'tester', 1, 1, '2013-07-29 06:52:59'),
-(5, '127.0.0.1', 'tester', 1, 1, '2013-07-29 06:53:49');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -179,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `intra_menu` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `title` (`title`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- 테이블의 덤프 데이터 `intra_menu`
@@ -187,10 +145,16 @@ CREATE TABLE IF NOT EXISTS `intra_menu` (
 
 INSERT INTO `intra_menu` (`id`, `title`, `title_locales`, `level`, `is_index`, `visible`, `parent_id`, `module`, `action`, `extra_vars`) VALUES
 (1, 'home', '홈', 1, 1, 1, NULL, 'index', NULL, NULL),
-(2, 'dormitory', '기숙사', 1, 0, 1, NULL, 'board', NULL, NULL),
+(2, 'dormitory', '생활관', 1, 0, 1, NULL, NULL, NULL, '{"linkToSubMenu":true}'),
 (3, 'cafeteria', '급식실', 1, 0, 1, NULL, 'board', NULL, NULL),
-(4, 'u-learning', 'U-러닝', 1, 0, 1, NULL, 'page', NULL, NULL),
-(5, 'els', '이러닝스튜디오', 1, 0, 1, 4, 'page', NULL, NULL);
+(4, 'u-learning', 'U-러닝', 1, 0, 1, NULL, 'board', NULL, NULL),
+(5, 'els', '이러닝스튜디오', 1, 0, 1, NULL, 'page', NULL, NULL),
+(6, 'dormitory-notice', '생활관 공지사항', 2, 0, 1, 2, 'board', NULL, NULL),
+(7, 'stay-request', '잔류 신청/수정/취소', 2, 0, 1, 2, NULL, NULL, NULL),
+(8, 'stay-inquiry', '잔류 조회', 2, 0, 1, 2, NULL, NULL, NULL),
+(9, 'stay-manage', '잔류 관리', 2, 0, 1, 2, NULL, NULL, NULL),
+(10, 'morning-song', '기상송 신청/조회', 2, 0, 1, 2, NULL, NULL, NULL),
+(11, 'morning-song-manage', '기상송 관리', 2, 0, 1, 2, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -208,14 +172,6 @@ CREATE TABLE IF NOT EXISTS `intra_session` (
   PRIMARY KEY (`session_key`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- 테이블의 덤프 데이터 `intra_session`
---
-
-INSERT INTO `intra_session` (`session_key`, `expire_time`, `ip_address`, `last_update`, `user_id`, `extra_vars`) VALUES
-('4a8ac55a04753495e16aaaaacaffd52c83d657f9', '2013-08-05 15:53:49', '127.0.0.1', '2013-07-29 06:53:49', 2, NULL),
-('abce8ffee4c5fede4f75f496f76d813176d310a9', '2013-08-05 12:06:44', '127.0.0.1', '2013-07-29 03:06:44', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -260,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `intra_user_auth_key` (
   `email` varchar(40) DEFAULT NULL,
   `email_key` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2012 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -320,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `intra_user_parent` (
   PRIMARY KEY (`id`),
   KEY `child_id` (`child_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=97 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -363,7 +319,6 @@ CREATE TABLE IF NOT EXISTS `intra_user_teacher` (
   `position` int(11) unsigned NOT NULL,
   `homeroom_class` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `card_number` varchar(10) NOT NULL,
-  `subject_ids` tinytext,
   PRIMARY KEY (`id`),
   KEY `global_id` (`user_id`),
   KEY `department` (`department`),

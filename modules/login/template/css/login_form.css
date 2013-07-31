@@ -77,9 +77,10 @@
 
 
 #error-message{
-	width:420px;
-	margin:0px auto 20px auto;
+	width:500px;
+	margin:30px 0;
 	padding:11px;
 	border:1px solid #ffbee5;
+	border-radius: 3px;
 	background-color:#ffe0f2;
 }
