@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 호스트: localhost
--- 처리한 시간: 13-07-31 17:33
+-- 처리한 시간: 13-07-31 17:41
 -- 서버 버전: 5.1.41-community
 -- PHP 버전: 5.2.12
 
@@ -215,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `intra_user` (
   `extra_vars` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`input_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- 테이블의 덤프 데이터 `intra_user`
@@ -228,7 +228,8 @@ INSERT INTO `intra_user` (`id`, `input_id`, `password`, `password_salt`, `user_t
 (4, 'tester_t', '2dea62f62f19e3db6336acf2701710c1594380864629d93355241606547c30c1', '2b0e9eb01d07ca5ebf4233f3338ac179', 't', '교사1', 'tester_t@dimigo.hs.kr', 0, '127.0.0.1', NULL),
 (5, 'tester_t2', '6b542b8ed5ab26249b794b3e451b48043a91089753781a83ad4d3071065cfa72', '44647cc914248f1ff7484f59f2afcaa5', 't', '교사2', 'tester_t2@dimigo.hs.kr', 0, '127.0.0.1', NULL),
 (6, 'tester_t3', 'aa94d0aacc49c1b41be971acd7c4980aa433f6e40ecdd3d698bbf28e1ecfd5a0', '011a85cf0a88fc10632a41849505ac98', 't', '교장1', 'principal@dimigo.hs.kr', 0, '127.0.0.1', NULL),
-(7, 'tester_p', '4931ace0884791c2c4e7286003e6a12d8aa6b2d2875bc5beb5bb37df017ea21f', 'e93b5245d7e0a3844e2dc1706161eecc', 'p', '학부모1', 'tester_p@dimigo.hs.kr', 0, '127.0.0.1', NULL);
+(7, 'tester_p', '4931ace0884791c2c4e7286003e6a12d8aa6b2d2875bc5beb5bb37df017ea21f', 'e93b5245d7e0a3844e2dc1706161eecc', 'p', '학부모1', 'tester_p@dimigo.hs.kr', 0, '127.0.0.1', NULL),
+(8, 'tester_s3', '30ecd3706d57663f2e948d71f91c551bd44cf77387baf9cabe439decec70fced', '48543339fc8b9c1e6305db88d03343a9', 's', '학생3', 'tester_s3@dimigo.hs.kr', 0, '', NULL);
 
 -- --------------------------------------------------------
 
@@ -323,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `intra_user_student` (
   `image_url` varchar(30) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- 테이블의 덤프 데이터 `intra_user_student`
@@ -331,7 +332,8 @@ CREATE TABLE IF NOT EXISTS `intra_user_student` (
 
 INSERT INTO `intra_user_student` (`id`, `user_id`, `grade`, `class`, `number`, `gender`, `dormitory`, `dormitory_room`, `card_number`, `image_url`) VALUES
 (1, 2, 1, 1, 50, 'm', 1, '100', '', ''),
-(2, 3, 2, 1, 51, 'f', 1, '100', '', '');
+(2, 3, 2, 1, 51, 'f', 1, '100', '', ''),
+(3, 8, 3, 1, 52, 'm', 2, '100', '', '');
 
 -- --------------------------------------------------------
 
