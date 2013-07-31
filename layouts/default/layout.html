@@ -18,16 +18,19 @@
 			<condition do="$user = User::getCurrent()">
 				<true>
 					<div class="child">
-						<switch var="$user->user_type">
+						<switch var="$user->userType">
 							<case value="s">
-								{$user->user_name}({$user->grade}학년&nbsp;{$user->class}반&nbsp;{$user->number}번)님 환영합니다.
+								{$user->userName}({$user->grade}학년&nbsp;{$user->class}반&nbsp;{$user->number}번)님 환영합니다.
 							</case>
 							<case value="t">
-								{$user->user_name}({$user->department_kr} {$user->position_kr}반 {$user->number}번)님 환영합니다.
+								{$user->userName}({$user->departmentKr} {$user->positionKr}반 {$user->number}번)님 환영합니다.
 							</case>
 							<case value="p">
-								{$user->user_name}님 환영합니다.
+								{$user->userName}님 환영합니다.
 							</case>
+							<default>
+								{$user->userName}님 환영합니다.
+							</default>
 						</switch>
 					</div>
 

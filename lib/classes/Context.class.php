@@ -187,7 +187,6 @@
 		 * Add cached CSS
 		 */
 		static public function getMenu($level) {
-			
 			$menuHash = $level . ':' . self::getInstance()->selectedMenu;
 			if (isset(self::$menuDatas->{$menuHash})) return self::$menuDatas->{$menuHash};
 
@@ -488,6 +487,7 @@
 					unset($_SESSION['pmc_sso_data']);
 					return false;
 				}
+
 				$ssoData = json_decode($urlData);
 				if (!$ssoData || $ssoData->result === 'fail') {
 					Context::printErrorPage(array(
@@ -498,14 +498,8 @@
 					return false;
 				}
 				$userData = $ssoData->userData;
-				if (isset($userData->groups)) {
-					for ($i=0; $i<count($userData->groups); $i++) { 
-						$group = $userData->groups[$i];
-						$group->name_locale = fetchLocale($group->name_locales);
-					}
-				}
 				$_SESSION['pmc_sso_data'] = $ssoData;
-
+				
 				User::initCurrent();
 				return true;
 			}
@@ -570,4 +564,3 @@
 			}
 		}
 	}
-	
