@@ -142,13 +142,15 @@
 	
 	header('Content-Type: text/html; charset=' . TEXT_ENCODING);
 	ini_set('display_errors', (DEBUG_MODE ? 1 : 0));
-	
+	ini_set('error_reporting', E_ALL ^ E_NOTICE);
+	error_reporting(E_ALL ^ E_NOTICE);
+
 	
 	// lib.rsa.php, lib.lessc.php is required when is needed
 	
 	if (file_exists(ROOT_DIR . '/lib/functions/custom.function.php'))
 		require ROOT_DIR . '/lib/functions/custom.function.php';
-	
+
 	require ROOT_DIR . '/config/database.php';
 	require ROOT_DIR . '/config/secure-keys.php';
 	require ROOT_DIR . '/lib/others/lib.idiorm.php';
