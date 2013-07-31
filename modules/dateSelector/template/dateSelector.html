@@ -1,0 +1,62 @@
+<import path="css/dateSelector.css">
+<import path="js/dateSelector.js">
+<div id="date-selector">
+		<div class="ballon">
+			<div class="ballon-date-abled"></div>
+		</div>
+		<div id="slider-prev" onclick="slide('prev');">
+			<div class="janryu-prev"></div>
+		</div>
+		<div id="date-selector-data">
+			<ul id="date-container" style="left:{@ echo $leftWidth < 0 ? $leftWidth : '0'}px{$width}">
+				{@ foreach($selectorData as $key => $data): }	
+					<condition do="$data[0]">
+						<condition do="$data[1]">
+							<li class="date-ym date-ym-first">
+						</condition>
+						<condition do="!$data[1]">
+							<li class="date-ym">
+						</condition>
+
+
+						<div class="date-year">{@ echo date('Y', $data[3]); }</div>
+						<div class="date-month">{@ echo date('m', $data[3]); }<div>
+
+						</li>
+					</condition>
+					
+					<condition do="!$data[0]">
+						<condition do="$data[2] == 0">
+							<li class="date date-selected">
+						</condition>
+						<condition do="$data[2] == 1">
+							<li class="date date-able" onclick="location.href={@ echo date('Y-m-d', $data[3])}">
+						</condition>
+						<condition do="$data[2] == 2">
+							<li class="date">
+						</condition>
+
+						<div class="date-top">
+							{@ echo $dateArr[date('w', $data[3])]}
+						</div>
+
+						<condition do="date('w', $data[3]) == 6">
+							<div class="date-bottom date-blue">{@ echo date('d', $data[3])}</div>
+						</condition>
+						<condition do="date('w', $data[3]) == 0">
+							<div class="date-bottom date-red">{@ echo date('d', $data[3])}</div>
+						</condition>
+						<condition do="date('w', $data[3]) != 0 && date('w', $data[3]) != 6">
+							<div class="date-bottom">{@ echo date('d', $data[3])}</div>
+						</condition>
+
+						</li>
+					</condition>
+				{@ endforeach; }
+			</ul>
+		</div>
+		<div id="slider-next" onclick="slide('next')">
+			<div class="janryu-next"></div>
+		</div>
+	</div>
+</div>

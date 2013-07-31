@@ -1,0 +1,13 @@
+{	
+	"name":"dateSelector",
+	"version":"1.0.0",
+	"author":"socomee@nate.com",
+
+	"actions":[
+		{
+			"name":"dispDateSelector",
+			"view":"DateSelectorView",
+			"default":true
+		}
+	]
+}
