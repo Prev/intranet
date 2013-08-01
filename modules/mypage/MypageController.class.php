@@ -17,6 +17,7 @@
 
 	public function init(){
  		
+ 		
 
 		 $this-> SNAME = $_REQUEST['sname'];
 		 $this -> SGRADE = $_REQUEST['sgrade'];
