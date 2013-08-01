@@ -455,7 +455,36 @@
 		exit;
 	}
 
+	/**
+	 * 로그인 페이지로 이동
+	 */
 	function goLogin() {
 		redirect( getUrlA('next='.REAL_URL, LOGIN_URL));
 	}
+
+
+	/**
+	 * 뒤로 이동
+	 * @param $alertMessage : 정의시 해당 메시지로 경고창을 한번 뛰운 뒤 뒤로 이동
+	 * @param $clearContents : true일때 이전 내용을 ob_clean 한 후 뒤로 이동
+	 */
+	function goBack($alertMessage=NULL, $clearContents=false) {
+		$next = isset($_GET['next']) ? $_GET['next'] : (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : getUrl());
+		if ($clearContents) {
+			ob_clean();
+
+			echo Context::getInstance()->getDoctype() .
+				'<html><head>' .
+				'<script type="text/javascript">' .
+				($alertMessage ? 'alert("'.$alertMessage.'");' : '') .
+				'location.replace("'.$next.'");</script>' .
+				'</head><body></body></html>';
+		}else {
+			echo '<script type="text/javascript">' .
+				($alertMessage ? 'alert("'.$alertMessage.'");' : '') .
+				'location.replace("'.$next.'");</script>';
+		}
+	}
+
+
 	
