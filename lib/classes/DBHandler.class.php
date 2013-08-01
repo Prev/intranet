@@ -15,12 +15,14 @@
 		static public $type;
 		static public $prefix;
 
+		static public $primary_keys;
 
 		// 주로 table prefix 문제를 해결하기 위해 override함
 		// @override
 		static public function for_table($table_name, $connection_name = self::DEFAULT_CONNECTION, $appendPrefix=true) {
 			if ($appendPrefix) $table_name = self::$prefix . $table_name;
 			self::_setup_db($connection_name);
+			
 			return new self($table_name, array(), $connection_name);
 		}
 
@@ -73,10 +75,14 @@
 			$this->_connection_name = $connection_name;
 			parent::_setup_db_config($connection_name);
 
+			if (isset(self::$primary_keys->{$table_name}))
+				parent::$_config[$connection_name]['id_column'] = self::$primary_keys->{$table_name};
+
 			$primaryRow = DBHandler::get_db($connection_name)
 				->query('SHOW KEYS FROM '.$table_name.' WHERE Key_name =  "PRIMARY"');
 			
 			foreach ($primaryRow as $row) {
+				self::$primary_keys->{$table_name} = $row['Column_name'];
 				if ($row['Column_name'] != 'id')
 					parent::$_config[$connection_name]['id_column'] = $row['Column_name'];
 			}
@@ -105,6 +111,7 @@
 		static public function init($info) {
 			self::$type = $info->type;
 			self::$prefix = $info->prefix;
+			self::$primary_keys = new StdClass();
 
 			$charset = join('', explode('-', TEXT_ENCODING));
 
