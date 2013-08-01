@@ -167,11 +167,11 @@
 				return '<?php if ($func = '.$function.'('.$args.')) echo $func; ?>';
 
 			else if ($this->module && method_exists($this->module, $function))
-				return '<?php if ($func = ModuleHandler::getModule(\''.$this->module->moduleID.'\', \''.$this->module->moduleAction.'\')->'.$function.'('.$args.')) echo $func; ?>';
+				return '<?php if ($func = ModuleHandler::getModule(\''.$this->module->moduleID.'\', \''.$this->module->action.'\')->'.$function.'('.$args.')) echo $func; ?>';
 			
 			foreach (array('model', 'controller', 'view') as $key => $mvc) {
 				if ($this->module && $this->module->{$mvc} && method_exists($this->module->{$mvc}, $function))
-					return '<?php if ($func = ModuleHandler::getModule(\''.$this->module->moduleID.'\', \''.$this->module->moduleAction.'\')->'.$mvc.'->'.$function.'('.$args.')) echo $func; ?>';
+					return '<?php if ($func = ModuleHandler::getModule(\''.$this->module->moduleID.'\', \''.$this->module->action.'\')->'.$mvc.'->'.$function.'('.$args.')) echo $func; ?>';
 			}
 		}
 

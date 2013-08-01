@@ -1,0 +1,21 @@
+{	
+	"layout" : "myPageLayout",
+	"actions":[
+		{
+			"name":"dispTest",
+			"view":"MypageView",
+			"model" : "MypageModel"
+			
+		},
+
+		{
+			"name":"idResult",
+			"view":"MypageView",
+			"controller" : "MypageController",
+			"model" : "MypageModel"
+			
+		}
+		
+		
+	]
+}
