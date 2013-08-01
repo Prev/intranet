@@ -1,0 +1,10 @@
+#container {width: 670px; margin: 0 auto;}
+#title {width: 670px; height: 38px; margin-top: 30px; margin-bottom: 25px; background: transparent url('./img/title_idall.png') no-repeat;}
+#main-box {width: 664px; height: 236px; border: 3px solid #e3e3e3; border-radius: 3px;}
+#main-box #contents {width: 242px; height: 16px; text-align: center; color: transparent; background: transparent url('./img/contents_idall.png') no-repeat; margin: 60px auto 20px;}
+#main-box #tip {width: 380px; height: 30px; font-weight:bold; color: #595959; font-size: 12px; margin: 0px auto 30px;}
+#main-box #btn-box {width: 201px; height: 25px; margin: 0 auto;}
+#main-box #btn-box #retry-btn {width: 98px; height: 25px; background: transparent url('./img/btn_login.png') no-repeat; display: block; margin: 0; padding: 0; border: 0; cursor: pointer; float: left;}
+#main-box #btn-box #signup-btn {width: 98px; height: 25px; background: transparent url('./img/btn_findpw.png') no-repeat; display: block; margin: 0; padding: 0; border: 0; cursor: pointer; float: right}
+#border-box {height: 40px; margin-bottom: 7px; border-bottom: 1px solid #d7d7d7; clear: both;}
+#developers {color: #898989; font-size: 10px;}

@@ -1,0 +1,28 @@
+{
+
+	
+	"actions" : [
+		{
+			"name" : "find_id_main",
+			"view" : "find_id_View",
+			"layout" : "myPageLayout"
+		},
+		{
+			"name" : "find_id_entire",
+			"view" : "find_id_View",
+			"layout" : "myPageLayout"
+		},
+		{
+			"name" : "find_id_little",
+			"view" : "find_id_View",
+			"layout" : "myPageLayout"
+
+		},
+		{
+			"name" : "password_mail",
+			"view" : "find_id_View",
+			"layout" : "myPageLayout"
+		}
+	]
+
+}

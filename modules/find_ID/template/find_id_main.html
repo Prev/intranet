@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<import path="css/findID.css">
+
+<head>
+		<meta charset="utf-8">
+		<title>한국디지털미디어고등학교 아이디 비밀번호 찾기</title>
+		
+		<?php
+			if (strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== false)
+				echo '<link rel="stylesheet" href="../static.css/chrome.css">';
+		?>
+</head>
+
+<body>
+	<div id="container">
+
+		<div id="title"></div>
+
+		<form action="127.0.0.1/intranet?modules=mypage&action=findID" method="post">
+			<div id="id-section">
+				<div class="section-title-box">
+					<div class="section-title">아이디 찾기</div>
+					<div class="section-subtitle">아이디를 찾기 위해 아래 정보를 입력해 주세요.</div>
+				</div>
+				<div class="section-body">
+					<div class="input-container">
+						<div class="input-title">이름</div>
+						<input type="text" name="nameID" id="input-id-name"/>
+					</div>
+					<div class="input-container">
+						<div class="input-title">학번</div>
+						<select name="grade" class="input-number">
+							<option value="g1">1학년</option>
+							<option value="g2">2학년</option>
+							<option value="g3">3학년</option>
+						</select>
+
+						<select name="classNumber" class="input-number">
+							<option value="c1">1반</option>
+							<option value="c2">2반</option>
+							<option value="c3">3반</option>
+						</select>
+
+						<select name="Number" class="input-number">
+							<option value="n1">1번</option>
+							<option value="n2">2번</option>
+							<option value="n3">3번</option>
+						</select>
+					</div>
+				</div>
+				<input type="submit" value="" ="" id="id-confirm-btn"/>
+			</div>
+		</form>
+
+		<form action="127.0.0.1/intranet?modules=mypage&action=findID" method="post">
+			<div id="pw-section">
+				<div class="section-title-box">
+					<div class="section-title">비밀번호 재설정</div>
+					<div class="section-subtitle">비밀번호 재설정을 위해 아래 정보를 입력해 주세요.<br/>이메일로 비밀번호 재설정을 위한 링크가 발송됩니다.</div>
+				</div>
+				<div class="section-body">
+					<div class="input-container">
+						<div class="input-title">이름</div>
+						<input type="text" name="namePW" id="input-pw-name"/>
+					</div>
+					<div class="input-container">
+						<div class="input-title">아이디</div>
+						<input type="text" name="checkID" id="input-pw-id"/>
+					</div>
+					<div class="input-container">
+						<div class="input-title">이메일</div>
+						<input type="text" name="checkMail" id="input-pw-email"/>
+					</div>
+				</div>
+
+				<input type="submit" value="" id="pw-confirm-btn"/>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
