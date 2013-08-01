@@ -67,6 +67,7 @@
 				$_module->action = $moduleActionData->name;
 				$_module->actionData = $moduleActionData;
 			}
+			
 			$_module->__initBase();
 			$_module->init();
 
@@ -82,6 +83,7 @@
 			if (method_exists($_module->controller, 'init'))	$_module->controller->init();
 			if (method_exists($_module->view, 'init'))			$_module->view->init();
 
+
 			return $_module;
 		}
 
@@ -90,7 +92,6 @@
 			if (!self::moduleExists($moduleID)) return NULL;
 
 			$moduleDir = self::getModuleDir($moduleID);
-			
 			
 			// if (ModuleName)Module.class.php exists, load it
 			// else, default Module class
@@ -103,7 +104,7 @@
 			}else
 				$classID = 'Module';
 
-			
+
 			if (!class_exists($classID)) {
 				Context::printErrorPage(array(
 					'en' => 'Cannot initialize module - Cannot find module class',
@@ -176,8 +177,18 @@
 				
 				for ($i=0; $i<count($actions); $i++) {
 					// action이 지정되지 않고 default action이 info.json에서 정의됬을 시 해당 action 실행
-					if (!isset($action) && isset($actions[$i]->default) && $actions[$i]->default === true)
+					if (!isset($action) && isset($actions[$i]->default) && $actions[$i]->default === true) {
 						$action = $actions[$i]->name;
+
+						self::$modules->{$moduleID.'.'.$action} = self::$modules->{$moduleID.'.'};
+						self::$moduleInfos->{$moduleID.'.'.$action} = self::$moduleInfos->{$moduleID.'.'};
+						
+						$module = self::$moduleInfos->{$moduleID.'.'.$action};
+						$moduleInfo = self::$moduleInfos->{$moduleID.'.'.$action};
+						
+						unset(self::$modules->{$moduleID.'.'});
+						unset(self::$moduleInfos->{$moduleID.'.'});
+					}
 					
 					if ($action == $actions[$i]->name) {
 						if (isset($actions[$i]->allow_web_access) && $actions[$i]->allow_web_access == false && Context::getInstance()->moduleID == $moduleID && Context::getInstance()->moduleAction == $action){
