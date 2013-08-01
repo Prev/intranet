@@ -15,6 +15,8 @@
 		static public $type;
 		static public $prefix;
 
+
+		// 주로 table prefix 문제를 해결하기 위해 override함
 		// @override
 		static public function for_table($table_name, $connection_name = self::DEFAULT_CONNECTION, $appendPrefix=true) {
 			if ($appendPrefix) $table_name = self::$prefix . $table_name;
@@ -61,6 +63,26 @@
 
 			return $this;
 		}
+
+		// @override
+		// PRIMARY_KEY 가 'id' 가 아닐때 update문이 안먹는 버그 픽스
+		protected function __construct($table_name, $data = array(), $connection_name = parent::DEFAULT_CONNECTION) {
+			$this->_table_name = $table_name;
+			$this->_data = $data;
+
+			$this->_connection_name = $connection_name;
+			parent::_setup_db_config($connection_name);
+
+			$primaryRow = DBHandler::get_db($connection_name)
+				->query('SHOW KEYS FROM '.$table_name.' WHERE Key_name =  "PRIMARY"');
+			
+			foreach ($primaryRow as $row) {
+				if ($row['Column_name'] != 'id')
+					parent::$_config[$connection_name]['id_column'] = $row['Column_name'];
+			}
+		}
+		
+
 		public function getQuery() {
 			$query = parent::_build_select();
 			for ($i=0; $i < count($this->_values); $i++)
@@ -73,6 +95,10 @@
 			return $this->_data;
 		}
 
+		public function execute($query, $parameters = array(), $connection_name = parent::DEFAULT_CONNECTION) {
+			return $this->_execute($query, $parameters, $connection_name);
+		}
+
 
 
 
@@ -82,33 +108,15 @@
 
 			$charset = join('', explode('-', TEXT_ENCODING));
 
-			switch (self::$type) {
-				case 'mysqli':
-					@self::$db = new MySQLi($info->host, $info->username, $info->password, $info->database_name);
-					
-					$e = mysqli_connect_error();
-					if (!$e) self::$db->set_charset($charset);
-					break;
-					
-				case 'mysql':
-					@self::$db = mysql_connect($info->host, $info->username, $info->password);
-					$e = mysql_error();
-					
-					if (!$e) {
-						$r = mysql_select_db($info->database_name,  self::$db);
-						mysql_query('set names ' . $charset);
-						
-						if (!$r)
-							$e = 'Cannot connect to database "'.$info->database_name.'"';
-					}
-					break;
-					
-				default :
-					Context::printErrorPage(array(
-						'en' => 'database type is not supported',
-						'kr' => '지원되지 않는 데이터베이스 종류입니다'
-					));
-					break;
+			@self::$db = mysql_connect($info->host, $info->username, $info->password);
+			$e = mysql_error();
+			
+			if (!$e) {
+				$r = mysql_select_db($info->database_name,  self::$db);
+				mysql_query('set names ' . $charset);
+				
+				if (!$r)
+					$e = 'Cannot connect to database "'.$info->database_name.'"';
 			}
 			
 			if ($e) Context::printErrorPage(array(
@@ -120,93 +128,6 @@
 			self::configure('username', $info->username);
 			self::configure('password', $info->password);
 
-		}
-		
-		static public function rawQuery($query, $fetchType='object') {
-			$arr = array();
-			$query = join(DBHandler::$prefix, explode('(#)', $query));
-			$backtrace = debug_backtrace();
-			$backtrace_path = getFilePathClear($backtrace[0]['file']);
-			
-			switch (self::$type) {
-				case 'mysqli':
-					$result = self::$db->query($query);
-					if ($result === false) {
-						Context::printWarning(array(
-							'en' => 'Fail to excute query "<b>'.$query."</b>\" in <b>${backtrace_path}</b> on line <b>{$backtrace[0]['line']}</b>",
-							'kr' => '쿼리 실행에 실패했습니다 "<b>'.$query."</b>\" in <b>${backtrace_path}</b> on line <b>{$backtrace[0]['line']}</b>"
-						));
-						return NULL;
-					}
-					if (!isset($result->num_rows)) return $result;
-					
-					switch ($fetchType) {
-						case 'object':
-							while ($fetch = $result->fetch_object())
-								array_push($arr, $fetch);
-							break;
-						
-						case 'array':
-							while ($fetch = $result->fetch_array())
-								array_push($arr, $fetch);
-							break;
-							
-						default:
-							Context::printWarning(array(
-								'en' => 'unknown fetchType in DBHandler::execQuery method',
-								'kr' => 'DBHandler::execQuery 메소드에서 알수없는 fetchType 을 입력했습니다'
-							));
-							return;
-						
-					}
-					break;
-					
-				case 'mysql':
-					$result = mysql_query($query, self::$db);
-					
-					if ($result === false) {
-						Context::printWarning(array(
-							'en' => 'Fail to excute query "<b>'.$query."</b>\" in <b>${backtrace_path}</b> on line <b>{$backtrace[0]['line']}</b>",
-							'kr' => '쿼리 실행에 실패했습니다 "<b>'.$query."</b>\" in <b>${backtrace_path}</b> on line <b>{$backtrace[0]['line']}</b>"
-						));
-						return NULL;
-					}
-					if ($result === true) return $result;
-					
-					switch ($fetchType) {
-						case 'object':
-							while ($fetch = mysql_fetch_object($result))
-								array_push($arr, $fetch);
-							break;
-						
-						case 'array':
-							while ($fetch = mysql_fetch_array($result))
-								array_push($arr, $fetch);
-							break;
-							
-						default:
-							Context::printWarning(array(
-								'en' => 'unknown fetchType in DBHandler::execQuery method',
-								'kr' => 'DBHandler::execQuery 메소드에서 알수없는 fetchType 을 입력했습니다'
-							));
-							return;
-						
-					}
-					break;
-			}
-			return $arr;
-		}
-		
-		static public function rawQueryOne($query, $fetchType='object') {
-			$result = self::execQuery($query, $fetchType);
-			if (is_array($result) && count($result) !== 0)
-				return $result[0];
-			else
-				return $result;
-		}
-		
-		static public function getInsertId() {
-			return self::$db->$insert_id;
 		}
 		
 		static public function escapeString($string) {
