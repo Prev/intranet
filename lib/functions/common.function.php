@@ -435,7 +435,7 @@
 	 */
 	function getBackUrl() {
 		if ($_GET['next'])
-			return $_GET['next'];
+			return urldecode($_GET['next']);
 		else if ($_SERVER['HTTP_REFERER'])
 			return $_SERVER['HTTP_REFERER'];
 		else
@@ -459,7 +459,7 @@
 	 * 로그인 페이지로 이동
 	 */
 	function goLogin() {
-		redirect( getUrlA('next='.REAL_URL, LOGIN_URL));
+		redirect( getUrlA('next='.urlencode(REAL_URL), LOGIN_URL));
 	}
 
 
@@ -469,7 +469,6 @@
 	 * @param $clearContents : true일때 이전 내용을 ob_clean 한 후 뒤로 이동
 	 */
 	function goBack($alertMessage=NULL, $clearContents=false) {
-		$next = isset($_GET['next']) ? $_GET['next'] : (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : getUrl());
 		if ($clearContents) {
 			ob_clean();
 
@@ -477,12 +476,12 @@
 				'<html><head>' .
 				'<script type="text/javascript">' .
 				($alertMessage ? 'alert("'.$alertMessage.'");' : '') .
-				'location.replace("'.$next.'");</script>' .
+				'location.replace("'.getBackUrl().'");</script>' .
 				'</head><body></body></html>';
 		}else {
 			echo '<script type="text/javascript">' .
 				($alertMessage ? 'alert("'.$alertMessage.'");' : '') .
-				'location.replace("'.$next.'");</script>';
+				'location.replace("'.getBackUrl().'");</script>';
 		}
 	}
 

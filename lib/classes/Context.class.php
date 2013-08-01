@@ -155,7 +155,8 @@
 					'kr' => '해당 메뉴를 찾을 수 없습니다'
 				));
 			}else {
-				$this->selectedMenu = $getVars['menu'];				
+				$this->selectedMenu = $getVars['menu'];
+
 				if (isset($data) && isset($data->module)) {
 					if ($moduleID) {
 						Context::printErrorPage(array(
@@ -201,7 +202,7 @@
 					->where('visible', 1)
 					->find_many();
 			}else {
-				if (empty($selectedMenuData)) {
+				if (!isset($selectedMenuData)) {
 					self::printErrorPage(array('en' => 'fail parsing menu', 'kr' => '메뉴 파싱에 실패했습니다.'));
 					return;
 				}
@@ -229,6 +230,7 @@
 						->find_many();
 			}
 
+			
 			static $topMenus;
 			if ($selectedMenuData !== false) {
 				if ($selectedMenuData->level == 1) $topMenus = array($selectedMenuData->id);
@@ -238,7 +240,7 @@
 			for ($i=0; $i<count($arr); $i++) {
 				$arr[$i] = $arr[$i]->getData();
 				$arr[$i]->className = 'menu-' . $arr[$i]->title;
-				
+
 				if (isset($topMenus) && array_search($arr[$i]->id, $topMenus) !== false) {
 					$arr[$i]->selected = true;
 					$arr[$i]->className .= ' menu-' . $arr[$i]->title . '-selected selected';
@@ -247,8 +249,7 @@
 					$arr[$i]->title = '';
 				
 				$arr[$i]->title_locale = fetchLocale($arr[$i]->title_locales);
-			}
-			
+			}		
 			self::$menuDatas->{$menuHash} = $arr;
 			return $arr;
 		}
