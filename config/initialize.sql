@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 호스트: localhost
--- 처리한 시간: 13-07-31 17:41
+-- 처리한 시간: 13-08-01 11:30
 -- 서버 버전: 5.1.41-community
 -- PHP 버전: 5.2.12
 
@@ -83,7 +83,14 @@ CREATE TABLE IF NOT EXISTS `intra_board` (
   `extra_vars` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_en` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- 테이블의 덤프 데이터 `intra_board`
+--
+
+INSERT INTO `intra_board` (`id`, `name`, `name_locales`, `categorys`, `read_permission`, `comment_permission`, `write_permission`, `extra_vars`) VALUES
+(3, 'dormitory-notice', '생활관 공지사항', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -115,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `intra_login_log` (
   `auto_login` tinyint(1) NOT NULL,
   `login_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- 테이블의 덤프 데이터 `intra_login_log`
@@ -131,7 +138,25 @@ INSERT INTO `intra_login_log` (`id`, `ip_address`, `input_id`, `succeed`, `auto_
 (7, '127.0.0.1', 'tester_t', 1, 1, '2013-07-31 08:13:33'),
 (8, '127.0.0.1', 'tester_p', 1, 1, '2013-07-31 08:16:58'),
 (9, '127.0.0.1', 'tester_t3', 1, 1, '2013-07-31 08:17:06'),
-(10, '127.0.0.1', 'tester_t2', 1, 1, '2013-07-31 08:30:36');
+(10, '127.0.0.1', 'tester_t2', 1, 1, '2013-07-31 08:30:36'),
+(11, '127.0.0.1', 'tester_s', 1, 1, '2013-07-31 08:51:07'),
+(12, '127.0.0.1', 'tester', 0, 1, '2013-08-01 01:33:26'),
+(13, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 01:33:31'),
+(14, '127.0.0.1', 'tester', 0, 1, '2013-08-01 02:11:15'),
+(15, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 02:11:21'),
+(16, '127.0.0.1', 'tester', 0, 1, '2013-08-01 02:22:49'),
+(17, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 02:22:52'),
+(18, '127.0.0.1', 'tester', 0, 1, '2013-08-01 02:23:57'),
+(19, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 02:24:11'),
+(20, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 02:24:20'),
+(21, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 02:24:47'),
+(22, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 02:24:54'),
+(23, '127.0.0.1', 'tester_s', 0, 1, '2013-08-01 02:25:02'),
+(24, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 02:25:09'),
+(25, '127.0.0.1', 'tester_s', 0, 1, '2013-08-01 02:25:15'),
+(26, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 02:26:02'),
+(27, '127.0.0.1', 'tester_s', 0, 1, '2013-08-01 02:26:19'),
+(28, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 02:26:25');
 
 -- --------------------------------------------------------
 
@@ -194,6 +219,7 @@ CREATE TABLE IF NOT EXISTS `intra_session` (
 --
 
 INSERT INTO `intra_session` (`session_key`, `expire_time`, `ip_address`, `last_update`, `user_id`, `extra_vars`) VALUES
+('d067189623a399153ee5d421993ba81fd3f7ff2d', '2013-08-08 11:26:25', '127.0.0.1', '2013-08-01 02:26:25', 2, NULL),
 ('d933e5cc7ef49eb83d6d042d7e17139287527ff9', '2013-08-07 16:51:04', '127.0.0.1', '2013-07-31 07:51:04', 4, NULL);
 
 -- --------------------------------------------------------
