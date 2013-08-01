@@ -43,7 +43,7 @@
 			$html = preg_replace_callback('/{(\$.*?)}/', array($this, 'parseVar'), $html);
 			
 			// {func()} -> Context::execFunction('func', array())
-			$html = preg_replace_callback("`{([a-zA-Z0-9_\s]+)\((.*)\)}`", array($this, 'parseFunc'), $html);
+			$html = preg_replace_callback("`{([a-zA-Z0-9_\s]+)\((.*?)\)}`", array($this, 'parseFunc'), $html);
 			
 
 			// insert RELATIVE_URL in absolute src (/.*), href and action
