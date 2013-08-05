@@ -1,0 +1,9 @@
+body {margin: 0;}
+#container {width: 670px; margin: 0 auto;}
+#title {width: 670px; height: 38px; margin-top: 30px; margin-bottom: 25px; background: transparent url('./img/title_idfail.png') no-repeat;}
+#main-box {width: 664px; height: 233px; border: 3px solid #e3e3e3; border-radius: 3px;}
+#main-box #contents {width: 283px; height: 36px; text-align: center; color: transparent; background: transparent url('./img/contents_idfail.png') no-repeat; margin: 60px auto 20px;}
+#main-box #tip {width: 350px; height: 15px; text-align: center; color: #595959; font-size: 12px; margin: 0px auto 25px;}
+#main-box #btn-box {width: 173px; height: 25px; margin: 0 auto;}
+#main-box #btn-box #retry-btn {width: 84px; height: 25px; background: transparent url('./img/btn_retry.png') no-repeat; display: block; margin: 0; padding: 0; border: 0; cursor: pointer; float: left;}
+#main-box #btn-box #signup-btn {width: 84px; height: 25px; background: transparent url('./img/btn_signup.png') no-repeat; display: block; margin: 0; padding: 0; border: 0; cursor: pointer; float: right}

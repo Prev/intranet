@@ -1,0 +1,40 @@
+{	
+	"layout" : "FindpageLayout",
+	"actions":[
+		{
+			"name":"dispMain",
+			"view":"FindpageView"
+			
+			
+		},
+
+		{
+			"name":"dispIdResult",
+			"view":"FindpageView",
+			"controller" : "FindIdpageController",
+			"model" : "FindIdpageModel"
+		},
+
+		{
+			"name":"dispIdMail",
+			"view":"FindpageView",
+			"model" : "FindIdpageModel"
+			
+		},
+
+		{
+			"name":"dispIdFail",
+			"view":"FindpageView",
+			"model" : "FindIdpageModel"
+			
+		},
+
+
+		{
+			"name":"dispPwMail",
+			"view":"FindpageView",
+			"model" : "FindPwPageModel",
+			"controller" : "FindPwPageController"
+		}
+	]
+}

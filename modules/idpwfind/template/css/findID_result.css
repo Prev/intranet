@@ -1,0 +1,9 @@
+body {margin: 0;}
+#container {width: 670px; margin: 0 auto;}
+#title {width: 670px; height: 38px; margin-top: 30px; margin-bottom: 25px; background: transparent url('./img/title_idresult.png') no-repeat;}
+#main-box {width: 664px; height: 263px; border: 3px solid #e3e3e3; border-radius: 3px;}
+#main-box #contents {width: 544px; height: 40px; font-size: 18px; text-align: center; color: #ec137f; font-weight: bold; border-bottom: 2px solid #e9e8e8; padding-top: 35px; margin: 25px auto;}
+#main-box #contents #send-mail {font-size: 15px; font-size: 13px; font-weight: bold;}
+#main-box #contents #three-hour {font-size: 13px; font-weight: bold;}
+#main-box #tip {width: 500px; height: 30px; color: #6e6e6e; text-align: center; font-size: 11px; font-weight: bold; margin: 0 auto;}
+#main-box #checkall-btn {width: 163px; height: 25px; background: transparent url('./img/btn_checkall.png') no-repeat; display: block; margin: 30px auto; padding: 0; border: 0; cursor: pointer;}
