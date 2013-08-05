@@ -53,7 +53,7 @@ class FindPwPageController extends Controller{
 
 
 						$user = DBHandler::for_table('user')
-							->where('id',$global_id)
+							->where('id', $global_id)
 							->find_one();
 						$user -> set('password', $pw;);
 						$user -> set('password_salt', $salt);
@@ -70,7 +70,7 @@ class FindPwPageController extends Controller{
 
 		public function createKey(){
 
-		$judge = $this -> model -> isPwKeyDataExist(); //존재하는지 여부를 판단 
+		$judge = $this->model->isPwKeyDataExist(); //존재하는지 여부를 판단 
 		$global_id = $this -> model -> getUserID();
 		$rand_key = mt_rand(5, 10);
 		$key = md5($rand_key);

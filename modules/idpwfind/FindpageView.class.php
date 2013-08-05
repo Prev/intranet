@@ -80,31 +80,32 @@ class FindpageView extends View{
 
 		}
 
-		// else{
+		else{
 
-		// 	echo $id;
+		
 
-  //           echo '<script>location.href = "?module=idpwfind&action=dispIdFail";</script>';
-		// }
+        	echo '<script>location.href = "?module=idpwfind&action=dispIdFail";</script>';
+		
+		}
 
 					
 
 	}
 
 
-	public function sendEntireID(){
+	// public function sendEntireID(){
 
 			
-			$from = 'noreply@dimigo.hs.kr';
-            $fromName = '한국디지털미디어고등학교';
-            $to =  $this -> model -> getInfo('s', 'email_addressd');
-            $toName = $this -> model -> getInfo('s', 'user_name');
-           // $subject = '회원님의 한국디지털미디어고등학교 아이디 안내 메일입니다.' ;
+	// 		$from = 'noreply@dimigo.hs.kr';
+ //            $fromName = '한국디지털미디어고등학교';
+ //            $to =  $this -> model -> getInfo('s', 'email_addressd');
+ //            $toName = $this -> model -> getInfo('s', 'user_name');
+ //           // $subject = '회원님의 한국디지털미디어고등학교 아이디 안내 메일입니다.' ;
 
  
-		  //function sendMail($from, $fromName, $to, $toName, $subject, $content)
+	// 	  //function sendMail($from, $fromName, $to, $toName, $subject, $content)
 
-	}
+	// }
 
 	
 

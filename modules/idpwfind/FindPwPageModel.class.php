@@ -18,9 +18,9 @@
 
 				$data = DBHandler::for_table('user')
 					->select_many('*')
-					->where('input_id', $this->controller ->sid)
-					->where('user_name', $this->controller ->sname)
-					->where('email_address', $this->controller ->semail)
+					->where('input_id', $this->controller->sid)
+					->where('user_name', $this->controller->sname)
+					->where('email_address', $this->controller->semail)
 					//var_dump2($data -> getQuery());
 					->find_one();
 					//var_dump2($data -> getData());

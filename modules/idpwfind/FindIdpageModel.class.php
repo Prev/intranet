@@ -5,23 +5,12 @@ class FindIdpageModel extends Model{
 
 	public function getUserID(){ //유저의 글로벌 아이디를 얻어옴 
 
-
-					/*
-
-						string(124) "SELECT * FROM `intra_user` 
-						WHERE `input_id` = tester_s
-						AND `user_name` = 학생1
-						AND `email_address` = tester_s@dimigo.hs.kr"
-
-
-					*/
-
 				$data = DBHandler::for_table('user_student')
 					->select_many('*')
 					->join('user', array(
 									'user_student.user_id','=','user.id'
 
-								))
+					))
 					->where('user.user_name', $this ->controller->sname)
 					->where('user_student.grade', $this->controller->sgrade)
 					->where('user_student.class', $this->controller->sclass)
@@ -84,28 +73,20 @@ class FindIdpageModel extends Model{
 	 				case 'p': // 학부모 
 
 	 				
-	 				if($this ->getUserID() != null){
+	 				if( $this ->getUserID() != null ){
 	 					$data =  DBHandler::for_table('user_parent')
 								->select_many('user.*')
 								
 								->where('user_student.grade', $this->controller->sgrade)
 								->where('user_student.class', $this->controller->sclass)
 								->where('user_student.number', $this->controller->snumber)
-							//	 ->where('user.user_name', $this->controller->sname)
-
 								->join('user_student', array(
 								 	'user_student.user_id','=','user_parent.child_id'
 								 ))
 								->join('user', array(
 								 	'user_parent.user_id','=','user.id'
 								 ))
-								
-								
-								//var_dump2($data -> getQuery());
-								
 								->find_one();
-
-								// var_dump2($data -> getData());
 
 								return $data -> input_id;
 
