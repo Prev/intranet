@@ -57,7 +57,6 @@ class FindpageView extends View{
 		$this->execTemplate('findPwMail.html');
 		$this-> model -> isPwKeyDataExist();
 		$this -> model -> getUserID();
-		//echo 'asdf';
 		$this -> controller -> createKey();
 
 	}
