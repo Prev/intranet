@@ -11,11 +11,18 @@ body {margin: 0;}
 .section-title-box .section-subtitle {color: #999a9a; font-size: 11px;}
 .section-body {height: 97px; padding-top: 21px; border-bottom: 2px solid #eeeeee;}
 .section-body .input-container {margin-bottom: 12px;}
+.section-body .input-container .radio-button {margin-left: 10px; margin-right: 5px;}
+.section-body .input-container #left {margin-left: 0 }
 
 #id-section .section-body {}
-#id-section .section-body .input-title {width: 38px; font-size: 12px; display: inline-block;}
+#id-section .section-body .input-title-s {width: 38px; font-size: 12px; display: inline-block;}
+#id-section .section-body .input-title-p {width: 60px; font-size: 12px; display: inline-block;}
+#id-section .section-body .input-title-t {width: 38px; font-size: 12px; display: inline-block;}
 #id-section .section-body #input-id-name {height: 13px; padding: 0;}
-#id-section .section-body .input-number {}
+#id-section .section-body #input-number-container {width: 175px; display: inline-block;}
+#id-section .section-body #input-number-container .input-number {}
+#id-section .section-body #input-department-container {width: 155px; display: none;}
+#id-section .section-body #input-department-container .input-department {}
 #id-confirm-btn {width: 59px; height: 30px; background: transparent url('./img/btn_confirm.png') no-repeat; cursor: pointer; border: 0; padding: 0; margin: 15px 110px 0px 110px;}
 
 #pw-section .section-body {}

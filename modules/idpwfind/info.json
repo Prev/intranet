@@ -9,6 +9,13 @@
 		},
 
 		{
+			"name":"dispPwChange",
+			"view":"FindpageView"
+			
+			
+		},
+
+		{
 			"name":"dispIdResult",
 			"view":"FindpageView",
 			"controller" : "FindIdpageController",
@@ -27,6 +34,11 @@
 			"name":"dispIdFail",
 			"view":"FindpageView",
 			"model" : "FindIdpageModel"
+			
+		},
+		{
+			"name":"dispPwFail",
+			"view":"FindpageView"
 			
 		},
 

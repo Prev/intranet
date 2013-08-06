@@ -65,11 +65,18 @@ class FindpageView extends View{
 	public function dispPwMail(){
 
 		$this->execTemplate('findPwMail.html');
-		$this-> model -> isPwKeyDataExist();
-		$this -> model -> getUserID();
-		//echo 'asdf';
-		$this -> controller -> createKey();
+		$judge = $this-> model -> isPwKeyDataExist();
+			if($judge == true){
 
+				echo '<script>location.href = "?module=idpwfind&action=dispPwFail";</script>';
+
+			}
+			else{
+
+		$this -> model -> getUserID();
+		$this -> controller -> createKey();
+	    
+	    }
 	}
 
 	public function dispPwFail(){
@@ -82,7 +89,7 @@ class FindpageView extends View{
 
 
 		//$id = $this -> model -> getID('s');
-		 $type = $this->controller->type;
+		$type = $this->controller->type;
 		$id = $this -> model -> getInfo($type, 'input_id');
 		
 		if($id != NULL){
@@ -100,6 +107,12 @@ class FindpageView extends View{
 		}
 
 					
+
+	}
+
+	public function dispPwChange(){
+
+		$this->execTemplate('pwChange.html');
 
 	}
 
