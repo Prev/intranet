@@ -24,8 +24,8 @@
 				$locales_en = $this->locales_en;
 					if($group_judge != true){ //해당 이름의 그룹을 가진 그룹이 존재하지 않는 경우에만 
 
-						//{"en":"Admin Group", "kr":"관리그룹"}
-						//$json = "{\"en\":"
+						
+						$json = "{\"en\": \"".$locales_en."\"\,\"kr\":\"".$localeskr."\"}"
 
 
 					}
