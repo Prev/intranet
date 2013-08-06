@@ -1,0 +1,17 @@
+{	
+	"layout" : "FindpageLayout",
+	"view" : "AdminPageView",
+	"accessible_group" : ["admin"],
+
+
+	"actions":[
+		{
+			"name":"dispMain",
+			"model":"GroupPageModel",
+			"controller":"GroupPageController"
+								
+		}
+
+		
+	]
+}

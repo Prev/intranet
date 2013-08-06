@@ -1,5 +1,14 @@
 <?php
 
+/*
+
+개발자 : 11기 웹프로그래밍과 김도형 
+모듈명 : idpwfind
+설  명 : id를 찾고 pw 를 바꿔주는 모듈.
+
+
+*/
+
 	class FindPwPageModel extends Model{
 
 

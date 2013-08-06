@@ -1,5 +1,14 @@
 <?php
 
+/*
+
+개발자 : 11기 웹프로그래밍과 김도형 
+모듈명 : idpwfind
+설  명 : id를 찾고 pw 를 바꿔주는 모듈.
+
+
+*/
+
 class FindPwPageController extends Controller{
 	
 		var $sname;
@@ -55,7 +64,7 @@ class FindPwPageController extends Controller{
 						$user = DBHandler::for_table('user')
 							->where('id', $global_id)
 							->find_one();
-						$user -> set('password', $pw;);
+						$user -> set('password', $pw);
 						$user -> set('password_salt', $salt);
 						$user -> save();
 
@@ -95,8 +104,8 @@ class FindPwPageController extends Controller{
 
 			else{
 
-				//	$this -> view -> dispPwFail();
-
+					//$this -> view -> dispPwFail();
+					// 인증 실패 
 
 			}
 

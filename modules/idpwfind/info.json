@@ -18,6 +18,7 @@
 		{
 			"name":"dispIdMail",
 			"view":"FindpageView",
+			"controller" : "FindIdpageController",
 			"model" : "FindIdpageModel"
 			
 		},

@@ -1,4 +1,13 @@
 <?php
+/*
+
+개발자 : 11기 웹프로그래밍과 김도형 
+모듈명 : idpwfind
+설  명 : id를 찾고 pw 를 바꿔주는 모듈.
+
+
+*/
+
 
 /*
 
@@ -24,8 +33,7 @@ class FindpageView extends View{
 
   		    
 
-
-		
+	
 
   		$this->execTemplate('findMain.html');
 
@@ -34,6 +42,8 @@ class FindpageView extends View{
 	public function dispIdMail(){
 
 		$this -> execTemplate('idMail.html');
+		echo 'dd';
+		echo $this -> controller -> sendMail('dimigo@dimigo.hs.kr', 'dimigo@dimigo.hs.kr', 'ambitiousdh@gmail.com', '김도형', '김도형', '김도형');
 
 	}
 
@@ -72,7 +82,8 @@ class FindpageView extends View{
 
 
 		//$id = $this -> model -> getID('s');
-		$id = $this -> model -> getInfo('p', 'input_id');
+		 $type = $this->controller->type;
+		$id = $this -> model -> getInfo($type, 'input_id');
 		
 		if($id != NULL){
 
