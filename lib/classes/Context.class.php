@@ -230,13 +230,11 @@
 						->find_many();
 			}
 
-			
 			static $topMenus;
 			if ($selectedMenuData !== false) {
 				if ($selectedMenuData->level == 1) $topMenus = array($selectedMenuData->id);
 				else if (!$topMenus) $topMenus = explode(',', self::getParentMenus($selectedMenuData->id));
 			}
-
 			for ($i=0; $i<count($arr); $i++) {
 				$arr[$i] = $arr[$i]->getData();
 				$arr[$i]->className = 'menu-' . $arr[$i]->title;

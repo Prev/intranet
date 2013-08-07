@@ -14,10 +14,10 @@
 		"uri":"/intranet"
 	},
 	{
-		"type":"running",
+		"type":"test",
 		"protocol":"http",
-		"host":"intranet.dimigobeta.kr",
-		"session_domain":"dimigobeta.kr",
+		"host":"intranet.dimigo.us",
+		"session_domain":"dimigo.us",
 		"uri":""
 	}
 ]

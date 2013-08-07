@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 호스트: localhost
--- 처리한 시간: 13-08-01 11:30
+-- 처리한 시간: 13-08-05 15:07
 -- 서버 버전: 5.1.41-community
 -- PHP 버전: 5.2.12
 
@@ -60,11 +60,11 @@ CREATE TABLE IF NOT EXISTS `intra_article_comment` (
   `article_no` int(11) unsigned NOT NULL,
   `content` tinytext NOT NULL,
   `writer_id` int(11) unsigned NOT NULL,
-  `regtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `write_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `writer_id` (`writer_id`),
   KEY `article_no` (`article_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `intra_login_log` (
   `auto_login` tinyint(1) NOT NULL,
   `login_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
 -- 테이블의 덤프 데이터 `intra_login_log`
@@ -156,7 +156,11 @@ INSERT INTO `intra_login_log` (`id`, `ip_address`, `input_id`, `succeed`, `auto_
 (25, '127.0.0.1', 'tester_s', 0, 1, '2013-08-01 02:25:15'),
 (26, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 02:26:02'),
 (27, '127.0.0.1', 'tester_s', 0, 1, '2013-08-01 02:26:19'),
-(28, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 02:26:25');
+(28, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 02:26:25'),
+(29, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 23:35:33'),
+(30, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 23:36:11'),
+(31, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 23:44:24'),
+(32, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 23:44:29');
 
 -- --------------------------------------------------------
 
@@ -219,8 +223,28 @@ CREATE TABLE IF NOT EXISTS `intra_session` (
 --
 
 INSERT INTO `intra_session` (`session_key`, `expire_time`, `ip_address`, `last_update`, `user_id`, `extra_vars`) VALUES
-('d067189623a399153ee5d421993ba81fd3f7ff2d', '2013-08-08 11:26:25', '127.0.0.1', '2013-08-01 02:26:25', 2, NULL),
-('d933e5cc7ef49eb83d6d042d7e17139287527ff9', '2013-08-07 16:51:04', '127.0.0.1', '2013-07-31 07:51:04', 4, NULL);
+('07bf44aceca5d363d6dc3280f2a176756643b15f', '2013-08-09 08:25:59', '127.0.0.1', '2013-08-01 23:25:59', 2, NULL),
+('16c8b7095f83eaf0d7b4dd13a0db424ca508bc32', '2013-08-09 08:26:31', '127.0.0.1', '2013-08-01 23:26:31', 2, NULL),
+('1ca50d55084f80cfab5bb395dedcf7888653cdf4', '2013-08-09 08:23:19', '127.0.0.1', '2013-08-01 23:23:19', 2, NULL),
+('2c43057cc62b4c5f2ec0fbde089940d89a727f4c', '2013-08-09 08:29:43', '127.0.0.1', '2013-08-01 23:29:43', 2, NULL),
+('2e7c93c5d6f2910a7cf2a412c25e2314be1b69a7', '2013-08-09 08:30:43', '127.0.0.1', '2013-08-01 23:30:43', 2, NULL),
+('309372d8a0f32b83f8784a22b8c1bff90dc3cf65', '2013-08-09 08:35:22', '127.0.0.1', '2013-08-01 23:35:22', 2, NULL),
+('3135cc87c53abcacd193ab9d2227a51ef2646146', '2013-08-09 08:26:26', '127.0.0.1', '2013-08-01 23:26:26', 2, NULL),
+('31809fa219f8c4eab954fb2c8372b3f9a76f0cac', '2013-08-09 08:27:01', '127.0.0.1', '2013-08-01 23:27:01', 2, NULL),
+('60f5f245ffbea204b001ab0e9a46f45abda5f13a', '2013-08-09 08:28:34', '127.0.0.1', '2013-08-01 23:28:34', 2, NULL),
+('8d78d6d23986e474b1f5d3d161c97d995ab0e90a', '2013-08-09 08:35:33', '127.0.0.1', '2013-08-01 23:35:33', 2, NULL),
+('8eec259dd7fea60bb9588534576fa51051ec8034', '2013-08-09 08:30:25', '127.0.0.1', '2013-08-01 23:30:25', 2, NULL),
+('a4f49d138019763d875bc6839f019216688f469a', '2013-08-09 08:27:16', '127.0.0.1', '2013-08-01 23:27:16', 2, NULL),
+('bf69dd92a51040771857e2f00b7b28d460c06836', '2013-08-09 08:32:49', '127.0.0.1', '2013-08-01 23:32:49', 2, NULL),
+('d55ed949282e2d3b2d34ade7aa9efb1f2ae07fe1', '2013-08-09 08:44:29', '127.0.0.1', '2013-08-01 23:44:29', 2, NULL),
+('d76df7f13cc8447d035852406f7bb10ac319d398', '2013-08-09 08:33:22', '127.0.0.1', '2013-08-01 23:33:22', 2, NULL),
+('d933e5cc7ef49eb83d6d042d7e17139287527ff9', '2013-08-07 16:51:04', '127.0.0.1', '2013-07-31 07:51:04', 4, NULL),
+('dfd0076ddfcbf4fed7d22441435c3695e4b028ec', '2013-08-09 08:29:37', '127.0.0.1', '2013-08-01 23:29:37', 2, NULL),
+('e1b35489294daa7c6cb3b329135d48ec00e9bd09', '2013-08-09 08:29:30', '127.0.0.1', '2013-08-01 23:29:30', 2, NULL),
+('e5aef0089477a21fb67e84e972af222370970049', '2013-08-09 08:31:45', '127.0.0.1', '2013-08-01 23:31:45', 2, NULL),
+('e6c0590949b17be52356b6e59d7dafc0f8ed2111', '2013-08-09 08:34:55', '127.0.0.1', '2013-08-01 23:34:55', 2, NULL),
+('ea375b2d6b4d289b6e79a73998bdab8045c17fc4', '2013-08-09 08:31:50', '127.0.0.1', '2013-08-01 23:31:50', 2, NULL),
+('ebfd80e038c026598346f7e01ea3e324620c572d', '2013-08-09 08:26:03', '127.0.0.1', '2013-08-01 23:26:03', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -284,15 +308,16 @@ CREATE TABLE IF NOT EXISTS `intra_user_group` (
   `name` tinytext NOT NULL,
   `name_locales` text NOT NULL,
   `is_default` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- 테이블의 덤프 데이터 `intra_user_group`
 --
 
-INSERT INTO `intra_user_group` (`id`, `name`, `name_locales`, `is_default`) VALUES
-(1, 'admin', '{"en":"Admin Group", "kr":"관리그룹"}', 0);
+INSERT INTO `intra_user_group` (`id`, `name`, `name_locales`, `is_default`, `is_admin`) VALUES
+(1, 'admin', '{"en":"Admin Group", "kr":"관리그룹"}', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -307,7 +332,7 @@ CREATE TABLE IF NOT EXISTS `intra_user_group_user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`),
   KEY `group_id` (`group_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -479,8 +504,8 @@ ALTER TABLE `intra_user_group_user`
 -- Constraints for table `intra_user_parent`
 --
 ALTER TABLE `intra_user_parent`
-  ADD CONSTRAINT `intra_user_parent_ibfk_2` FOREIGN KEY (`child_id`) REFERENCES `intra_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `intra_user_parent_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `intra_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `intra_user_parent_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `intra_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `intra_user_parent_ibfk_2` FOREIGN KEY (`child_id`) REFERENCES `intra_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `intra_user_student`
@@ -492,9 +517,9 @@ ALTER TABLE `intra_user_student`
 -- Constraints for table `intra_user_teacher`
 --
 ALTER TABLE `intra_user_teacher`
-  ADD CONSTRAINT `intra_user_teacher_ibfk_3` FOREIGN KEY (`position`) REFERENCES `intra_user_teacher_position` (`name`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `intra_user_teacher_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `intra_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `intra_user_teacher_ibfk_2` FOREIGN KEY (`department`) REFERENCES `intra_user_teacher_department` (`name`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `intra_user_teacher_ibfk_2` FOREIGN KEY (`department`) REFERENCES `intra_user_teacher_department` (`name`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `intra_user_teacher_ibfk_3` FOREIGN KEY (`position`) REFERENCES `intra_user_teacher_position` (`name`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

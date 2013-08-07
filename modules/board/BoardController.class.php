@@ -2,7 +2,7 @@
 
 	class BoardController extends Controller {
 		
-		const DEFAULT_AOP = 20;
+		const DEFAULT_AOP = 15;
 		
 		public function init() {
 			$action = $this->module->action;
@@ -14,6 +14,7 @@
 					$nowPage = isset($_GET['page']) ? escape($_GET['page']) : 1;
 
 					if ($boardName === NULL && $_GET['menu']) {
+						$boardName = $_GET['menu'];
 						$boardInfo = $this->model->getBoardInfo($_GET['menu']);
 
 						if (!$boardInfo) {
@@ -47,6 +48,14 @@
 					$articleData = $this->model->getArticleData($articleNo);
 					$boardName = $articleData->boardName;
 
+					
+					if ($articleData->readable_group) {
+						$me = User::getCurrent();
+						if (!$me || !$me->checkGroup($articleData->readable_group)) {
+							goBack('글을 볼 권한이 없습니다');
+						}
+					}
+					
 					$this->view->setProperties(array(
 						'articleNo' => $articleNo,
 						'articleData' => $articleData,
