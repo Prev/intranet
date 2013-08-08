@@ -20,5 +20,14 @@
 			'database_name' => 'intranet',
 			'prefix' => 'intra_'
 		);
+
+		/*return (object) array(
+			'type' => 'mysql',
+			'host' => 'dimigo.us',
+			'username' => 'dimigoshift',
+			'password' => '#pmfucking',
+			'database_name' => 'intranet',
+			'prefix' => 'intra_'
+		);*/
 	
 	}
