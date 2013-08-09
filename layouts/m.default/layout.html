@@ -1,0 +1,57 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+<link href="layout.css" rel="stylesheet" type="text/css"/>
+
+<div id="gnb">
+	<div id="gnb-title">
+		<div id="bg-pattern">
+			<div id="logo">
+				<span class="hidden">한국디지털미디어고등학교 교내 인트라넷</span>
+			</div>
+		</div>
+	</div>
+	<ul id="menu">
+		<div style="position: relative;">
+			{@ foreach(Context::getMenu(1) as $key => $menu): }
+				{@ if ($menu->selected == true) $selectedTopMenu = $menu; }
+				<condition do="$user = User::getCurrent()">
+					<true>
+						<a href="/{@ echo (USE_SHORT_URL ? '' : '?menu=') . $menu->title}">
+							<li class="{$menu->className}{@ if ($menu->selected) echo ' '.$menu->className.'-selected'}">
+								<span class="menu-alt">{$menu->title_locale}</span>
+							</li>
+						</a>
+					</true>
+					<false>
+						<li class="{$menu->className} {$menu->className}-disabled">
+							<span class="menu-alt">{$menu->title_locale}</span>
+						</li>
+					</false>
+				</condition>
+			{@ endforeach; }
+		</div>
+	</div>
+</div>
+
+{getContent()}
+
+<div id="footer">
+	<div id="buttons">
+		<condition do="$user">
+			<button class="fl" onclick="location.href='{getUrl('login','procLogout')}'">로그아웃</button>
+		<else>
+			<button class="fl" onclick="location.href='{@ echo LOGIN_URL; }'">로그인</button>
+		</condition>
+		<button class="fr" onclick="location.href='{getUrlA('mobile=0', REAL_URL)}'">PC 버전</button>
+	</div>
+	<div id="tip">
+		<div id="copyright">&copy; 한국디지털미디어고등학교</div>
+		<div id="terms" onclick="">이용약관</div>
+		<div id="personal-information" onclick="">개인정보취급방침</div>
+	</div>
+	<div id="credit">
+		<div id="director">기획:오찬영(11기)</div>
+		<div id="designer">디자인:최예지(12기)</div>
+		<div id="developer">개발:이강원(11기)</div>
+	</div>
+</div>

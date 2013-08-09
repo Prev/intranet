@@ -37,17 +37,20 @@
 			}
 		}
 		public function procLogout() {
-			if (!isset($_COOKIE['pmc_sess_key'])) return;
+			if (!isset($_SERVER['HTTP_REFERER'])) return;
 			
-			$sessionKey = $_COOKIE['pmc_sess_key'];
-			
-			DBHandler::for_table('session')
-				->where('session_key', $sessionKey)
-				->delete_many();
+			if (isset($_COOKIE['pmc_sess_key'])) {
+				$sessionKey = $_COOKIE['pmc_sess_key'];
+				
+				DBHandler::for_table('session')
+					->where('session_key', $sessionKey)
+					->delete_many();
 
-			setcookie('pmc_sess_key', '', time()-60, getServerInfo()->uri, SESSION_DOMAIN);
+				setcookie('pmc_sess_key', '', time()-60, getServerInfo()->uri, SESSION_DOMAIN);
+			}
 			unset($_SESSION['pmc_sso_data']);
-			
+			setcookie('pmc_logout_key', '0', time()-60);
+
 			goBack();
 		}
 		
@@ -110,7 +113,7 @@
 
 				$user = DBHandler::for_table('user')
 					->find_one($r->id);
-
+				
 				$user->set('last_logined_ip', $ipAddr);
 				$user->save();
 
