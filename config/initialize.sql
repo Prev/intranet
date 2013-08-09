@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 호스트: localhost
--- 처리한 시간: 13-08-09 12:10
+-- 처리한 시간: 13-08-09 14:15
 -- 서버 버전: 5.1.41-community
 -- PHP 버전: 5.2.12
 
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `intra_login_log` (
   `auto_login` tinyint(1) NOT NULL,
   `login_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
 
 --
 -- 테이블의 덤프 데이터 `intra_login_log`
@@ -194,7 +194,9 @@ INSERT INTO `intra_login_log` (`id`, `ip_address`, `input_id`, `succeed`, `auto_
 (29, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 23:35:33'),
 (30, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 23:36:11'),
 (31, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 23:44:24'),
-(32, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 23:44:29');
+(32, '127.0.0.1', 'tester_s', 1, 1, '2013-08-01 23:44:29'),
+(33, '127.0.0.1', 'tester_s', 1, 1, '2013-08-09 04:49:32'),
+(34, '127.0.0.1', 'tester_s', 1, 1, '2013-08-09 04:54:13');
 
 -- --------------------------------------------------------
 
@@ -216,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `intra_menu` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `title` (`title`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- 테이블의 덤프 데이터 `intra_menu`
@@ -224,16 +226,18 @@ CREATE TABLE IF NOT EXISTS `intra_menu` (
 
 INSERT INTO `intra_menu` (`id`, `title`, `title_locales`, `level`, `is_index`, `visible`, `parent_id`, `module`, `action`, `extra_vars`) VALUES
 (1, 'home', '홈', 1, 1, 1, NULL, 'index', NULL, NULL),
-(2, 'dormitory', '생활관', 1, 0, 1, NULL, NULL, NULL, '{"linkToSubMenu":true}'),
-(3, 'cafeteria', '급식실', 1, 0, 1, NULL, 'board', NULL, NULL),
-(4, 'u-learning', 'U-러닝', 1, 0, 1, NULL, 'board', NULL, NULL),
-(5, 'els', '이러닝스튜디오', 1, 0, 1, NULL, 'page', NULL, NULL),
-(6, 'dormitory-notice', '생활관 공지사항', 2, 0, 1, 2, 'board', NULL, NULL),
-(7, 'stay-request', '잔류 신청/수정/취소', 2, 0, 1, 2, NULL, NULL, NULL),
-(8, 'stay-inquiry', '잔류 조회', 2, 0, 1, 2, NULL, NULL, NULL),
-(9, 'stay-manage', '잔류 관리', 2, 0, 1, 2, NULL, NULL, NULL),
-(10, 'morning-song', '기상송 신청/조회', 2, 0, 1, 2, NULL, NULL, NULL),
-(11, 'morning-song-manage', '기상송 관리', 2, 0, 1, 2, NULL, NULL, NULL);
+(2, 'school-life', '학교생활', 1, 0, 1, NULL, NULL, NULL, NULL),
+(3, 'dormitory', '생활관', 1, 0, 1, NULL, NULL, NULL, '{"linkToSubMenu":true}'),
+(4, 'cafeteria', '급식실', 1, 0, 1, NULL, 'board', NULL, NULL),
+(5, 'student-council', '학생자치회', 1, 0, 1, NULL, NULL, NULL, NULL),
+(6, 'u-learning', 'U-러닝', 1, 0, 1, NULL, 'board', NULL, NULL),
+(7, 'els', '이러닝스튜디오', 1, 0, 1, NULL, 'page', NULL, NULL),
+(8, 'dormitory-notice', '생활관 공지사항', 2, 0, 1, 3, 'board', NULL, NULL),
+(9, 'stay-request', '잔류 신청/수정/취소', 2, 0, 1, 3, NULL, NULL, NULL),
+(10, 'stay-inquiry', '잔류 조회', 2, 0, 1, 3, NULL, NULL, NULL),
+(11, 'stay-manage', '잔류 관리', 2, 0, 1, 3, NULL, NULL, NULL),
+(12, 'morning-song', '기상송 신청/조회', 2, 0, 1, 3, NULL, NULL, NULL),
+(13, 'morning-song-manage', '기상송 관리', 2, 0, 1, 3, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -298,6 +302,7 @@ INSERT INTO `intra_session` (`session_key`, `expire_time`, `ip_address`, `last_u
 ('3135cc87c53abcacd193ab9d2227a51ef2646146', '2013-08-09 08:26:26', '127.0.0.1', '2013-08-01 23:26:26', 2, NULL),
 ('31809fa219f8c4eab954fb2c8372b3f9a76f0cac', '2013-08-09 08:27:01', '127.0.0.1', '2013-08-01 23:27:01', 2, NULL),
 ('60f5f245ffbea204b001ab0e9a46f45abda5f13a', '2013-08-09 08:28:34', '127.0.0.1', '2013-08-01 23:28:34', 2, NULL),
+('8489eac89db2a9250d59bdf31320141381a5972c', '2013-08-16 13:54:13', '127.0.0.1', '2013-08-09 04:54:13', 2, NULL),
 ('8d78d6d23986e474b1f5d3d161c97d995ab0e90a', '2013-08-09 08:35:33', '127.0.0.1', '2013-08-01 23:35:33', 2, NULL),
 ('8eec259dd7fea60bb9588534576fa51051ec8034', '2013-08-09 08:30:25', '127.0.0.1', '2013-08-01 23:30:25', 2, NULL),
 ('a4f49d138019763d875bc6839f019216688f469a', '2013-08-09 08:27:16', '127.0.0.1', '2013-08-01 23:27:16', 2, NULL),
