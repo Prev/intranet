@@ -62,7 +62,7 @@
 				<condition do="$user">
 					<true>
 						<a href="/{@ echo (USE_SHORT_URL ? '' : '?menu=') . $menu->title}">
-							<li class="{$menu->className}">
+							<li class="menu-{$menu->title}{@ if ($menu->selected) echo '-selected'}">
 								<span class="menu-alt">{$menu->title_locale}</span>
 							</li>
 						</a>
@@ -89,7 +89,7 @@
 					<ul>
 						{@ foreach ($lnb as $key => $menu) : }
 							<a href="/{@ echo USE_SHORT_URL ? '' : '?menu='}{$menu->title}">
-								<li class="lnb-{$menu->title}{@ if ($menu->selected) echo ' selected'}">
+								<li class="lnb-{$menu->title}{@ if ($menu->selected) echo '-selected'}">
 									<span class="hidden">{$menu->title_locale}</span>
 								</li>
 							</a>
