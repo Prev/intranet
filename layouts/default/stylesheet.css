@@ -57,6 +57,11 @@ body{
 #header #gnb ul li.menu-home:hover { background-position:-0px -32px; width:45px }
 #header #gnb ul li.menu-home-disabled { background-position:-0px -64px; width:45px }
 
+#header #gnb ul li.menu-school-life { background-position:-45px 0px; width:84px }
+#header #gnb ul li.menu-school-life-selected,
+#header #gnb ul li.menu-school-life:hover { background-position:-45px -32px; width:84px }
+#header #gnb ul li.menu-school-life-disabled { background-position:-45px -64px; width:84px }
+
 #header #gnb ul li.menu-dormitory { background-position:-129px 0px; width:70px }
 #header #gnb ul li.menu-dormitory-selected,
 #header #gnb ul li.menu-dormitory:hover { background-position:-129px -32px; width:70px }
@@ -66,6 +71,11 @@ body{
 #header #gnb ul li.menu-cafeteria-selected,
 #header #gnb ul li.menu-cafeteria:hover { background-position:-199px -32px; width:68px }
 #header #gnb ul li.menu-cafeteria-disabled { background-position:-199px -64px; width:68px }
+
+#header #gnb ul li.menu-student-council { background-position:-267px 0px; width:91px }
+#header #gnb ul li.menu-student-council-selected,
+#header #gnb ul li.menu-student-council:hover { background-position:-267px -32px; width:91px }
+#header #gnb ul li.menu-student-council-disabled { background-position:-267px -64px; width:91px }
 
 #header #gnb ul li.menu-u-learning { background-position:-358px 0px; width:72px }
 #header #gnb ul li.menu-u-learning-selected,
