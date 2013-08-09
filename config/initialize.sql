@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 호스트: localhost
--- 처리한 시간: 13-08-05 15:07
+-- 처리한 시간: 13-08-09 12:10
 -- 서버 버전: 5.1.41-community
 -- PHP 버전: 5.2.12
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `intra_article` (
   `board_id` int(11) unsigned NOT NULL,
   `category` varchar(20) DEFAULT NULL,
   `title` varchar(255) NOT NULL,
-  `content` text NOT NULL,
+  `content` text,
   `writer_id` int(11) unsigned NOT NULL,
   `top_no` int(11) unsigned DEFAULT NULL,
   `order_key` tinytext,
@@ -42,12 +42,18 @@ CREATE TABLE IF NOT EXISTS `intra_article` (
   `allow_comment` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `upload_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `hits` int(11) unsigned NOT NULL DEFAULT '0',
-  `files` tinytext,
   PRIMARY KEY (`no`),
   KEY `board_id` (`board_id`),
   KEY `writer_id` (`writer_id`),
   KEY `top_no` (`top_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 테이블의 덤프 데이터 `intra_article`
+--
+
+INSERT INTO `intra_article` (`no`, `board_id`, `category`, `title`, `content`, `writer_id`, `top_no`, `order_key`, `is_secret`, `is_notice`, `allow_comment`, `upload_time`, `hits`) VALUES
+(1, 1, NULL, 'ㄹㄴㅇㄹ', '<p>ㄴㄹㄴㅇㄹㄴㅇㄹ</p>', 1, NULL, NULL, 0, 0, 1, '2013-08-09 03:05:00', 0);
 
 -- --------------------------------------------------------
 
@@ -61,9 +67,36 @@ CREATE TABLE IF NOT EXISTS `intra_article_comment` (
   `content` tinytext NOT NULL,
   `writer_id` int(11) unsigned NOT NULL,
   `write_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `top_id` int(10) unsigned DEFAULT NULL,
+  `parent_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `writer_id` (`writer_id`),
-  KEY `article_no` (`article_no`)
+  KEY `article_no` (`article_no`),
+  KEY `top_id` (`top_id`),
+  KEY `parent_id` (`parent_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 테이블의 덤프 데이터 `intra_article_comment`
+--
+
+INSERT INTO `intra_article_comment` (`id`, `article_no`, `content`, `writer_id`, `write_time`, `top_id`, `parent_id`) VALUES
+(1, 1, 'dasdas', 1, '2013-08-09 03:10:31', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `intra_article_files`
+--
+
+CREATE TABLE IF NOT EXISTS `intra_article_files` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `article_no` int(10) unsigned NOT NULL,
+  `file_id` int(10) unsigned NOT NULL,
+  `file_name` tinytext NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `article_no` (`article_no`),
+  KEY `file_id` (`file_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -77,20 +110,22 @@ CREATE TABLE IF NOT EXISTS `intra_board` (
   `name` varchar(20) NOT NULL,
   `name_locales` tinytext NOT NULL,
   `categorys` tinytext,
-  `read_permission` tinytext,
-  `comment_permission` tinytext,
-  `write_permission` tinytext,
+  `readable_group` tinytext COMMENT 'json array',
+  `commentable_group` tinytext COMMENT 'json array',
+  `writable_group` tinytext COMMENT 'json array',
+  `admin_group` tinytext COMMENT 'json array',
+  `hide_secret_article` tinyint(1) NOT NULL DEFAULT '0',
   `extra_vars` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_en` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- 테이블의 덤프 데이터 `intra_board`
 --
 
-INSERT INTO `intra_board` (`id`, `name`, `name_locales`, `categorys`, `read_permission`, `comment_permission`, `write_permission`, `extra_vars`) VALUES
-(3, 'dormitory-notice', '생활관 공지사항', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `intra_board` (`id`, `name`, `name_locales`, `categorys`, `readable_group`, `commentable_group`, `writable_group`, `admin_group`, `hide_secret_article`, `extra_vars`) VALUES
+(1, 'dormitory-notice', '생활관 공지사항', NULL, NULL, NULL, NULL, NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -102,7 +137,6 @@ CREATE TABLE IF NOT EXISTS `intra_files` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `is_binary` tinyint(1) NOT NULL,
   `uploaded_url` tinytext NOT NULL,
-  `file_name` tinytext NOT NULL,
   `file_size` int(10) unsigned NOT NULL,
   `file_hash` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
@@ -204,6 +238,38 @@ INSERT INTO `intra_menu` (`id`, `title`, `title_locales`, `level`, `is_index`, `
 -- --------------------------------------------------------
 
 --
+-- 테이블 구조 `intra_password_change_key`
+--
+
+CREATE TABLE IF NOT EXISTS `intra_password_change_key` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL,
+  `created_date` datetime NOT NULL,
+  `expired_date` datetime NOT NULL,
+  `key` text CHARACTER SET utf8 NOT NULL,
+  `created_ip` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `intra_password_change_log`
+--
+
+CREATE TABLE IF NOT EXISTS `intra_password_change_log` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL,
+  `change_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ip` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- 테이블 구조 `intra_session`
 --
 
@@ -259,6 +325,7 @@ CREATE TABLE IF NOT EXISTS `intra_user` (
   `password_salt` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'MD5',
   `user_type` varchar(1) NOT NULL,
   `user_name` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `nick_name` varchar(20) DEFAULT NULL COMMENT '닉네임/사용하지 않음 : 엔진의 호환을 맞춰주기 위해 사용',
   `email_address` varchar(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `enable_mailing` tinyint(1) unsigned NOT NULL,
   `last_logined_ip` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -271,15 +338,15 @@ CREATE TABLE IF NOT EXISTS `intra_user` (
 -- 테이블의 덤프 데이터 `intra_user`
 --
 
-INSERT INTO `intra_user` (`id`, `input_id`, `password`, `password_salt`, `user_type`, `user_name`, `email_address`, `enable_mailing`, `last_logined_ip`, `extra_vars`) VALUES
-(1, 'admin', '875bdbdd2cdb7326981de9c27bf9d76d52c75cd9bb1299417b1135b69a748b69', 'f98c94ebb87dc80be2a26991e3d5cc62', 's', '어드민', 'admin@dimigo.hs.kr', 0, '127.0.0.1', NULL),
-(2, 'tester_s', '2827e05770ec174da512daf5af4ce49f5e07209d82e2ed90b2ee565886e7b521', '8f4031bfc7640c5f267b11b6fe0c2507', 's', '학생1', 'tester_s@dimigo.hs.kr', 0, '127.0.0.1', NULL),
-(3, 'tester_s2', '0bfaf1abc9b0146918b9b89515b549d07fa00a9005088d2261b1a28a6036b18e', 'a1e93badf4d5dfb92e22198b8da1e67d', 's', '학생2', 'tester_s2@dimigo.hs.kr', 0, '127.0.0.1', NULL),
-(4, 'tester_t', '2dea62f62f19e3db6336acf2701710c1594380864629d93355241606547c30c1', '2b0e9eb01d07ca5ebf4233f3338ac179', 't', '교사1', 'tester_t@dimigo.hs.kr', 0, '127.0.0.1', NULL),
-(5, 'tester_t2', '6b542b8ed5ab26249b794b3e451b48043a91089753781a83ad4d3071065cfa72', '44647cc914248f1ff7484f59f2afcaa5', 't', '교사2', 'tester_t2@dimigo.hs.kr', 0, '127.0.0.1', NULL),
-(6, 'tester_t3', 'aa94d0aacc49c1b41be971acd7c4980aa433f6e40ecdd3d698bbf28e1ecfd5a0', '011a85cf0a88fc10632a41849505ac98', 't', '교장1', 'principal@dimigo.hs.kr', 0, '127.0.0.1', NULL),
-(7, 'tester_p', '4931ace0884791c2c4e7286003e6a12d8aa6b2d2875bc5beb5bb37df017ea21f', 'e93b5245d7e0a3844e2dc1706161eecc', 'p', '학부모1', 'tester_p@dimigo.hs.kr', 0, '127.0.0.1', NULL),
-(8, 'tester_s3', '30ecd3706d57663f2e948d71f91c551bd44cf77387baf9cabe439decec70fced', '48543339fc8b9c1e6305db88d03343a9', 's', '학생3', 'tester_s3@dimigo.hs.kr', 0, '', NULL);
+INSERT INTO `intra_user` (`id`, `input_id`, `password`, `password_salt`, `user_type`, `user_name`, `nick_name`, `email_address`, `enable_mailing`, `last_logined_ip`, `extra_vars`) VALUES
+(1, 'admin', '875bdbdd2cdb7326981de9c27bf9d76d52c75cd9bb1299417b1135b69a748b69', 'f98c94ebb87dc80be2a26991e3d5cc62', 's', '어드민', NULL, 'admin@dimigo.hs.kr', 0, '127.0.0.1', NULL),
+(2, 'tester_s', '2827e05770ec174da512daf5af4ce49f5e07209d82e2ed90b2ee565886e7b521', '8f4031bfc7640c5f267b11b6fe0c2507', 's', '학생1', NULL, 'tester_s@dimigo.hs.kr', 0, '127.0.0.1', NULL),
+(3, 'tester_s2', '0bfaf1abc9b0146918b9b89515b549d07fa00a9005088d2261b1a28a6036b18e', 'a1e93badf4d5dfb92e22198b8da1e67d', 's', '학생2', NULL, 'tester_s2@dimigo.hs.kr', 0, '127.0.0.1', NULL),
+(4, 'tester_t', '2dea62f62f19e3db6336acf2701710c1594380864629d93355241606547c30c1', '2b0e9eb01d07ca5ebf4233f3338ac179', 't', '교사1', NULL, 'tester_t@dimigo.hs.kr', 0, '127.0.0.1', NULL),
+(5, 'tester_t2', '6b542b8ed5ab26249b794b3e451b48043a91089753781a83ad4d3071065cfa72', '44647cc914248f1ff7484f59f2afcaa5', 't', '교사2', NULL, 'tester_t2@dimigo.hs.kr', 0, '127.0.0.1', NULL),
+(6, 'tester_t3', 'aa94d0aacc49c1b41be971acd7c4980aa433f6e40ecdd3d698bbf28e1ecfd5a0', '011a85cf0a88fc10632a41849505ac98', 't', '교장1', NULL, 'principal@dimigo.hs.kr', 0, '127.0.0.1', NULL),
+(7, 'tester_p', '4931ace0884791c2c4e7286003e6a12d8aa6b2d2875bc5beb5bb37df017ea21f', 'e93b5245d7e0a3844e2dc1706161eecc', 'p', '학부모1', NULL, 'tester_p@dimigo.hs.kr', 0, '127.0.0.1', NULL),
+(8, 'tester_s3', '30ecd3706d57663f2e948d71f91c551bd44cf77387baf9cabe439decec70fced', '48543339fc8b9c1e6305db88d03343a9', 's', '학생3', NULL, 'tester_s3@dimigo.hs.kr', 0, '', NULL);
 
 -- --------------------------------------------------------
 
@@ -421,9 +488,9 @@ INSERT INTO `intra_user_teacher` (`id`, `user_id`, `department`, `position`, `ho
 --
 
 CREATE TABLE IF NOT EXISTS `intra_user_teacher_department` (
-  `name` varchar(30) DEFAULT NULL,
+  `name` varchar(30) NOT NULL DEFAULT '',
   `name_locales` varchar(30) NOT NULL,
-  UNIQUE KEY `name` (`name`)
+  PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -431,18 +498,18 @@ CREATE TABLE IF NOT EXISTS `intra_user_teacher_department` (
 --
 
 INSERT INTO `intra_user_teacher_department` (`name`, `name_locales`) VALUES
-(NULL, '특별'),
-('3grade', '3학년부'),
-('2grade', '2학년부'),
+('', '특별'),
 ('1grade', '1학년부'),
-('school-support', '교무지원부'),
-('student-support', '학생지원부'),
+('2grade', '2학년부'),
+('3grade', '3학년부'),
+('cafeteria', '급식소'),
+('dormitory', '생활관'),
+('education-administration', '교육행정실'),
 ('education-support', '교육지원부'),
 ('it-specialized', 'IT특성화부'),
-('education-administration', '교육행정실'),
-('dormitory', '생활관'),
 ('library', '도서관'),
-('cafeteria', '급식소');
+('school-support', '교무지원부'),
+('student-support', '학생지원부');
 
 -- --------------------------------------------------------
 
@@ -453,7 +520,7 @@ INSERT INTO `intra_user_teacher_department` (`name`, `name_locales`) VALUES
 CREATE TABLE IF NOT EXISTS `intra_user_teacher_position` (
   `name` varchar(30) NOT NULL,
   `name_locales` varchar(30) NOT NULL,
-  UNIQUE KEY `name` (`name`)
+  PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -465,6 +532,7 @@ INSERT INTO `intra_user_teacher_position` (`name`, `name_locales`) VALUES
 ('header-teacher', '부장'),
 ('normal-teacher', '교사'),
 ('principal', '교장'),
+('room-manager', '실장'),
 ('secretary-general', '사무국장'),
 ('vice-principal', '교감');
 
@@ -476,22 +544,43 @@ INSERT INTO `intra_user_teacher_position` (`name`, `name_locales`) VALUES
 -- Constraints for table `intra_article`
 --
 ALTER TABLE `intra_article`
-  ADD CONSTRAINT `intra_article_ibfk_1` FOREIGN KEY (`board_id`) REFERENCES `intra_board` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `intra_article_ibfk_2` FOREIGN KEY (`writer_id`) REFERENCES `intra_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `intra_article_ibfk_3` FOREIGN KEY (`top_no`) REFERENCES `intra_article` (`no`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `intra_article_ibfk_2` FOREIGN KEY (`writer_id`) REFERENCES `intra_user` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `intra_article_ibfk_1` FOREIGN KEY (`board_id`) REFERENCES `intra_board` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `intra_article_ibfk_3` FOREIGN KEY (`top_no`) REFERENCES `intra_article` (`no`);
 
 --
 -- Constraints for table `intra_article_comment`
 --
 ALTER TABLE `intra_article_comment`
+  ADD CONSTRAINT `intra_article_comment_ibfk_4` FOREIGN KEY (`parent_id`) REFERENCES `intra_article_comment` (`id`),
   ADD CONSTRAINT `intra_article_comment_ibfk_1` FOREIGN KEY (`article_no`) REFERENCES `intra_article` (`no`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `intra_article_comment_ibfk_2` FOREIGN KEY (`writer_id`) REFERENCES `intra_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `intra_article_comment_ibfk_2` FOREIGN KEY (`writer_id`) REFERENCES `intra_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `intra_article_comment_ibfk_3` FOREIGN KEY (`top_id`) REFERENCES `intra_article_comment` (`id`);
+
+--
+-- Constraints for table `intra_article_files`
+--
+ALTER TABLE `intra_article_files`
+  ADD CONSTRAINT `intra_article_files_ibfk_1` FOREIGN KEY (`article_no`) REFERENCES `intra_article` (`no`) ON DELETE CASCADE,
+  ADD CONSTRAINT `intra_article_files_ibfk_2` FOREIGN KEY (`file_id`) REFERENCES `intra_files` (`id`);
 
 --
 -- Constraints for table `intra_menu`
 --
 ALTER TABLE `intra_menu`
   ADD CONSTRAINT `intra_menu_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `intra_menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `intra_password_change_key`
+--
+ALTER TABLE `intra_password_change_key`
+  ADD CONSTRAINT `intra_password_change_key_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `intra_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `intra_password_change_log`
+--
+ALTER TABLE `intra_password_change_log`
+  ADD CONSTRAINT `intra_password_change_log_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `intra_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `intra_user_group_user`

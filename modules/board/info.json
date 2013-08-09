@@ -8,27 +8,82 @@
 			"name":"dispList",
 			"model":"BoardListModel",
 			"view":"BoardListView",
-			"controller":"BoardController",
+			"controller":"BoardListController",
 			"default":true
 		},
 		{
 			"name":"dispArticle",
 			"model":"BoardArticleModel",
 			"view":"BoardArticleView",
-			"controller":"BoardController"
+			"controller":"BoardArticleController"
 		},
+
+
+
 		{
 			"name":"dispEditor",
+			"model":"BoardEditorModel",
 			"view":"BoardEditorView"
 		},
 		{
-			"name":"dispEditorInsertData",
+			"name":"dispEditorInnerData",
+			"model":"BoardEditorModel",
 			"view":"BoardEditorView",
-			"allow_web_access" : false
+			"allow_web_access":false
 		},
 		{
+			"name":"dispUpdateEditorInnerData",
+			"model":"BoardEditorModel",
+			"view":"BoardEditorView",
+			"allow_web_access":false
+		},
+		{
+			"name":"dispEditorInnerBottomData",
+			"model":"BoardEditorModel",
+			"view":"BoardEditorView",
+			"allow_web_access":false
+		},
+
+
+
+		{
 			"name":"procSaveArticle",
-			"controller":"BoardEditorController"
+			"model":"BoardCGIModel",
+			"controller":"BoardCGIController",
+			"layout":"blank"
+		},
+		{
+			"name":"procUpdateArticle",
+			"model":"BoardCGIModel",
+			"controller":"BoardCGIController",
+			"layout":"blank"
+		},
+		{
+			"name":"procDeleteArticle",
+			"model":"BoardCGIModel",
+			"controller":"BoardCGIController",
+			"layout":"blank"
+		},
+
+
+
+		{
+			"name":"procWriteComment",
+			"model":"BoardCommentModel",
+			"controller":"BoardCommentController",
+			"layout":"blank"
+		},
+		{
+			"name":"procUpdateComment",
+			"model":"BoardCommentModel",
+			"controller":"BoardCommentController",
+			"layout":"blank"
+		},
+		{
+			"name":"procDeleteComment",
+			"model":"BoardCommentModel",
+			"controller":"BoardCommentController",
+			"layout":"blank"
 		}
 	]
 }

@@ -16,10 +16,10 @@
 	function var_dump2($obj) {
 		$bt = debug_backtrace();
 		
-		echo '<pre class="vdump">';
+		echo '<x y=""><pre class="vdump">';
 		echo '<span class="vdump-first-line">var dumped in "' . getFilePathClear($bt[0]['file']) . '" on line ' . $bt[0]['line'] . "</span>\n";
 		var_dump($obj);
-		echo '</pre>';
+		echo '</x></pre>';
 	}
 
 
@@ -103,6 +103,8 @@
 	 * ex) 2013-06-23 11:32:12 -> 13분 전
 	*/
 	function getRelativeTime($time) {
+		if (is_string($time)) $time = strtotime($time);
+
 		if ($time + 60 > time())
 			return '방금 전';
 		else if ($time + 3600 > time())
@@ -328,33 +330,32 @@
 		$parsedUrl = parse_url($url);
 		$queryObj = new StdClass();
 
-		if (isset($parsedUrl['query'])) {
-			$tempArr = explode('&', $parsedUrl['query']);
-
-			for ($i=0; $i<count($tempArr); $i++) {
-				$tempArr2 = explode('=', $tempArr[$i]);
-				if ($tempArr2[0])
-					$queryObj->{$tempArr2[0]} = $tempArr2[1];
-			}
-		}
-		if (is_string($queryParam)) $queryParam = urlQueryToArray($queryParam);
-		if ($queryParam) {
-			foreach ($queryParam as $key => $contentue) {
-				if ($key) $queryObj->{$key} = $contentue;
-			}
-		}
-		if (isset($module)) {
-			$queryObj->module = $module;
-			if (isset($action))
-				$queryObj->action = $action;
-		}
+		if (isset($parsedUrl['query']))
+			$queryObj = (object) urlQueryToArray($parsedUrl['query']);
 		
+		if (is_string($queryParam)) (object) $queryParam = urlQueryToArray($queryParam);
+		if ($queryParam) {
+			foreach ($queryParam as $key => $content) {
+				if (isset($key)) $queryObj->{$key} = $content;
+			}
+		}
+
 		$parsedUrl['query'] = arrayToUrlQuery($queryObj);
+
+		if (isset($module)) {
+			if (isset($action))
+				$parsedUrl['query'] = 'action=' . $action . '&' . $parsedUrl['query'];
+			$parsedUrl['query'] = 'module=' . $module . '&' . $parsedUrl['query'];
+		}
+
 		if ($parsedUrl['query'] == '') $parsedUrl['query'] = NULL;
 		
-		if ($parsedUrl['query'] != NULL)
+		if ($parsedUrl['query'] != NULL) {
 			if (strrpos($parsedUrl['path'], '/') !== strlen($parsedUrl['path'])-1)
 				$parsedUrl['path'] .= '/';
+			if (strrpos($parsedUrl['query'], '&') === strlen($parsedUrl['query'])-1)
+				$parsedUrl['query'] = substr($parsedUrl['query'], 0, strlen($parsedUrl['query']) - 1);
+		}
 
 		return unparse_url($parsedUrl);
 	
@@ -398,13 +399,13 @@
 		if (!$array) return NULL;
 		else {
 			$tempArr = array();
-			foreach($array as $key => $contentue) {
+			foreach($array as $key => $content) {
 				if (!$key)
 					continue;
-				else if ($key && !$contentue)
+				else if ($key && !isset($content))
 					array_push($tempArr, $key);
 				else
-					array_push($tempArr, $key . '=' . $contentue);
+					array_push($tempArr, $key . '=' . $content);
 			}
 			return join('&', $tempArr);
 		}
@@ -445,14 +446,17 @@
 	/**
 	 * url 리다이렉트
 	 */
-	function redirect($url) {
-		ob_clean();
-		echo Context::getInstance()->getDoctype() .
-				'<html><head>' .
-				'<meta http-equiv="refresh" content="0; url='.$url.'">' .
-				'<script type="text/javascript">location.replace("'.$url.'")</script>' .
-				'</head><body></body></html>';
-		exit;
+	function redirect($url, $ob_clean=true) {
+		if ($ob_clean) {
+			ob_clean();
+			echo Context::getInstance()->getDoctype() .
+					'<html><head>' .
+					'<meta http-equiv="refresh" content="0; url='.$url.'">' .
+					'<script type="text/javascript">location.replace("'.$url.'")</script>' .
+					'</head><body></body></html>';
+			exit;
+		}else
+			echo '<script type="text/javascript">location.replace("'.$url.'");</script>';
 	}
 
 	/**
@@ -486,6 +490,30 @@
 	}
 
 
+	/**
+	 * 파일 사이즈를 예쁘게 출력
+	 * ex) 36KB, 11MB, 5GB 
+	 * @param $size : 파일 크키 (정수형, 단위 : 바이트)
+	 */
+	function getClearFileSize($size) {
+		if ($size > 1024 * 1024 * 1024)
+			return round($size / (1024 * 1024 * 1024) * 10) / 10 . 'GB';
+
+		else if ($size > 1024 * 1024)
+			return round($size / (1024 * 1024) * 10) / 10 . 'MB';
+
+		else if ($size > 1024)
+			return round($size / 1024 * 10) / 10 . 'KB';
+
+		else
+			return $size . 'Byte';
+	}
+
+
+	/**
+	 * XSS 태그 제거
+	 * @param $content : HTML 콘텐츠
+	 */
 	function removeXSS($content) {
 		// http://www.jynote.net/585
 		

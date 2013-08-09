@@ -1,0 +1,23 @@
+<import path="css/editor_inner_data.css">
+
+<condition do="$_GET['parent_no']">
+	<input type="hidden" name="parent_no" value="{$_GET['parent_no']}">
+</condition>
+
+<div id="board-top-container" class="clearfix">
+	<div class="fl">
+		<select id="board-selector" name="board_id">
+			{@ foreach ($boardLists as $key => $value) : }
+				<option value="{$value->id}"{@ if ($value->name == $boardName) echo ' selected="selected"';}>
+					{$value->name_locale}
+				</option>
+			{@ endforeach; }
+		</select>
+	</div>
+	<div class="fl">
+		<input type="text" id="board-title" name="title"{@ if (isset($title)) echo ' value="'.$title.'"'; } />
+	</div>
+</div>
+
+{getContent('editor', 'dispFormInnerData')}
+{getContent('board', 'dispEditorInnerBottomData')}

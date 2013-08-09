@@ -19,7 +19,7 @@
 	/**
 	 * Define PMC version
 	 */
-	define('PMC_VERSION', '0.2.4');
+	define('PMC_VERSION', '1.0.0');
 	
 	
 	/**
@@ -48,6 +48,11 @@
 	 */
 	define('USE_SHORT_URL', false);
 	
+
+	/**
+	 * Define using real name in board, etc
+	 */
+	define('USE_REAL_NAME', true);
 
 	/**
 	  * Define default locale
@@ -142,9 +147,7 @@
 	
 	header('Content-Type: text/html; charset=' . TEXT_ENCODING);
 	ini_set('display_errors', (DEBUG_MODE ? 1 : 0));
-	ini_set('error_reporting', E_ALL ^ E_NOTICE);
-	error_reporting(E_ALL ^ E_NOTICE);
-
+	
 	
 	// lib.rsa.php, lib.lessc.php is required when is needed
 	

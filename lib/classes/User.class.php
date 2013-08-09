@@ -10,15 +10,37 @@
 	class User {
 
 		static private $userSingleTon;
+		static private $masterAdmin;
 
-		public $id;
-		public $inputId;
-		public $userId;
-		public $userName;
-		public $emailAddress;
-		public $lastLoginedIp;
-		public $extraVars;
-		public $groups;
+		private $id;
+		private $inputId;
+		private $userId;
+		private $nickName;
+		private $userName;
+		private $emailAddress;
+		private $phoneNumber;
+		private $lastLoginedIp;
+		private $extraVars;
+		private $groups;
+
+		public function __construct($data) {
+			if (is_object($data) || is_array($data)) {
+				if (isset($data->id) && isset($data->inputId)){
+					foreach ($data as $key => $value) {
+						$this->{$key} = $value;
+					}
+					if (isset($this->groups)) {
+						for ($i=0; $i<count($this->groups); $i++) 
+							$this->groups[$i]->nameLocale = fetchLocale($this->groups[$i]->nameLocales);
+					}
+					$this->id = (int) $this->id;
+				}
+				else
+					Context::printWarning('User class is not initialize with User record data');
+			}else {
+				Context::printWarning('Unknown type of param $data - in User::__construct');
+			}
+		}
 
 		static public function getCurrent() {
 			return self::$userSingleTon;
@@ -41,19 +63,24 @@
 				self::$userSingleTon = NULL;
 		}
 
-		public function __construct($data) {
-			if (isset($data->id) && isset($data->inputId)) {
-				foreach ($data as $key => $value) {
-					$this->{$key} = $value;
-				}
-				if (isset($this->groups)) {
-					for ($i=0; $i<count($this->groups); $i++) 
-						$this->groups[$i]->nameLocale = fetchLocale($this->groups[$i]->nameLocales);
-				}
-			}
-			else {
-				Context::printWarning('User class is not initialize with User record data');
-			}
+		static public function getMasterAdmin() {
+			if (isset(self::$masterAdmin)) return self::$masterAdmin;
+
+			$arr = DBHandler::for_table('user_group')
+				->select('name')
+				->where('is_admin', 1)
+				->find_many();
+
+			$arr2 = array();
+			for ($i=0; $i<count($arr); $i++) 
+				array_push($arr2, $arr[$i]->name);
+			
+			self::$masterAdmin = $arr2;
+			return $arr2;
+		}
+
+		public function __get($name) {
+			return $this->{$name};
 		}
 
 		public function checkGroup($targetGroups) {

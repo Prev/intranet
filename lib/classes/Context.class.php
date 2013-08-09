@@ -38,6 +38,19 @@
 
 
 		/**
+		 * only print module content 
+		 */
+		public $printAlone;
+
+
+		/**
+		 * mobile mode
+		 */
+		public $mobileMode;
+		public $isMobile;
+
+
+		/**
 		 * headerTagHandler obj
 		 * HeaderTagHandler Class
 		 */
@@ -80,8 +93,33 @@
 		public function init($db_info) {
 			self::$attr = new StdClass();
 			self::$menuDatas = new StdClass();
+			
 			$this->headerTagHandler = new HeaderTagHandler();
 			$this->setLayout(LAYOUT_NAME);
+			$this->printAlone = false;
+
+			$mobileAgents  = array('iphone','lgtelecom','skt','mobile','samsung','nokia','blackberry','android','android','sony','phone');
+				
+			for ($i=0; $i<count($mobileAgents); $i++){ 
+				if (preg_match("/{$mobileAgents[$i]}/", strtolower($_SERVER['HTTP_USER_AGENT']))) {
+					$this->mobileMode = true;
+					$this->isMobile = true;
+					break;
+				} 
+			}
+			
+			if ($_COOKIE['mobile']) $this->mobileMode = true;
+			if (!$_COOKIE['mobile']) $this->mobileMode = false;
+
+			if (isset($_GET['mobile'])) {
+				if ($_GET['mobile']) {
+					$this->mobileMode = true;
+					setcookie('mobile', 1);
+				}else {
+					$this->mobileMode = false;
+					setcookie('mobile', 0);
+				}
+			}
 
 			if (isset($_GET['locale'])) setcookie('locale', $_GET['locale']);
 			if (isset($_GET['page']) && !isset($_GET['module'])) $_GET['module'] = 'page';
@@ -107,9 +145,19 @@
 			
 			$this->initMenu($_REQUEST);
 			
-			$this->addHeaderFile('/static/css/global.css');
-			$this->addHeaderFile('/static/js/lie.js');
+
 			$this->addMetaTag( array('charset'=>TEXT_ENCODING) );
+
+			$this->addHeaderFile('/static/css/global.css');
+			$this->addHeaderFile('/static/js/global.js');
+			
+			$this->addHeaderTag(
+				'<script type="text/javascript">' .
+					'var RELATIVE_URL = "'.RELATIVE_URL . '";' .
+					'var USE_SHORT_URL = "'.USE_SHORT_URL . '";' .
+					'var REAL_URL = "'.REAL_URL . '";' .
+				'</script>'
+			);
 
 			if (DEBUG_MODE)
 				$this->addHeaderFile('/static/js/vdump.js');
@@ -130,7 +178,7 @@
 		 */
 		
 		private function initMenu($getVars) {
-			$moduleID = isset($getVars['module']) ? $getVars['module'] : NULL;
+			$moduleID = isset($getVars['module']) ? basename($getVars['module']) : NULL;
 			$moduleAction = isset($getVars['action']) ? basename($getVars['action']) : NULL;
 
 			// get default(index) menu when module and menu not defined
@@ -155,8 +203,7 @@
 					'kr' => '해당 메뉴를 찾을 수 없습니다'
 				));
 			}else {
-				$this->selectedMenu = $getVars['menu'];
-
+				$this->selectedMenu = $getVars['menu'];				
 				if (isset($data) && isset($data->module)) {
 					if ($moduleID) {
 						Context::printErrorPage(array(
@@ -202,7 +249,7 @@
 					->where('visible', 1)
 					->find_many();
 			}else {
-				if (!isset($selectedMenuData)) {
+				if (empty($selectedMenuData)) {
 					self::printErrorPage(array('en' => 'fail parsing menu', 'kr' => '메뉴 파싱에 실패했습니다.'));
 					return;
 				}
@@ -235,10 +282,11 @@
 				if ($selectedMenuData->level == 1) $topMenus = array($selectedMenuData->id);
 				else if (!$topMenus) $topMenus = explode(',', self::getParentMenus($selectedMenuData->id));
 			}
+
 			for ($i=0; $i<count($arr); $i++) {
 				$arr[$i] = $arr[$i]->getData();
 				$arr[$i]->className = 'menu-' . $arr[$i]->title;
-
+				
 				if (isset($topMenus) && array_search($arr[$i]->id, $topMenus) !== false) {
 					$arr[$i]->selected = true;
 					$arr[$i]->className .= ' menu-' . $arr[$i]->title . '-selected selected';
@@ -247,7 +295,8 @@
 					$arr[$i]->title = '';
 				
 				$arr[$i]->title_locale = fetchLocale($arr[$i]->title_locales);
-			}		
+			}
+			
 			self::$menuDatas->{$menuHash} = $arr;
 			return $arr;
 		}
@@ -349,6 +398,7 @@
 				case 'ico' :
 					$this->headerTagHandler->setFavicon($path);
 					break;
+
 					
 				default :
 					self::printWarning(array(
@@ -486,7 +536,7 @@
 					unset($_SESSION['pmc_sso_data']);
 					return false;
 				}
-				
+
 				$ssoData = json_decode($urlData);
 				if (!$ssoData || $ssoData->result === 'fail') {
 					Context::printErrorPage(array(
@@ -498,7 +548,7 @@
 				}
 				$userData = $ssoData->userData;
 				$_SESSION['pmc_sso_data'] = $ssoData;
-				
+
 				User::initCurrent();
 				return true;
 			}
@@ -517,28 +567,37 @@
 			if (!$this->contentPrintable) return; // if error printed, return
 
 			ob_start();
-			CacheHandler::execTemplate('/layouts/' . $this->layout . '/layout.html');
-			$content = ob_get_clean();
+			
+			if ($this->mobileMode && is_file(ROOT_DIR . '/layouts/m.' . $this->layout . '/layout.html'))
+				$this->layout = 'm.' . $this->layout;
 
-			OB_GZIP ? ob_start('ob_gzhandler') : ob_start();
+			CacheHandler::execTemplate('/layouts/' . $this->layout . '/layout.html');
 			
-			$output = $this->getDoctype() . LINE_END .
-					  '<html>' . LINE_END .
-					  '<head>' . LINE_END .
-					  $this->getHead() . 
-					  '</head>' . LINE_END .
-					  '<body>' . LINE_END .
-					  $this->getBodyTop() . LINE_END.
-			 		  $content . LINE_END .
-					  $this->getBodyBottom() . LINE_END .
-					  '</body>' . LINE_END .
-					  '</html>';
-				 
-			if (TEXT_ENCODING != 'utf-8')
-				$output = iconv('utf-8', TEXT_ENCODING, $output);
+
+			if ($this->printAlone) {
+				ob_end_flush();
+			}else {
+				$content = ob_get_clean();
+				OB_GZIP ? ob_start('ob_gzhandler') : ob_start();
 			
-			echo $output;
-			ob_end_flush();
+				$output = $this->getDoctype() . LINE_END .
+						  '<html>' . LINE_END .
+						  '<head>' . LINE_END .
+						  $this->getHead() . 
+						  '</head>' . LINE_END .
+						  '<body>' . LINE_END .
+						  $this->getBodyTop() . LINE_END.
+				 		  $content . LINE_END .
+						  $this->getBodyBottom() . LINE_END .
+						  '</body>' . LINE_END .
+						  '</html>';
+
+				if (TEXT_ENCODING != 'utf-8')
+					$output = iconv('utf-8', TEXT_ENCODING, $output);
+				
+				echo $output;
+				ob_end_flush();
+			}
 		}
 
 		/*

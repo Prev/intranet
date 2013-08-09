@@ -45,12 +45,12 @@
 		private function _procUpload($isBinary) {
 			if (empty($_FILES['bifile'])) return;
 
-			$fileName = basename($_FILES['bifile']['name']);
+			$fileName = $_FILES['bifile']['name'];
 			$fileHash = sha1_file($_FILES['bifile']['tmp_name']);
 			$fileSize = (int)$_FILES["bifile"]["size"];
 			$fileExtension = substr(strrchr($_FILES['bifile']['name'], '.'), 1);
-
-			$uploadFileUrl = '/files/attach/' . ($isBinary ? 'binaries' : 'images') . '/' . $fileHash . ($isBinary ? '' : '.' . $fileExtension);
+			
+			$uploadFileUrl = '/files/attach/' . ($isBinary ? 'binaries' : 'images') . '/' . $fileHash . ($isBinary ? '.file' : '.' . $fileExtension);
 			$uploadFileDir = ROOT_DIR . $uploadFileUrl;
 			
 			if ($fileSize > 1024 * 1024 * 20) {
@@ -79,7 +79,6 @@
 				$fileRecord->set(array(
 					'uploaded_url' => $uploadFileUrl,
 					'is_binary' => ($isBinary ? 1 : 0),
-					'file_name' => $fileName,
 					'file_size' => $fileSize,
 					'file_hash' => $fileHash
 				));

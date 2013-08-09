@@ -2,11 +2,15 @@
 	"name":"editor module",
 	"version":"1.0.0",
 	"author":"prevdev@gmail.com",
-	"default":"EditorView",
+	"view":"EditorView",
 
 	"actions":[
 		{
 			"name":"dispEditor",
+			"allow_web_access":false
+		},
+		{
+			"name":"dispFormInnerData",
 			"allow_web_access":false
 		},
 		{

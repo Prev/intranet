@@ -12,21 +12,37 @@
 				->find_one();
 		}
 
-		function getArticleDatas() {
+		function getArticleDatas($boardInfo) {
 			$limitNum = ($this->nowPage - 1) * $this->aop;
 
-			$data = DBHandler::for_table('article')
+			$pfx = DBHandler::$prefix;
+
+			$row = DBHandler::for_table('article')
 				->select_many('article.*', 'user.user_name')
+				->select_expr('(SELECT COUNT(*) FROM '.$pfx.'article_comment WHERE article_no = '.$pfx.'article.no)', 'comment_counts')
+				->select_expr('(SELECT COUNT(*) FROM '.$pfx.'article_files WHERE article_no = '.$pfx.'article.no)', 'file_counts')
 				->where('article.board_id', $this->boardId)
 				->join('user', array(
 					'user.id','=','article.writer_id'
 				))
-				->order_by_asc('article.top_no')
+				->order_by_expr('IF ('.DBHandler::$prefix.'article.top_no, '.DBHandler::$prefix.'article.top_no, '.DBHandler::$prefix.'article.no) DESC')
 				->order_by_asc('article.order_key')
-				->limit($limitNum, $this->aop)
-				->find_many();
+				->limit($limitNum, $this->aop);
+
+			if ($boardInfo->hide_secret_article)
+				$row->where('article.is_secret', 0);
+
+			$data = $row->find_many();
 			
 			for ($i=0; $i<count($data); $i++) {
+				if ($data[$i]->content === NULL)
+					$data[$i]->is_delete = true;
+
+				if ($data[$i]->is_secret) {
+					if ($data[$i]->writer_id == User::getCurrent()->id || $this->view->isBoardAdmin)
+						$data[$i]->secret_visible = true;
+				}
+
 				$data[$i]->is_reply = isset($data[$i]->parent_no);
 				$data[$i]->upload_time2 = getRelativeTime(strtotime($data[$i]->upload_time));
 			}
@@ -36,6 +52,7 @@
 		function getNoticeArticles() {
 			$data = DBHandler::for_table('article')
 				->select_many('article.*', 'user.user_name')
+				->select_expr('(SELECT COUNT( * ) FROM '.DBHandler::$prefix.'article_comment WHERE article_no = '.DBHandler::$prefix.'article.no)', 'comment_counts')
 				->where('article.board_id', $this->boardId)
 				->where('article.is_notice', 1)
 				->join('user', array(
