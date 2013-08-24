@@ -350,12 +350,16 @@
 
 		if ($parsedUrl['query'] == '') $parsedUrl['query'] = NULL;
 		
-		if ($parsedUrl['query'] != NULL) {
+		if ($parsedUrl['query'] == NULL && $parsedUrl['fragment'] == NULL) {
+			if (strrpos($parsedUrl['path'], '/') === strlen($parsedUrl['path'])-1)
+				$parsedUrl['path']  = substr($parsedUrl['path'], 0, strlen($parsedUrl['path'])-1);
+		}else {
 			if (strrpos($parsedUrl['path'], '/') !== strlen($parsedUrl['path'])-1)
 				$parsedUrl['path'] .= '/';
 			if (strrpos($parsedUrl['query'], '&') === strlen($parsedUrl['query'])-1)
 				$parsedUrl['query'] = substr($parsedUrl['query'], 0, strlen($parsedUrl['query']) - 1);
 		}
+
 
 		return unparse_url($parsedUrl);
 	
