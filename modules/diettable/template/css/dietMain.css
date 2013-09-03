@@ -1,0 +1,5 @@
+#top #title{ font-size: 18pt; font-weight: bolder; display: inline-block; }
+#top #downdiet_btn { width: 125px; height: 30px; float: right; display: inline-block; }
+
+#date { text-align: center; }
+#date #diet_day { font-size: 16pt; font-weight: bolder; }

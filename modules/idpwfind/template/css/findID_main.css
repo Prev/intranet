@@ -15,18 +15,13 @@ body {margin: 0;}
 .section-body .input-container #left {margin-left: 0 }
 
 #id-section .section-body {}
-#id-section .section-body .input-title-s {width: 38px; font-size: 12px; display: inline-block;}
-#id-section .section-body .input-title-p {width: 60px; font-size: 12px; display: inline-block;}
-#id-section .section-body .input-title-t {width: 38px; font-size: 12px; display: inline-block;}
+#id-section .section-body .input-title {width: 38px; font-size: 12px; display: inline-block; *display: inline; zoom: 1;}
 #id-section .section-body #input-id-name {height: 13px; padding: 0;}
-#id-section .section-body #input-number-container {width: 175px; display: inline-block;}
-#id-section .section-body #input-number-container .input-number {}
-#id-section .section-body #input-department-container {width: 155px; display: none;}
-#id-section .section-body #input-department-container .input-department {}
+#id-section .section-body .input-number {}
 #id-confirm-btn {width: 59px; height: 30px; background: transparent url('./img/btn_confirm.png') no-repeat; cursor: pointer; border: 0; padding: 0; margin: 15px 110px 0px 110px;}
 
 #pw-section .section-body {}
-#pw-section .section-body .input-title {width: 54px; font-size: 12px; display: inline-block;}
+#pw-section .section-body .input-title {width: 54px; font-size: 12px; display: inline-block; *display: inline; zoom: 1;}
 #pw-section .section-body #input-pw-name {height: 13px; padding: 0;}
 #pw-section .section-body #input-pw-id {height: 13px; padding: 0;}
 #pw-section .section-body #input-pw-email {width: 200px; height: 13px; padding: 0;}

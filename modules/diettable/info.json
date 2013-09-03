@@ -1,0 +1,9 @@
+{
+	"layout" : "FindpageLayout",
+	"actions": [
+		{
+			"name":"dispDietMain",
+			"view":"dietView"
+		}
+	]
+}

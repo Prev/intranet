@@ -12,25 +12,6 @@
 	class FindPwPageModel extends Model{
 
 
-
-		public function getUserName(){
-
-
-			$data = DBHandler::for_table('user')
-					->select_many('*')
-					->where('input_id', $this->controller->sid)
-					->where('user_name', $this->controller->sname)
-					->where('email_address', $this->controller->semail)
-					//var_dump2($data -> getQuery());
-					->find_one();
-					//var_dump2($data -> getData());
-
-					return $data -> user_name;
-
-
-		}
-
-
 		public function getUserID(){ //유저의 글로벌 아이디를 얻어옴 
 
 
@@ -70,17 +51,12 @@
 
 
 
-			$now = date("Y-m-d H:i:s");
+			$now = date("Y-m-d H:i:s",strtotime ("+3 hours"));
 			$expire_date = $data -> expire_date;
 
 			if($expire_date <= $now){
 
-
-					$data =  DBHandler::for_table('password_change_key')
-					->where('password_change_key.expire_date',$expire_date)
-					->delete_many();
-					
-					
+					//echo '시간이 만료됨'
 
 					return false;
 

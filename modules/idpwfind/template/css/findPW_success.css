@@ -1,0 +1,5 @@
+#container {width: 670px; margin: 0 auto;}
+#title {width: 670px; height: 38px; margin-top: 30px; margin-bottom: 25px; background: transparent url('./img/pwresetfinish_title.png') no-repeat;}
+#main-box {width: 664px; height: 209px; border: 3px solid #e3e3e3; border-radius: 3px;}
+#main_tip {width: 210px; height: 40px; margin: 0 auto; margin-top: 56px; background: transparent url('./img/pwresetfinish_text.png') no-repeat;}
+#main-btn{width: 102px; height: 30px; margin-left:283px ; margin-top: 31px; background: transparent url('./img/btn_login.png') no-repeat; cursor: pointer; border: 0; padding: 0;}

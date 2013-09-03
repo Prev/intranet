@@ -11,13 +11,9 @@
 class FindIdpageModel extends Model{
 
 
-	public function getUserID($type){ //유저의 글로벌 아이디를 얻어옴 
+	public function getUserID(){ //유저의 글로벌 아이디를 얻어옴 
 
-
-
-			switch ($type) {
-				case 's':
-					$data = DBHandler::for_table('user_student')
+				$data = DBHandler::for_table('user_student')
 					->select_many('*')
 					->join('user', array(
 									'user_student.user_id','=','user.id'
@@ -30,37 +26,6 @@ class FindIdpageModel extends Model{
 					->find_one();
 
 					return $data -> id;
-
-					break;
-
-				case 'p':
-
-					$data = DBHandler::for_table('user_parent')
-					->select_many('*')
-					->join('user', array(
-									'user_parent.user_id','=','user.id'
-
-					))
-					->join('user_student', array(
-									'user_parent.child_id','=','user_student.user_id'
-
-					))
-					->where('user.user_name', $this ->controller->sname)
-					->where('user_student.grade', $this->controller->sgrade)
-					->where('user_student.class', $this->controller->sclass)
-					->where('user_student.number', $this->controller->snumber)
-					->find_one();
-
-					return $data -> id;
-
-						break;
-				
-				default:
-					# code...
-					break;
-			}
-
-				
 
 
 		}
@@ -116,9 +81,10 @@ class FindIdpageModel extends Model{
 	 				case 'p': // 학부모 
 
 	 				
-	 				if( $this ->getUserID('p') != null ){
+	 				if( $this ->getUserID() != null ){
 	 					$data =  DBHandler::for_table('user_parent')
 								->select_many('user.*')
+								
 								->where('user_student.grade', $this->controller->sgrade)
 								->where('user_student.class', $this->controller->sclass)
 								->where('user_student.number', $this->controller->snumber)
