@@ -6,23 +6,23 @@
 		public $nowPage;
 		public $pageNumbers;
 		public $articleDatas;
-
-		/**
-			비밀글
-		*/
+		public $boardInfo;
+		public $categorys;
+		
 		function dispList() {
-
 			if (!$this->nowPage)
 				self::execTemplate('board_not_found');
 
 			else {
 				$this->nowPage = $this->nowPage;
 				$this->pageNumbers = $this->model->getPageNumbers();
-				$this->articleData = array_merge(
-					$this->model->getNoticeArticles(),
-					$this->model->getArticleDatas($this->boardInfo)
+				$this->articleData = $this->controller->manufactureArticleDatas(
+					array_merge(
+						$this->model->getNoticeArticles(),
+						$this->model->getArticleDatas($this->boardInfo)
+					)
 				);
-				self::execTemplate('board');
+				self::execTemplate('board_list');
 			}
 		}
 
@@ -30,7 +30,7 @@
 		function printArticlePrefix($orderKey, $category=NULL) {
 			$html = '';
 
-			if (!$orderKey)
+			if (!$orderKey || (isset($_REQUEST['search']) || $_REQUEST['search']))
 				$html .= '<span class="dot-blank">&#183</span>';
 			else {
 				$depth = (int)(strlen($orderKey) / 2);
@@ -39,7 +39,7 @@
 				$html .= '<div class="reply-icon"></div>&nbsp;';
 			}
 			if ($category)
-				$html .= '<span class="tag-type">['.$category.']&nbsp;</span>';
+				$html .= '<span class="category">['.$category.']&nbsp;</span>';
 
 			echo $html;
 		}

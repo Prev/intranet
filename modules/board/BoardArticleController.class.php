@@ -16,9 +16,13 @@
 					goBack('글을 볼 권한이 없습니다');
 				}
 			}
-			
-			if ($articleData->is_secret && !$isBoardAdmin && $articleData->writer_id != User::getCurrent()->id)
-				goBack('글을 볼 권한이 없습니다');
+
+			if (!$articleData->is_notice && $articleData->is_secret && !$isBoardAdmin && $articleData->writer_id != User::getCurrent()->id) {
+				$parentArticle = $this->model->getParentArticle($articleData->top_no, $articleData->order_key);
+				
+				if (!$parentArticle || $parentArticle->writer_id != User::getCurrent()->id)
+					goBack('글을 읽을 권한이 없습니다');
+			}
 
 			$this->view->commentable = true;
 			if ($articleData->commentable_group) {
@@ -30,6 +34,7 @@
 			$commentDatas = $this->model->getArticleComments($articleNo);
 			$fileDatas = $this->model->getArticleFiles($articleNo);
 			
+			$isBoardAdmin = $this->checkIsBoardAdmin($articleData->admin_group);
 
 			for ($i=0; $i<count($commentDatas); $i++) {
 				$commentDatas[$i]->content = join('<br>', explode("\n", $commentDatas[$i]->content));
@@ -40,9 +45,18 @@
 
 					for ($j=0; $j<count($commentDatas); $j++) { 
 						if ($commentDatas[$i]->parent_id == $commentDatas[$j]->id) {
+							$commentDatas[$i]->parent_writer_id = $commentDatas[$j]->writer_id;
 							$commentDatas[$i]->parent_writer = USE_REAL_NAME ? $commentDatas[$j]->user_name : $commentDatas[$j]->nick_name;
 						}
 					}
+				}
+				
+				if ($commentDatas[$i]->is_secret) {
+					if ($commentDatas[$i]->writer_id == User::getCurrent()->id || $articleData->writer_id == User::getCurrent()->id || $isBoardAdmin)
+						$commentDatas[$i]->secret_visible = true;
+					
+					else if ($commentDatas[$i]->parent_writer_id && $commentDatas[$i]->parent_writer_id == User::getCurrent()->id)
+						$commentDatas[$i]->secret_visible = true;
 				}
 			}
 
@@ -55,10 +69,13 @@
 						->where('no', $articleData->no)
 						->find_one();
 
-					$row->set_expr('hits', 'hits + 1');
-					$row->save();
-
-					$_SESSION['comment_hits'][$articleData->no] = 1;
+					if ($row) {
+						$row->set_expr('hits', 'hits + 1');
+						$row->save();
+						
+						$articleData->hits++;
+						$_SESSION['comment_hits'][$articleData->no] = 1;
+					}
 				}
 			}
 

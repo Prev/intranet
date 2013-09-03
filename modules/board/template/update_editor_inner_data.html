@@ -11,9 +11,10 @@
 				</option>
 			{@ endforeach; }
 		</select>
+		<select id="category-selector" name="category"></select>
 	</div>
 	<div class="fl">
-		<input type="text" id="board-title" name="title" value="{$articleData->title}" />
+		<input type="text" id="board-title" name="title" value="{htmlspecialchars($articleData->title)}" />
 	</div>
 </div>
 
@@ -21,10 +22,21 @@
 {getContent('board', 'dispEditorInnerBottomData', array('articleData' => $articleData))}
 
 <textarea id="origin-content" style="display:none; visibility:hidden">
-	{$articleData->content}
+	{htmlspecialchars($articleData->content)}
 </textarea>
 
 <script type="text/javascript">
+	var categorys = [];
+	{@ foreach ($boardLists as $key => $board) : }
+		<condition do="$board->categorys">
+			categorys[{$board->id}] = {$board->categorys};
+		<else>
+			categorys[{$board->id}] = null;
+		</condition>
+	{@ endforeach; }
+
+	var selectedCategory = {@ echo isset($articleData->category) ? '"'.$articleData->category.'"' : 'null'};
+
 	window.addEventListener("load", function () {
 
 		{@ foreach($fileDatas as $key => $file) : }
@@ -36,3 +48,4 @@
 		});
 	});
 </script>
+<script type="text/javascript" src="./js/editor_inner_data.js"></script>

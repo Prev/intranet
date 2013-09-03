@@ -37,7 +37,17 @@
 
 
 		static public function initModule($moduleID, $moduleAction=NULL, $queryParam=NULL) {
-			if (isset(self::$modules->{$moduleID.'.'.$moduleAction})) return self::$modules->{$moduleID.'.'.$moduleAction};
+			if (isset(self::$modules->{$moduleID.'.'.$moduleAction})) {
+				if ($queryParam) {
+					if (is_string($queryParam))
+						$queryParam = urlQueryToArray($queryParam);
+					foreach ($queryParam as $key => $value) {
+						self::$modules->{$moduleID.'.'.$moduleAction}->{$key} = $value;
+					}
+				}
+				return self::$modules->{$moduleID.'.'.$moduleAction};
+			}
+
 
 			$moduleDir = self::getModuleDir($moduleID);
 			if (!$moduleID) {
@@ -142,7 +152,7 @@
 				));
 				return NULL;
 			}
-			if (isset($moduleInfo->print_alone)) 
+			if (isset($moduleInfo->print_alone))
 				Context::getInstance()->printAlone = true;
 
 			if (isset($moduleInfo->layout))
@@ -208,6 +218,7 @@
 						}
 						if (isset($actions[$i]->print_alone))
 							Context::getInstance()->printAlone = true;
+						
 						if (isset($actions[$i]->layout))
 							Context::getInstance()->setLayout($actions[$i]->layout);
 

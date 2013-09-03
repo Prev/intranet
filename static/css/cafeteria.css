@@ -1,0 +1,39 @@
+#side-menu #side-menu-top{ background-image: url(../img/cafeteria/lnb_top.png) }
+
+#side-menu ul li{ background-image: url(../img/cafeteria/lnb_menu.png) }
+
+#side-menu ul li.lnb-cafeteria-notice{ background-position: 0 0 }
+#side-menu ul li.lnb-cafeteria-notice:hover{ background-position: -250px 0 }
+#side-menu ul li.lnb-cafeteria-notice.selected{ background-position: -500px 0 }
+
+#side-menu ul li.lnb-diet-table{ background-position: 0 -45px }
+#side-menu ul li.lnb-diet-table:hover{ background-position: -250px -45px }
+#side-menu ul li.lnb-diet-table.selected{ background-position: -500px -45px }
+
+#side-menu ul li.lnb-snack-request{ background-position: 0 -90px }
+#side-menu ul li.lnb-snack-request:hover{ background-position: -250px -90px }
+#side-menu ul li.lnb-snack-request.selected{ background-position: -500px -90px }
+
+#side-menu ul li.lnb-food-coupon-manage{ background-position: 0 -135px }
+#side-menu ul li.lnb-food-coupon-manage:hover{ background-position: -250px -135px }
+#side-menu ul li.lnb-food-coupon-manage.selected{ background-position: -500px -135px }
+
+#side-menu ul li.lnb-cateteria-ask{ background-position: 0 -180px }
+#side-menu ul li.lnb-cateteria-ask:hover{ background-position: -250px -180px }
+#side-menu ul li.lnb-cateteria-ask.selected{ background-position: -500px -180px }
+
+#side-menu ul li.lnb-food-log{ background-position: 0 -225px }
+#side-menu ul li.lnb-food-log:hover{ background-position: -250px -225px }
+#side-menu ul li.lnb-food-log.selected{ background-position: -500px -225px }
+
+/*
+#content-header #content-title{ background-image: url(../img/cafeteria/titles.png); background-repeat: no-repeat; }
+#content-header #content-title h1{ visibility: hidden; }
+
+#content-header #content-title.dormitory-notice{ height: 23px; background-position: 0px 0px }
+#content-header #content-title.stay-request{ height: 24px; background-position: 0px -23px }
+#content-header #content-title.stay-inquiry{ height: 22px; background-position: 0px -47px }
+#content-header #content-title.stay-manage{ height: 22px; background-position: 0px -69px }
+#content-header #content-title.morning-song{ height: 23px; background-position: 0px -91px }
+#content-header #content-title.morning-song-manage{ height: 23px; background-position: 0px -114px }
+*/

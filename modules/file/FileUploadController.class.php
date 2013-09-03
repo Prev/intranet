@@ -1,6 +1,6 @@
 <?php
 	
-	class FileController extends Controller {
+	class FileUploadController extends Controller {
 
 		public function init() {
 			if (!is_dir(ROOT_DIR . '/files/attach/')) {
@@ -18,16 +18,20 @@
 		}
 
 		public function procFileUpload() {
-			$data = $this->_procUpload(true);
-
-			echo '<script type="text/javascript">
-				window.opener.appendFile("'.getUrl() . '/' . substr($data->uploadedUrl, 1).'", "'.$data->fileName.'", '.$data->fileSize.', "'.$data->fileMimeType.'", '.$data->fileId.');
-				window.close();
-			</script>';
+			if (!$_FILES['bifile']['size']) {
+				$this->close();
+				return;
+			}
+			
+			return $this->_procUpload(true);
 		}
 
 		public function procImageUpload() {
-			$imageKind = array('image/pjpeg', 'image/jpeg', 'image/JPG', 'image/X-PNG', 'image/PNG', 'image/png', 'image/x-png');
+			if (!$_FILES['bifile']['size']) {
+				$this->close();
+				return;
+			}
+			$imageKind = array('image/pjpeg', 'image/jpeg', 'image/JPG', 'image/X-PNG', 'image/PNG', 'image/png', 'image/x-png', 'image/gif', 'image/GIF');
 			$imageExtensions = array('png', 'jpg', 'jpeg', 'gif', 'bmp');
 
 			if (!in_array($_FILES['bifile']['type'], $imageKind) || !in_array(substr(strrchr($_FILES['bifile']['name'], '.'), 1), $imageExtensions)) {
@@ -35,11 +39,7 @@
 				$this->close('Cannot upload this file as image');
 				return;
 			}
-			$data = $this->_procUpload(false);
-			echo '<script type="text/javascript">
-				window.opener.appendImage("'.getUrl() . '/' . substr($data->uploadedUrl, 1).'", "'.$data->fileName.'", '.$data->fileSize.');
-				window.close();
-			</script>';
+			return $this->_procUpload(false);
 		}
 
 		private function _procUpload($isBinary) {
@@ -50,7 +50,7 @@
 			$fileSize = (int)$_FILES["bifile"]["size"];
 			$fileExtension = substr(strrchr($_FILES['bifile']['name'], '.'), 1);
 			
-			$uploadFileUrl = '/files/attach/' . ($isBinary ? 'binaries' : 'images') . '/' . $fileHash . ($isBinary ? '.file' : '.' . $fileExtension);
+			$uploadFileUrl = '/files/attach/' . ($isBinary ? 'binaries' : 'images') . '/' . $fileHash . ($isBinary ? '' : '.' . $fileExtension);
 			$uploadFileDir = ROOT_DIR . $uploadFileUrl;
 			
 			if ($fileSize > 1024 * 1024 * 20) {
@@ -77,10 +77,9 @@
 			if (move_uploaded_file($_FILES['bifile']['tmp_name'], $uploadFileDir)) {
 				$fileRecord = DBHandler::for_table('files')->create();
 				$fileRecord->set(array(
-					'uploaded_url' => $uploadFileUrl,
 					'is_binary' => ($isBinary ? 1 : 0),
-					'file_size' => $fileSize,
-					'file_hash' => $fileHash
+					'file_hash' => $fileHash,
+					'file_size' => $fileSize
 				));
 				$fileRecord->save();
 

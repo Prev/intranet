@@ -18,12 +18,16 @@
 				return;
 			}
 
-			/**
-				TODO : 카테고리
-			*/
-
 			$isNotice = evalCheckbox($_POST['is_notice']);
 			$isBoardAdmin = $this->checkIsBoardAdmin($boardInfo->admin_group);
+
+			if (isset($_POST['category']) && $_POST['category'] != 'none') {
+				$categorys = json_decode($boardInfo->categorys);
+				if (array_search($_POST['category'], $categorys) === false) {
+					goBack('사용할 수 없는 카테고리입니다', true);
+					return;
+				}
+			}
 
 			if (!$isBoardAdmin && $isNotice) {
 				goBack('공지사항을 작성 할 권한이 없습니다', true);
@@ -38,8 +42,8 @@
 			$record = DBHandler::for_table('article')->create();
 			$record->set(array(
 				'board_id' => $boardInfo->id,
-				'title' => $_POST['title'],
-				'content' => removeXSS($_POST['content']),
+				'title' => stripslashes($_POST['title']),
+				'content' => removeXSS(stripslashes($_POST['content'])),
 				'writer_id' => User::getCurrent()->id,
 				'is_secret' => evalCheckbox($_POST['is_secret']) ? 1 : 0 ,
 				'is_notice' => $isNotice ? 1 : 0 ,
@@ -49,13 +53,14 @@
 			if (isset($_POST['parent_no']) && !empty($_POST['parent_no'])) {
 				$topNo = $this->model->getArticleTopId((int)$_POST['parent_no']);
 				$orderKey = $this->model->getArticleOrderKey((int)$_POST['parent_no'], $topNo);
-
-				var_dump((int)$_POST['parent_no']);
-				var_dump($orderKey);
+				
 				$record->set(array(
 					'top_no' => $topNo,
 					'order_key' => $orderKey
 				));
+			}
+			if (isset($_POST['category']) && $_POST['category'] != 'none') {
+				$record->set('category', $_POST['category']);
 			}
 			$record->save();
 
@@ -83,9 +88,9 @@
 				return;
 			}
 
-			$articleGroupData = $this->model->getArticleDataAndAdminGroup($_POST['article_no']);
+			$articleBoardData = $this->model->getArticleAndGroupData($_POST['article_no']);
 			$isNotice = evalCheckbox($_POST['is_notice']);
-			$isBoardAdmin = $this->checkIsBoardAdmin($articleGroupData->admin_group);
+			$isBoardAdmin = $this->checkIsBoardAdmin($articleBoardData->admin_group);
 
 			$articleData = $this->model->getArticleData($_POST['article_no']);
 
@@ -99,6 +104,14 @@
 				return;
 			}
 
+			if (isset($_POST['category']) && $_POST['category'] != 'none') {
+				$categorys = json_decode($articleBoardData->categorys);
+				if (array_search($_POST['category'], $categorys) === false) {
+					goBack('사용할 수 없는 카테고리입니다', true);
+					return;
+				}
+			}
+
 			if (!empty($_POST['attach_files'])) {
 				$attachFiles = $_POST['attach_files'];
 				$attachFiles = join('"', explode("\\\"", $attachFiles));
@@ -108,20 +121,25 @@
 			if ($articleData->board_id != $_POST['board_id']) {
 				DBHandler::for_table('article')->raw_query('
 					UPDATE '.DBHandler::$prefix.'article
-					SET board_id = "'.$_POST['board_id'].'"
-					WHERE top_no = "'.$_POST['article_no'].'"
+					SET board_id = "'.escape($_POST['board_id']).'"
+					WHERE top_no = "'.escape($_POST['article_no']).'"
 				');
 			}
 
 			$articleData->set(array(
 				'board_id' => $_POST['board_id'],
-				'title' => $_POST['title'],
-				'content' => removeXSS($_POST['content']),
+				'title' => stripslashes($_POST['title']),
+				'content' => removeXSS(stripslashes($_POST['content'])),
 				'is_secret' => evalCheckbox($_POST['is_secret']) ? 1 : 0 ,
 				'is_notice' => evalCheckbox($_POST['is_notice']) ? 1 : 0 ,
 				'allow_comment' => evalCheckbox($_POST['allow_comment']) ? 1 : 0 ,
 				'upload_time' => date('Y-m-d H:i:s')
 			));
+
+			if (isset($_POST['category']) && $_POST['category'] != 'none') {
+				$articleData->set('category', $_POST['category']);
+			}
+
 			$articleData->save();
 
 			$originFiles = $this->model->getOriginFiles($_POST['article_no']);
@@ -156,13 +174,13 @@
 		public function procDeleteArticle() {
 			if (!$_SERVER['HTTP_REFERER']) return;
 
-			$articleData = $this->model->getArticleDataAndAdminGroup((int)$_GET['article_no']);
-			if (!$articleData->top_no) $articleData->top_no = $articleData->no;
-
+			$articleData = $this->model->getArticleAndGroupData((int)$_GET['article_no']);
 			if ($articleData === false) {
 				goBack('게시글이 존재하지 않습니다');
 				return;
 			}
+
+			if (!$articleData->top_no) $articleData->top_no = $articleData->no;
 
 			$me = User::getCurrent();
 			
@@ -175,9 +193,10 @@
 			
 			$this->deleteArticleAndCheckParent($_GET['article_no'], $articleData->top_no, $articleData->order_key);
 			// 임시 삭제된 부모글을 체크하고 게시글을 삭제
-
+			
 			$this->alert('게시글을 성공적으로 삭제했습니다');
-			$url = getUrlA('next='.getUrl(), getBackUrl());
+			$url = getUrl('board', 'dispList', 'board_name='.$articleData->name);
+			//$url = getUrlA('next='.getUrl(), getBackUrl());
 			redirect($url, false);
 		}
 
@@ -223,6 +242,31 @@
 			DBHandler::for_table('article')
 				->where('no', $articleNo)
 				->delete_many();
+		}
+
+		public function procToggleNotice() {
+			if (!$_SERVER['HTTP_REFERER']) return;
+			if (!$_GET['article_no']) {
+				goBack('오류가 발생했습니다', true);
+				return;
+			}
+
+			$articleBoardData = $this->model->getArticleAndGroupData($_POST['article_no']);
+			$isBoardAdmin = $this->checkIsBoardAdmin($articleBoardData->admin_group);
+			
+			$articleData = $this->model->getArticleData($_GET['article_no']);
+
+			if (!$isBoardAdmin) {
+				goBack('권한이 없습니다', true);
+				return;
+			}
+
+			$articleData->set('is_notice', !$articleData->is_notice);
+			$articleData->save();
+
+			goBack( $articleData->is_notice ?
+				'게시글을 공지사항으로 등록했습니다' : '게시글을 공지사항에서 등록해제했습니다'
+			);
 		}
 
 

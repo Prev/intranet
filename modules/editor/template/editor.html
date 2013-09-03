@@ -33,8 +33,8 @@
 		initializedId: "",
 		wrapper: "tx_trex_container",
 		form: 'tx_editor_form',
-		txIconPath: "{getUrl()}/modules/editor/template/images/icon/editor/",
-		txDecoPath: "{getUrl()}/modules/editor/template/images/deco/contents/",
+		txIconPath: "{getRealUrl('editor')}/template/images/icon/editor/",
+		txDecoPath: "{getRealUrl('editor')}/template/images/deco/contents/",
 		tx_attach_max_size:10,
 		canvas: {
 			styles: {
@@ -102,6 +102,7 @@
 		var textarea = document.createElement('textarea');
 		textarea.name = 'content';
 		textarea.value = content;
+		textarea.style.display = 'none';
 		form.createField(textarea);
 
 		var files = Editor.getSidebar().getAttachments("file");
@@ -126,6 +127,7 @@
 	var attachers = [];
 
 	function appendImage(imageUrl, fileName, fileSize) {
+		checkDeletedFiles();
 		attachers.push({
 			'attacher': 'image',
 			'data': {
@@ -140,6 +142,7 @@
 		});
 	}
 	function appendFile(attachurl, fileName, fileSize, filemime, fileId) {
+		checkDeletedFiles();
 		attachers.push({
 			'attacher': 'file',
 			'data': {
@@ -153,6 +156,20 @@
 		Editor.modify({
 			"attachments": attachers
 		});
+	}
+
+	function checkDeletedFiles() {
+		var files = Editor.getSidebar().getAttachments("file");
+		for (i = 0; i < files.length; i++) {
+			if (files[i].deletedMark) {
+				for (var j=0; j<attachers.length; j++) {
+					if (files[i].data.fileId == attachers[j].data.fileId) {
+						attachers.splice(j, 1);
+					} 
+				}
+				
+			}
+		}
 	}
 
 	</script>

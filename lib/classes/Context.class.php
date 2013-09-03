@@ -2,7 +2,7 @@
 
 	/**
 	 * @author prevdev@gmail.com
-	 * @2013.05 ~ 07
+	 * @2013.05 ~ 08
 	 *
 	 *
 	 * Context Class
@@ -47,7 +47,7 @@
 		 * mobile mode
 		 */
 		public $mobileMode;
-		public $isMobile;
+		public $isRealMobile;
 
 
 		/**
@@ -97,20 +97,20 @@
 			$this->headerTagHandler = new HeaderTagHandler();
 			$this->setLayout(LAYOUT_NAME);
 			$this->printAlone = false;
+			$this->mobileMode = false;
 
 			$mobileAgents  = array('iphone','lgtelecom','skt','mobile','samsung','nokia','blackberry','android','android','sony','phone');
-				
+			
 			for ($i=0; $i<count($mobileAgents); $i++){ 
 				if (preg_match("/{$mobileAgents[$i]}/", strtolower($_SERVER['HTTP_USER_AGENT']))) {
 					$this->mobileMode = true;
-					$this->isMobile = true;
+					$this->isRealMobile = true;
 					break;
 				} 
 			}
 			
 			if ($_COOKIE['mobile']) $this->mobileMode = true;
-			if (!$_COOKIE['mobile']) $this->mobileMode = false;
-
+			
 			if (isset($_GET['mobile'])) {
 				if ($_GET['mobile']) {
 					$this->mobileMode = true;
@@ -167,8 +167,6 @@
 					array('http-equiv'=>'X-UA-Compatible', 'content'=>X_UA_Compatible)
 				);
 			}
-			
-			$this->setTitle('engine pmc');
 		}
 		
 		/**
@@ -290,6 +288,11 @@
 				if (isset($topMenus) && array_search($arr[$i]->id, $topMenus) !== false)
 					$arr[$i]->selected = true;
 				
+				if (!empty($arr[$i]->extra_vars)) {
+					$arr[$i]->extra_vars = json_decode($arr[$i]->extra_vars);
+					$arr[$i]->extraVars = $arr[$i]->extra_vars;
+				}
+
 				if ($arr[$i]->is_index && USE_SHORT_URL)
 					$arr[$i]->title = '';
 				
@@ -369,16 +372,23 @@
 		 * @param $targetie : target of added ie, if @param is not NULL, header tag is reaplaced to <!--[if @param]>HEADER_TAG<![endif]-->
 		 */
 		public function addHeaderFile($path, $index=-1, $position='head', $requiredAgent=NULL, $targetie=NULL) {
-			if (substr($path, 0, 1) != '/')
-				$path = '/' . $path;
+			if (substr($path, 0, 2) != '//' && strpos($path, '://') === false) {
+				if (substr($path, 0, 1) != '/')
+					$path = '/' . $path;
 
-			if (!is_file(ROOT_DIR . '/' . $path)) {
-				self::printWarning(array(
-					'en' => 'fail to load file "<b>'.$path.'"</b>',
-					'kr' => '파일을 불러오는데 실패했습니다 - "<b>'.$path.'"</b>'
-				));
-				return;
+				$pos = strrpos($path, '/');
+				if ($this->mobileMode && is_file(ROOT_DIR . substr($path, 0, $pos) . '/m.' . substr($path, $pos+1)))
+					$path = substr($path, 0, $pos) . '/m.' . substr($path, $pos+1);
+				
+				if (!is_file(ROOT_DIR . $path)) {
+					self::printWarning(array(
+						'en' => 'fail to load file "<b>'.$path.'"</b>',
+						'kr' => '파일을 불러오는데 실패했습니다 - "<b>'.$path.'"</b>'
+					));
+					return;
+				}
 			}
+			
 			
 			switch ($extension = substr(strrchr($path, '.'), 1)) {
 				case 'css' :
@@ -526,7 +536,7 @@
 		public function checkSSO() {
 			if (isset($_COOKIE['pmc_sess_key']) && !isset($_SESSION['pmc_sso_data'])) {
 				$urlData = getUrlData(SSO_URL . '?sess_key=' . $_COOKIE['pmc_sess_key'], SSO_AGENT_KEY);
-				
+
 				if (!$urlData) {
 					Context::printErrorPage(array(
 						'en' => 'cannot load sso data',
@@ -537,6 +547,7 @@
 				}
 
 				$ssoData = json_decode($urlData);
+
 				if (!$ssoData || $ssoData->result === 'fail') {
 					Context::printErrorPage(array(
 						'en' => 'fail loading sso data',
@@ -569,13 +580,15 @@
 			
 			if ($this->mobileMode && is_file(ROOT_DIR . '/layouts/m.' . $this->layout . '/layout.html'))
 				$this->layout = 'm.' . $this->layout;
-
-			CacheHandler::execTemplate('/layouts/' . $this->layout . '/layout.html');
 			
 
 			if ($this->printAlone) {
+				$this->getModuleContent();
 				ob_end_flush();
+				
 			}else {
+				CacheHandler::execTemplate('/layouts/' . $this->layout . '/layout.html');
+
 				$content = ob_get_clean();
 				OB_GZIP ? ob_start('ob_gzhandler') : ob_start();
 			

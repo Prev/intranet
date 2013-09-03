@@ -30,11 +30,14 @@
 
 			
 			// import css/js... header file
-			$html = preg_replace_callback('/\#?\s?<import([^>]+)>/', array($this, 'handleImportTags'), $html);
+			$html = preg_replace_callback('/\#?\s?<import([^>]+)>/', array($this, 'parseImportTags'), $html);
 			
 			// import meta tag
-			$html = preg_replace('/\#?\s?<meta([^>]+)>/', '<?php Context::getInstance()->addMetaTag(\'<meta$1>\'); ?>', $html);
+			$html = preg_replace_callback('/\#?\s?<meta([^>]+)>/', array($this, 'parseMeta'), $html);
 			
+			// <title>title</title>
+			$html = preg_replace_callback('`<title>(.*?)</title>`', array($this, 'parseTitle'), $html);
+
 
 			// {# Locale code }
 			// ex) {# 'en'=>'Error on this page', 'kr'=> '이 페이지에 오류가 있습니다' }
@@ -43,8 +46,12 @@
 			// {@ PHPCode }
 			$html = preg_replace_callback('/{@([\s\S]+?)}/', array($this, 'parseCode'), $html);
 			
-			// {$a} -> echo  $__attr->a ( Context::get('a') or View->a )
-			$html = preg_replace_callback('/{\s*(\$.*?)}/', array($this, 'parseVar'), $html);
+			/*
+			 * {$a} -> <?php echo $__attr->a ( Context::get('a') or View->a ) ?> 
+			 * {&a} -> $__attr->a ( Context::get('a') or View->a )
+			 */
+			$html = preg_replace_callback('/{\s*(\$[^}]+?)}/', array($this, 'parseVar'), $html);
+			//$html = preg_replace_callback('/{\s*(\$|&)([^}]+?)}/', array($this, 'parseVar'), $html);
 			
 			// {func()} -> Context::execFunction('func', array())
 			$html = preg_replace_callback("`{\s*([a-zA-Z0-9_\s]+)\((.*?)\)}`", array($this, 'parseFunc'), $html);
@@ -56,24 +63,32 @@
 			$html = preg_replace_callback('`(src|href|action)="(.*?)"`i', array($this, 'parseUrl'), $html);
 			
 			// targetie condition
-			$html = preg_replace('`<condition\s+targetie="([^"]+)"\s*>([\s\S]*?)</condition>`i', '<!--[if $1]>$2<![endif]-->', $html);
+			$html = preg_replace('`<condition\s+targetie\s*=\s*"([^"]+)"\s*>([\s\S]*?)</condition>`i', '<!--[if $1]>$2<![endif]-->', $html);
 			
 			$count = 0;
 			
-			while (preg_match('/<condition\s+do="([^"]+)"\s*>\s+<true>\s+([\s\S]*?)<\/true>\s+<false>([\s\S]*?)<\/false>\s+<\/condition>/i', $html)) {
-				$html = preg_replace_callback('/<condition\s+do="([^"]+)"\s*>\s+<true>\s+([\s\S]*?)<\/true>\s+<false>([\s\S]*?)<\/false>\s+<\/condition>/i', array($this, 'parseConditions'), $html);
+			while (preg_match('/<condition\s+do\s*=\s*"([^"]+)"\s*>\s+<true>\s+([\s\S]*?)<\/true>\s+<false>([\s\S]*?)<\/false>\s+<\/condition>/i', $html)) {
+				$html = preg_replace_callback('/<condition\s+do\s*=\s*"([^"]+)"\s*>\s+<true>\s+([\s\S]*?)<\/true>\s+<false>([\s\S]*?)<\/false>\s+<\/condition>/i', array($this, 'parseConditions'), $html);
 				if (++$count > 30) break;
 			}
-			while (preg_match('/<condition\s+do="([^"]+)"\s*>([\s\S]*?)<else>([\s\S]*?)<\/condition>/i', $html)) {
-				$html = preg_replace_callback('/<condition\s+do="([^"]+)"\s*>([\s\S]*?)<else>([\s\S]*?)<\/condition>/i', array($this, 'parseConditions'), $html);
+			while (preg_match('/<condition\s+do\s*=\s*"([^"]+)"\s*>\s+()<false>([\s\S]*?)<\/false>\s+<\/condition>/i', $html)) {
+				$html = preg_replace_callback('/<condition\s+do\s*=\s*"([^"]+)"\s*>\s+()<false>([\s\S]*?)<\/false>\s+<\/condition>/i', array($this, 'parseConditions'), $html);
 				if (++$count > 30) break;
 			}
-			while (preg_match('/<condition\s+do="([^"]+)"\s*>([\s\S]*?)<\/condition>/i', $html)) {
-				$html = preg_replace_callback('/<condition\s+do="([^"]+)"\s*>([\s\S]*?)<\/condition>/i', array($this, 'parseConditions'), $html);
+			while (preg_match('/<condition\s+do\s*=\s*"([^"]+)"\s*>\s+<true>\s+([\s\S]*?)<\/true>\s+()<\/condition>/i', $html)) {
+				$html = preg_replace_callback('/<condition\s+do\s*=\s*"([^"]+)"\s*>\s+<true>\s+([\s\S]*?)<\/true>\s+()<\/condition>/i', array($this, 'parseConditions'), $html);
 				if (++$count > 30) break;
 			}
-			while (preg_match('/<condition\s+do="([^"]+)"\s*>/i', $html)) {
-				$html = preg_replace_callback('/<condition\s+do="([^"]+)"\s*>/i', array($this, 'parseConditions'), $html);
+			while (preg_match('/<condition\s+do\s*=\s*"([^"]+)"\s*>([\s\S]*?)<else>([\s\S]*?)<\/condition>/i', $html)) {
+				$html = preg_replace_callback('/<condition\s+do\s*=\s*"([^"]+)"\s*>([\s\S]*?)<else>([\s\S]*?)<\/condition>/i', array($this, 'parseConditions'), $html);
+				if (++$count > 30) break;
+			}
+			while (preg_match('/<condition\s+do\s*=\s*"([^"]+)"\s*>([\s\S]*?)<\/condition>/i', $html)) {
+				$html = preg_replace_callback('/<condition\s+do\s*=\s*"([^"]+)"\s*>([\s\S]*?)<\/condition>/i', array($this, 'parseConditions'), $html);
+				if (++$count > 30) break;
+			}
+			while (preg_match('/<condition\s+do\s*=\s*"([^"]+)"\s*>/i', $html)) {
+				$html = preg_replace_callback('/<condition\s+do\s*=\s*"([^"]+)"\s*>/i', array($this, 'parseConditions'), $html);
 				if (++$count > 30) break;
 			}
 			$html = preg_replace('/<\/condition>/', '<?php } ?>', $html);
@@ -84,11 +99,8 @@
 			
 			// <link>http://google.com</link> -> <a href="http://google.com">http://google.com</a>
 			$html = preg_replace('`<link(.*?)>(.*?)</link>`', '<a href="$2"$1>$2</a>', $html);
+
 			
-			// <title>title</title> proc
-			$html = preg_replace_callback('`<title>(.*?)</title>`', create_function('$matches', 'Context::getInstance()->setTitle($matches[1]);'), $html);
-
-
 			$html = join('$_SERVER', explode('$__attr->_SERVER', $html));
 			$html = join('$_COOKIE', explode('$__attr->_COOKIE', $html));
 			$html = join('$GLOBALS', explode('$__attr->GLOBALS', $html));
@@ -107,7 +119,7 @@
 		private function parseUrl($matches) {
 			$url = $matches[2];
 			
-			if (strpos($url, '://') !== false || substr($url, 0, 1) == '#' || substr($url, 0, 5) == '<?php')
+			if (strpos($url, '://') !== false || substr($url, 0, 1) == '#' || substr($url, 0, 2) == '//' || substr($url, 0, 7) == 'mailto:' || substr($url, 0, 5) == '<?php')
 				$url = $matches[2];
 			else if (substr($url, 0, 1) == '/')
 				$url = RELATIVE_URL . $matches[2];
@@ -121,7 +133,7 @@
 			return $matches[1] . '="' . $url . '"';
 		}
 
-		private function handleImportTags($matches) {
+		private function parseImportTags($matches) {
 			if (substr($matches[0], 0, 1) == '#') return;
 			
 			preg_match_all('/([a-zA-Z0-9]+)="([^"]+)"/', $matches[1], $output);
@@ -142,10 +154,10 @@
 				$importVals->{$keys[$i]} = $values[$i];
 			
 			if (!$importVals->path) {
-				return '<!-- Error loading imports ->';
+				return '<!-- Error loading imports -->';
 			}
 			
-			if (substr($importVals->path, 0, 1) == '/')
+			if (substr($importVals->path, 0, 1) == '/' || strpos($importVals->path, '://') !== false)
 				$absolutePath = $importVals->path;
 			else if (substr($importVals->path, 0, 2) == './')
 				$absolutePath = $this->relativePath . substr($importVals->path, 2);
@@ -163,11 +175,26 @@
 			
 		}
 
-		private function parseVar($matches) {
-			$args = $matches[1];
-			$args = preg_replace('/\$([\>a-zA-Z0-9_-]*)/', '\$__attr->$1', $args, -1);
+		private function parseMeta($matches) {
+			$matches[1] = preg_replace('/{\$(.*?)}/', '\'.\$__attr->$1.\'', $matches[1]);
+			$matches[1] = preg_replace('/{#(.*?)}/', '\'.fetchLocale(array($1)).\'', $matches[1]);
 
-			return '<?php echo ' . $args . '; ?>';
+			return '<?php Context::getInstance()->addMetaTag(\'<meta'.$matches[1].'>\'); ?>';
+		}
+
+		private function parseTitle($matches) {
+			$matches[1] = preg_replace('/{\$(.*?)}/', '\'.\$__attr->$1.\'', $matches[1]);
+			$matches[1] = preg_replace('/{#(.*?)}/', '\'.fetchLocale(array($1)).\'', $matches[1]);
+
+			return '<?php Context::getInstance()->setTitle(\''.$matches[1].'\'); ?>';
+		}
+
+		private function parseVar($matches) {
+			$varname = $matches[1];
+			$varname = preg_replace('/\$([\>a-zA-Z0-9_-]*)/', '\$__attr->$1', $varname, -1);
+			$varname = preg_replace('/&([\>a-zA-Z0-9_-]*)/', '\$__attr->$1', $varname, -1);
+
+			return '<?php echo ' . $varname . '; ?>';
 		}
 
 		private function parseFunc($matches) {

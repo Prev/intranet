@@ -80,7 +80,7 @@
 <condition do="$selectedTopMenu && $lnb = Context::getMenu(2)">
 	<true>
 		<div id="wrap" class="styled">
-			{@ Context::getInstance()->addHeaderFile('/static/css/lnb_'.$selectedTopMenu->title.'.css'); }
+			{@ Context::getInstance()->addHeaderFile('/static/css/'.$selectedTopMenu->title.'.css'); }
 			<div class="clearfix">
 				<div id="side-menu" class="fl">
 					<div id="side-menu-top">
@@ -89,7 +89,9 @@
 					<ul>
 						{@ foreach ($lnb as $key => $menu) : }
 							<a href="/{@ echo USE_SHORT_URL ? '' : '?menu='}{$menu->title}">
-								<li class="lnb-{$menu->title}{@ if ($menu->selected) echo '-selected'}">
+								{@ if ($menu->selected) $GLOBALS['selectedMenu'] = $menu; }
+
+								<li class="lnb-{$menu->title}{@ if ($menu->selected) echo ' selected'}">
 									<span class="hidden">{$menu->title_locale}</span>
 								</li>
 							</a>
@@ -97,6 +99,14 @@
 					</ul>
 				</div>
 				<div id="main-content" class="fl" style="min-height:{@ echo 372+45*count($lnb)}px">
+					<condition do="$GLOBALS['selectedMenu']->extra_vars->showContentHeader !== false">
+						<div id="content-header">
+							<div id="content-title" class="{$GLOBALS['selectedMenu']->title}">
+								<h1>{$GLOBALS['selectedMenu']->title_locale}</h1>
+							</div>
+						</div>
+					</condition>
+
 					{getContent()}
 				</div>
 			</div>
@@ -132,7 +142,7 @@
 	</div>
 </div>
 
-<condition do="Context::getInstance()->isMobile">
+<condition do="Context::getInstance()->isRealMobile">
 	<div>
 		<button style="width:100%; height:200px; font-size:20pt" onclick="location.href='{getUrlA('mobile=1', REAL_URL)}'">모바일 화면으로 보기</button>
 	</div>

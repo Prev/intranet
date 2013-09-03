@@ -6,18 +6,33 @@
 
 <div id="board-top-container" class="clearfix">
 	<div class="fl">
-		<select id="board-selector" name="board_id">
-			{@ foreach ($boardLists as $key => $value) : }
-				<option value="{$value->id}"{@ if ($value->name == $boardName) echo ' selected="selected"';}>
-					{$value->name_locale}
+		<select id="board-selector" name="board_id" onclick="selectCategory()">
+			{@ foreach ($boardLists as $key => $board) : }
+				<option value="{$board->id}"{@ if ($board->name == $boardName) echo ' selected="selected"';}>
+					{$board->name_locale}
 				</option>
 			{@ endforeach; }
 		</select>
+		<select id="category-selector" name="category"></select>
 	</div>
 	<div class="fl">
-		<input type="text" id="board-title" name="title"{@ if (isset($title)) echo ' value="'.$title.'"'; } />
+		<input type="text" id="board-title" name="title"{@ if (isset($title)) echo ' value="'.$title.'"'; } placeholder="게시글 제목을 입력하세요" />
 	</div>
 </div>
+
+<script type="text/javascript">
+	var categorys = [];
+	var selectedCategory = null;
+	
+	{@ foreach ($boardLists as $key => $board) : }
+		<condition do="$board->categorys">
+			categorys[{$board->id}] = {$board->categorys};
+		<else>
+			categorys[{$board->id}] = null;
+		</condition>
+	{@ endforeach; }
+</script>
+<script type="text/javascript" src="./js/editor_inner_data.js"></script>
 
 {getContent('editor', 'dispFormInnerData')}
 {getContent('board', 'dispEditorInnerBottomData')}

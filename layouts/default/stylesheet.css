@@ -109,6 +109,8 @@ body{
 #wrap #side-menu ul li .hidden{ display: inline-block; padding: 15px 0 0 12px; font-size: 14px; *zoom:1; }
 
 #wrap #main-content{ border-left: 1px solid #D6D6D6; }
+#wrap #main-content #content-header{ margin: 22px 24px; }
+#wrap #main-content #content-header #content-title h1{ margin: 0; padding: 0; }
 
 
 #footer{ width:1000px; margin:0 auto; font-size:10px; *zoom:1 }
