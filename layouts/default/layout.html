@@ -101,9 +101,11 @@
 				<div id="main-content" class="fl" style="min-height:{@ echo 372+45*count($lnb)}px">
 					<condition do="$GLOBALS['selectedMenu']->extra_vars->showContentHeader !== false">
 						<div id="content-header">
-							<div id="content-title" class="{$GLOBALS['selectedMenu']->title}">
-								<h1>{$GLOBALS['selectedMenu']->title_locale}</h1>
-							</div>
+							<a href="/{@ echo (USE_SHORT_URL ? $selectedTopMenu->title.'/'.$GLOBALS['selectedMenu']->title : '?menu='.$GLOBALS['selectedMenu']->title); }">
+								<div id="content-title" class="{$GLOBALS['selectedMenu']->title}">
+									<h1>{$GLOBALS['selectedMenu']->title_locale}</h1>
+								</div>
+							</a>
 						</div>
 					</condition>
 

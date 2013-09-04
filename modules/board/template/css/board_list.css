@@ -15,8 +15,8 @@
 .board .board-article .first-line .title{ width: 375px; text-align: center; }
 
 .board .board-article .notice{ height:20px; background-color: #f6f6f6; }
-.board .board-article .notice .title{ width: 435px; color: #ec137f; font-weight: bold; }
-.board .board-article .notice-icon{ display: inline-block; float: left; font-size: 11px; padding: 2px 4px; margin: -2px 5px 0 0; background-color:#5269a3; border-radius: 3px; color: white; *zoom:1; }
+.board .board-article .notice .title{ width: 436px; color: #ec137f; font-weight: bold; }
+.board .board-article .notice-icon{ display: inline-block; float: left; font-size: 11px; padding: 2px 4px; margin: -2px 5px 0 0; background-color:#ec137f; border-radius: 3px; color: white; *zoom:1; }
 
 .board .board-article .article{ height: 20px; }
 .board .board-article .article .category{ color: #b0b0b0; }
@@ -60,7 +60,7 @@
 .board #category-selector ul li a:visited{ color: #333; text-decoration: none }
 .board #category-selector ul li a:hover{ color: #333; text-decoration: underline; }
 
-.board .page-numbers{ text-align: center; font-size: 11px; margin: 18px auto 10px auto; }
+.board .page-numbers{ position: relative; text-align: center; font-size: 11px; margin: 18px auto 20px auto; }
 .board .page-numbers div{ display: inline-block; *zoom:1; *display:inline }
 .board .page-numbers .prev-btn{ cursor: pointer; margin-right: 10px; color: #3a3a3a; }
 .board .page-numbers .next-btn{ cursor: pointer; margin-left: 10px; color: #3a3a3a; }
@@ -76,7 +76,8 @@
 .board .page-numbers .prev-btn a:hover,		.board .page-numbers .next-btn a:hover	{ text-decoration:none; color:#3a3a3a; }
 .board .page-numbers #prev-btn a:active,	.board .page-numbers .next-btn a:active	{ text-decoration:none; color:#3a3a3a; }
 
-.board .board-btn{ width: 71px; height: 26px; background: white url('../img/board_sprite.png') no-repeat 0 -12px; border: none; margin-right: 10px }
+.board .board-btn-wrap{ position: absolute; right: 5px; top: 0px }
+.board .board-btn-wrap .board-btn{ width: 71px; height: 26px; background: white url('../img/board_sprite.png') no-repeat 0 -12px; border: none }
 
 .board .search-box{ text-align: center; }
 .board .search-box select{ padding: 1px; }

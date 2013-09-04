@@ -216,7 +216,7 @@
 					if ($extraVars && $extraVars->linkToSubMenu == true) {
 						$subMenu = self::getMenu(2);
 						if ($subMenu && count($subMenu) > 0)
-							redirect(getUrl() . (USE_SHORT_URL ? '/' : '/?menu=') . $subMenu[0]->title);
+							redirect(getUrl() . (USE_SHORT_URL ? '/'.$data->title.'/' : '/?menu=') . $subMenu[0]->title);
 					}
 				}
 				if ($data && $data->module && $data->action && !$moduleAction)

@@ -87,7 +87,7 @@
 			</div>
 		</condition>
 	</div>
-	<div class="page-numbers clearfix">
+	<div class="page-numbers">
 		<condition do="$pageNumbers->prevBtn !== NULL">
 			<div class="prev-btn">
 				<a href="{getUrlA('page='.$pageNumbers->prevBtn, REAL_URL)}">
@@ -118,10 +118,8 @@
 				</a>
 			</div>
 		</condition>
-	</div>
 
-	<div class="clearfix">
-		<div class="fr">
+		<div class="board-btn-wrap">
 			<a href="{getUrl('board', 'dispEditor', 'board_name='.$boardName)}">
 				<button class="board-btn">
 					<span class="hidden">글쓰기</span>
@@ -129,7 +127,6 @@
 			</a>
 		</div>
 	</div>
-
 	<div class="search-box">
 		<form method="GET">
 			{@ foreach($_GET as $key => $value): }

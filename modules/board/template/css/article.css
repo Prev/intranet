@@ -1,14 +1,14 @@
 @charset "utf-8";
 
 .article{
-	width:900px;
-	margin:20px 0;
+	width:710px;
+	margin:20px;
 }
 .article .article-header{
 	font-size:13px;
 }
 .article .ah-top{
-	padding:10px 10px 5px 10px;
+	padding:10px 10px 5px 3px;
 	border-bottom:1px dashed #AAA;
 }
 .article .ah-top .title{
@@ -33,7 +33,7 @@
 	padding-top:4px;
 }
 .article .ah-bottom{
-	padding:5px 10px 10px 10px;
+	padding:5px 10px 10px 3px;
 }
 .article .ah-bottom .url{
 	font-size:11px;
@@ -87,8 +87,8 @@
 }
 
 .article-comment-wrap ul#comment-list{ margin: 0; padding: 0; list-style: none }
-.article-comment-wrap ul#comment-list li{ padding: 7px 0 10px 0; margin: 3px 0; border-bottom: 1px dotted #CCC; background: url(../img/reply.gif) 6px 7px no-repeat }
-.article-comment-wrap ul#comment-list li.comment-reply{ padding-left: 20px }
+.article-comment-wrap ul#comment-list li{ padding: 7px 0 10px 0; margin: 3px 0; border-bottom: 1px dotted #CCC; }
+.article-comment-wrap ul#comment-list li.comment-reply{ background: url('../img/reply.gif') 6px 7px no-repeat ; padding-left: 20px }
 
 .article-comment-wrap ul#comment-list li .comment-header{ margin-bottom: 5px }
 .article-comment-wrap ul#comment-list li .comment-header .comment-update-btn,
@@ -104,14 +104,14 @@
 
 .article-comment-wrap ul#comment-list li .modify-comment-wrap{ display: none; }
 
-.article-comment-wrap .reply-comment-wrap{ padding-left: 15px; background: url(../img/reply.gif) 3px 5px no-repeat; padding-bottom: 5px; margin-bottom: 5px; border-bottom: 1px dotted #CCC; *zoom:1; }
+.article-comment-wrap .reply-comment-wrap{ padding-left: 15px; background: url('../img/reply.gif') 3px 5px no-repeat; padding-bottom: 5px; margin-bottom: 5px; border-bottom: 1px dotted #CCC; *zoom:1; }
 .article-comment-wrap .reply-comment-wrap:after{ clear: both; display: block; content: "" }
-.article-comment-wrap .reply-comment-wrap textarea{ width: 750px; height: 55px; }
+.article-comment-wrap .reply-comment-wrap textarea{ width: 560px; height: 55px; }
 .article-comment-wrap #reply-comment-wrap-ex{ display: none; }
 
-.article-comment-wrap #write-comment-wrap textarea { width: 765px; height: 65px; }
-.article-comment-wrap .modify-comment-wrap textarea { width: 765px; height: 55px; }
-.article-comment-wrap .modify-comment-wrap textarea.reply{ width: 750px; }
+.article-comment-wrap #write-comment-wrap textarea { width: 575px; height: 65px; }
+.article-comment-wrap .modify-comment-wrap textarea { width: 575px; height: 55px; }
+.article-comment-wrap .modify-comment-wrap textarea.reply{ width: 560px; }
 
 .article-comment-wrap .comment-btn{
 	width: 80px;
