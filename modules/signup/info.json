@@ -1,0 +1,52 @@
+{	
+	"name":"signup module",
+	"version":"1.0.0",
+	"author":"prevdev@gmail.com",
+
+	"model":"SignUpModel",
+	"view":"SignUpView",
+	"controller":"SignUpController",
+	
+	"layout":"signup",
+
+	"actions":[
+		{
+			"name":"dispMainProgress"
+		},
+		{
+			"name":"dispDefault",
+			"default":true
+		},
+		{
+			"name":"dispStep1"
+		},
+		{
+			"name":"dispStep2"
+		},
+		{
+			"name":"dispStep3"
+		},
+		{
+			"name":"procCheckInputId",
+			"controller":"CheckInputIdController",
+			"print_alone":true
+		},
+		{
+			"name":"procSendAuthMail",
+			"controller":"SendAuthMailController",
+			"model":"SendAuthMailModel",
+			"print_alone":true
+		},
+		{
+			"name":"dispStep4"
+		},
+		{
+			"name":"procVerifyMail",
+			"controller":"VerifyMailController",
+			"layout":"blank"
+		},
+		{
+			"name":"dispStep5"
+		}
+	]
+}

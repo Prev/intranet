@@ -1,0 +1,118 @@
+<import path="./css/step3.css">
+<import path="./js/step3.js">
+<import path="/static/js/jQuery.js">
+
+{getContent('signup', 'dispMainProgress')}
+
+<div id="main-title">
+	<img src="./img/step3/title.png" width="93" height="17" alt="회원정보 입력">
+</div>
+<div id="main-subtitle">
+	<img src="./img/step3/title_description.png" width="212" height="12" alt="회원 가입에 필요한 회원 정보를 입력해 주세요.">
+</div>
+
+<div>
+	<div id="warning-container">
+		<div id="warning">*모든 항목이 필수 항목입니다.</div>
+	</div>
+	<form action="{getUrl('signup', 'procSendAuthMail')}" method="post" onsubmit="return checkSubmit(this)">
+		<input type="hidden" name="authKey" value="{$authKey}">
+		<input type="hidden" name="userType" value="{$userType}">
+
+		<div id="input-list">
+			<ul id="first-line">
+				<li class="inserted-information">
+					<switch var="$userType">
+						<case value="student">이름</case>
+						<case value="parent">자녀 이름</case>
+						<case value="teacher">이름</case>
+					</switch>
+				</li>
+				<li class="inserted-information">
+					<switch var="$userType">
+						<case value="student">학번</case>
+						<case value="parent">자녀 학번</case>
+						<case value="teacher">부서</case>
+					</switch>
+				</li>
+				<li class="inserted-information">
+					<switch var="$userType">
+						<case value="student">성별</case>
+						<case value="parent">자녀 성별</case>
+						<case value="teacher">직급</case>
+					</switch>
+				</li>
+				<li class="first-input-id-pw">아이디</li>
+				<li class="first-input-id-pw">비밀번호</li>
+				<li class="first-input-id-pw">비밀번호 확인</li>
+				<li id="first-email">이메일</li>
+			</ul>
+			<ul id="body-line">
+				<li class="inserted-information">
+					{$joinData->user_name}
+				</li>
+				<li class="inserted-information">
+					<condition do="$userType == 'teacher'">
+						<true>
+							{$departmentData->name_locales}
+						</true>
+						<false>
+							{$joinData->grade}학년 {$joinData->class}반 {$joinData->number}번
+						</false>
+					</condition>
+				</li>
+				<li class="inserted-information">
+					<condition do="$userType == 'teacher'">
+						<true>
+							{$positionData->name_locales}
+						</true>
+						<false>
+							{@ echo ($joinData->gender == 'm') ? '남자' : '여자'; }
+						</false>
+					</condition>
+				</li>
+				<li class="input-id-pw">
+					<div>
+						<input type="text" name="join_id" id="input-id">
+						<span class="input-tip">영문 소문자, 숫자, 빼기표(-), 밑줄(_) 사용 가능. 6~20자</span>
+					</div>
+					<div>
+						<span id="input-id-warning">아이디를 입력해 주세요.</span>
+					</div>
+				</li>
+				<li class="input-id-pw">
+					<div>
+						<input type="password" name="join_pw" id="input-pw">
+						<span class="input-tip">영문, 숫자, 특수문자 사용 가능. 6자 이상</span>
+					</div>
+					<div>
+						<span id="input-pw-warning">비밀번호를 입력해 주세요.</span>
+					</div>
+				</li>
+				<li class="input-id-pw">
+					<div><input type="password" id="input-repw" style="margin-top:7px"></div>
+					<div><span id="input-repw-warning"></span></div>
+				</li>
+				<li id="input-email">
+					<input type="text" name="email_id" id="email-id">
+					<span>@</span>
+					<select id="email-select" onchange="emailSelectHandler(this)">
+						<option value="naver.com">naver.com</option>
+						<option value="gmail.com">gmail.com</option>
+						<option value="hanmail.net">hanmail.net</option>
+						<option value="nate.com">nate.com</option>
+						<option value="hotmail.com">hotmail.com</option>
+						<option value="custom">직접입력</option>
+					</select>
+					<input type="text" name="email_host" id="email-host" value="naver.com" class="disabled" disabled="disabled" />
+					
+					<input type="checkbox" id="email-agree-check" name="enable_mailing" checked="checked" />
+					<span id="email-agree">이메일 수신 허용</span>
+				</li>
+			</ul>
+		</div>
+		<div id="main-button-container">
+			<input type="submit" id="main-button-container-ok" value=""></button>
+		</div>
+	</form>
+</div>

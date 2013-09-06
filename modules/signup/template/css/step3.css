@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+#main-progress { background-position:0px -72px; }
+
+#warning-container{ *zoom:1 }
+#warning-container:after{ display:block; clear:both; content:"" }
+#warning-container #warning {font-size: 11px; color: #d02626; float: right; padding-bottom:3px}
+
+#input-list {width: 670px; border-top: 2px solid #aaaaaa; *zoom:1}
+#input-list:after{ display:block; clear:both; content:"" }
+#input-list ul {padding: 0; margin: 0;}
+#input-list li {list-style: none; border-bottom: 1px solid #c9c9c9; font-size: 12px;}
+#input-list .inserted-information {height: 24px; padding-top: 12px;}
+
+#input-list #first-line {float: left;}
+#input-list #first-line li {width: 116px; padding-left: 13px; font-weight: bold; background-color: #efefef;}
+#input-list #first-line .first-input-id-pw {padding-top: 22px; height: 38px;}
+#input-list #first-line #first-email {height: 29px; padding-top: 15px; border-bottom: 2px solid #aaaaaa;}
+
+#input-list #body-line {float: right;}
+#input-list #body-line li {width: 525px; padding-left: 16px;}
+#input-list #body-line .input-id-pw {height: 50px; padding-top: 10px;}
+#input-list #body-line .input-tip {color: #989898; font-size: 11px;}
+
+#input-list #body-line #input-id {width: 126px; margin: 0px 5px 5px 0px; }
+#input-list #body-line #input-id-warning {color: #d02626; font-size: 11px;}
+#input-list #body-line #input-pw {width: 126px; margin: 0px 5px 5px 0px; }
+#input-list #body-line #input-pw-warning {color: #d02626; font-size: 11px;}
+#input-list #body-line #input-repw {width: 126px; margin: 0px 5px 5px 0px; }
+#input-list #body-line #input-repw-warning {color: #d02626; font-size: 11px;}
+
+#input-list #body-line #input-email {height: 32px; padding-top: 12px; border-bottom: 2px solid #aaaaaa; vertical-align:middle}
+#input-list #body-line #input-email #email-id {width: 86px; margin: 0; }
+#input-list #body-line #input-email #email-select { font-size: 14px; height: 24px; margin: 0; vertical-align:top}
+#input-list #body-line #input-email #email-host {width: 86px; margin: 0; }
+#input-list #body-line #input-email #email-agree-check { margin: 0; margin-left: 15px; }
+#input-list #body-line #input-email #email-agree {color: #606161; font-size: 12px;}
+
+#main-button-container { text-align:center; padding:20px 0; }
+#main-button-container #main-button-container-ok { width:59px; height:30px; background:url(../img/main_buttons.png) 0 0; border:0; margin:0; padding:0; cursor:pointer; }

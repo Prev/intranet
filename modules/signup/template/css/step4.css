@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+#main-progress { background-position:0px -108px; }
+
+#main-email{ padding:40px 0; *zoom:1 }
+#main-email:after { content:""; display:block; clear:both; }
+
+#main-email #main-email-image { float:left; width:84px; height:60px; margin:10px 30px; background:url(../img/step4/email_icon.png) 0 0;}
+
+#main-email #main-email-text { float:left; }
+#main-email #main-email-text #main-email-text-title { width:388px; height:23px; margin-bottom:24px; background:url(../img/step4/email_text.png) 0 0; }
+
+#main-email #main-email-text #main-email-text-notice { font-size:13px; margin-bottom:30px; width:500px; line-height:1.5em; }
+#main-email #main-email-text #main-email-text-notice #main-email-text-address { color:#F39; font-weight:bold; }
+
+#main-email #main-email-text #main-email-text-tip { font-size:12px; color:#777777; width:500px }
+#main-email #main-email-text #main-email-text-tip ul { margin:0px 0px 0px 16px; padding:0px; list-style:disc }
+#main-email #main-email-text #main-email-text-tip ul li { height:20px; margin-bottom:1px; }
+#main-email #main-email-text #main-email-text-tip #main-email-text-tip-btn { width:92px; height:19px; margin:0 0 0 3px; padding:0px; border:0; cursor:pointer; background:url(../img/step4/send_mail_again.png) 0 0; }

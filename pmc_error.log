@@ -1,7 +1,0 @@
-Warning : 파일을 불러오는데 실패했습니다 - "<b>/static/css/cafeteria.css"</b>  - 2013-09-03 21:09:05  - 127.0.0.1
-	 in "/lib/classes/Context.class.php" on line 387
-	 in "/files/cache/127.0.0.1%2Fintranet/layout/default%2Flayout.html.compiled.php" on line 74
-	 in "/lib/classes/CacheHandler.class.php" on line 98
-	 in "/lib/classes/Context.class.php" on line 590
-	 in "/index.php" on line 23
-

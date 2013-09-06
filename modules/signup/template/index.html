@@ -1,0 +1,49 @@
+<import path="./css/index.css">
+<import path="./js/index.js">
+
+<div id="welcome">
+	<div class="welcome-title">
+		<img src="./img/index/welcome.png" width="611" height="28">
+	</div>
+	<div class="welcome-describe">
+		한국디지털미디어고등학교의 통합 회원으로 가입하면<br>
+		하나의 아이디로 인트라넷부터 웹하드까지, 디미고의 모든 서비스를 이용하실 수 있습니다.
+	</div>
+	<div class="welcome-select-type-text">
+		가입할 회원 종류를 선택해 주세요.
+	</div>
+</div>
+
+<div id="type-selector" style="width:500px">
+	<div class="type-box-border"></div>
+	<a href="{getStepUrl(1, 'student')}">
+		<div class="type-box" id="type-box1">
+			<img src="./img/index/character1.png" width="119" height="260">
+			
+			<div id="type-box-text1" class="type-box-text">
+				<img src="./img/index/character_txt1.png" width="110" height="23">
+			</div>
+		</div>
+	</a>
+	<div class="type-box-border"></div>
+	<a href="{getStepUrl(1, 'parent')}">
+		<div class="type-box" id="type-box2">
+			<img src="./img/index/character2.png" width="169" height="276">
+
+			<div id="type-box-text2" class="type-box-text">
+				<img src="./img/index/character_txt2.png" width="110" height="51">
+			</div>
+		</div>
+	</a>
+	<div class="type-box-border"></div>
+	<a href="{getStepUrl(1, 'teacher')}">
+		<div class="type-box" id="type-box3">
+			<img src="./img/index/character3.png" width="119" height="263">
+			
+			<div id="type-box-text3" class="type-box-text">
+				<img src="./img/index/character_txt3.png" width="111" height="23">
+			</div>
+		</div>
+	</a>
+	<div class="type-box-border"></div>
+</div>

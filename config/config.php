@@ -46,7 +46,7 @@
 	 * ex) menu -> http://engine-pmc.org/freeboard
 	 * ex) article -> http://engine-pmc.org/15
 	 */
-	define('USE_SHORT_URL', true);
+	define('USE_SHORT_URL', false);
 	
 
 	/**
@@ -90,7 +90,7 @@
 	/**
 	 * Define log file's path
 	 */
-	define('LOG_FILE_PATH', (ROOT_DIR . '/pmc_error.log'));
+	define('LOG_FILE_PATH', (ROOT_DIR . '/files/pmc_error.log'));
 	
 	
 	/**

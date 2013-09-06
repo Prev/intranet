@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+body,input,textarea,select,button,table { font-family:나눔고딕,NanumGothic,돋움,Dotum,sans-serif; font-size:13px }
+input[type=password]{ font-family:돋움,Dotum,sans-serif }
+
+#header{ width:100%; padding:30px 0; background-color:#F9F9f9; border-bottom:3px solid #F39 }
+#header #header-content{ width:670px; margin:0 auto; *zoom:1 }
+#header #header-content:after{ content:""; display:block; clear:both }
+#header #header-content #header-logo{ float:left }
+
+#header #header-content .header-logo-user-type{ float:left; margin:0 0 0 10px; padding:4px 0 0 8px; border-left:2px solid #CCC; color:#666; font-size:16px; }
+#header #header-content .header-logo-user-type#hlut1{ width:28px; height:17px; background-position:0 0; }
+#header #header-content .header-logo-user-type#hlut2{ width:44px; height:17px; background-position:-17px 0; }
+#header #header-content .header-logo-user-type#hlut3{ width:44px; height:17px; background-position:-34px 0; }
+
+#wrap{ width:670px; margin:25px auto }
+#wrap #main-progress{ width:670px; height:36px; margin-bottom:32px; }
+#wrap #main-progress ul{ list-style: none; *zoom: 1; margin: 0; padding: 0; padding-top: 9px }
+#wrap #main-progress ul:after{ clear: both; content: ""; display: block; }
+#wrap #main-progress ul li{ float: left; width: 134px; font-size: 15px; text-align: center; }
+
+#wrap #main-title { font-size:18px; font-weight:bold; padding:3px; padding-bottom:0 }
+#wrap #main-subtitle { border-top:2px solid #CCC; font-size:12px; color:#999; padding:3px; margin-bottom:20px; }
+
+#footer{ width:670px; margin:20px auto; padding:7px; }

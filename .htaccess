@@ -9,7 +9,6 @@ RewriteRule ^sso-server/?$ - [L]
 # RewriteRule ^modules/editor/template/pages/(.+)\.html$ [L]
 
 
-
 # login module short url
 RewriteRule ^login(\/?)$ ./index.php?module=login&action=dispLoginPage&%{QUERY_STRING} [L,QSA]
 

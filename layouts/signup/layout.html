@@ -1,0 +1,26 @@
+<import path="stylesheet.css">
+<import path="/static/css/form_beauty.css">
+<import path="/static/css/form_beauty_chrome.css" requiredAgent="chrome">
+
+<title>한국디지털미디어고등학교 통합 회원가입</title>
+
+<div id="header">
+	<div id="header-content">
+		<div id="header-logo">
+			<a href="{@ echo USE_SHORT_URL ? '/signup' : getUrl('signup')}">
+				<img src="./img/header_logo.png" width="320" height="23">
+			</a>
+		</div>
+		<condition do="$_REQUEST['userType']">
+			<div class="header-logo-user-type">
+				<img src="./img/{$_REQUEST['userType']}.png">
+			</div>
+		</condition>
+	</div>
+</div>
+<div id="wrap">
+	{getContent()}
+</div>
+<div id="footer">
+	<img src="./img/footer.png" width="670" height="35">
+</div>

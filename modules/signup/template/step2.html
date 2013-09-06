@@ -1,0 +1,98 @@
+<import path="./css/step2.css">
+
+{getContent('signup', 'dispMainProgress')}
+
+<div id="main-title">
+	<img src="./img/step2/title_{$userType}.png" width="80" height="17" alt="{$userType_locale} 인증">
+</div>
+<div id="main-subtitle">
+	<img src="./img/step2/title_description.png" width="291" height="12" alt="본교 재학생 여부를 확인하기 위해 아래 인증 절차를 따라 주세요">
+</div>
+
+<form action="{getStepUrl(3)}" method="post">
+	<div id="main-auth-container">
+		<div id="main-auth-container-left">
+			<div id="main-auth-student-name">
+				<span class="main-auth-text">
+					<switch var="$userType">
+						<case value="student">이름</case>
+						<case value="parent">자녀 이름</case>
+						<case value="teacher">이름</case>
+					</switch>
+				</span>
+				<input type="text" name="user_name">
+			</div>
+			<condition do="$userType == 'teacher'">
+				<true>
+					<div id="main-auth-teacher-department">
+						<span class="main-auth-text" id="main-auth-text-key">부서</span>
+						<select name="department">
+							{@ foreach($departments as $key => $department) : }
+								<option value="{$department->name}">{$department->name_locales}</option>
+							{@ endforeach; }
+						</select>
+					</div>
+				</true>
+				<false>
+					<div id="main-auth-student-number">
+						<span class="main-auth-text">
+							<condition do="$userType == 'student'">
+								학번
+							<else>
+								자녀 학번
+							</condition>
+						</span>
+						<select name="grade">
+							<option value="1">1학년</option>
+							<option value="2">2학년</option>
+							<option value="3">3학년</option>
+						</select>
+						<select name="class">
+							<option value="1">1반</option>
+							<option value="2">2반</option>
+							<option value="3">3반</option>
+							<option value="4">4반</option>
+							<option value="5">5반</option>
+							<option value="6">6반</option>
+						</select>
+						<select name="number">
+							{@ for ($i=1; $i<=40; $i++) : }
+								<option value="{$i}">{$i}번</option>
+							{@ endfor; }
+						</select>
+					</div>
+				</false>
+			</condition>
+			<div id="main-auth-key">
+				<span class="main-auth-text">인증키</span>
+				<input type="text" name="authkey" maxlength="10">
+			</div>
+		</div>
+		<div id="main-auth-container-right">
+			<switch var="$userType">
+				<case value="student">
+					<div>인증키는 담임선생님께 요청하여 발급받을 수 있습니다.</div>
+				</case>
+				<case value="parent">
+					<ul>
+						<li>
+							학부모용 인증키는 학생 1명당 1개씩 발급됩니다.<br>
+							인증키가 필요한 경우, 귀 자녀에게 문의하시기 바랍니다.
+						</li>
+						<li style="margin-top: 7px">
+							간단한 본인 확인 절차만 거치면, 귀 자녀의 담임선생님을 통해서도 인증키를 발급받을 수 있습니다.
+						</li>
+					</ul>
+				</case>
+				<case value="teacher">
+					<div style="margin: 22px 0">본교 교직원은 학교 홈페이지 담당 교직원에게 문의하시면 인증키를 발급 받을 수 있습니다.</div>
+				</case>
+			</switch>
+		</div>
+	</div>
+	<div id="main-button-container">
+		<button id="main-button-container-ok" onclick="this.form.submit(); return false;">
+			<span class="hidden">확인</span>
+		</button>
+	</div>
+</form>
