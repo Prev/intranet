@@ -1,77 +1,74 @@
 <import path="css/dateSelector.css">
 <import path="js/dateSelector.js">
+	
 <div id="date-selector">
-		<div class="balloon">
-			<div class="balloon-date-abled"></div>
-		</div>
-		<div id="slider-prev" onclick="slide('prev');">
-			<div class="janryu-prev"></div>
-		</div>
-		<div id="date-selector-data">
-			<ul id="date-container" style="left:{@ echo $leftWidth < 0 ? $leftWidth : '0'}px{$width}">
-				{@ foreach($selectorData as $key => $data): }	
-					<condition do="$data[0]">
-						<true>
-						
-							<condition do="$data[1]">
-								<true>
-									<li class="date-ym date-ym-first">
-								</true>
-								<false>
-									<li class="date-ym">
-								</false>
-							</condition>
-
+	<div class="balloon">
+		<div class="balloon-date-abled"></div>
+	</div>
+	<div id="slider-prev" onclick="slide('prev');">
+		<div class="janryu-prev"></div>
+	</div>
+	<div id="date-selector-data">
+		<ul id="date-container" style="left:{@ echo $leftWidth < 0 ? $leftWidth : '0'}px{$width}">
+			{@ foreach($selectorData as $key => $data): }	
+				<condition do="$data[0]">
+					<true>
+						<condition do="$data[1]">
+							<true>
+								<li class="date-ym date-ym-first">
+							</true>
+							<false>
+								<li class="date-ym">
+							</false>
+						</condition>
 							<div class="date-year">{@ echo date('Y', $data[3]); }</div>
 							<div class="date-month">{@ echo date('m', $data[3]); }</div>
+						</li>
+					</true>						
+					<false>
+						<switch var="$data[2]">
+							<case value="0">
+								<li class="date date-selected">
+							</case>
+							<case value="1">
+								<li class="date date-able" onclick="location.href='{@ echo getUrlA(array('date' => date('Y-m-d', $data[3])), REAL_URL)}'">
+							</case>
+							<case value="2">
+								<condition do="!$isTeacher">
+									<true>
+										<li class="date">
+									</true>
+									<false>
+										<li class="date" onclick="location.href='{@ echo getUrlA(array('date' => date('Y-m-d', $data[3])), REAL_URL)}'">
+									</false>
+								</condition>
+							</case>
+						</switch>	
 
-							</li>
-						
-						</true>						
-						<false>
-							<switch var="$data[2]">
-								<case value="0">
-									<li class="date date-selected">
-								</case>
-								<case value="1">
-									<li class="date date-able" onclick="location.href='{@ echo getUrlA(array('date' => date('Y-m-d', $data[3])), REAL_URL)}'">
-								</case>
-								<case value="2">
-									<condition do="!$isTeacher">
-										<true>
-											<li class="date">
-										</true>
-										<false>
-											<li class="date" onclick="location.href='{@ echo getUrlA(array('date' => date('Y-m-d', $data[3])), REAL_URL)}'">
-										</false>
-									</condition>
-								</case>
-							</switch>	
+						<div class="date-top">
+							{@ echo $dateArr[date('w', $data[3])]}
+						</div>
 
-							<div class="date-top">
-								{@ echo $dateArr[date('w', $data[3])]}
-							</div>
+						<switch var="date('w', $data[3])">
+							<case value="6">
+								<div class="date-bottom date-blue">{@ echo date('d', $data[3])}</div>
+							</case>
+							<case value="0">
+								<div class="date-bottom date-red">{@ echo date('d', $data[3])}</div>
+							</case>
+							<default>
+								<div class="date-bottom">{@ echo date('d', $data[3])}</div>
+							</default>
+						</switch>
 
-							<switch var="date('w', $data[3])">
-								<case value="6">
-									<div class="date-bottom date-blue">{@ echo date('d', $data[3])}</div>
-								</case>
-								<case value="0">
-									<div class="date-bottom date-red">{@ echo date('d', $data[3])}</div>
-								</case>
-								<default>
-									<div class="date-bottom">{@ echo date('d', $data[3])}</div>
-								</default>
-							</switch>
-
-							</li>
-						
-						</false>
-					</condition>
-				{@ endforeach; }
-			</ul>
-		</div>
-		<div id="slider-next" onclick="slide('next')">
-			<div class="janryu-next"></div>
-		</div>
+						</li>
+					
+					</false>
+				</condition>
+			{@ endforeach; }
+		</ul>
+	</div>
+	<div id="slider-next" onclick="slide('next')">
+		<div class="janryu-next"></div>
+	</div>
 </div>
