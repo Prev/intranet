@@ -1,0 +1,17 @@
+{	
+	"name":"morning song module",
+	"version":"1.0.0",
+	"author":"prevdev@gmail.com, socomee@nate.com",
+
+	"actions":[
+		{
+			"name":"dispDefault",
+			"view":"MorningSongView",
+			"default":true
+		},
+		{
+			"name":"dispManageLayout",
+			"view":"MorningSongView"
+		}
+	]
+}

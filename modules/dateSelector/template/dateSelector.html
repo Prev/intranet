@@ -1,8 +1,8 @@
 <import path="css/dateSelector.css">
 <import path="js/dateSelector.js">
 <div id="date-selector">
-		<div class="ballon">
-			<div class="ballon-date-abled"></div>
+		<div class="balloon">
+			<div class="balloon-date-abled"></div>
 		</div>
 		<div id="slider-prev" onclick="slide('prev');">
 			<div class="janryu-prev"></div>
@@ -11,46 +11,62 @@
 			<ul id="date-container" style="left:{@ echo $leftWidth < 0 ? $leftWidth : '0'}px{$width}">
 				{@ foreach($selectorData as $key => $data): }	
 					<condition do="$data[0]">
-						<condition do="$data[1]">
-							<li class="date-ym date-ym-first">
-						</condition>
-						<condition do="!$data[1]">
-							<li class="date-ym">
-						</condition>
+						<true>
+						
+							<condition do="$data[1]">
+								<true>
+									<li class="date-ym date-ym-first">
+								</true>
+								<false>
+									<li class="date-ym">
+								</false>
+							</condition>
 
+							<div class="date-year">{@ echo date('Y', $data[3]); }</div>
+							<div class="date-month">{@ echo date('m', $data[3]); }</div>
 
-						<div class="date-year">{@ echo date('Y', $data[3]); }</div>
-						<div class="date-month">{@ echo date('m', $data[3]); }<div>
+							</li>
+						
+						</true>						
+						<false>
+							<switch var="$data[2]">
+								<case value="0">
+									<li class="date date-selected">
+								</case>
+								<case value="1">
+									<li class="date date-able" onclick="location.href='{@ echo getUrlA(array('date' => date('Y-m-d', $data[3])), REAL_URL)}'">
+								</case>
+								<case value="2">
+									<condition do="!$isTeacher">
+										<true>
+											<li class="date">
+										</true>
+										<false>
+											<li class="date" onclick="location.href='{@ echo getUrlA(array('date' => date('Y-m-d', $data[3])), REAL_URL)}'">
+										</false>
+									</condition>
+								</case>
+							</switch>	
 
-						</li>
-					</condition>
-					
-					<condition do="!$data[0]">
-						<condition do="$data[2] == 0">
-							<li class="date date-selected">
-						</condition>
-						<condition do="$data[2] == 1">
-							<li class="date date-able" onclick="location.href={@ echo date('Y-m-d', $data[3])}">
-						</condition>
-						<condition do="$data[2] == 2">
-							<li class="date">
-						</condition>
+							<div class="date-top">
+								{@ echo $dateArr[date('w', $data[3])]}
+							</div>
 
-						<div class="date-top">
-							{@ echo $dateArr[date('w', $data[3])]}
-						</div>
+							<switch var="date('w', $data[3])">
+								<case value="6">
+									<div class="date-bottom date-blue">{@ echo date('d', $data[3])}</div>
+								</case>
+								<case value="0">
+									<div class="date-bottom date-red">{@ echo date('d', $data[3])}</div>
+								</case>
+								<default>
+									<div class="date-bottom">{@ echo date('d', $data[3])}</div>
+								</default>
+							</switch>
 
-						<condition do="date('w', $data[3]) == 6">
-							<div class="date-bottom date-blue">{@ echo date('d', $data[3])}</div>
-						</condition>
-						<condition do="date('w', $data[3]) == 0">
-							<div class="date-bottom date-red">{@ echo date('d', $data[3])}</div>
-						</condition>
-						<condition do="date('w', $data[3]) != 0 && date('w', $data[3]) != 6">
-							<div class="date-bottom">{@ echo date('d', $data[3])}</div>
-						</condition>
-
-						</li>
+							</li>
+						
+						</false>
 					</condition>
 				{@ endforeach; }
 			</ul>
@@ -58,5 +74,4 @@
 		<div id="slider-next" onclick="slide('next')">
 			<div class="janryu-next"></div>
 		</div>
-	</div>
 </div>

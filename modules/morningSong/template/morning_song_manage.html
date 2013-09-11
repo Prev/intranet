@@ -1,0 +1,82 @@
+<import path="css/morning_song_manage.css">
+
+<div class="morningsong" id="today">
+	<div class="morningsong-container">
+		<div class="morningsong-container-title">
+			<span id="today-date">{$todayDate}</span><span class="hot-pink">오늘의 기상송</span>
+			<input type="button" id="today-download-all-button"/>
+		</div>
+		<span id="tip">매일 오전 7시에 업데이트됩니다.</span>
+		<div class="song">
+			<div class="main-building">
+				<div class="building">본관</div>
+				<input type="button" id="today-main-building-button"/>
+				<div id="today-main-building-song">선정된 곡이 없습니다.</div>
+			</div>
+			<div class="sub-building">
+				<div class="building">학봉관</div>
+				<input type="button" id="today-sub-building-button"/>
+				<div id="today-sub-building-song">선정된 곡이 없습니다.</div>
+            </div>
+		</div>
+	</div>
+</div>
+<div class="morningsong" id="tomorrow">
+	<div class="morningsong-container">
+		<div class="morningsong-container-title">
+			<span id="tomorrow-date">{$tomorrowDate}</span><span class="hot-pink">내일의 기상송</span>
+			<input type="button" id="tomorrow-download-all-button"/>
+		</div>
+		<div class="song">
+			<div class="main-building">
+				<div class="building">본관</div>
+				<input type="button" id="tomorrow-main-building-button"/>
+				<div id="tomorrow-main-building-song">선정된 곡이 없습니다.</div>
+			</div>
+			<div class="sub-building">
+				<div class="building">학봉관</div>
+				<input type="button" id="tomorrow-sub-building-button"/>
+				<div id="tomorrow-sub-building-song">선정된 곡이 없습니다.</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="middle-container">
+	<div id="last-morningsong"><a>지난 기상송 보기</a></div>
+	
+	<div id="history-title">
+		<span id="morningsong">기상송</span><span id="request-history">신청 내역</span>
+		<span id="history-explain">
+			최근 1주일간의 기상송 신청 내역입니다.<br/>기상송으로 선정된 곡은 '지난 기상송 보기'에서 확인할 수 있습니다.
+		</span>
+	</div>
+	<div id="history-list">
+		<dl>
+			<dt>
+				<ul id="first-line">
+					<li id="song-title">곡명</li>
+					<li id="song-applicant">신청자</li>
+					<li id="song-request-date">신청일</li>
+					<li id="recommends">추천수</li>
+					<li id="recommend-delete">기상송 선정</li>
+				</ul>
+			</dt>
+			<dd id="scroll-box">
+				{@ foreach($songLists as $key => $song) : }
+					<ul>
+						<input type="checkbox" class="check-box">
+						<input type="button" class="history-list-button">
+						<li class="song-title">{$song->song_name}</li>
+						<li class="song-applicant">{$song->user_name}</li>
+						<li class="song-request-date">{$song->regtime}</li>
+						<li class="recommends">{$song->favorite_count}</li>
+						<li class="select">
+							<input type="button" class="recommend-button">
+						</li>
+					</ul>
+				{@ endforeach; }
+			</dd>
+		</dl>
+	</div>
+</div>
