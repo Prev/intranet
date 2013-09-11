@@ -65,7 +65,6 @@
 				if(4 >= $page && $page > 2){
 					$this->stayData = $this->model->getStayStudentData($this->selectedDate);
 					$this->getSelectedSeatCount = $this->model->getSelectedSeatCount($this->selectedDate);
-					$this->statGradeInfo = array(array('grade1', '1학년'),array('grade2', '2학년'),array('grade3', '3학년'),array('whole', '총계'));
 				}
 				Context::getInstance()->addHeaderTag('<script type="text/javascript">
 					var date = "'.$this->selectedDate.'";
