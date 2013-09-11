@@ -49,6 +49,12 @@
 			else
 				return false;
 
+			/* 따로 처리를 해줄 필요성을 느끼지 못해 주석처리함.
+			if(strtotime($_REQUEST['date']) < time()){
+				$error .= '이미 지난 날짜에는 잔류 생성을 할 수 없습니다.\n현재 시간 : '.date('Y-m-d', time()).'\n잔류 일자 : '.$_REQUEST['date'];
+				return false;
+			}*/
+
 			if(!isset($_REQUEST['allow_goingout']) || !$_REQUEST['allow_goingout']){
 				$_REQUEST['allow_goingout'] = 0;
 				$_REQUEST['goingout_start_time'] = '00:00:00';
@@ -330,7 +336,7 @@
 			if($this->model->cancelCloseStayInfo($_REQUEST['date']))
 				goBack("잔류 마감 취소가 완료되었습니다.");
 			else
-				--=-goBack('잔류 마감 취소 작업중 오류가 발생했습니다.');
+				goBack('잔류 마감 취소 작업중 오류가 발생했습니다.');
 		}
 
 		public function procConfirmStayInfo(){

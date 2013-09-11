@@ -62,7 +62,7 @@
 
 			if(isset($data->{'id'})){
 			
-				$this->db
+				DBHandler::for_table('stay_data')
 				->where('stay_id', $data->{'id'})
 				->delete_many();
 
