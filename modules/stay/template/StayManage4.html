@@ -1,0 +1,276 @@
+<import path="css/stayManage4.css">
+<import path="css/stayManageGlobal.css">
+<import path="css/default.css">
+<import path="css/popup.css">
+<import path="css/seatSelector.css">
+
+<import path="js/popup.js">
+<import path="/static/js/jquery.js">
+<import path="js/resCodeType.js">
+<import path="js/teacherSeatSelector.js", position="body-bottom">
+<import path="js/stayManageCheck.js", position="body-bottom">
+
+<div id="popup-layout-bg"></div>
+<div id="popup-box" class="popup-box">
+	<div id="popup-title-bar" class="popup-title-bar">
+		<div id="popup-title" class="popup-title"></div>
+		<button id="close-button" class="close-button">X</button>
+	</div>
+	<div id="popup-content" class="popup-content"></div>
+	<div id="popup-bottom-bar" class="popup-bottom-bar">
+		<div id="popup-bottom-text" class="popup-bottom-text"></div>
+		<button id="ok-button">확인</button>
+	</div>
+</div>
+<div id="c-popup-box" class="popup-box">
+	<div id="c-popup-title-bar" class="popup-title-bar">
+		<div id="c-popup-title" class="popup-title"></div>
+		<button id="c-close-button" class="close-button">X</button>
+	</div>
+	<div id="c-popup-content" class="popup-content"></div>
+	<div id="c-popup-bottom-bar" class="popup-bottom-bar">
+		<div id="c-popup-bottom-text" class="popup-bottom-text"></div>
+		<div class="popup-btn-container">
+			<button id="c-yes-button">예</button>
+			<button id="c-no-button">아니요</button>
+		</div>
+	</div>
+</div>
+
+<div id="seat-balloon">
+    <div id="seat-balloon-text"></div>
+    <div id="seat-balloon-bottom"><div id="seat-balloon-bottom-btn"></div></div>
+</div>
+<div id="main-content-header">
+	<div id="main-content-title"><!--잔류조회--></div>
+	<div id="main-content-header-sidetools">
+		<div id="tool-stay-library"><!--도서관 좌석 현황 보기--></div>
+	</div>
+</div>
+{getContent('dateSelector', 'dispDateSelector', array('recentStayDates' => $recentStayDates, 'showPast' => true, 'isTeacher' => true))}	
+<div id="main-content-progress"></div> 
+<div class="balloon"><div class="balloon-stat-abled"></div></div>
+{getContent('stay', 'dispStayStudentStat')}
+<div id="main-content-options">
+<div class="balloon"><div class="balloon-option-abled"></div></div>
+<form name="se_option">
+<div id="main-content-option1">
+<div id="main-content-option-grade1">
+	<ul>
+		<li class="grade-title">1학년</li>
+		<li><input type="checkbox" id="cb-1-all" name="1-all" checked="checked" onclick="cbh_a(this, 1)">전체선택</li>
+		<li><input type="checkbox" id="cb-1-1" name="1-1" checked="checked" onclick="cbh_c(this, 1)">1반</li>
+		<li><input type="checkbox" id="cb-1-2" name="1-2" checked="checked" onclick="cbh_c(this, 1)">2반</li>
+		<li><input type="checkbox" id="cb-1-3" name="1-3" checked="checked" onclick="cbh_c(this, 1)">3반</li>
+		<li><input type="checkbox" id="cb-1-4" name="1-4" checked="checked" onclick="cbh_c(this, 1)">4반</li>
+		<li><input type="checkbox" id="cb-1-5" name="1-5" checked="checked" onclick="cbh_c(this, 1)">5반</li>
+		<li><input type="checkbox" id="cb-1-6" name="1-6" checked="checked" onclick="cbh_c(this, 1)">6반</li>
+	</ul>
+</div>
+<div id="main-content-option-grade2">
+	<ul>
+		<li class="grade-title">2학년</li>
+		<li><input type="checkbox" id="cb-2-all" name="2-all" checked="checked" onclick="cbh_a(this, 2)">전체선택</li>
+		<li><input type="checkbox" id="cb-2-1" name="2-1" checked="checked" onclick="cbh_c(this, 2)">1반</li>
+		<li><input type="checkbox" id="cb-2-2" name="2-2" checked="checked" onclick="cbh_c(this, 2)">2반</li>
+		<li><input type="checkbox" id="cb-2-3" name="2-3" checked="checked" onclick="cbh_c(this, 2)">3반</li>
+		<li><input type="checkbox" id="cb-2-4" name="2-4" checked="checked" onclick="cbh_c(this, 2)">4반</li>
+		<li><input type="checkbox" id="cb-2-5" name="2-5" checked="checked" onclick="cbh_c(this, 2)">5반</li>
+		<li><input type="checkbox" id="cb-2-6" name="2-6" checked="checked" onclick="cbh_c(this, 2)">6반</li>
+	</ul>
+</div>
+<div id="main-content-option-grade3">
+	<ul>
+		<li class="grade-title">3학년</li>
+		<li><input type="checkbox" id="cb-3-all" name="3-all" checked="checked" onclick="cbh_a(this, 3)">전체선택</li>
+		<li><input type="checkbox" id="cb-3-1" name="3-1" checked="checked" onclick="cbh_c(this, 3)">1반</li>
+		<li><input type="checkbox" id="cb-3-2" name="3-2" checked="checked" onclick="cbh_c(this, 3)">2반</li>
+		<li><input type="checkbox" id="cb-3-3" name="3-3" checked="checked" onclick="cbh_c(this, 3)">3반</li>
+		<li><input type="checkbox" id="cb-3-4" name="3-4" checked="checked" onclick="cbh_c(this, 3)">4반</li>
+		<li><input type="checkbox" id="cb-3-5" name="3-5" checked="checked" onclick="cbh_c(this, 3)">5반</li>
+		<li><input type="checkbox" id="cb-3-6" name="3-6" checked="checked" onclick="cbh_c(this, 3)">6반</li>
+	</ul>
+</div>
+</div>
+<div id="main-content-option2">
+<div id="main-content-option-gender">
+	<ul>
+		<li><input type="checkbox" id="cb-male" name="male" checked="checked">남학생</li>
+		<li><input type="checkbox" id="cb-female" name="female" checked="checked">여학생</li>
+	</ul>			
+</div>
+<div id="main-content-option-place">
+	<ul>
+		<li><input type="checkbox" id="cb-bon" name="bon" checked="checked">본관</li>
+		<li><input type="checkbox" id="cb-hak" name="hak" checked="checked">학봉관</li>
+	</ul>	
+</div>
+</div>
+</form>
+</div>
+<div id="main-content-se-btn-container">
+<button id="se-btn" onclick="getSeResult(1)">조회하기</button>
+</div>
+
+<div id="main-content-se-result">
+<div class="balloon"><div class="balloon-result-abled"></div></div>
+<dl>
+<dt>
+	<ul>
+		<li class="sr-student-no">학번</li>
+		<li class="sr-student-name">이름</li>
+		<li class="sr-ox">조식</li>
+		<li class="sr-ox">중식</li>
+		<li class="sr-ox">석식</li>
+		<li class="sr-ox">간식</li>
+		<li class="sr-ox">숙박</li>
+		<li class="sr-seat">좌석</li>
+		<li class="sr-goingout">외출</li>
+		<li class="sr-etc">기타사항</li>
+	</ul>
+</dt>
+<div id="main-content-se-result-dds">
+	{getContent('stay', 'dispStayStudentList', array('callType' => 3))}
+</div>
+</dl>
+</div>
+<div class="balloon"><div class="balloon-seat-abled"></div></div>
+<div id="main-content-seat">
+<form name="seat_option">
+	<div id="main-content-seat-top">
+    	<div id="main-content-seat-top-left">
+        	<ul>
+            	<li>
+                	<div class="main-content-seat-tip">대상 학생</div>
+                    <div class="main-content-seat-choose">
+                    	<select name="grade" id="main-content-seat-choose-grade" onchange="changeChoose()">
+                    	{@ for ($i=1; $i<=3; $i++) :}
+                    		<option value="{$i}">{$i}학년</option>
+                       	{@ endfor;}
+                        </select>
+                        <select name="class" id="main-content-seat-choose-class" onchange="changeChoose()">
+                    	{@ for ($i=1; $i<=6; $i++) :}
+                    		<option value="{$i}">{$i}반</option>
+                       	{@ endfor;}
+                        </select>
+                        <select name="number" id="main-content-seat-choose-number" onchange="changeChoose()">
+                        {@ for ($i=1; $i<=37; $i++) :}
+                    		<option value="{$i}">{$i}번</option>
+                       	{@ endfor;}
+                        </select>
+                	</div>
+                </li>
+                <li>
+                	<div class="main-content-seat-tip">급식 신청</div>
+                    <div class="main-content-seat-choose">
+                    	<ul>
+                        	<li><input type="checkbox" id="apply_breakfast" disabled="disabled">조식</li>
+                        	<li><input type="checkbox" id="apply_lunch" disabled="disabled">중식</li>
+                        	<li><input type="checkbox" id="apply_dinner" disabled="disabled">석식</li>
+                        	<li><input type="checkbox" id="apply_snack" disabled="disabled">간식</li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                	<div class="main-content-seat-tip">기숙사 숙박</div>
+                    <div class="main-content-seat-choose"><input type="checkbox" id="apply_sleep" name="apply_sleep">기숙사 숙박 신청</div>
+                </li>
+                <li>
+                	<div class="main-content-seat-tip">기타 특이사항</div>
+                    <div class="main-content-seat-choose"><input type="text" id="stay-request-etc-text" name="extra_caption"></div>
+                </li>
+            </ul>
+        </div>
+        <div id="main-content-seat-top-mid"></div>
+        <div id="main-content-seat-top-right">
+        	<dl class="apply_goingout_disable">
+            	<dt><input type="checkbox" id="apply_goingout" name="apply_goingout"> 외출 신청</dd>
+				<dd>
+					외출 신청 시간 : 
+					<select id="goingout_start_hour" name="goingout_start_hour" class="main-content-seat-top-right-time" maxlength="2">
+								{@ for ($i=0; $i<=23; $i++) :}
+									<condition do="$i < 10">
+										<true>
+	                    					<option value="0{$i}">0{$i}시</option>
+	                    				</true>
+	                    				<false>
+	                    					<option value="{$i}">{$i}시</option>
+	                    				</false>
+	                    			</condition>
+	                       		{@ endfor;}
+								</select>
+							<select id="goingout_start_min" name="goingout_start_min" class="main-content-seat-top-right-time" maxlength="2">\
+								{@ for ($i=0; $i<=5; $i++) :}
+									<condition do="$i>0">
+										<true>
+	                    					<option value="{$i*10}">{$i*10}분</option>
+	                    				</true>
+	                    				<false>
+	                    					<option value="00">00분</option>
+	                    				</false>
+	                    			</condition>
+	                       		{@ endfor;}
+							</select> ~ 
+							<select id="goingout_end_hour" name="goingout_end_hour" class="main-content-seat-top-right-time" maxlength="2">
+								{@ for ($i=0; $i<=23; $i++) :}
+									<condition do="$i < 10">
+										<true>
+	                    					<option value="0{$i}">0{$i}시</option>
+	                    				</true>
+	                    				<false>
+	                    					<option value="{$i}">{$i}시</option>
+	                    				</false>
+	                    			</condition>
+	                       		{@ endfor;}
+							</select>
+							<select id="goingout_end_min" name="goingout_end_min" class="main-content-seat-top-right-time" maxlength="2">
+								{@ for ($i=0; $i<=5; $i++) :}
+									<condition do="$i>0">
+										<true>
+	                    					<option value="{$i*10}">{$i*10}분</option>
+	                    				</true>
+	                    				<false>
+	                    					<option value="00">00분</option>
+	                    				</false>
+	                    			</condition>
+	                       		{@ endfor;}
+							</select>
+				</dd>
+				<dd id="main-content-seat-top-right-time-tip">
+				<condition do="$stayInfo['allow_goingout'] == 1">
+					<true>
+                	오늘은 {date('H:i',strtotime($stayInfo['goingout_start_time']))}부터 {date('H:i',strtotime($stayInfo['goingout_end_time']))}까지 외출이 가능합니다.
+                	</true>
+                	<false>
+                	오늘은 외출 신청이 불가능합니다.
+                	</false>
+                </condition>
+                </dd>
+				<dd>외출 신청 사유 및 특이사항 : <input name="goingout_cause" id="goingout_cause" type="text"></dd>
+            </dl>
+        </div>
+    </div>
+    <div id="main-content-seat-bottom">
+    	<div id="main-content-seat-bottom-left">
+        	<div id="seat_name"></div>
+            <div id="seat_box">
+                {getContent('stay', 'dispStayStudentsSeatList', array('callType' => 3))}
+            </div>
+       	</div>
+		<div id="main-content-seat-bottom-right">
+			<input name="disapply_seat" id="disapply_seat" type="checkbox" onclick="toggleSeat(this)"> 좌석 미신청
+			<div id="main-content-seat-condition">
+				<span id="main-content-seat-condition-whole">총 230석</span>
+				<span id="main-content-seat-condition-residual">잔여 {@ echo(230-$getSelectedSeatCount)}석</span>
+			</div>
+			<div id="main-content-seat-note"></div>
+			<div id="main-content-seat-buttons">
+				<div id="main-content-seat-save" onclick="saveStayData()"></div>
+				<div id="main-content-seat-delete" onclick="deleteStayData()"></div>
+			</div>
+		</div>
+	</div>
+</form>
+</div>
+<div id="main-coetent-excel" onclick="saveToXlsFile()" value=""></div>
+</div>

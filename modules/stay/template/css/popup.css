@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+#popup-layout-bg{ position:fixed; left:0; top:0; visibility:hidden; z-index:4; width:100%; height:100%; background-color:rgba(0,0,0,0.25); filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000,endColorstr=#66000000); overflow-y:scroll }
+
+.popup-box{ position:fixed; visibility:hidden; z-index:5; text-align:left; width:400px; background-color:#FFF; box-shadow:0px 0px 8px rgb(64, 64, 64); top:50%; left:50%; font-size:12px; /*behavior:url(../../static.src/PIE.htc);*/ }
+.popup-box .popup-title-bar{ height:20px; background-color:#EC137F; color:#FFF; font-size:17px; padding:10px 10px; *zoom:1 }
+.popup-box .popup-title-bar:after{ content:""; display:block; clear:both }
+.popup-box .popup-title-bar .popup-title{ float:left }
+.popup-box .popup-title-bar .close-button{ width:18px; height:18px; float:right; color:transparent; background:transparent url('../img/popup_sprite.png') no-repeat -192px 0px; cursor:pointer; border:none; border-radius:3px; }
+
+.popup-box .popup-content{ padding:18px }
+
+.popup-box .popup-bottom-bar{ background-color:#EEE; padding:10px 15px; }
+.popup-box .popup-bottom-bar .popup-bottom-text{ padding:1px 0 7px 0 }
+
+.popup-box .popup-bottom-bar #ok-button,
+.popup-box .popup-bottom-bar #c-yes-button,
+.popup-box .popup-bottom-bar #c-no-button,
+.popup-box .popup-bottom-bar #c-yes-button2,
+.popup-box .popup-bottom-bar #c-no-button2
+	{ width:64px; height:28px; color:transparent; background:transparent url('../img/popup_sprite.png') 0px 0px; border:none; border-radius:3px; cursor:pointer }
+
+.popup-box .popup-bottom-bar #ok-button{ margin:0 auto; display:block; background-position:0px 0px }
+.popup-box .popup-bottom-bar #ok-button:active{ box-shadow: inset 2px 2px 3px rgba(0,0,0,0.2); }
+
+.popup-box .popup-bottom-bar .popup-btn-container{ display:block; text-align:center }
+.popup-box .popup-bottom-bar .popup-btn-container #c-yes-button, .popup-box .popup-bottom-bar .popup-btn-container #c-yes-button2{ background-position:-64px 0px; display:inline-block }
+.popup-box .popup-bottom-bar .popup-btn-container #c-no-button, .popup-box .popup-bottom-bar .popup-btn-container #c-no-button2{ background-position:-128px 0px; display:inline-block; margin-left:5px }
+
+.popup-content ul li{ margin:5px 0; color:#444 }
+.popup-content ul li span{ display:inline-block; width:100px; color:#222; font-weight:bold }

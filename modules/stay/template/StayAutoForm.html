@@ -1,0 +1,77 @@
+<import path="css/stayRequest.css">
+<import path="css/seatSelector.css">
+<import path="css/default.css">
+<import path="css/popup.css">
+<import path="js/stayRequest.js">
+<import path="js/seatSelector.js">
+<import path="js/popup.js">
+<import path="/static/js/jquery.js">
+
+<div id="popup-title">
+	<div id="popup-title-text"><!--나의 자동 외출신청--></div>
+</div>
+<div id="content">
+	<div id="content-header">
+		<div id="describe">
+			잔류 신청 시 설정된 요일을 클릭하면 자동으로 내용이 입력됩니다.<br>
+			자동 외출 신청 설정은 <span class="hot-pink">최대 7개까지 등록</span>할 수 있습니다.
+		</div>
+		<div id="add-btn-container">
+			<button id="add-btn" onclick="<?php echo count($usedDays) < 7 ? 'window.open(\'request.php?type=new\', \'remotewindow\', \'width=600, height=430\'' : 'alert(\'이미 모든 요일에 자동 외출 신청이 설정되어 있습니다\''?>);"></button>
+		</div>
+	</div>
+	<div id="goingout-list">
+		<dl>
+			<dt>
+				<div class="gl-day">요일/외출명</div>
+				<div class="gl-meals">급식 설정</div>
+				<div class="gl-goingout">외출 시간 및 사유</div>
+				<div class="gl-extra-caption">특이사항</div>
+				<div class="gl-tools">수정/삭제</div>
+			</dt>
+			<?php
+				if (count($queryDatas) > 0) {
+					for ($i=0; $i<count($queryDatas); $i++) {
+						
+						$queryData = $queryDatas[$i];
+						
+						$days = json_decode($queryData['days']);
+						$formData = json_decode($queryData['data']);
+						
+						for ($j=0; $j<count($days); $j++)
+							if ($days[$j] === 0) $days[$j] = 7;
+						sort($days);
+						
+						for ($j=0; $j<count($days); $j++)
+							$days[$j] = $week[$days[$j]] . '요일';
+						
+						$mealData_kr = array(
+							'breakfast'=>'조식',
+							'lunch'=>'중식',
+							'dinner'=>'석식',
+							'snack'=>'간식'
+						);
+						
+						$meals = $formData->meals;
+						for ($j=0; $j<count($meals); $j++)
+							$meals[$j] = $mealData_kr[ $meals[$j] ];
+						$formData->meals = $meals;
+						
+						echo ($i == count($queryDatas) - 1) ? '<dd class="final">' : '<dd>';
+						echo '<div class="gl-day">'.join(', ', $days).'<br>'.$formData->title.'</div>' .
+							'<div class="gl-meals">'.(join(',', $formData->meals)).'</div>' .
+							"<div class=\"gl-goingout\">$formData->goingout_start_time~$formData->goingout_end_time($formData->goingout_cause)</div>" .
+							'<div class="gl-extra-caption">'.($formData->extra_caption ? $formData->extra_caption : '<span class="soft">없음</span>').'</div>' .
+							'<div class="gl-tools">' .
+								'<button class="edit-btn" onclick="openModifyPopup(\''.$queryData['id'].'\')">수정</button>' .
+								'<button class="delete-btn" onclick="deleteAutoForm(\''.$queryData['id'].'\')">삭제</button>' .
+							'</div>' .
+						'</dd>';
+					}
+				}else {
+					echo '<div style="padding:30px 5px">설정된 자동 외출신청이 없습니다.</div>';
+				}
+			?>
+		</dl>
+	</div>
+</div>

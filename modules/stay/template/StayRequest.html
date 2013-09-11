@@ -1,0 +1,272 @@
+<import path="css/stayRequest.css">
+<import path="css/seatSelector.css">
+<import path="css/default.css">
+<import path="css/popup.css">
+<import path="js/stayRequest.js">
+<import path="js/seatSelector.js">
+<import path="js/popup.js">
+<import path="/static/js/jquery.js">
+
+<div id="popup-layout-bg"></div>
+<div id="popup-box" class="popup-box">
+	<div id="popup-title-bar" class="popup-title-bar">
+		<div id="popup-title" class="popup-title"></div>
+		<button id="close-button" class="close-button">X</button>
+	</div>
+	<div id="popup-content" class="popup-content"></div>
+	<div id="popup-bottom-bar" class="popup-bottom-bar">
+		<div id="popup-bottom-text" class="popup-bottom-text"></div>
+		<button id="ok-button">확인</button>
+	</div>
+</div>
+<div id="c-popup-box" class="popup-box">
+	<div id="c-popup-title-bar" class="popup-title-bar">
+		<div id="c-popup-title" class="popup-title"></div>
+		<button id="c-close-button" class="close-button">X</button>
+	</div>
+	<div id="c-popup-content" class="popup-content"></div>
+	<div id="c-popup-bottom-bar" class="popup-bottom-bar">
+		<div id="c-popup-bottom-text" class="popup-bottom-text"></div>
+		<div class="popup-btn-container">
+			<button id="c-yes-button">예</button>
+			<button id="c-no-button">아니요</button>
+		</div>
+	</div>
+</div>
+
+	<div id="seat-balloon">
+		<div id="seat-balloon-text"></div>
+		<div id="seat-balloon-bottom"><div id="seat-balloon-bottom-btn"></div></div>
+	</div>
+	<div id="main-content-header">
+		<div id="main-content-title">잔류신청</div>
+		<div id="main-content-header-sidetools">
+			<button id="tool-stay-newbies" onclick="openGetStartPopup()">잔류 신청이 처음이세요?</button>
+			<button id="tool-stay-clear" onclick="location.reload()">내용 초기화하기</button>
+		</div>
+	</div>
+
+	{getContent('dateSelector', 'dispDateSelector', array('recentStayDates' => $recentStayDates))}	
+	
+	<div id="stay-request"{@ if (!$selectedDate) echo ' style="color:#999"'; }>
+		<form id="stay-request-form" name="stay_request" method="post" action="{getURL('stay', 'procSaveStay')}">
+			<input type="hidden" name="date" value="{$selectedDate}">
+			<input type="hidden" name="infoId" value="{$stayInfo['id']}">
+			<input type="hidden" name="seat_data" value="">
+			<div class="balloon"><div class="balloon-selectfood-{printBalloonAbled()}"></div></div>
+			<div id="stay-request-meal">
+				<ul>
+					<li><input name="apply_breakfast" type="checkbox"{getMealData('breakfast')}>조식 급식 신청</li>
+					<li><input name="apply_lunch" type="checkbox"{getMealData('lunch')}>중식 급식 신청</li>
+					<li><input name="apply_dinner" type="checkbox"{getMealData('dinner')}>석식 급식 신청</li>
+					<li><input name="apply_snack" type="checkbox"{getMealData('snack')}>간식 급식 신청</li>
+				</ul>
+			</div>
+			<div class="balloon"><div class="balloon-selectgoingout-{printBalloonAbled()}"></div></div>
+			<div id="stay-request-goingout">
+				<div id="stay-request-goingout-left"><input name="apply_goingout" type="checkbox"{getGoingoutApplyed()}onclick="toggleGoingout(this)">외출을 신청합니다.</div>
+				<div id="stay-request-goingout-right">
+					<ul>
+						<li>
+							외출 신청 시간 : <select name="goingout_start_hour" class="stay-request-goingout-time{getGoingoutData('start','hour',true)}" maxlength="2">
+								{@ $tmp = getGoingoutData('start','hour',false) }
+								{@ for ($i=0; $i<=23; $i++) :}
+									<condition do="$i < 10">
+										<true>
+											<condition do="$tmp==$i">
+												<true>
+	                    							<option value="0{$i}" selected>0{$i}</option>
+	                    						</true>
+	                    						<false>
+	                    							<option value="0{$i}">0{$i}</option>
+	                    						</false>
+	                    					</condition>
+	                    				</true>
+	                    				<false>
+											<condition do="$tmp==$i">
+												<true>
+	                    							<option value="{$i}" selected>{$i}</option>
+	                    						</true>
+	                    						<false>
+	                    							<option value="{$i}">{$i}</option>
+	                    						</false>
+	                    					</condition>
+	                    				</false>
+	                    			</condition>
+	                       		{@ endfor;}
+							</select> 시
+							<select name="goingout_start_minute" class="stay-request-goingout-time{getGoingoutData('start','minute',true)}" maxlength="2">
+								{@ $tmp = getGoingoutData('start','minute',false) }
+								{@ for ($i=0; $i<=5; $i++) :}
+									<condition do="$i>0">
+										<true>
+											<condition do="$tmp==$i*10">
+												<true>
+													<option value="{$i*10}" selected>{$i*10}</option>
+	                    						</true>
+	                    						<false>
+	                    							<option value="{$i*10}">{$i*10}</option>
+	                    						</false>
+	                    					</condition>
+	                    				</true>
+	                    				<false>
+											<condition do="$tmp==$i">
+												<true>
+													<option value="00" selected>00</option>
+	                    						</true>
+	                    						<false>
+	                    							<option value="00">00</option>
+	                    						</false>
+	                    					</condition>
+	                    				</false>
+	                    			</condition>
+	                       		{@ endfor;}
+							</select> 분부터
+							<select name="goingout_end_hour" class="stay-request-goingout-time{getGoingoutData('end','hour',true)}" maxlength="2">
+								{@ $tmp = getGoingoutData('end','hour',false) }
+								{@ for ($i=0; $i<=23; $i++) :}
+									<condition do="$i < 10">
+										<true>
+											<condition do="$tmp==$i">
+												<true>
+	                    							<option value="0{$i}" selected>0{$i}</option>
+	                    						</true>
+	                    						<false>
+	                    							<option value="0{$i}">0{$i}</option>
+	                    						</false>
+	                    					</condition>
+	                    				</true>
+	                    				<false>
+											<condition do="$tmp==$i">
+												<true>
+	                    							<option value="{$i}" selected>{$i}</option>
+	                    						</true>
+	                    						<false>
+	                    							<option value="{$i}">{$i}</option>
+	                    						</false>
+	                    					</condition>
+	                    				</false>
+	                    			</condition>
+	                       		{@ endfor;}
+							</select> 시
+							<select name="goingout_end_minute" class="stay-request-goingout-time{getGoingoutData('end','minute',true)}" maxlength="2">
+								{@ $tmp = getGoingoutData('end','minute',false) }
+								{@ for ($i=0; $i<=5; $i++) :}
+									<condition do="$i>0">
+										<true>
+											<condition do="$tmp==$i*10">
+												<true>
+													<option value="{$i*10}" selected>{$i*10}</option>
+	                    						</true>
+	                    						<false>
+	                    							<option value="{$i*10}">{$i*10}</option>
+	                    						</false>
+	                    					</condition>
+	                    				</true>
+	                    				<false>
+											<condition do="$tmp==$i">
+												<true>
+													<option value="00" selected>00</option>
+	                    						</true>
+	                    						<false>
+	                    							<option value="00">00</option>
+	                    						</false>
+	                    					</condition>
+	                    				</false>
+	                    			</condition>
+	                       		{@ endfor;}
+							</select> 분까지
+						</li>
+						<li id="stay-request-goingout-time-tip">{getGoingoutTimeTip()}</li>
+						<li>
+							<span>외출 신청 사유 : <input name="goingout_cause" type="text" id="stay-request-goingout-cause"{getGoingoutCause()}></span>
+							<span id="auto-form-container">
+								<button id="auto-form-help-btn" {@ echo $selectedDate ? 'onclick="window.open(\'../popup/dormitory/auto_form/view.php\', \'post\', \'width=600, height=400\'); return false"' : 'disabled="disabled" class="disabled"' }>
+									<span class="setting-icon"></span>
+									<span>자동외출신청 설정</span>
+								</button>
+								<button id="auto-form-help" onclick="return false" onmouseover="showAutoFormHelp()" onmouseout="hideAutoFormHelp()"></button>
+							</span>
+						</li>
+						<div id="auto-form-popup">
+							<div id="auto-form-popup-top">
+								<div id="auto-form-popup-top-balloon"></div>
+							</div>
+							<div id="auto-form-popup-content">
+								<div id="auto-form-popup-title">자동 외출신청이란?</div>
+								<div>
+									학원, 종교활동 등과 같이 매주 반복되는 외출을 미리 설정하여 매번 같은 내용을 입력해야 하는 불편함을 줄일 수 있는 기능입니다.
+								</div>
+							</div>
+						</div>
+					</ul>
+				</div>
+			</div>
+			<div class="balloon"><div class="balloon-selectdorm-{printBalloonAbled()}"></div></div>
+			<div id="stay-request-sleep">
+				<input name="apply_sleep" type="checkbox" id="stay-request-sleep-checkbox"{getSleepData()}> 기숙사 숙박을 신청합니다.
+			</div>
+			<div class="balloon"><div class="balloon-selectetc-{printBalloonAbled()}"></div></div>
+			<div id="stay-request-etc">
+				기타 특이사항 <input name="extra_caption" type="text" id="stay-request-etc-text" placeholder="ex) 위염으로 아침식사 불가"{getExtraCaption()}> 
+				<span class="stay-request-etc-subtext">특이사항은 교사 검토 후에 반영됩니다.</span>
+			</div>
+			<div class="balloon"><div class="balloon-selectseat-{printBalloonAbled()}"></div></div>
+			<div id="stay-request-seat">
+				<div id="stay-request-seat-top">
+					<div id="stay-request-seat-top-noseat">
+						<input id="input-cb-seat" name="disapply_seat" type="checkbox" onclick="toggleSeat(this)"{getSeatApplyed()> 별도의 좌석을 신청하지 않고 잔류를 신청합니다.
+					</div>
+					<div id="stay-request-seat-top-condition">
+						<span id="stay-request-seat-top-condition-whole">총 230석</span>
+						<span id="stay-request-seat-top-condition-residual">잔여 {@ echo(230-$getSelectedSeatCount)}석</span>
+					</div>
+				</div>
+				<div id="stay-request-seat-bottom">
+					<div id="seat_name"><!--ABCD...MN--></div>
+					<div id="seat_box">
+						{getContent('stay', 'dispStayStudentsSeatList', array('callType' => 1))}
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<div id="aside"{@ if (!$isStayAble) echo ' style="height:1028px"'}>
+	<div id="aside-header"{@ if (!$stayInfo) echo ' style="display:none"'}>
+		<div id="aside-header-title">{$stayInfo['stay_title']}</div>
+		<div class="aside-sub-item">{$selectedDate}</div>
+	</div>
+	<div {@ if (!$stayInfo) echo ' style="display:none"'}>
+		<div class="aside-item-container">
+			<div class="aside-item">급식 신청</div>
+			<div class="aside-sub-item" id="sideinfo-meal"></div>
+		</div>
+		<div class="aside-item-container" id="aic-goingout">
+			<div class="aside-item">외출 신청</div>
+			<div class="aside-sub-item" id="sideinfo-goingout"></div>
+		</div>
+		<div class="aside-item-container">
+			<div class="aside-item">기숙사 숙박</div>
+			<div class="aside-sub-item" id="sideinfo-sleep"></div>
+		</div>
+		<div class="aside-item-container" id="aic-extra-caption">
+			<div class="aside-item">기타 특이사항</div>
+			<div class="aside-sub-item" id="sideinfo-extra-caption"></div>
+		</div>
+		<div class="aside-item-container" id="aic-library">
+			<div class="aside-item">도서관 좌석 선택</div>
+			<div class="aside-sub-item" id="sideinfo-seat"></div>
+		</div>
+		<div id="aside-button">
+			<button id="aside-button-cancel" {@ echo (!$isStayAble || !$myStayData) ? 'class="aside-button-cancel-disabled"' : 'onclick="cancleStay()"' } >잔류 신청 취소</button>
+			<button id="aside-button-request" {@
+				if (!$isStayAble)
+					echo 'class="aside-button-request-disabled"';
+				else if ($myStayData)
+					echo 'class="aside-button-update-disabled"';
+				else
+					echo 'onclick="submitStayRequestForm()"'
+			}>잔류 신청</button>
+		</div>
+	</div>

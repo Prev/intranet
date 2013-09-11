@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+html,body {  margin: 0; padding: 0; font-family:나눔고딕,NanumGothic,돋움,Dotum,sans-serif; }
+body,input,textarea,select,button,table { font-family:나눔고딕,NanumGothic,돋움,Dotum,sans-serif; }
+button { border:none; cursor:pointer; border-radius:3px }
+button:active { box-shadow: inset 2px 2px 3px rgba(0,0,0,0.2); }
+ul,ol { margin: 0; padding: 0; list-style: none }
+li { margin: 0; padding: 0 }
+dl,dt,dd{ margin:0; padding:0 }
+a img{ border:none; outline:none }
+input[type=radio],input[type="checkbox"] { vertical-align:middle; }
+
+.hot-pink{ color:#F39 }
+.tip { font-size:11px; color:#7C7C7C; }
+.essential{ color:red }
+
+#wrap { text-align:left; background-color:#FFF; width:600px;font-size:12px; }
+#wrap #popup-title { background-color:#3A3A3A; padding:18px 0px 18px 25px; }
+#wrap #popup-title-text { width:151px; height:19px; background:url(../img/my_goingout2.png) 0px 0px; color:transparent; font-size:0px }
+#wrap #popup-title-text.popup-title-text-modify{ background-position:0 -19px }
+
+#wrap #content{ padding:24px; padding-bottom:5px }
+
+#wrap #content #content-header{ *zoom:1 }
+#wrap #content #content-header:after{ content:""; display:block; clear:both }
+#wrap #content #content-header #describe{ float:left; font-size:13px; color:#7C7C7C;}
+#wrap #content #content-header #describe-right{ float:right; color:red }
+
+#wrap #content #container{ margin-top:10px }
+
+#wrap #content #container tr.first-item td{ border-top:1px solid #DDD }
+
+#wrap #content #container td{ padding:7px 10px; border-bottom:1px solid #DDD }
+#wrap #content #container td.left-item{ width:80px; background-color:#EEE; font-weight:bold; }
+#wrap #content #container td.right-item{ width:450px }
+#wrap #content #container td.right-item label.end { margin:0px; }
+#wrap #content #container td.right-item label input{ vertical-align:middle; }
+#wrap #content #container td.right-item#day_of_week label { margin-right:27px; }
+#wrap #content #container td.right-item#meals label { margin-right:44px; }
+
+input.goingout-time { width:20px; }
+
+#wrap #content #btn { text-align:center; margin-top:20px; }
+#wrap #content #btn #btn-apply { width:54px; height:25px; background:url(../img/my_goingout2.png) 0px -38px; }
+#wrap #content #btn #btn-cancel { width:54px; height:25px; background:url(../img/my_goingout2.png) -54px -38px; }
