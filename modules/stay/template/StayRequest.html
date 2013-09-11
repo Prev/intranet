@@ -34,6 +34,7 @@
 	</div>
 </div>
 
+<div id="main-left-content" class="fl">
 	<div id="seat-balloon">
 		<div id="seat-balloon-text"></div>
 		<div id="seat-balloon-bottom"><div id="seat-balloon-bottom-btn"></div></div>
@@ -232,7 +233,7 @@
 		</form>
 	</div>
 </div>
-<div id="aside"{@ if (!$isStayAble) echo ' style="height:1028px"'}>
+<div id="aside" class="fr">
 	<div id="aside-header"{@ if (!$stayInfo) echo ' style="display:none"'}>
 		<div id="aside-header-title">{$stayInfo['stay_title']}</div>
 		<div class="aside-sub-item">{$selectedDate}</div>
@@ -270,3 +271,4 @@
 			}>잔류 신청</button>
 		</div>
 	</div>
+</div>

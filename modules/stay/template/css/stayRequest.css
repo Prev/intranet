@@ -1,7 +1,8 @@
 s@charset "utf-8";
 
 #wrap{ background:white url('../img/aside_bg.png') repeat-y 850px 0 !important; }
-#wrap #main-content{ width:600px; padding-bottom:0 }
+#wrap #main-content{ padding: 0 !important; background: transparent url(../img/aside_bg.png) repeat-y 600px 0px; }
+#wrap #main-content #main-left-content{ padding-top: 20px }
 #wrap #aside{ float:right; width:150px; border-top-right-radius:5px; background-color:#3A3A3A; padding-top:65px; color:white }
 
 /* #wrap #main-content #main-content-header */
@@ -14,8 +15,6 @@ s@charset "utf-8";
 
 
 /* #aside */
-#aside {height: 1041px;}
-
 #aside #aside-header{ background-color:#555; padding:12px 14px; padding-right:5px; }
 #aside #aside-header #aside-header-title{ font-size:22px; font-weight:bold; margin-bottom:2px }
 
@@ -72,7 +71,7 @@ s@charset "utf-8";
 
 /* #stay-request #auto-form-popup */
 #auto-form-popup{ position:absolute; width:385px; visibility:hidden; left:433px; }
-#auto-form-popup #auto-form-popup-top-balloon{ position:absolute; z-index:2; width:12px; height:7px; margin-left:334px; background-image:url('../../static.img/hoverballoon_top.png'); }
+#auto-form-popup #auto-form-popup-top-balloon{ position:absolute; z-index:2; width:12px; height:7px; margin-left:334px; background-image:url(../img/hoverballoon_top.png); }
 #auto-form-popup #auto-form-popup-content{ background-color:white; border:1px solid #CCC; padding:8px; margin-top:6px }
 #auto-form-popup #auto-form-popup-content #auto-form-popup-title{ font-weight:bold; margin-bottom:2px }
 
