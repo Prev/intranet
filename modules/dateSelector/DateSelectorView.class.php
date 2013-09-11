@@ -29,9 +29,7 @@
 		public $isTeacher;
 		
 		function setWidth(){
-
 			return ((strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'msie') !== false && !showPast) ? 'width:1600px;' : '');
-
 		}
 
 		function getYearMonthInfo($time, $isFirst = false){

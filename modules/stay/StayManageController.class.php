@@ -236,7 +236,7 @@
 			if($this->checkRegisterStayInfoParameter($error))
 				$this->model->registerStayInfo($_REQUEST);
 			else
-				$this->throwError('오류가 발생하였습니다. '.$error);
+				goBack('오류가 발생하였습니다. '.$error);
 		}
 
 		public function procDeleteStayInfo(){
@@ -247,7 +247,7 @@
 			if($this->checkUpdateStayInfoParameter($error))
 				$this->model->updateStayInfo($_REQUEST);
 			else
-				$this->throwError('오류가 발생하였습니다. '.$error);
+				goBack('오류가 발생하였습니다. '.$error);
 		}
 
 		public function procCloseStayInfo(){
@@ -330,7 +330,7 @@
 			if($this->model->cancelCloseStayInfo($_REQUEST['date']))
 				goBack("잔류 마감 취소가 완료되었습니다.");
 			else
-				$this->throwError('잔류 마감 취소 작업중 오류가 발생했습니다.');
+				--=-goBack('잔류 마감 취소 작업중 오류가 발생했습니다.');
 		}
 
 		public function procConfirmStayInfo(){
@@ -338,7 +338,7 @@
 			if($this->model->confirmStayInfo($_REQUEST['date']))
 				goBack("잔류 점검이 완료 되었습니다.");
 			else
-				$this->throwError('잔류 점검 작업중 오류가 발생했습니다.');
+				goBack('잔류 점검 작업중 오류가 발생했습니다.');
 		}
 
 	}
