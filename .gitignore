@@ -3,3 +3,4 @@ files/*
 files/pmc_error.log
 config/database.php
 config/server-info.json
+*/.DS_Store

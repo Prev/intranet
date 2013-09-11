@@ -51,7 +51,7 @@
 			unset($_SESSION['pmc_sso_data']);
 			setcookie('pmc_logout_key', '0', time()-60);
 
-			goBack();
+			redirect(RELATIVE_URL);
 		}
 		
 		private function generateSessionKey() {

@@ -60,7 +60,7 @@
 			}else if (!self::moduleExists($moduleID)) {
 				Context::printErrorPage(array(
 					'en' => 'Cannot load module - module not found',
-					'ko' => '모듈을 불러올 수 없습니다 - 모듈을 찾을 수 없음'
+					'ko' => '모듈 "'.$moduleID.'"을 불러올 수 없습니다 - 모듈을 찾을 수 없음'
 				));
 				return;
 			}
