@@ -1,0 +1,88 @@
+@charset "utf-8";
+
+#main-content-progress { background-position:0 -36px }
+
+.disabled{ color:#909090 }
+
+/* #wrap #main-content #stay-manage */
+#stay-manage { width:750px; height:auto; }
+#stay-manage ul { padding:0px; margin:0px; }
+#stay-manage ul li { list-style:none; }
+#stay-manage #stay-manage-title { padding:15px 17px; background-color:#E7E7E7; }
+#stay-manage #stay-manage-title #stay-manage-title-text { width:80px; height:14px; }
+#stay-manage #stay-manage-title #stay-manage-title-tip { font-size:11px; color:#666; }
+
+#stay-manage #stay-manage-deadline { padding:15px 17px; margin-top:30px; background-color:#E7E7E7; *zoom:1; }
+#stay-manage #stay-manage-deadline:after { content:""; display:block; clear:both; }
+
+#stay-manage #stay-manage-deadline #stay-manage-deadline-left { float:left; }
+
+#stay-manage .stay-manage-disabled { color:#909090; }
+
+/* #stay-manage #stay-manage-deadline #stay-manage-deadline-mid */
+#stay-manage-deadline-mid { float:left; margin-left:24px; }
+#stay-manage-deadline-mid ul:after { content:""; display:block; clear:both; }
+#stay-manage-deadline-mid ul li { margin-top:2px; }
+#stay-manage-deadline-mid ul li:after { content:""; display:block; clear:both; }
+#stay-manage-deadline-mid ul li .stay-manage-deadline-date { width:86px; height:12px; }
+#stay-manage-deadline-mid ul li div { float:left; } 
+#stay-manage-deadline-mid ul li .stay-manage-deadline-calendar { width:14px; height:14px; margin:2px 0px 0px 4px; background-image:url(../img/sprite3.png); background-position-x:0px; }
+#stay-manage-deadline-mid ul li .stay-manage-deadline-erase { width:10px; height:10px; margin:4px 0px 0px 4px; background-image:url(../img/sprite3.png); background-position-x:-14px; }
+#stay-manage-deadline-mid ul li .stay-manage-deadline-calendar:hover { cursor:pointer; }
+#stay-manage-deadline-mid ul li .stay-manage-deadline-erase:hover { cursor:pointer; }
+#stay-manage-deadline-mid ul li .stay-manage-deadline-time-hour { width:20px; height:12px; margin:0px 3px; }
+#stay-manage-deadline-mid ul li .stay-manage-deadline-time-min { width:20px; height:12px; margin:0px 3px; }
+
+#stay-manage-deadline-right { float:left; max-width:281px; line-height:16px; margin-left:12px; font-size:12px; color:#8C8C8C; }
+
+#stay-manage #stay-manage-meal { padding:15px 17px; margin-top:30px; background-color:#E7E7E7; *zoom:1; }
+#stay-manage #stay-manage-meal ul:after { content:""; display:block; clear:both; }
+#stay-manage #stay-manage-meal ul li { float:left; margin-right:24px; }
+#stay-manage #stay-manage-meal ul li#stay-manage-meal-forhelp { float:left; margin-right:4px; }
+#stay-manage #stay-manage-meal #stay-manage-meal-help { width:16px; height:16px; margin-top:4px; background-image:url(../img/sprite3.png); background-position-x:-24px; }
+
+#stay-manage #stay-manage-goingout { padding:15px 17px; margin-top:30px; background-color:#E7E7E7; }
+#stay-manage #stay-manage-goingout .stay-manage-goingout-time { width:20px; height:12px; margin:0px 2px; }
+#stay-manage #stay-manage-sleep { padding:15px 17px; margin-top:30px; background-color:#E7E7E7; }
+
+#stay-manage #stay-manage-popup { padding:15px 17px 15px 17px; margin-top:30px; background-color:#E7E7E7; *zoom:1; }
+#stay-manage #stay-manage-popup:after { content:""; display:block; clear:both; }
+
+#stay-manage #stay-manage-popup #stay-manage-popup-left { float:left; margin-right:8px; }
+
+/* #stay-manage #stay-manage-popup #stay-manage-popup-right */
+#stay-manage-popup-right dl { margin:0px; }
+#stay-manage-popup-right dl dt { margin-bottom:8px; }
+#stay-manage-popup-right dl dd { font-size:11px; color:#666; margin:0px 0px 2px 0px; }
+
+#stay-manage #stay-manage-temp-end { padding:15px 17px; margin-top:30px; background-color:#E7E7E7; }
+#stay-manage #stay-manage-temp-end #stay-manage-temp-end-tip { font-size:11px; color:#666; }
+
+#stay-manage-btn { margin:20px 20px 0 20px; *zoom:1; }
+#stay-manage-btn input{border:0; cursor:pointer}
+#stay-manage-btn:after { content:""; display:block; clear:both; }
+#stay-manage-btn-del-setting { float:left; width:191px; height:38px; background:url(../img/sprite_stay_manage.png) no-repeat 0 -198px; }
+#stay-manage-btn-save-changes { float:left; width:191px; height:38px; margin-left:70px; }
+.stay-manage-btn-save-changes-able{background:url(../img/sprite_stay_manage.png) no-repeat 0 -84px;}
+.stay-manage-btn-save-changes-disable{background:url(../img/sprite_stay_manage.png) no-repeat 0 -122px;}
+
+#stay-manage-btn-finish-now { float:right; width:189px; height:36px; background:url(../img/sprite_stay_manage.png) no-repeat 0 -272px; }
+#apply-setting{background:url(../img/sprite_stay_manage.png) no-repeat 0 -236px; width:189px; height:36px; border:0; cursor:pointer}
+
+.balloon {position: absolute; width: 0px; height: 0px;}
+.balloon .balloon-select-date-abled, .balloon-set-deadline-abled, .balloon-set-sleep-abled, .balloon-set-goingout-abled, .balloon-set-meal-abled, .balloon-set-name-abled, .balloon-set-popup-abled, .balloon-temp-end-abled, .balloon-set-deadline-disabled, .balloon-set-goingout-disabled, .balloon-set-sleep-disabled {position: relative; background: url('../img/stay_manage_balloon_sprite.png') no-repeat; width: 34px; height: 43px; float: left; }
+.balloon-select-date-abled{left:-20px;top:-29px}
+.balloon-set-deadline-abled, .balloon-set-sleep-abled, .balloon-set-goingout-abled, .balloon-set-meal-abled, .balloon-set-name-abled, .balloon-set-popup-abled, .balloon-temp-end-abled, .balloon-set-deadline-disabled,.balloon-set-goingout-disabled, .balloon-set-sleep-disabled{left: -37px; top: -49px;}
+
+.balloon .balloon-select-date-abled { background-position: 0px -43px;  } 
+.balloon .balloon-set-name-abled { background-position: -34px -43px;  }
+.balloon .balloon-set-deadline-abled { background-position: -68px -43px;  }
+.balloon .balloon-set-meal-abled { background-position: -102px -43px;  }
+.balloon .balloon-set-goingout-abled { background-position: -136px -43px;  }  
+.balloon .balloon-set-sleep-abled { background-position: -170px -43px;  } 
+.balloon .balloon-set-popup-abled { background-position: -204px -43px;  } 
+.balloon .balloon-temp-end-abled { background-position: -238px -43px;  } 
+
+.balloon .balloon-set-deadline-disabled { background-position: -68px 0px;  }
+.balloon .balloon-set-goingout-disabled { background-position: -136px 0px;  }  
+.balloon .balloon-set-sleep-disabled { background-position: -170px 0px;  } 

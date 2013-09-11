@@ -1,0 +1,21 @@
+<import path="css/calendar.css">
+<import path="js/calendar.js">
+<div id="calendar">
+    <table id="calendar-table" cellspacing="0">
+        <caption>
+            <div id="calendar-caption-text">
+                <span id="calendar-caption-prevbtn" class="calendar-caption-sprite" onClick="changeCalendar('prev');" title="이전달"></span>
+                <span><strong id="calendar-caption-title">{@ echo date("Y년 m월"); }</strong></span>
+                <span id="calendar-caption-nextbtn" class="calendar-caption-sprite" onClick="changeCalendar('next');" title="다음달"></span>
+            </div>
+            <div id="calendar-close-btn" class="calendar-caption-sprite" title="닫기" onclick="closeCalendar()"></div>
+        </caption>
+        <thead>
+            <tr>
+                <th scope="col">일</th>	<th scope="col">월</th><th scope="col">화</th><th scope="col">수</th><th scope="col">목</th><th scope="col">금</th><th scope="col">토</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>

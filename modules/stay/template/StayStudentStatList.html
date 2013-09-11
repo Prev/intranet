@@ -1,0 +1,28 @@
+<div id="main-content-stats">
+	<div class="balloon"><div class="balloon-stats-abled"></div></div>
+	<ul id="main-content-stats-headline">
+		<li class="main-content-stats-grade">학년</li><li>1반</li><li>2반</li><li>3반</li><li>4반</li><li>5반</li><li>6반</li><li class="total">소계</li><li>조식</li><li>중식</li><li>석식</li><li>간식</li><li>숙박</li>
+	</ul>
+	{@ foreach (array(array('grade1', '1학년'),array('grade2', '2학년'),array('grade3', '3학년'),array('whole', '총계')) as $rowHeaderName) : }
+		<condition do="$rowHeaderName[0]=='whole'">
+			<true>
+				<ul id="main-content-stats-finalline">
+			</true>
+			<false>
+				<ul class="main-content-stats-statline">
+			</false>
+		</condition>
+		<li class="main-content-stats-grade">{$rowHeaderName[1]}</li>
+		{@ foreach (array('class1','class2','class3','class4','class5','class6','wholeclass','breakfast','lunch','dinner','snack','sleep') as $key) : }
+			<condition do="$key=='wholeclass'">
+				<true>
+					<li class="total">{getGradeStayStatData($rowHeaderName[0],$key)}</li>
+				</true>
+				<false>
+					<li>{getGradeStayStatData($rowHeaderName[0],$key)}</li>
+				</false>
+			</condition>
+		{@ endforeach; }
+		</ul>
+	{@ endforeach; }
+</div>

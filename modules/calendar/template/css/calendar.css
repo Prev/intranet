@@ -1,0 +1,23 @@
+#calendar{ position:absolute; padding:9px 12px; border:1px solid #CCC; background-color:#fff; display:none }
+#calendar{-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
+
+#calendar-table{ margin:0; padding:0; border:0 }
+#calendar-table caption{ margin:0 auto; padding:0 0 2px 5px; color:#000; font-size:11px; font-weight:bold; text-align:left; *zoom:1 }
+#calendar-table caption:after{ content:""; display:block; clear:both }
+#calendar-caption-title{margin:0 5px;}
+#calendar-table caption #calendar-caption-text{ float:left }
+#calendar-table caption #calendar-close-btn{ float:right; margin-right:3px }
+
+.calendar-caption-sprite{ display:inline-block; background-image:url(../img/sprite3.png); cursor:pointer }
+#calendar-table caption #calendar-caption-prevbtn{ width:6px; height:7px; background-position:-40px 0 }
+#calendar-table caption #calendar-caption-nextbtn{ width:6px; height:7px; background-position:-46px 0 }
+#calendar-table caption #calendar-close-btn{ width:15px; height:14px; background-position:-52px 0 }
+
+#calendar-table tr{ border:none; padding:0 }
+#calendar-table th{ width:21px; height:19px; border:none; padding:0; font-size:11px; font-weight:normal }
+#calendar-table td{ width:21px; height:19px; border:none; padding:0; font-family:tahoma; font-size:11px; text-align:center; color:#000 }
+#calendar-table td span{ color:#444; text-decoration:none; cursor:pointer; }
+#calendar-table td span:hover{ text-decoration:underline }
+#calendar-table td span strong{ color:#ed432a; font-weight:bold; text-decoration:underline }
+
+#stay-manage-deadline-right{position:relative}

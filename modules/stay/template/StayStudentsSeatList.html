@@ -1,0 +1,38 @@
+<ul>
+	{@
+		$setAlphabet = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H','I','J','K','L');
+	}
+	{@ for ($i=0; $i<12; $i++) :}
+		<condition do="$i%2==0">
+			<true>
+				<li><dl>
+			</true>
+			<false>
+				<li class="seat_row_pad"><dl>
+			</false>
+		</condition>
+
+		{@ for ($j=1; $j<=9; $j++) :}
+			{getSeats($setAlphabet[$i], $j)}
+		{@ endfor;}
+		<dd class="seat_col_pad"></dd>
+
+		{@ for ($j=10; $j<=18; $j++) :}
+			{getSeats($setAlphabet[$i], $j)}
+		{@ endfor;}
+		</dl></li>
+	{@ endfor;}
+	<li><dl>
+		{@ for($i=1; $i<=7; $i++) : }
+			{getSeats('M', $i)}
+		{@ endfor;}
+	</dl></li>
+	<li><dl>
+		{@ for($i=1; $i<=7; $i++) : }
+			{getSeats('N', $i)}
+		{@ endfor;}
+	</dl></li>
+	<li id="seat-note-li">
+		<div class="seat_notes" id="seat_notes"></div>
+	</li>
+</ul>

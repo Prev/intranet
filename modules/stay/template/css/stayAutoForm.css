@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+html,body {  margin: 0; padding: 0; font-family:나눔고딕,NanumGothic,돋움,Dotum,sans-serif; overflow-x:hidden }
+body,input,textarea,select,button,table { font-family:나눔고딕,NanumGothic,돋움,Dotum,sans-serif; }
+button { border:none; cursor:pointer; border-radius:3px }
+button:active { box-shadow: inset 2px 2px 3px rgba(0,0,0,0.2); }
+ul,ol { margin: 0; padding: 0; list-style: none }
+li { margin: 0; padding: 0 }
+dl,dt,dd{ margin:0; padding:0 }
+a img{ border:none; outline:none }
+input[type=radio],input[type="checkbox"] { vertical-align:middle; }
+
+
+.hot-pink{ color:#F39 }
+.soft{ color:#999 }
+
+#wrap { text-align:left; background-color:#FFF; width:600px; font-size:12px; }
+#wrap #popup-title { background-color:#3A3A3A; padding:18px 0px 18px 25px; }
+#wrap #popup-title-text { width:151px; height:19px; background:url(../img/my_goingout.png) 0 0; color:transparent; font-size:0px }
+
+#wrap #content{ padding:24px; padding-bottom:5px }
+
+#wrap #content #content-header{ *zoom:1 }
+#wrap #content #content-header:after{ content:""; display:block; clear:both }
+#wrap #content #content-header #describe{ float:left }
+#wrap #content #content-header #add-btn-container{ float:right }
+#wrap #content #content-header #add-btn-container #add-btn{ width:151px; height:28px; background:url(../img/my_goingout.png) 0px -19px; }
+
+#wrap #content #goingout-list{ margin:20px 0; border-bottom:1px solid #CCC }
+#wrap #content #goingout-list dl dt{ padding:10px 5px; background-color:#EEE; border-top:1px solid #CCC; border-bottom:1px solid #CCC }
+#wrap #content #goingout-list dl dd{ padding:10px 5px; line-height:1.5em; border-bottom:1px solid #CCC }
+#wrap #content #goingout-list dl dd.final{ border-bottom:none }
+
+#wrap #content #goingout-list dl dt,
+#wrap #content #goingout-list dl dd{ *zoom:1 }
+#wrap #content #goingout-list dl dt:after,
+#wrap #content #goingout-list dl dd:after{ content:""; display:block; clear:both }
+
+#wrap #content #goingout-list dl div{ text-align:center }
+#wrap #content #goingout-list dl .gl-day{ float:left; width:100px }
+#wrap #content #goingout-list dl .gl-meals{ float:left; width:110px }
+#wrap #content #goingout-list dl .gl-goingout{ float:left; width:120px }
+#wrap #content #goingout-list dl .gl-extra-caption{ float:left; width:120px }
+#wrap #content #goingout-list dl .gl-tools{ float:left; width:90px }
+
+#wrap #content #goingout-list dl dd .gl-meals,
+#wrap #content #goingout-list dl dd .gl-goingout,
+#wrap #content #goingout-list dl dd .gl-extra-caption{ padding-top:9px }
+#wrap #content #goingout-list dl dd .gl-tools{ padding-top:9px }
+#wrap #content #goingout-list dl dd .gl-tools button{ color:transparent; font-size:0px }
+#wrap #content #goingout-list dl dd .gl-tools .edit-btn { width:32px; height:19px; padding-top:3px; margin-right:5px; background:url(../img/my_goingout.png) 0px -47px; }
+#wrap #content #goingout-list dl dd .gl-tools .delete-btn { width:32px; height:19px; padding-top:3px; background:url(../img/my_goingout.png) -32px -47px; }

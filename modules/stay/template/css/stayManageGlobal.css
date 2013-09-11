@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+.popup-content ul li{ margin:5px 0; color:#444 }
+.popup-content ul li span{ display:inline-block; width:100px; color:#222; font-weight:bold }
+
+#main-content-header #main-content-title{ background-position:0px -69px; width:89px; height:22px }
+
+/* #wrap #main-content #main-content-header #main-content-header-sidetools  */
+#tool-stay-library{ width:151px; height:28px; background-image:url(../img/btn_set_static_seat.png); cursor:pointer }
+
+/* #wrap #main-content #main-content-progress */
+#main-content-progress { width:750px; height:36px; margin-bottom:50px; background-image:url(../img/JanryuProgress.png); }
+
+/* #stay-request #auto-form-container */
+#auto-form-container{ margin-left:5px }
+#auto-form-help{ width:16px; height:16px; display:inline-block; *zoom:1; vertical-align:middle; margin-left:5px; background:transparent url(../img/auto_form_sprite.png) no-repeat -14px 0px }
+#auto-form-help:active{ box-shadow:none }
+
+/* #stay-request #auto-form-popup */
+#auto-form-popup{ position:absolute; width:385px; visibility:hidden; left:555px; top:480px}
+#auto-form-popup #auto-form-popup-top-balloon{ position:absolute; z-index:2; width:12px; height:7px; margin-left:334px; background-image:url('../img/hoverballoon_top.png') }
+#auto-form-popup #auto-form-popup-content{ background-color:white; border:1px solid #CCC; padding:8px; margin-top:6px }
+#auto-form-popup #auto-form-popup-content #auto-form-popup-article .auto-form-popup-article-title {margin-bottom: 6px; }
+#auto-form-popup #auto-form-popup-content #auto-form-popup-article .auto-form-popup-article-text {margin-bottom: 3px; }
+#auto-form-popup #auto-form-popup-content #auto-form-popup-title{ font-weight:bold; margin-bottom: 5px; }
+
+
+
+
+#main-content-se-result dl dd ul.none-data{ text-align:center; padding:140px 10px; border-bottom:none }

@@ -1,0 +1,76 @@
+<condition do="!count($stayData)">
+	<true>
+		<dd><ul class="none-data">잔류 데이터가 없습니다.</ul></dd>
+	</true>
+	<false>
+		{@ for ($i=0; $i<count($stayData); $i++) :}
+
+		<condition do="$isCalledByGetContent ||
+		(($allowedClass[$stayData[$i]['grade']-1 ][$stayData[$i]['class']-1 ]) &&
+		(($stayData[$i]->gender == 'm' && array_search('male', $options) !== false) || ($stayData[$i]->gender == 'f' && array_search('female', $options) !== false)) &&
+		 ($stayData[$i]->dormitory_type == 1 && array_search('bon', $options)) || ($stayData[$i]->dormitory_type == 2 && array_search('hak', $options)))">
+
+			<true>
+				<condition do="$callType==3">
+					<true>
+						<dd><ul id="student_number_{$stayData[$i]->student_number}" onclick="getStudent(this,{$stayData[$i]->student_number})">
+					</true>
+					<false>
+						<dd><ul>
+					</false>
+				</condition>
+
+				<li class="sr-student-no">{$stayData[$i]->student_number}</li>
+				<li class="sr-student-name">{$stayData[$i]->user_name}</li>
+				<li class="sr-ox">{getOX($stayData[$i]->apply_breakfast)}</li>
+				<li class="sr-ox">{getOX($stayData[$i]->apply_lunch)}</li>
+				<li class="sr-ox">{getOX($stayData[$i]->apply_dinner)}</li>
+				<li class="sr-ox">{getOX($stayData[$i]->apply_snack)}</li>
+				<li class="sr-ox">{getOX($stayData[$i]->apply_sleep)}</li>
+				
+				<switch var="$stayData[$i]->library_seat">
+					<case value="AUTO">
+						<li class="sr-seat null">자동 선택</li>
+					</case>
+					<case value="">
+						<li class="sr-seat null">미신청</li>
+					</case>
+					<default>
+						<li class="sr-seat">{$stayData[$i]->library_seat}</li>
+					</default>
+				</switch>
+
+				<condition do="$stayData[$i]->goingout">
+					<true>
+						<li class="sr-goingout">{$stayData[$i]->goingout}</li>
+					</true>
+					<false>
+						<li class="sr-goingout null">미신청</li>
+					</false>
+				</condition>
+				
+				<condition do="$stayData[$i]->extra_caption">
+					<true>
+						<li class="sr-etc">{$stayData[$i]->extra_caption}</li>
+					</true>
+					<false>
+						<li class="sr-etc null">없음</li>
+					</false>
+				</condition>
+
+				<condition do="$callType==3">
+					<true>
+						<li class="sr-hidden">{date('H', strtotime($stayData[$i]->goingout_start_time))}</li>
+						<li class="sr-hidden">{date('i', strtotime($stayData[$i]->goingout_start_time))}</li>
+						<li class="sr-hidden">{date('H', strtotime($stayData[$i]->goingout_end_time))}</li>
+						<li class="sr-hidden">{date('i', strtotime($stayData[$i]->goingout_end_time))}</li>
+						<li class="sr-hidden">{$stayData[$i]->goingout_cause}</li>
+					</true>
+					<false></false>
+				</condition>
+				</ul></dd>
+		</true>
+	</condition>
+		{@ endfor;}
+	</false>
+</condition>

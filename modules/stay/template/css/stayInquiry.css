@@ -1,0 +1,83 @@
+@charset "utf-8";
+
+#stay-request-seat{ padding:0 !important }
+#stay-request-seat-top{ padding:0 !important; text-align:center; font-size:14px }
+
+/* #wrap #main-content #main-content-header */
+#main-content-header #main-content-title{ background-position:0px -47px; width:90px; height:22px }
+
+/* #wrap #main-content #main-content-header #main-content-header-sidetools  */
+#tool-stay-library{ width:151px; height:28px; background-image:url(../img/sprite_btns_request_inquiry.png); background-position:0 -160px }
+
+/* #wrap #main-content #main-content-stats */
+#main-content-stats{ width:750px }
+#main-content-stats ul{ padding-left:20px; *zoom:1; border-bottom:1px solid #DDD }
+#main-content-stats ul:after{ content:""; display:block; clear:both; }
+
+#main-content-stats ul.main-content-stats-statline{ color:#666 }
+#main-content-stats ul#main-content-stats-headline{ background-color:#E7E7E7; color:#555; border-bottom:none }
+#main-content-stats ul#main-content-stats-finalline{ background-color:#f3f3f3; color:#555 }
+
+#main-content-stats ul li{ width:40px; height:22px; float:left; padding:8px 5px 0px 5px; text-align:right }
+#main-content-stats ul li.total{ color:red; padding-right:35px; padding-left:18px }
+
+#main-content-stats ul#main-content-stats-headline li.total{ color:#333 }
+.main-content-stats-grade{ text-align:center !important }
+
+
+/* #wrap #main-content #main-content-options */
+#main-content-options{ width:750px; background-color:#E7E7E7; margin-top:30px }
+#main-content-options:after{ content:""; display:block; clear:both; }
+
+#main-content-options #main-content-option1{ float:left; width:500px; margin-left:15px; padding:5px 0px }
+#main-content-options #main-content-option2{ float:left; border-left:1px solid #C2C2C2; margin:12px 0px; padding:5px 0px 5px 10px; }
+#main-content-options #main-content-option2 ul li { width:85px; }
+
+#main-content-options ul { margin:8px 0px; padding:0px 8px; *zoom:1; }
+#main-content-options ul:after { content:""; display:block; clear:both; }
+#main-content-options ul li { float:left; padding:0px 7px; list-style:none; }
+#main-content-options ul li.grade-title{ margin-top:2px }
+
+/* #wrap #main-content #main-content-se-btn-container */
+#main-content-se-btn-container{ margin:17px 0 23px 0 }
+#se-btn{ display:block; width:149px; height:33px; margin:0 auto; background-image:url(../img/sprite_btns_request_inquiry.png); background-position:0 -216px; color:transparent; font-size:0px }
+
+/* #wrap #main-content #main-content-se-result */
+#main-content-se-result{ width:750px; color:#333; margin-top:30px }
+
+#main-content-se-result dl ul{ padding:2px 10px; border-bottom:1px solid #D6D6D6; *zoom:1 }
+#main-content-se-result dl ul:after { content:""; display:block; clear:both; }
+#main-content-se-result dl ul.final{ border-bottom:none; }
+
+#main-content-se-result dl dd ul.none-data{ text-align:center; padding:140px 10px; border-bottom:none }
+
+#main-content-se-result dl ul li{ float:left; padding:5px; text-align:center }
+#main-content-se-result dl ul li.sr-student-no{ width:40px }
+#main-content-se-result dl ul li.sr-student-name{ width:70px }
+#main-content-se-result dl ul li.sr-ox{ width:28px }
+#main-content-se-result dl ul li.sr-seat{ width:55px  }
+#main-content-se-result dl ul li.sr-goingout{ width:160px }
+#main-content-se-result dl ul li.sr-etc{ width:145px }
+#main-content-se-result dl ul li.null{ color:#AAA; }
+
+#main-content-se-result #main-content-se-result-dds{ height:300px; overflow:auto; border-bottom:1px solid #D6D6D6 }
+#main-content-se-result dl dt ul{ background-color:#E7E7E7; *zoom:1 }
+#main-content-se-result dl dt ul:after { content:""; display:block; clear:both; }
+
+#main-content-se-result dl dd ul li.sr-goingout{ font-size:12px }
+#main-content-se-result dl dd ul li.sr-etc{ font-size:12px }
+
+
+/* #wrap #main-content #main-content-save-container */
+#main-content-save-container{ margin-top:20px; text-align:center; color:#666 }
+#main-content-save-container #main-content-save-text{ display:inline-block; vertical-align:top; margin:7px 5px 0 0 }
+#main-content-save-container #excel-save-btn{ display:inline-block; width:151px; height:28px; background-image:url(../img/sprite_btns_request_inquiry.png); background-position:0 -188px; color:transparent; font-size:0px }
+
+
+/* Balloon */
+.balloon {position: absolute; width: 0px; height: 0px;}
+.balloon .balloon-date-abled, .balloon-stat-abled, .balloon-option-abled, .balloon-result-abled {position: relative; background: url('../img/balloon_inquiry_sprite.png') no-repeat; width: 34px; height: 43px; float: left; left: -20px; top: -29px;}
+.balloon .balloon-date-abled {background-position: 0px -43px;} 
+.balloon .balloon-stat-abled {background-position: -34px -43px;} 
+.balloon .balloon-option-abled {background-position: -68px -43px;}
+.balloon .balloon-result-abled {background-position: -102px -43px;} 

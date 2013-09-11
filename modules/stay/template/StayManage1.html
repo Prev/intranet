@@ -1,0 +1,176 @@
+<import path="css/stayManage1.css">
+<import path="css/stayManageGlobal.css">
+<import path="css/default.css">
+<import path="css/popup.css">
+    
+<import path="/static/js/jquery.js">
+<import path="js/stayManageSetting.js">
+<import path="js/popup.js">
+
+<div id="popup-layout-bg"></div>
+<div id="popup-box" class="popup-box">
+	<div id="popup-title-bar" class="popup-title-bar">
+		<div id="popup-title" class="popup-title"></div>
+		<button id="close-button" class="close-button">X</button>
+	</div>
+	<div id="popup-content" class="popup-content"></div>
+	<div id="popup-bottom-bar" class="popup-bottom-bar">
+		<div id="popup-bottom-text" class="popup-bottom-text"></div>
+		<button id="ok-button">확인</button>
+	</div>
+</div>
+<div id="c-popup-box" class="popup-box">
+	<div id="c-popup-title-bar" class="popup-title-bar">
+		<div id="c-popup-title" class="popup-title"></div>
+		<button id="c-close-button" class="close-button">X</button>
+	</div>
+	<div id="c-popup-content" class="popup-content"></div>
+	<div id="c-popup-bottom-bar" class="popup-bottom-bar">
+		<div id="c-popup-bottom-text" class="popup-bottom-text"></div>
+		<div class="popup-btn-container">
+			<button id="c-yes-button">예</button>
+			<button id="c-no-button">아니요</button>
+		</div>
+	</div>
+</div>
+
+<div id="main-content-header">
+	<div id="main-content-title">잔류관리</div>
+	<div id="main-content-header-sidetools">
+		<button id="tool-stay-library">도서관 고정 좌석 설정</button>
+	</div>
+</div>
+{getContent('dateSelector', 'dispDateSelector', array('recentStayDates' => $recentStayDates, 'showPast' => true, 'isTeacher' => true))}  
+<div id="main-content-progress">
+</div>
+<form name="stay_manage_data" action="{getURL('stay', 'procRegisterStayInfo')}" method="post">
+    <div id="stay-manage">
+    	<input id="stay-manage-date" name="date" style="display:none" value="{$selectedDate}" />
+        <div id="stay-manage-title">
+    <div class="balloon"><div class="balloon-set-name-abled"></div></div>잔류 제목 설정 : <input id="stay-manage-title-text" name="stay_title" type="text" value="" maxlength="8"> <span id="stay-manage-title-tip">잔류 제목은 4~5자 정도가 적당합니다. (최대 8자)</span>
+        </div>
+        <div id="stay-manage-deadline">
+        <div class="balloon"><div class="balloon-set-deadline-abled"></div></div>
+            <div id="stay-manage-deadline-left">잔류 신청 마감일 설정</div>
+            <div id="stay-manage-deadline-mid">
+            {getContent('calendar', 'dispCalendar')}
+            <ul>
+                <li>
+                    <div>1학년: <input id="stay-manage-deadline-grade-1" name="stay_deadlines_grade1" class="stay-manage-deadline-date" type="text" value=""></div>
+                    <div class="stay-manage-deadline-calendar" onclick="showCalendar(this, 1);"></div>
+               	     <div class="stay-manage-deadline-time">
+                        <input id="stay-manage-deadline-time1_hour" name="stay_deadlines_time1_hour" class="stay-manage-deadline-time-hour" type="text" maxlength="2" value="21" />시
+                        <input id="stay-manage-deadline-time1_min" name="stay_deadlines_time1_min" class="stay-manage-deadline-time-min" type="text" maxlength="2" value="30" />분
+                    </div>
+                    <div class="stay-manage-deadline-erase" onclick="clearDeadline(1)"></div>
+                </li>
+                <li>
+                    <div>2학년: <input id="stay-manage-deadline-grade-2" name="stay_deadlines_grade2" class="stay-manage-deadline-date" type="text" value=""></div>
+                    <div class="stay-manage-deadline-calendar" onclick="showCalendar(this, 2);"></div>
+                    <div class="stay-manage-deadline-time">
+                        <input id="stay-manage-deadline-time2_hour" name="stay_deadlines_time2_hour" class="stay-manage-deadline-time-hour" type="text" maxlength="2" value="21" />시
+                        <input id="stay-manage-deadline-time2_min" name="stay_deadlines_time2_min" class="stay-manage-deadline-time-min" type="text" maxlength="2" value="30" />분
+                    </div>
+                    <div class="stay-manage-deadline-erase" onclick="clearDeadline(2)"></div>
+                </li>
+                <li>
+                    <div>3학년: <input id="stay-manage-deadline-grade-3" name="stay_deadlines_grade3" class="stay-manage-deadline-date" type="text" value=""></div>
+                    <div class="stay-manage-deadline-calendar" onclick="showCalendar(this, 3);"></div>
+                    <div class="stay-manage-deadline-time">
+                        <input id="stay-manage-deadline-time3_hour" name="stay_deadlines_time3_hour" class="stay-manage-deadline-time-hour" type="text" maxlength="2" value="21" />시
+                        <input id="stay-manage-deadline-time3_min" name="stay_deadlines_time3_min" class="stay-manage-deadline-time-min" type="text" maxlength="2" value="30" />분
+                    </div>
+                    <div class="stay-manage-deadline-erase" onclick="clearDeadline(3)"></div>
+                </li>
+            </ul>
+            </div>
+            <div id="stay-manage-deadline-right">
+            가장 마지막 잔류 신청 마감일을 기준으로 '잔류 신청 내역 점검' 단계로 넘어갑니다. 특정 학년의 마감일을 설정하지 않으면 해당 학년의 잔류 신청이 제한됩니다.
+            </div>
+        </div>
+        <div id="stay-manage-meal">
+        <div class="balloon"><div class="balloon-set-meal-abled"></div></div>
+            <ul>
+                <li>
+                    <span>조식 급식 신청 </span>
+                    <select name="allowlevel_breakfast">
+                        <option value="3">필수</option>
+                        <option value="2">자율</option>
+                        <option value="1">불가</option>
+                    </select>
+                </li>
+                <li>
+                    <span>중식 급식 신청</span>
+                    <select name="allowlevel_lunch">
+                        <option value="3">필수</option>
+                        <option value="2">자율</option>
+                        <option value="1">불가</option>
+                    </select>
+                </li>
+                <li>
+                    <span>석식 급식 신청</span>
+                    <select name="allowlevel_dinner">
+                        <option value="3">필수</option>
+                        <option value="2">자율</option>
+                        <option value="1">불가</option>
+                    </select>
+                </li>
+                <li id="stay-manage-meal-forhelp">
+                    <span>간식 급식 신청</span>
+                    <select name="allowlevel_snack">
+                        <option value="3">필수</option>
+                        <option value="2">자율</option>
+                        <option value="1">불가</option>
+                    </select>
+                </li>
+                <li><button id="auto-form-help" onclick="return false" onmouseover="showAutoFormHelp()" onmouseout="hideAutoFormHelp()"></button></li>
+                <div id="auto-form-popup">
+                      <div id="auto-form-popup-top">
+                          <div id="auto-form-popup-top-balloon"></div>
+                      </div>
+                      <div id="auto-form-popup-content">
+                          <div id="auto-form-popup-title">급식 설정</div>
+                          <div id="auto-form-popup-article">
+                              <div class="auto-form-popup-article-title">급식 신청 가능 여부와 필수 신청 여부를 선택할 수 있습니다.</div>
+                              <div class="auto-form-popup-article-text"><font color="#d8006c">필수</font>&nbsp;&nbsp;잔류 신청 시 식사를 반드시 신청해야 합니다. (자동 신청)</div>
+                              <div class="auto-form-popup-article-text"><font color="#d8006c">자율</font>&nbsp;&nbsp;본인의 의사에 따라 식사 여부를 선택할 수 있습니다.</div>
+                              <div class="auto-form-popup-article-text"><font color="#d8006c">불가</font>&nbsp;&nbsp;급식을 하지 않아 신청을 할 수 없습니다.</div>
+                          </div>
+                      </div>
+				</div>
+            </ul>
+            
+        </div>
+        <div id="stay-manage-goingout">
+        <div class="balloon"><div class="balloon-set-meal-abled"></div></div>
+            <input type="checkbox" name="allow_goingout" value="1"> 외출을 허용합니다. (외출 가능 시간: <input class="stay-manage-goingout-time" name="goingout_start_time_hour" type="text" maxlength="2">시 <input class="stay-manage-goingout-time" name="goingout_start_time_min" type="text" maxlength="2">분부터 <input class="stay-manage-goingout-time" name="goingout_end_time_hour" type="text" maxlength="2">시 <input class="stay-manage-goingout-time" name="goingout_end_time_min" type="text" maxlength="2">분까지)
+        </div>
+        <div id="stay-manage-sleep">
+        	<div class="balloon"><div class="balloon-set-sleep-abled"></div></div>
+            <input type="checkbox" name="allow_sleep" value="1"> 기숙사 숙박 신청을 허용합니다.
+        </div>
+        <div id="stay-manage-popup">
+        	<div class="balloon"><div class="balloon-set-popup-abled"></div></div>
+            <div id="stay-manage-popup-left">
+                <textarea rows="4" cols="44" name="popup_notice_text" disabled="disabled" class="disabled"></textarea>
+            </div>
+            <div id="stay-manage-popup-right">
+                <dl>
+                    <dt>
+                        <input type="checkbox" name="popup_notice_check">팝업 공지를 표시합니다.
+                    </dt>
+                    <dd>- 잔류 신청 화면에서 이 날짜를 선택하면 표시되는 팝업 공지입니다.</dd>
+                    <dd>&nbsp;&nbsp;중요한 내용을 공지해야 할 때 사용하시기 바랍니다.</dd>
+                    <dd>- [bold]와 [/bold]로 내용을 감싸주시면 강조 처리되어 표시됩니다.</dd>
+                </dl>
+            </div>
+        </div>
+        <div id="stay-manage-temp-end">
+        <div class="balloon"><div class="balloon-temp-end-abled"></div></div>
+            <input type="checkbox" name="temp_disabled" value="1"> 잔류 신청을 임시 마감합니다. <span id="stay-manage-temp-end-tip">이 항목을 체크하면 잔류 신청 접수를 잠시 중단할 수 있습니다.</span>
+        </div>
+        <div id="stay-manage-apply">
+            <input type="button" id="apply-setting" onclick="registerStayInfo();" value="" />
+        </div>
+    </div>
+</form>
