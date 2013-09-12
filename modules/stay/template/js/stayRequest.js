@@ -364,8 +364,7 @@ function cancleStay() {
 }
 
 function openGetStartPopup() {
-	document.getElementById("popup-box").style.width = "auto";
-	openPopup("잔류신청 튜토리얼 영상", '<iframe width="640" height="360" src="//www.youtube.com/embed/w3cZBFXTXkw" frameborder="0" allowfullscreen></iframe>', " ", function () { document.getElementById("popup-content").innerHTML = ""; closePopup(); });
+	openPopup("잔류신청 튜토리얼 영상", '<iframe width="640" height="360" src="//www.youtube.com/embed/w3cZBFXTXkw" frameborder="0" allowfullscreen></iframe>', " ", function () { document.getElementById("popup-content").innerHTML = ""; closePopup(); }, {"width":"auto"});
 }
 
 function openGetClosePopup(dateObj, deadlineObj, week) {

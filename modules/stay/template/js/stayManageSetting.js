@@ -201,10 +201,7 @@ function closeStayInfo(){
 	deadlineGrade2 = new Date(form.stay_deadlines_grade2.value);
 	deadlineGrade3 = new Date(form.stay_deadlines_grade3.value);
 
-	openConfirmPopup2("정말 잔류 신청을 즉시 마감 하시겠습니까?",
-		"아직 설정된 잔류 마감일이 지나지 않았습니다.<br />" +
-		"잔류를 마감하시면 학생들이 더 이상 잔류 신청을 할 수 없습니다.<br />" +
-		"아래 내용의 잔류를 지금 즉시 마감하시겠습니까?",
+	openConfirmPopup("정말 잔류 신청을 즉시 마감 하시겠습니까?",
 		"<ul>" + 
 		"<li><span>잔류명</span>"+(form.stay_title.value ? form.stay_title.value : '제목없음')+"</li>" +
 		"<li><span>잔류일</span>"+form.date.value+"</li>" +
@@ -219,6 +216,10 @@ function closeStayInfo(){
 		"</ul>",
 		"지금 잔류 신청을 마감해도 잔류 신청자가 확정되기 전까지는 마감을 취소할 수 있습니다.",
 		function () { location.href=closeStayInfoURL + '&date=' + date },
-		function () { closeConfirmPopup2(); return false; }
+		function () { closeConfirmPopup(); return false; },
+		null,
+		"아직 설정된 잔류 마감일이 지나지 않았습니다.<br />" +
+		"잔류를 마감하시면 학생들이 더 이상 잔류 신청을 할 수 없습니다.<br />" +
+		"아래 내용의 잔류를 지금 즉시 마감하시겠습니까?"
 	);		
 }

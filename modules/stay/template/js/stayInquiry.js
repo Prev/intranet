@@ -3,7 +3,16 @@ var checkBoxes = { "grade1":[], "grade2":[], "grade3":[], "extra":[] };
 var seatBalloon;
 var seatBalloonText;
 
+var librarySeatCode;
+
 window.addEventListener("load", function () {
+	librarySeatCode = document.getElementById("library-seat-wrap").innerHTML;
+	document.getElementById("library-seat-wrap").innerHTML = "";
+
+	//initLibrarySeat();
+});
+
+function initLibrarySeat() {
 	for (var i=1; i<=3; i++) {
 		for (var j=1; j<=6; j++)
 			checkBoxes["grade"+i][j] = document.getElementById("cb-" + i + "-" + j);
@@ -12,7 +21,7 @@ window.addEventListener("load", function () {
 	
 	seatBalloon = document.getElementById("seat-balloon");
 	seatBalloonText = document.getElementById("seat-balloon-text");
-});
+}
 function cbh_a(target, grade) {
 	for (var i=1; i<=6; i++)
 		checkBoxes["grade"+grade][i].checked = target.checked;
@@ -36,7 +45,8 @@ function getSeResult() {
 }
 
 function openSeatPopup() {
-	openPopup("도서관 좌석 현황 조회", null, "");
+	openPopup("도서관 좌석 현황 조회", librarySeatCode, "", null, {"width":"auto"});
+	initLibrarySeat();
 }
 
 function saveToXlsFile() {

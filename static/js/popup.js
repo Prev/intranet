@@ -1,6 +1,7 @@
 var popupBox, popupInterval, popupInterval2;
 var cPopupBox, cPopupInterval, cPopupInterval2;
 var prefixes = ["webkit", "o", "moz"];
+var popupLayoutBg;
 
 function getPrefixedCSS(css) {
 	var arr = [];
@@ -11,18 +12,53 @@ function getPrefixedCSS(css) {
 	return arr;
 }
 
-function openPopup(title, content, bottomText, callBack) {
-	popupBox = document.getElementById("popup-box");
-	var popupBg = document.getElementById("popup-layout-bg");
-	
+function showPopupLayoutBg() {
+	if (!popupLayoutBg) {
+		popupLayoutBg = document.createElement("div");
+		popupLayoutBg.id = "popup-layout-bg";
+
+		document.body.appendChild(popupLayoutBg);
+	}
+
+	popupLayoutBg.style.visibility = "visible";
 	document.body.style.overflow = "hidden";
-	popupBg.style.visibility = "visible";
-	
+}
+
+function hidePopupLayoutBg() {
+	if (popupLayoutBg)
+		popupLayoutBg.style.visibility = "hidden";
+
+	document.body.style.overflow = "auto";
+}
+
+function openPopup(title, content, bottomText, callBack, styles) {
+	if (popupBox)
+		document.body.removeChild(popupBox);
+
+	popupBox = document.createElement("div");
+	popupBox.id = "popup-box";
+	popupBox.className = "popup-box";
+	popupBox.innerHTML = 
+	'<div id="popup-title-bar" class="popup-title-bar">' +
+		'<div id="popup-title" class="popup-title">'+(title ? title : '')+'</div>' +
+		'<button id="close-button" class="close-button">X</button>' +
+	'</div>' +
+	'<div id="popup-content" class="popup-content">'+(content ? content : '')+'</div>' +
+	'<div id="popup-bottom-bar" class="popup-bottom-bar">' +
+		'<div id="popup-bottom-text" class="popup-bottom-text">'+(bottomText ? bottomText : '')+'</div>' +
+		'<button id="ok-button">확인</button>' +
+	'</div>';
 	popupBox.style.visibility = "visible";
+
+	if (styles) {
+		for (var i in styles) {
+			popupBox.style[i] = styles[i];
+		}
+	}
+	document.body.appendChild(popupBox);
+
+	showPopupLayoutBg();
 	
-	if (title) document.getElementById("popup-title").innerHTML = String(title);	
-	if (content) document.getElementById("popup-content").innerHTML = String(content);
-	if (bottomText) document.getElementById("popup-bottom-text").innerHTML = String(bottomText);
 	
 	var prefixedCSS = getPrefixedCSS("transform");
 	for (var i=0; i<prefixedCSS.length; i++)
@@ -69,8 +105,6 @@ function openPopup(title, content, bottomText, callBack) {
 	else
 		popupBox.style.marginTop = (-1 * popupBox.offsetHeight / 2) + "px";
 	
-	window.addEventListener("keydown", keyClosePopupHandler);
-	
 	if (callBack) {
 		document.getElementById("ok-button").onclick = callBack;
 		document.getElementById("close-button").onclick = callBack;
@@ -78,6 +112,8 @@ function openPopup(title, content, bottomText, callBack) {
 		document.getElementById("ok-button").onclick = closePopup;
 		document.getElementById("close-button").onclick = closePopup;
 	}
+
+	window.addEventListener("keydown", keyClosePopupHandler);
 }
 
 function keyClosePopupHandler(event) {
@@ -92,17 +128,17 @@ function keyClosePopupHandler(event) {
 }
 
 function closePopup() {
-	document.body.style.overflow = "auto";
-	document.getElementById("popup-layout-bg").style.visibility = "hidden";
-	document.getElementById("popup-box").style.visibility = "hidden";
+	if (!popupBox) return;
+
+	hidePopupLayoutBg();
+	popupBox.style.visibility = "hidden";
 	
 	var prefixedCSS = getPrefixedCSS("transform");
 	for (var i=0; i<prefixedCSS.length; i++) {
 		var transform = popupBox.style[prefixedCSS[i]];
 		if (transform) {
-			document.body.style.overflow = "hidden";
-			document.getElementById("popup-layout-bg").style.visibility = "visible";
-			document.getElementById("popup-box").style.visibility = "visible";
+			showPopupLayoutBg();
+			popupBox.style.visibility = "visible";
 			break;
 		}
 	}
@@ -119,9 +155,8 @@ function closePopup() {
 			if (scaleX < 0.05 || scaleY < 0.05) {
 				popupBox.style[prefixedCSS[i]] = "scale(0,0)";
 				popupBox.style.opacity = 0;
-				document.body.style.overflow = "auto";
-				document.getElementById("popup-layout-bg").style.visibility = "hidden";
-				document.getElementById("popup-box").style.visibility = "hidden";
+				hidePopupLayoutBg();
+				popupBox.style.visibility = "hidden";
 				
 				clearInterval(popupInterval2);
 			}else {
@@ -132,19 +167,40 @@ function closePopup() {
 	}, 30);
 }
 
-function openConfirmPopup(title, content, bottomText, onTrueCallBack, onFalseCallBack) {
-	cPopupBox = document.getElementById("c-popup-box");
-	var popupBg = document.getElementById("popup-layout-bg");
-	
-	document.body.style.overflow = "hidden";
-	popupBg.style.visibility = "visible";
+function openConfirmPopup(title, content, bottomText, onTrueCallBack, onFalseCallBack, styles, header) {
+	if (cPopupBox)
+		document.body.removeChild(cPopupBox);
+
+	cPopupBox = document.createElement("div");
+	cPopupBox.id = "c-popup-box";
+	cPopupBox.className = "popup-box";
+	cPopupBox.innerHTML = 
+	'<div id="c-popup-title-bar" class="popup-title-bar">' +
+		'<div id="c-popup-title" class="popup-title">'+(title ? title : '')+'</div>' +
+		'<button id="c-close-button" class="close-button">X</button>' +
+	'</div>' +
+	(header ? '<div id="c-popup-header" class="popup-bottom-bar">'+header+'</div>' : '') +
+	'<div id="c-popup-content" class="popup-content">'+(content ? content : '')+'</div>' +
+	'<div id="c-popup-bottom-bar" class="popup-bottom-bar">' +
+		'<div id="c-popup-bottom-text" class="popup-bottom-text">'+(bottomText ? bottomText : '')+'</div>' +
+		'<div class="popup-btn-container">' +
+			'<button id="c-yes-button">예</button>' +
+			'<button id="c-no-button">아니요</button>' +
+		'</div>' +
+	'</div>';
 	
 	cPopupBox.style.visibility = "visible";
 	
-	if (title) document.getElementById("c-popup-title").innerHTML = String(title);	
-	if (content) document.getElementById("c-popup-content").innerHTML = String(content);
-	if (bottomText) document.getElementById("c-popup-bottom-text").innerHTML = String(bottomText);
-	
+	if (styles) {
+		for (var i in styles) {
+			popupBox.style[i] = styles[i];
+		}
+	}
+
+	document.body.appendChild(cPopupBox);
+
+	showPopupLayoutBg();
+
 	var prefixedCSS = getPrefixedCSS("transform");
 	for (var i=0; i<prefixedCSS.length; i++)
 		cPopupBox.style[prefixedCSS[i]] = "scale(0, 0)";
@@ -188,113 +244,17 @@ function openConfirmPopup(title, content, bottomText, onTrueCallBack, onFalseCal
 }
 
 function closeConfirmPopup() {
-	document.body.style.overflow = "auto";
-	document.getElementById("popup-layout-bg").style.visibility = "hidden";
-	document.getElementById("c-popup-box").style.visibility = "hidden";
-	
-	var prefixedCSS = getPrefixedCSS("transform");
-	for (var i=0; i<prefixedCSS.length; i++) {
-		var transform = cPopupBox.style[prefixedCSS[i]];
-		if (transform) {
-			document.body.style.overflow = "hidden";
-			document.getElementById("popup-layout-bg").style.visibility = "visible";
-			document.getElementById("c-popup-box").style.visibility = "visible";
-			break;
-		}
-	}
-	popupInterval2 = setInterval(function () {
-		var prefixedCSS = getPrefixedCSS("transform");
-		for (var i=0; i<prefixedCSS.length; i++) {
-			var transform = cPopupBox.style[prefixedCSS[i]];
-			if (!transform) continue;
-			
-			var scales = transform.split(" ").join("").split("(")[1].split(")")[0].split(",");
-			var scaleX = parseFloat(scales[0]) + (0 - parseFloat(scales[0])) * 0.5;
-			var scaleY = parseFloat(scales[1]) + (0 - parseFloat(scales[1])) * 0.5;
-			
-			if (scaleX < 0.05 || scaleY < 0.05) {
-				cPopupBox.style[prefixedCSS[i]] = "scale(0,0)";
-				cPopupBox.style.opacity = 0;
-				document.body.style.overflow = "auto";
-				document.getElementById("popup-layout-bg").style.visibility = "hidden";
-				document.getElementById("c-popup-box").style.visibility = "hidden";
-				
-				clearInterval(popupInterval2);
-			}else {
-				cPopupBox.style[prefixedCSS[i]] = "scale("+scaleX+","+scaleY+")";
-				cPopupBox.style.opacity = scaleX;
-			}
-		}
-	}, 30);
-}
-function openConfirmPopup2(title, header, content, bottomText, onTrueCallBack, onFalseCallBack) {
-	cPopupBox = document.getElementById("c-popup-box2");
-	var popupBg = document.getElementById("popup-layout-bg");
-	
-	document.body.style.overflow = "hidden";
-	popupBg.style.visibility = "visible";
-	
-	cPopupBox.style.visibility = "visible";
-	
-	if (title) document.getElementById("c-popup-title2").innerHTML = String(title);
-	if (header) document.getElementById("c-popup-header2").innerHTML = String(header);
-	if (content) document.getElementById("c-popup-content2").innerHTML = String(content);
-	if (bottomText) document.getElementById("c-popup-bottom-text2").innerHTML = String(bottomText);
-	
-	var prefixedCSS = getPrefixedCSS("transform");
-	for (var i=0; i<prefixedCSS.length; i++)
-		cPopupBox.style[prefixedCSS[i]] = "scale(0, 0)";
-	for (var i=0; i<prefixedCSS.length; i++) {
-		var transform = cPopupBox.style[prefixedCSS[i]];
-		if (transform) {
-			cPopupBox.style.opacity = 0;
-			break;
-		}
-	}
-	cPopupInterval = setInterval(function () {
-		var prefixedCSS = getPrefixedCSS("transform");
-		for (var i=0; i<prefixedCSS.length; i++) {
-			var transform = cPopupBox.style[prefixedCSS[i]];
-			if (!transform) continue;
-			
-			var scales = transform.split(" ").join("").split("(")[1].split(")")[0].split(",");
-			var scaleX = parseFloat(scales[0]) + (1 - parseFloat(scales[0])) * 0.7;
-			var scaleY = parseFloat(scales[1]) + (1 - parseFloat(scales[1])) * 0.7;
-			
-			if (scaleX > 0.95 || scaleY > 0.95) {
-				cPopupBox.style[prefixedCSS[i]] = "scale(1,1)";
-				cPopupBox.style.opacity = 1;
-				clearInterval(cPopupInterval);
-			}else {
-				cPopupBox.style[prefixedCSS[i]] = "scale("+scaleX+","+scaleY+")";
-				cPopupBox.style.opacity = scaleX;
-			}
-		}
-	}, 30);
-	
-	cPopupBox.style.marginLeft = (-1 * cPopupBox.offsetWidth / 2) + "px";
-	if (cPopupBox.offsetHeight < 300)
-		cPopupBox.style.marginTop = ((-1 * cPopupBox.offsetHeight / 2) - 50) + "px";
-	else
-		cPopupBox.style.marginTop = (-1 * cPopupBox.offsetHeight / 2) + "px";
-	
-	document.getElementById("c-yes-button2").onclick = onTrueCallBack;
-	document.getElementById("c-no-button2").onclick = onFalseCallBack;
-	document.getElementById("c-close-button2").onclick = onFalseCallBack;
-}
+	if (!cPopupBox) return;
 
-function closeConfirmPopup2() {
-	document.body.style.overflow = "auto";
-	document.getElementById("popup-layout-bg").style.visibility = "hidden";
-	document.getElementById("c-popup-box2").style.visibility = "hidden";
+	hidePopupLayoutBg();
+	cPopupBox.style.visibility = "hidden";
 	
 	var prefixedCSS = getPrefixedCSS("transform");
 	for (var i=0; i<prefixedCSS.length; i++) {
 		var transform = cPopupBox.style[prefixedCSS[i]];
 		if (transform) {
-			document.body.style.overflow = "hidden";
-			document.getElementById("popup-layout-bg").style.visibility = "visible";
-			document.getElementById("c-popup-box2").style.visibility = "visible";
+			showPopupLayoutBg();
+			cPopupBox.style.visibility = "visible";
 			break;
 		}
 	}
@@ -311,9 +271,8 @@ function closeConfirmPopup2() {
 			if (scaleX < 0.05 || scaleY < 0.05) {
 				cPopupBox.style[prefixedCSS[i]] = "scale(0,0)";
 				cPopupBox.style.opacity = 0;
-				document.body.style.overflow = "auto";
-				document.getElementById("popup-layout-bg").style.visibility = "hidden";
-				document.getElementById("c-popup-box2").style.visibility = "hidden";
+				hidePopupLayoutBg();
+				cPopupBox.style.visibility = "hidden";
 				
 				clearInterval(popupInterval2);
 			}else {

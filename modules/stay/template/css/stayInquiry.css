@@ -1,5 +1,7 @@
 @charset "utf-8";
 
+#library-seat-wrap{ display: none; position: static; }
+
 #stay-request-seat{ padding:0 !important }
 #stay-request-seat-top{ padding:0 !important; text-align:center; font-size:14px }
 
