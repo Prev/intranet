@@ -47,7 +47,7 @@
 					
 					break;
 				case 3:
-					return ' calss="disabled" checked="checked" disabled="disabled"';
+					return ' class="disabled" checked="checked" disabled="disabled"';
 					break;
 			}
 		}
