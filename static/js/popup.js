@@ -91,7 +91,7 @@ function openPopup(title, content, bottomText, callBack, styles) {
 		}
 	}, 30);
 	
-	var inHeight = window.innerHeight || window.offsetHeight;
+	var inHeight = window.innerHeight || document.documentElement.clientHeight;
 	if (popupBox.offsetHeight + 200 > inHeight) {
 		var popupBoxContent = document.getElementById("popup-content");
 		popupBoxContent.style.maxHeight = inHeight - 200 + "px";

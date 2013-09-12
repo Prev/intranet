@@ -99,6 +99,8 @@ body{
 	box-shadow: 0px 0px 6px rgb(102, 102, 102);
 	text-align: left;
 	font-size: 13px;
+	
+	behavior:url(/static/src/PIE.htc);
 }
 
 #wrap #side-menu{ width: 249px }
