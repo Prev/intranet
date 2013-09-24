@@ -41,6 +41,8 @@
 	function getMenuTag($level, $noDeco=true) {
 		$html = '';
 		foreach(Context::getMenu($level) as $key => $menu) {
+			if (!$menu->visible) continue;
+			
 			$html .= 
 				'<li class="'.$menu->className . ($menu->selected ? ' ' . $menu->className . '-selected selected' : '') . '">' .
 					'<a href="' . RELATIVE_URL . '/' . (USE_SHORT_URL ? '' : '?menu=') . $menu->title . '" class="'.($noDeco == true ? 'no-deco' : '').'">' .
@@ -93,8 +95,8 @@
 	 * 값이 true 이거나 on 일시 true 반환
 	 */
 	function evalCheckbox($formData) {
-		return isset($formData) && 
-			($formData == true || strtolower($formData) == 'on');
+		return (int)(isset($formData) && 
+			($formData == true || strtolower($formData) == 'on'));
 	}
 
 	/**
@@ -186,13 +188,15 @@
 	 * 파일 내용을 모두 읽어서 출력함
 	 */
 	function readFileContent($filePath) {
-		if (!is_file($filePath) || !is_readable(dirname($filePath))) return;
+		/*if (!is_file($filePath) || !is_readable(dirname($filePath))) return;
 		
 		$fp = fopen($filePath, 'r');
 		$content = ''; 
 		while(!feof($fp))
 			$content .= fgets($fp, 1024);
-		return $content;
+		return $content;*/
+
+		return file_get_contents($filePath);
 	}
 	
 	/**
@@ -276,7 +280,7 @@
 	function getServerInfo() {
 		if (!empty($GLOBALS['serverInfo'])) return $GLOBALS['serverInfo'];
 		
-		$serverInfo = json_decode(readFileContent(SERVER_INFO_FILE_PATH));
+		$serverInfo = json_decode(file_get_contents(SERVER_INFO_FILE_PATH));
 		foreach($serverInfo as $_key => $_value) {
 			if (strrpos($_value->uri, '/') === strlen($_value->uri)-1)
 				$_value->uri = substr($_value->uri, 0, strlen($_value->uri)-1);

@@ -1,17 +1,57 @@
 {	
 	"name":"morning song module",
 	"version":"1.0.0",
-	"author":"prevdev@gmail.com, socomee@nate.com",
+	"author":"prevdev@gmail.com",
 
 	"actions":[
 		{
 			"name":"dispDefault",
-			"view":"MorningSongView",
+			"view":"MorningSongLayoutView",
+			"model":"MorningSongLayoutModel",
 			"default":true
 		},
 		{
 			"name":"dispManageLayout",
-			"view":"MorningSongView"
+			"view":"MorningSongLayoutView",
+			"model":"MorningSongLayoutModel",
+			"accessible_group":["dormitory_teacher"]
+		},
+		{
+			"name":"dispRequestSongPopup",
+			"view":"MorningSongLayoutView",
+			"layout":"popup"
+		},
+		{
+			"name":"procSongUpload",
+			"controller":"MorningSongUploadController",
+			"model":"MorningSongUploadModel",
+			"inherit":"file.procFileUpload"
+		},
+		{
+			"name":"procRecommend",
+			"controller":"MorningSongRecommendController",
+			"model":"MorningSongRecommendModel",
+			"layout":"blank"
+		},
+		{
+			"name":"procDeleteSong",
+			"controller":"MorningSongDeleteController",
+			"model":"MorningSongDeleteModel",
+			"layout":"blank"
+		},
+		{
+			"name":"procSelectSong",
+			"controller":"MorningSongSelectController",
+			"model":"MorningSongSelectModel",
+			"accessible_group":["dormitory_teacher"],
+			"layout":"blank"
+		},
+		{
+			"name":"procCancleSelectedSong",
+			"controller":"MorningSongSelectController",
+			"model":"MorningSongSelectModel",
+			"accessible_group":["dormitory_teacher"],
+			"layout":"blank"
 		}
 	]
 }

@@ -23,7 +23,7 @@
 				return;
 			}
 			
-			return $this->_procUpload(true);
+			return $this->_procUpload('binaries', false);
 		}
 
 		public function procImageUpload() {
@@ -41,18 +41,18 @@
 				$this->close('Cannot upload this file as image');
 				return;
 			}
-			return $this->_procUpload(false);
+			return $this->_procUpload('images', true);
 		}
 
-		private function _procUpload($isBinary) {
+		protected function _procUpload($fileType, $remainExtension) {
 			if (empty($_FILES['bifile'])) return;
 
 			$fileName = $_FILES['bifile']['name'];
 			$fileHash = sha1_file($_FILES['bifile']['tmp_name']);
-			$fileSize = (int)$_FILES["bifile"]["size"];
+			$fileSize = (int)$_FILES['bifile']["size"];
 			$fileExtension = strtolower(substr(strrchr($_FILES['bifile']['name'], '.'), 1));
 			
-			$uploadFileUrl = '/files/attach/' . ($isBinary ? 'binaries' : 'images') . '/' . $fileHash . ($isBinary ? '' : '.' . $fileExtension);
+			$uploadFileUrl = '/files/attach/' . $fileType . '/' . $fileHash . ($remainExtension ? '.' . $fileExtension : '');
 			$uploadFileDir = ROOT_DIR . $uploadFileUrl;
 			
 			if ($fileSize > 1024 * 1024 * 20) {
@@ -60,7 +60,7 @@
 				return;
 			}
 
-			$fileData = $this->model->getFileData($fileHash);
+			$fileData = $this->model->getFileData($fileType, $fileHash);
 			
 			if ($fileData !== false) {
 				// hash exists
@@ -75,7 +75,7 @@
 			}
 
 			if (move_uploaded_file($_FILES['bifile']['tmp_name'], $uploadFileDir)) {
-				$this->model->insertFileData(($isBinary ? 1 : 0), $fileHash, $fileSize);
+				$fileRecord = $this->model->insertFileData($fileType, $fileHash, $fileSize);
 
 				return (object) array(
 					'fileId' => $fileRecord->id,
@@ -93,7 +93,7 @@
 			}
 		}
 
-		private function close($message=NULL) {
+		protected function close($message=NULL) {
 			if ($message)
 				echo '<script type="text/javascript">alert("'.$message.'");window.close();</script>';
 			else

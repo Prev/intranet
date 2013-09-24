@@ -1,0 +1,94 @@
+@charset "utf-8";
+
+.file-name-text{
+	float:left;
+	margin:5px 5px 0 0;
+	vertical-align: middle;
+}
+
+.file-name{
+	width:330px;
+	float: left;
+	vertical-align: middle;
+
+	padding-top: 2px;
+	padding-bottom: 2px;
+	border-color: #d9d9d9 !important;
+	border-top-color: #c0c0c0 !important;
+	box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) !important;
+}
+
+.input-file-wrap{
+	position: relative; 
+	width: 55px; 
+	height: 23px; 
+	overflow: hidden;
+	display:inline-block;
+}
+
+.input-file-wrap input{
+	vertical-align: middle;
+}
+
+.input-file{
+	position: absolute; 
+	right: 0px; 
+	top: 0px; 
+	opacity: 0; 
+
+	filter: alpha(opacity=0); 
+	-ms-filter: "alpha(opacity=0)"; 
+	-khtml-opacity: 0; 
+	-moz-opacity: 0;
+	
+	float:left;
+	cursor:pointer;
+}
+
+.popup-content-file-find {
+	float:left;
+	width:48px;
+	height:19px;
+	margin:1px 3px;
+	cursor:pointer;
+	border:0;
+	background-image: url(../img/morning_song_sprite.png);
+	background-position: -128px 0px;
+}
+
+
+.description{
+	margin: 5px 0px 3px 54px;
+	line-height: 1.4em;
+	width: 390px;
+}
+
+.agreement-wrap{
+	margin-top: 15px;
+}
+
+.agreement-wrap input{
+	margin-right: 1px;
+}
+
+.button-wrap{
+	margin-top: 10px;
+	text-align: center;
+}
+.button-wrap button{
+	width: 64px;
+	height: 30px;
+	cursor: pointer;
+	border: 0;
+	outline: 0;
+	background-image: url(../img/morning_song_sprite.png);
+}
+
+.button-wrap button#apply-button{
+	background-position: 0 -19px;
+}
+
+.button-wrap button#cancel-button{
+	margin-left: 2px;
+	background-position: -64px -19px;
+}

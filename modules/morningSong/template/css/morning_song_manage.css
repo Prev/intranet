@@ -8,7 +8,7 @@
 .morningsong:after{ content: ""; display: block; clear: both; }
 
 .morningsong .morningsong-container{ width: 656px; float: left; margin: 0px 20px; }
-.morningsong .morningsong-container .morningsong-container-title{ float: left; font-size: 17px; margin:20px 0px 13px 0px; font-weight: bold; }
+.morningsong .morningsong-container .morningsong-container-title{ float: left; font-size: 20px; margin:20px 0px 13px 0px; font-weight: bold; }
 .morningsong .morningsong-container .morningsong-container-title #today-date{ }
 .morningsong .morningsong-container .morningsong-container-title #tomorrow-date{ }
 .morningsong .morningsong-container .morningsong-container-title .hot-pink{ color: #ec008c; margin-left:5px }
@@ -22,12 +22,10 @@
 .morningsong .morningsong-container .song .sub-building{ margin: 5px 0px; }
 .morningsong .morningsong-container .song .sub-building:after{ content: ""; display: block; clear: both; }
 
-.morningsong .morningsong-container .song #today-main-building-button,
-.morningsong .morningsong-container .song #today-sub-building-button,
-.morningsong .morningsong-container .song #tomorrow-main-building-button,
-.morningsong .morningsong-container .song #tomorrow-sub-building-button{ width: 17px; height: 20px; padding: 0; margin-right: 5px; float: left; background:transparent url("../img/morning_song_sprite.png") no-repeat 0 -49px; border: none; cursor: pointer; }
+.morningsong .morningsong-container .song .play-btn{ width: 17px; height: 20px; padding: 0; margin-right: 5px; float: left; background:transparent url("../img/morning_song_sprite.png") no-repeat 0 -49px; border: none; cursor: pointer; }
+.morningsong .morningsong-container .song .play-btn.playing{ background-position:-17px -49px }
 
-.morningsong .morningsong-container .song .morningsong-drop-button{ width: 10px; height: 9px; padding: 0; margin:6px 5px 0px 4px; float: left; background:transparent url("../img/morning_song_sprite.png") no-repeat -34px -49px; border: none; cursor: pointer; }
+.morningsong .morningsong-container .song .cancle-selecting-btn{ width: 10px; height: 9px; padding: 0; margin:7px 5px 0px 5px; float: left; background:transparent url("../img/morning_song_sprite.png") no-repeat -34px -49px; border: none; cursor: pointer; }
 
 
 .morningsong .morningsong-container .song #today-main-building-song{ float: left; padding-top: 3px; }
@@ -61,25 +59,26 @@
 #history-list li{ list-style: none; float: left; margin: 0; padding: 0; /* outline: 1px solid black; */}
 
 #history-list #first-line{ height: 22px; background-color: #eeeeee; border-bottom: 1px solid #cccccc; border-top: 1px solid #cccccc; padding-top: 9px; text-align: center !important; font-weight: bold; }
-#history-list #song-title{ width: 350px; }
-#history-list #song-applicant{ width: 90px; }
+#history-list #song-title{ width: 390px; }
+#history-list #song-applicant{ width: 85px; }
 #history-list #song-request-date{ width: 100px; }
-#history-list #recommends{ width: 62px; }
+#history-list #recommends{ width: 40px; }
 #history-list #recommend-delete{ width: 80px; }
 
 #history-list #scroll-box{ height: 268px; margin: 0; padding: 0; overflow:auto; border-bottom: 1px solid #e0e0e0; }
 #history-list #scroll-box ul{ border-bottom: 1px solid #e0e0e0; padding: 2px 0px; font-size: 13px; }
 #history-list #scroll-box ul.final{ border-bottom:none; }
 #history-list #scroll-box .history-list-button{ width: 17px; height: 20px; padding: 0; margin:3px 5px 0 3px; float: left; background:transparent url("../img/morning_song_sprite.png") no-repeat 0px -49px; border: none; cursor: pointer; }
-#history-list #scroll-box .song-title{ width: 300px; padding: 3px 0px; }
-#history-list #scroll-box .song-applicant{ width: 90px; text-align: center; padding-top: 3px; }
+#history-list #scroll-box .history-list-button.playing{ background-position:-17px -49px }
+#history-list #scroll-box .song-title{ width: 342px; padding: 3px 0px; }
+#history-list #scroll-box .song-applicant{ width: 85px; text-align: center; padding-top: 3px; }
 #history-list #scroll-box .song-request-date{ width: 100px; text-align: center; padding-top: 3px; }
-#history-list #scroll-box .recommends{ width: 80px; text-align: center; padding-top: 3px; }
+#history-list #scroll-box .recommends{ width: 40px; text-align: center; padding-top: 3px; }
 #history-list #scroll-box .recommend-delete{ width: 90px; text-align: center; padding: 0px 0px; }
 
 
 #history-list #scroll-box .check-box{margin: 5px 4px; float: left;}
-#history-list #scroll-box .select{width: 50px; text-align: center; padding: 1px 0px;}
+#history-list #scroll-box .select{width: 80px; text-align: center; padding: 1px 0px;}
 #history-list #scroll-box .select .delete-button{height: 19px; width: 32px; padding: 0; margin: 1px 0px 0px 0px; background:transparent url("../img/morning_song_sprite.png") no-repeat -64px 0; border: none; cursor: pointer;}
 #history-list #scroll-box .select .recommend-button{ height: 19px; width: 32px; padding: 0; margin: 2px 0px 0px 0px; background:transparent url("../img/morning_song_sprite.png") no-repeat -96px 0px; border: none;  cursor: pointer; }
 

@@ -111,6 +111,7 @@
 			$html = join('$_GET', explode('$__attr->_GET', $html));
 			$html = join('$_POST', explode('$__attr->_POST', $html));
 			$html = join('$_REQUEST', explode('$__attr->_REQUEST', $html));
+			$html = join('$_SESSION', explode('$__attr->_SESSION', $html));
 			
 			$html = preg_replace('/([a-zA-Z0-9_])::\$__attr->(.*)/', '$1::\$$2', $html);
 			

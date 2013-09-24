@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+body{
+	margin:0;
+	padding:0;
+	
+	font-size:12px;
+	font-family:나눔고딕,NanumGothic,돋움,Dotum,Arial,Helvetica,sans-serif;
+}
+
+#header{
+	background-color: #3a3a3a;
+	padding: 15px 0px 15px 25px;
+	font-size: 20px;
+	color: white;
+}
+
+#header b{
+	color: #ec008c;
+}
+
+#content{
+	padding: 20px;
+}
+
+#content .pink{
+	color: #ec008c;
+}
+
+#content .important{
+	color: #ec008c;
+	font-weight: bold;
+	text-decoration: underline;
+}

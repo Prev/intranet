@@ -55,11 +55,16 @@
 
 	foreach ($userData as $key => $value) {
 		if ($key === 'password' || $key === 'password_salt') continue;
-		if ($key == 'input_id')
+		if ($key == 'input_id') {
 			$obj->userData->userId = $value;
-
-		$key = preg_replace_callback('/(.)_([a-z])/', create_function('$m', 'return $m[1].strtoupper($m[2]);'), $key);
+			$obj->userData->user_id = $value;
+		}
+		if ($key == 'extra_vars' && !empty($value))
+			$value = json_decode($value);
+		
+		$key2 = preg_replace_callback('/(.)_([a-z])/', create_function('$m', 'return $m[1].strtoupper($m[2]);'), $key);
 		$obj->userData->{$key} = $value;
+		$obj->userData->{$key2} = $value;
 	}
 
 	switch ($userData->user_type) {
@@ -68,6 +73,13 @@
 				SELECT * FROM (#)user_student
 				WHERE user_id="'.$user_id.'"
 			');
+
+			$groupDatas2 = execQuery("
+				SELECT (#)user_group.*
+				FROM (#)user_group
+				WHERE name = 'student'
+			");
+
 			break;
 		
 		case 'p':
@@ -75,6 +87,12 @@
 				SELECT * FROM (#)user_parent
 				WHERE user_id="'.$user_id.'"
 			');
+
+			$groupDatas2 = execQuery("
+				SELECT (#)user_group.*
+				FROM (#)user_group
+				WHERE name = 'parent'
+			");
 			break;
 
 		case 't':
@@ -82,13 +100,22 @@
 				SELECT * FROM (#)user_teacher
 				WHERE (#)user_teacher.user_id="'.$user_id.'"
 			');
+
+			$groupDatas2 = execQuery("
+				SELECT (#)user_group.*
+				FROM (#)user_group
+				WHERE name = 'teacher'
+			");
+
+			break;
 	}
 
 	foreach ($appendData as $key => $value) {
 		if ($key == 'id' || $key == 'user_id') continue;
 				
-		$key = preg_replace_callback('/(.)_([a-z])/', create_function('$m', 'return $m[1].strtoupper($m[2]);'), $key);
+		$key2 = preg_replace_callback('/(.)_([a-z])/', create_function('$m', 'return $m[1].strtoupper($m[2]);'), $key);
 		$obj->userData->{$key} = $value;
+		$obj->userData->{$key2} = $value;
 	}
 
 	if ($userData->user_type == 't') {
@@ -100,7 +127,9 @@
 				AND (#)user_teacher_position.name = '{$obj->userData->position}'
 			", 'row');
 			$obj->userData->departmentLocale = $obj->userData->departmentKr = $appendData2[0];
+			$obj->userData->department_locale = $obj->userData->departmentLocale;
 			$obj->userData->positionLocale = $obj->userData->positionKr = $appendData2[1];
+			$obj->userData->position_locale = $obj->userData->positionLocale;
 		}else {
 			$appendData2 = execQueryOne("
 				SELECT name_locales
@@ -109,28 +138,34 @@
 			", 'row');
 
 			$obj->userData->departmentLocale = $obj->userData->departmentKr = NULL;
+			$obj->userData->department_locale = $obj->userData->departmentLocale;
 			$obj->userData->positionLocale = $obj->userData->positionKr = $appendData2[0];
+			$obj->userData->position_locale = $obj->userData->positionLocale;
 		}
 	}
 
 	$groupDatas = execQuery("
-		SELECT (#)user_group_user.*, (#)user_group.*
+		SELECT (#)user_group.*
 		FROM (#)user_group_user, (#)user_group
 		WHERE (#)user_group_user.user_id='${user_id}'
 		AND (#)user_group.id = (#)user_group_user.group_id
 	");
 	
+	$groupDatas = array_merge($groupDatas, $groupDatas2);
+
 	$obj->userData->groups = array();	
 	for ($i=0; $i < count($groupDatas); $i++) {
 		$tmp = new StdClass();
 		foreach ($groupDatas[$i] as $key => $value) {
-			if ($key === 'id' || $key === 'user_id') continue;
+			if ($key === 'user_id') continue;
 			if ($key === 'name_locales') {
 				$tmp->nameLocales = json_decode($value);
 				continue;
 			}
-			$key = preg_replace_callback('/(.)_([a-z])/', create_function('$m', 'return $m[1].strtoupper($m[2]);'), $key);
+
+			$key2 = preg_replace_callback('/(.)_([a-z])/', create_function('$m', 'return $m[1].strtoupper($m[2]);'), $key);
 			$tmp->{$key} = $value;
+			$tmp->{$key2} = $value;
 		}
 		array_push($obj->userData->groups, $tmp);
 	}

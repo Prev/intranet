@@ -1,4 +1,5 @@
 <import path="css/morning_song.css">
+<import path="js/morning_song_play.js">
 
 <div id="today-morningsong">
 	<div id="prev-button"></div>
@@ -10,13 +11,29 @@
 		<div id="song">
 			<div class="building">
 				<div class="building-name">본관</div>
-				<input type="button" id="main-building-button"/>
-				<div id="main-building-song">선정된 곡이 없습니다.</div>
+				<button id="play-button-0" class="play-btn" onclick="togglePlayMusic(0)">
+					<span class="hidden">재생</span>
+				</button>
+				<div id="main-building-song">
+					<condition do="$selectedSong_bon">
+						{$selectedSong_bon->song_name}
+					<else>	
+						선정된 곡이 없습니다.
+					</condition>
+				</div>
 			</div>
 			<div class="building">
 				<div class="building-name">학봉관</div>
-				<input type="button" id="sub-building-button"/>
-				<div id="sub-building-song">선정된 곡이 없습니다.</div>
+				<button id="play-button-1" class="play-btn" onclick="togglePlayMusic(1)">
+					<span class="hidden">재생</span>
+				</button>
+				<div id="sub-building-song">
+					<condition do="$selectedSong_hak">
+						{$selectedSong_hak->song_name}
+					<else>	
+						선정된 곡이 없습니다.
+					</condition>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -30,7 +47,9 @@
 		<span id="history-explain">
 			최근 1주일간의 기상송 신청 내역입니다.<br/>기상송으로 선정된 곡은 '지난 기상송 보기'에서 확인할 수 있습니다.
 		</span>
-		<input type="button" onclick="openSongPopup()" id="request-morningsong-button"/>
+		<button id="request-morningsong-button" onclick="window.open('{getUrl('morningSong', 'dispRequestSongPopup')}', 'post', 'width=510, height=270, top=100, left=100'); return false">
+			<span class="hidden">기상송 신청하기</span>
+		</button>
 	</div>
 	<div id="history-list">
 		<dl>
@@ -38,25 +57,40 @@
 				<ul id="first-line">
 					<li id="song-title">곡명</li>
 					<li id="song-applicant">신청자</li>
-					<li id="song-request-date">신청일</li>
+					<li id="song-request-date">신청시간</li>
 					<li id="favorite-count">추천수</li>
 					<li id="recommend-btns">추천/삭제</li>
 				</ul>
 			</dt>
 			<dd id="scroll-box">
-				{@ foreach($songLists as $key => $song) : }
-					<ul>
-						<input type="button" class="history-list-button"/>
-						<li class="song-title">{$song->song_name}</li>
-						<li class="song-applicant">{$song->user_name}</li>
-						<li class="song-request-date">{$song->regtime}</li>
-						<li class="favorite-count">{$song->favorite_count}</li>
-						<li class="recommend-btns">
-							<input type="button" class="recommend-button">
-							<input type="button" class="delete-button">
-						</li>
-					</ul>
-				{@ endforeach; }
+				<condition do="$songLists">
+					<true>
+						{@ $i=2; foreach($songLists as $key => $song) : }
+							<ul>
+								<button id="play-button-{$i}" class="history-list-button" onclick="togglePlayMusic({$i})"><span class="hidden">재생</span></button>
+								<li class="song-title">{$song->song_name}</li>
+								<li class="song-applicant">{$song->user_name}</li>
+								<li class="song-request-date">{getRelativeTime($song->upload_time)}</li>
+								<li class="favorite-count">{$song->recommend_count}</li>
+								<li class="recommend-btns">
+									<button class="recommend-button" onclick="location.href='{getUrl('morningSong', 'procRecommend', 'song_id='.$song->id)}'">
+										<span class="hidden">추천</span>
+									</button>
+									<condition do="$song->uploader_id == User::getCurrent()->id">
+										<button class="delete-button" onclick="location.href='{getUrl('morningSong', 'procDeleteSong', 'song_id='.$song->id)}'">
+											<span class="hidden">취소</span>
+										</button>
+									</condition>
+								</li>
+							</ul>
+						{@ $i++; endforeach; }
+						</true>
+					<false>
+						<div id="no-song">
+							신청된 기상송이 없습니다
+						</div>
+					</false>
+				</condition>
 			</dd>
 		</dl>
 	</div>

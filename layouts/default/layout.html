@@ -40,9 +40,7 @@
 
 					<ul class="child">
 						<li>
-							<a href="{getUrl('login', 'procLogout')}">
-								로그아웃
-							</a>
+							<a href="{getUrl('login', 'procLogout')}">로그아웃</a>
 						</li>
 						<li>마이페이지</li>
 						<li class="final">사이트맵</li>
@@ -58,11 +56,12 @@
 	<div id="gnb">
 		<ul class="clearfix">
 			{@ foreach(Context::getMenu(1) as $key => $menu): }
+				{@ if (!$menu->visible) continue; }
 				{@ if ($menu->selected == true) $selectedTopMenu = $menu; }
 				<condition do="$user">
 					<true>
 						<a href="/{@ echo (USE_SHORT_URL ? '' : '?menu=') . $menu->title}">
-							<li class="menu-{$menu->title}{@ if ($menu->selected) echo '-selected'}">
+							<li class="{$menu->className}{@ if ($menu->selected) echo '-selected'}">
 								<span class="menu-alt">{$menu->title_locale}</span>
 							</li>
 						</a>
@@ -88,6 +87,7 @@
 					</div>
 					<ul>
 						{@ foreach ($lnb as $key => $menu) : }
+							{@ if (!$menu->visible) continue; }
 							<a href="/{@ echo USE_SHORT_URL ? '' : '?menu='}{$menu->title}">
 								{@ if ($menu->selected) $GLOBALS['selectedMenu'] = $menu; }
 

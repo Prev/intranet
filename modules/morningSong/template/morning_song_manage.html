@@ -1,4 +1,10 @@
+<import path="/static/css/popup.css">
 <import path="css/morning_song_manage.css">
+
+<import path="/static/js/popup.js">
+<import path="js/morning_song_play.js">
+<import path="js/morning_song_manage.js">
+
 
 <div class="morningsong" id="today">
 	<div class="morningsong-container">
@@ -10,13 +16,25 @@
 		<div class="song">
 			<div class="main-building">
 				<div class="building">본관</div>
-				<input type="button" id="today-main-building-button"/>
-				<div id="today-main-building-song">선정된 곡이 없습니다.</div>
+				<button id="play-button-0" class="play-btn" onclick="togglePlayMusic(0)"><span class="hidden">재생</span></button>
+				<div id="today-main-building-song">
+					<condition do="$todaySong_bon">
+						{$todaySong_bon->song_name}
+					<else>	
+						선정된 곡이 없습니다.
+					</condition>
+				</div>
 			</div>
 			<div class="sub-building">
 				<div class="building">학봉관</div>
-				<input type="button" id="today-sub-building-button"/>
-				<div id="today-sub-building-song">선정된 곡이 없습니다.</div>
+				<button id="play-button-1" class="play-btn" onclick="togglePlayMusic(1)"><span class="hidden">재생</span></button>
+				<div id="today-sub-building-song">
+					<condition do="$todaySong_hak">
+						{$todaySong_hak->song_name}
+					<else>	
+						선정된 곡이 없습니다.
+					</condition>
+				</div>
             </div>
 		</div>
 	</div>
@@ -30,13 +48,33 @@
 		<div class="song">
 			<div class="main-building">
 				<div class="building">본관</div>
-				<input type="button" id="tomorrow-main-building-button"/>
-				<div id="tomorrow-main-building-song">선정된 곡이 없습니다.</div>
+				<button id="play-button-2" class="play-btn" onclick="togglePlayMusic(2)"><span class="hidden">재생</span></button>
+				<div id="tomorrow-main-building-song">
+					<condition do="$tomorrowSong_bon">
+						{$tomorrowSong_bon->song_name}
+					<else>	
+						선정된 곡이 없습니다.
+					</condition>
+				</div>
+
+				<condition do="$tomorrowSong_bon">
+					<button class="cancle-selecting-btn" onclick="cancleSelectedSong(1)"><span class="hidden">철회</span></button>
+				</condition>
 			</div>
 			<div class="sub-building">
 				<div class="building">학봉관</div>
-				<input type="button" id="tomorrow-sub-building-button"/>
-				<div id="tomorrow-sub-building-song">선정된 곡이 없습니다.</div>
+				<button id="play-button-3" class="play-btn" onclick="togglePlayMusic(3)"><span class="hidden">재생</span></button>
+				<div id="tomorrow-sub-building-song">
+					<condition do="$tomorrowSong_hak">
+						{$tomorrowSong_hak->song_name}
+					<else>	
+						선정된 곡이 없습니다.
+					</condition>
+				</div>
+
+				<condition do="$tomorrowSong_hak">
+					<button class="cancle-selecting-btn"  onclick="cancleSelectedSong(2)"><span class="hidden">철회</span></button>
+				</condition>
 			</div>
 		</div>
 	</div>
@@ -63,19 +101,19 @@
 				</ul>
 			</dt>
 			<dd id="scroll-box">
-				{@ foreach($songLists as $key => $song) : }
+				{@ $i=4; foreach($songLists as $key => $song) : }
 					<ul>
 						<input type="checkbox" class="check-box">
-						<input type="button" class="history-list-button">
+						<button id="play-button-{$i}"  class="history-list-button" onclick="togglePlayMusic({$i})"><span class="hidden">재생</span></button>
 						<li class="song-title">{$song->song_name}</li>
 						<li class="song-applicant">{$song->user_name}</li>
-						<li class="song-request-date">{$song->regtime}</li>
-						<li class="recommends">{$song->favorite_count}</li>
+						<li class="song-request-date">{getRelativeTime($song->upload_time)}</li>
+						<li class="recommends">{$song->recommend_count}</li>
 						<li class="select">
-							<input type="button" class="recommend-button">
+							<button class="recommend-button" onclick="confirmSelectSong({$song->id})"><span class="hidden">선정</span></button>
 						</li>
 					</ul>
-				{@ endforeach; }
+				{@ $i++; endforeach; }
 			</dd>
 		</dl>
 	</div>
