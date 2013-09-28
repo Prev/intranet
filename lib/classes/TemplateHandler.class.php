@@ -52,11 +52,11 @@
 			 * {$a} -> <?php echo $__attr->a ( Context::get('a') or View->a ) ?> 
 			 * {&a} -> $__attr->a ( Context::get('a') or View->a )
 			 */
-			$html = preg_replace_callback('/{\s*(\$[^}]+?)\s*}/', array($this, 'parseVar'), $html);
+			$html = preg_replace_callback('/{\s?(\$[^}]+?)\s?}/', array($this, 'parseVar'), $html);
 			//$html = preg_replace_callback('/{\s*(\$|&)([^}]+?)}/', array($this, 'parseVar'), $html);
 			
 			// {func()} -> Context::execFunction('func', array())
-			$html = preg_replace_callback("`{\s*([a-zA-Z0-9_\s]+)\((.*?)\)}`", array($this, 'parseFunc'), $html);
+			$html = preg_replace_callback("/{\s?([a-zA-Z0-9_]+)\((.*?)\)\s?}/", array($this, 'parseFunc'), $html);
 			
 
 			// insert RELATIVE_URL in absolute src (/.*), href and action

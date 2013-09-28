@@ -22,4 +22,5 @@
 		ModuleHandler::initModule($oContext->moduleID, $oContext->moduleAction);
 		$oContext->procLayout();
 	}
-
+	
+	

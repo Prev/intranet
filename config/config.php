@@ -2,7 +2,7 @@
 	
 	/**
 	 * @ author prevdev@gmail.com
-	 * @ 2013.05
+	 * @ 2013.05 ~ 09
 	 */
 	
 	if (!defined('PMC')) {
@@ -20,7 +20,7 @@
 	/**
 	 * Define PMC version
 	 */
-	define('PMC_VERSION', '1.0.0');
+	define('PMC_VERSION', '0.4.5');
 	
 	
 	/**
@@ -34,7 +34,7 @@
 	 * Define X_UA_Compatible (ie edge)
 	 */
 	define('X_UA_Compatible', 'IE=Edge,chrome=1');
-	
+
 	
 	/**
 	 * Define default Layout name
@@ -53,13 +53,13 @@
 	/**
 	 * Define using real name in board, etc
 	 */
-	define('USE_REAL_NAME', true);
+	define('USE_REAL_NAME', false);
 
 	/**
 	  * Define default locale
 	  * Get current locale by calling getLocale() func
 	  */
-	define('DEFAULT_LOCALE', 'kr');
+	define('DEFAULT_LOCALE', 'en');
 	
 	
 	/**
@@ -113,18 +113,35 @@
 		
 		
 		/**
-		 * Define realavite url (=root url)
+		 * Define session domain
 		 */
 		define('SESSION_DOMAIN', getSessionDomain());
-	
-	
-	
+		
+
+		/**
+		 * Define server uri
+		 */
+		define('SERVER_URI', getServerUri());
+		
+
+		/**
+		 * Define sso session name
+		 */
+		define('SSO_COOKIE_NAME', 'pmc_sess_key');
+
+		/**
+		 * Define sso session name
+		 */
+		define('SSO_SESSION_NAME', 'pmc_sso_data_' . substr(md5(RELATIVE_URL), 0, 10));
+
+
 		/**
 		 * Define real url
 		 */
 		define('REAL_URI', PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 		define('REAL_URL', REAL_URI);
-	
+
+
 	
 	/**
 	 * login file url
@@ -150,10 +167,8 @@
 	ini_set('display_errors', (DEBUG_MODE ? 1 : 0));
 	
 	
+
 	// lib.rsa.php, lib.lessc.php is required when is needed
-	
-	if (file_exists(ROOT_DIR . '/lib/functions/custom.function.php'))
-		require ROOT_DIR . '/lib/functions/custom.function.php';
 
 	require ROOT_DIR . '/config/database.php';
 	require ROOT_DIR . '/config/secure-keys.php';

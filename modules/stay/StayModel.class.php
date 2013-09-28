@@ -62,7 +62,7 @@
 			$seatCapitalChar = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N');
 
 			foreach($seatCapitalChar as $n => $key)
-				$seatData->$key = (object)array();
+				$seatData->{$key} = (object)array();
 
 			$stayData = DBHandler::for_table('stay_data')
 			->select_many('user_id', 'library_seat')
@@ -84,8 +84,9 @@
 				$seatTotalNums++;
 				$key = substr($seat, 0, 1);
 				$value = (int)substr($seat, 1, 2);
-
-				$seatData->{$key}->{$value} = $seatOwner->{'grade'}.$seatOwner->{'class'}.set0($seatOwner->{'number'}).' '.$seatOwner->{'user_name'};
+				
+				if ($seatData->{$key})
+					$seatData->{$key}->{$value} = $seatOwner->{'grade'}.$seatOwner->{'class'}.set0($seatOwner->{'number'}).' '.$seatOwner->{'user_name'};
 			}
 
 			return $seatData;

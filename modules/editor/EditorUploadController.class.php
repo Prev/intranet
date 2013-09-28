@@ -2,6 +2,13 @@
 	
 	class EditorUploadController extends FileUploadController {
 
+		protected $FILE_MAX_SIZE; // override
+
+		public function init() {
+			$this->FILE_MAX_SIZE = $this->module->FILE_MAX_SIZE;
+			parent::init();
+		}
+		
 		public function procFileUpload() {
 			$data = parent::procFileUpload();
 

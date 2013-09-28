@@ -2,6 +2,8 @@
 	
 	class FileUploadController extends Controller {
 
+		protected $FILE_MAX_SIZE = 10485760; // 10 MB
+		
 		public function init() {
 			if (!is_dir(ROOT_DIR . '/files/attach/')) {
 				mkdir(ROOT_DIR . '/files/attach/');
@@ -38,7 +40,10 @@
 
 			if (!in_array($_FILES['bifile']['type'], $imageKind) || !in_array($fileExtension, $imageExtensions)) {
 				ErrorLogger::log('Attempt upload '.$_FILES['upload']['type'].' file as image');
-				$this->close('Cannot upload this file as image');
+				$this->close(array(
+					'en' => 'Cannot upload this file as image',
+					'ko' => '이 파일을 이미지로 업로드 할 수 없습니다'
+				));
 				return;
 			}
 			return $this->_procUpload('images', true);
@@ -54,9 +59,14 @@
 			
 			$uploadFileUrl = '/files/attach/' . $fileType . '/' . $fileHash . ($remainExtension ? '.' . $fileExtension : '');
 			$uploadFileDir = ROOT_DIR . $uploadFileUrl;
-			
-			if ($fileSize > 1024 * 1024 * 20) {
-				$this->close('File size is upper than 20MB');
+
+			if ($fileSize > $this->FILE_MAX_SIZE) {
+				$clearedMaxFileSize = getClearFileSize($this->FILE_MAX_SIZE);
+
+				$this->close(array(
+					'en' => 'Cannot upload file whose size is upper than ' . $clearedMaxFileSize,
+					'ko' => $clearedMaxFileSize . '를 초과하는 파일은 업로드 할 수 없습니다'
+				));
 				return;
 			}
 
@@ -85,18 +95,22 @@
 					'fileMimeType' => $_FILES['bifile']['type'],
 					'uploadedUrl' => $uploadFileUrl,
 				);
-
+				
 			}else {
-				$this->close('Fail uploading file');
+				$this->close(array(
+					'en' => 'Fail uploading file',
+					'ko' => '파일을 업로드 하는데 실패했습니다'
+				));
 				ErrorLogger::log('Fatal Error: fail to move_uploaded_file in FileController');
 				exit;
 			}
 		}
 
 		protected function close($message=NULL) {
-			if ($message)
-				echo '<script type="text/javascript">alert("'.$message.'");window.close();</script>';
-			else
-				echo '<script type="text/javascript">window.close();</script>';
+			if (is_array($message) || is_object($message)) $message = fetchLocale($message);
+
+			echo $message !== NULL ?
+				('<script type="text/javascript">alert("'.$message.'");window.close();</script>'):
+				('<script type="text/javascript">window.close();</script>');
 		}
 	}
