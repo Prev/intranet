@@ -85,7 +85,7 @@
 				$key = substr($seat, 0, 1);
 				$value = (int)substr($seat, 1, 2);
 				
-				if ($seatData->{$key})
+				if (isset($seatData->{$key}))
 					$seatData->{$key}->{$value} = $seatOwner->{'grade'}.$seatOwner->{'class'}.set0($seatOwner->{'number'}).' '.$seatOwner->{'user_name'};
 			}
 

@@ -53,7 +53,7 @@
 	/**
 	 * Define using real name in board, etc
 	 */
-	define('USE_REAL_NAME', false);
+	define('USE_REAL_NAME', true);
 
 	/**
 	  * Define default locale
