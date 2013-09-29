@@ -53,6 +53,7 @@
 #history-list #recommend-btns{ width: 110px; }
 
 #history-list #scroll-box{ height: 268px; margin: 0; padding: 0; overflow:auto; border-bottom: 1px solid #e0e0e0; }
+#history-list #scroll-box form{ display: inline; }
 #history-list #scroll-box ul{ border-bottom: 1px solid #e0e0e0; padding: 3px 0px; font-size: 13px; }
 #history-list #scroll-box ul.final{ border-bottom:none; }
 #history-list #scroll-box .history-list-button{ width: 17px; height: 20px; padding: 0; margin:3px 5px 0 3px; float: left; background:transparent url("../img/morning_song_sprite.png") no-repeat 0px -49px; border: none; cursor: pointer; }

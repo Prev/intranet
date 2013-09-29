@@ -58,7 +58,10 @@
 				</div>
 
 				<condition do="$tomorrowSong_bon">
-					<button class="cancle-selecting-btn" onclick="cancleSelectedSong(1)"><span class="hidden">철회</span></button>
+					<form action="{getUrl('morningsong', 'procCancleSelectedSong')}" method="POST">
+						<input type="hidden" name="dormitory_type" value="">
+						<button class="cancle-selecting-btn" onclick="cancleSelectedSong(1, this.form); return false;"><span class="hidden">철회</span></button>
+					</form>
 				</condition>
 			</div>
 			<div class="sub-building">
@@ -73,7 +76,10 @@
 				</div>
 
 				<condition do="$tomorrowSong_hak">
-					<button class="cancle-selecting-btn"  onclick="cancleSelectedSong(2)"><span class="hidden">철회</span></button>
+					<form action="{getUrl('morningsong', 'procCancleSelectedSong')}" method="POST">
+						<input type="hidden" name="dormitory_type" value="">
+						<button class="cancle-selecting-btn"  onclick="cancleSelectedSong(2); return false;"><span class="hidden">철회</span></button>
+					</form>
 				</condition>
 			</div>
 		</div>
@@ -110,7 +116,11 @@
 						<li class="song-request-date">{getRelativeTime($song->upload_time)}</li>
 						<li class="recommends">{$song->recommend_count}</li>
 						<li class="select">
-							<button class="recommend-button" onclick="confirmSelectSong({$song->id})"><span class="hidden">선정</span></button>
+							<form action="{getUrl('morningsong', 'procSelectSong')}" method="POST">
+								<input type="hidden" name="dormitory_type" value="">
+								<input type="hidden" name="song_id" value="">
+								<button class="recommend-button" onclick="confirmSelectSong({$song->id}, this.form); return false;"><span class="hidden">선정</span></button>
+							</form>
 						</li>
 					</ul>
 				{@ $i++; endforeach; }

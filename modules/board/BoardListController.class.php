@@ -66,8 +66,8 @@
 				$articles[$i]->upload_time2 = getRelativeTime(strtotime($articles[$i]->upload_time));
 				$articles[$i]->title = htmlspecialchars($articles[$i]->title);
 
-				if (mb_strlen($articles[$i]->title) > 120)
-					$articles[$i]->title = mb_substr($articles[$i]->title, 0, 120) . '...';
+				if (mb_strlen($articles[$i]->title) > 150)
+					$articles[$i]->title = mb_substr($articles[$i]->title, 0, 150) . '...';
 
 				if ($articles[$i]->category)
 					$articles[$i]->category = htmlspecialchars($articles[$i]->category);

@@ -19,6 +19,12 @@
 			return false;
 		}
 
+		if (form.bifile.files[0].size > 10 * 1024 * 1024 ) {
+			{@ $clearedMaxFileSize = getClearFileSize($FILE_MAX_SIZE); } 
+			alert("10MB 초과하는 파일은 업로드 할 수 없습니다");
+			return false;
+		}
+
 		form.submit();
 	}
 

@@ -73,13 +73,19 @@
 								<li class="song-request-date">{getRelativeTime($song->upload_time)}</li>
 								<li class="favorite-count">{$song->recommend_count}</li>
 								<li class="recommend-btns">
-									<button class="recommend-button" onclick="location.href='{getUrl('morningSong', 'procRecommend', 'song_id='.$song->id)}'">
-										<span class="hidden">추천</span>
-									</button>
-									<condition do="$song->uploader_id == User::getCurrent()->id">
-										<button class="delete-button" onclick="location.href='{getUrl('morningSong', 'procDeleteSong', 'song_id='.$song->id)}'">
-											<span class="hidden">취소</span>
+									<form action="{getUrl('morningSong', 'procRecommend')}" method="POST">
+										<input type="hidden" name="song_id" value="{$song->id}">
+										<button class="recommend-button" onclick="this.form.submit();">
+											<span class="hidden">추천</span>
 										</button>
+									</form>
+									<condition do="$song->uploader_id == User::getCurrent()->id">
+										<form action="{getUrl('morningSong', 'procDeleteSong')}" method="POST">
+											<input type="hidden" name="song_id" value="{$song->id}">
+											<button class="delete-button" onclick="this.form.submit();">
+												<span class="hidden">취소</span>
+											</button>
+										</form>
 									</condition>
 								</li>
 							</ul>

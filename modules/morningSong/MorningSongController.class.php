@@ -9,7 +9,7 @@
 				goBack('로그인이 필요합니다');
 				return;
 			}
-			if (!isset($_GET['song_id'])) {
+			if (!isset($_GET['song_id']) && !isset($_POST['song_id'])) {
 				goBack('song_id 가 필요합니다');
 				return;
 			}
