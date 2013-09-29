@@ -1,4 +1,4 @@
-var musicDirUrl = getUrl() + "/files/attach/musics/";
+var musicDirUrl = getUrl() + "files/attach/musics/";
 var nowPlayingButton;
 var audio;
 var lastPlayingIndex;

@@ -88,7 +88,7 @@
 					<ul>
 						{@ foreach ($lnb as $key => $menu) : }
 							{@ if (!$menu->visible) continue; }
-							<a href="/{@ echo USE_SHORT_URL ? '' : '?menu='}{$menu->title}">
+							<a href="/{@ echo USE_SHORT_URL ? ($selectedTopMenu->title.'/') : '?menu='; }{$menu->title}">
 								{@ if ($menu->selected) $GLOBALS['selectedMenu'] = $menu; }
 
 								<li class="lnb-{$menu->title}{@ if ($menu->selected) echo ' selected'}">

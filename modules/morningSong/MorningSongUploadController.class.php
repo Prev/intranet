@@ -10,11 +10,6 @@
 				return;
 			}
 
-			if (!$_FILES['bifile']['size']) {
-				$this->close();
-				return;
-			}
-
 			if ((int)($_FILES['bifile']['size']) > 1024 * 1024 * 10) {
 				$this->close('파일 용량이 10MB를 초과합니다');
 				return;
@@ -34,8 +29,14 @@
 				chmod(ROOT_DIR . '/files/attach/musics/', 0755);
 			}
 
+			
 			$data = $this->_procUpload('musics', true);
 			
+			if (!$data) return;
+
+			chmod(ROOT_DIR . $data->uploadFileUrl, 0755);
+			
+
 			if ($fileExtension == 'mp3') {
 				$id3 = new ID3TagsReader(fopen(ROOT_DIR . '/' . $data->uploadedUrl, 'rb'));
 				$id3->ReadAllTags();

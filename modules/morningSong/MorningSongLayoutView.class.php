@@ -11,10 +11,10 @@
 		public function init() {
 			if ((int)date('G') < 7) {
 				$this->todayTimeStamp = mktime(0,0,0,date('m'),date('d')-1);
-				$this->tomorrowTimeStamp = mktime();
+				$this->tomorrowTimeStamp = time();
 				
 			}else {
-				$this->todayTimeStamp = mktime();
+				$this->todayTimeStamp = time();
 				$this->tomorrowTimeStamp = mktime(0,0,0,date('m'),date('d')+1);
 			}
 		}

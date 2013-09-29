@@ -13,7 +13,8 @@
 
 		function init(){
 			parent::init();
-			if($this->module->user->userType != 's')
+
+			if ($this->module->user->userType != 's')
 				goBack('권한이 없습니다. (잔류 신청은 학생만 가능합니다.)');
 
 			$this->recentStayDates = $this->model->getRecentStayDates();
@@ -164,7 +165,6 @@
 
 
 		function dispStayRequest() {
-
 			$this->myStayData = $this->model->getMyStayData($this->selectedDate);
 			
 			if($this->recentStayDates && $this->isExistStayInfo($this->selectedDate)){

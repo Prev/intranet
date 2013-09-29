@@ -65,7 +65,7 @@
 	/**
 	 * define using ob_gzhandler
 	 */
-	define('OB_GZIP', true);
+	define('OB_GZIP', false);
 	
 	
 	/**
