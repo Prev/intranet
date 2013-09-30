@@ -1,0 +1,29 @@
+#side-menu #side-menu-top{ background-image: url(../img/school-life/lnb_top.png) }
+
+#side-menu ul li{ background-image: url(../img/school-life/lnb_menu.png) }
+
+#side-menu ul li.lnb-school-notice{ background-position: 0 0 }
+#side-menu ul li.lnb-school-notice:hover{ background-position: -249px 0 }
+#side-menu ul li.lnb-school-notice.selected{ background-position: -498px 0 }
+
+#side-menu ul li.lnb-home-newsletter{ background-position: 0 -45px }
+#side-menu ul li.lnb-home-newsletter:hover{ background-position: -249px -45px }
+#side-menu ul li.lnb-home-newsletter.selected{ background-position: -498px -45px }
+
+#side-menu ul li.lnb-daily-timetable{ background-position: 0 -90px }
+#side-menu ul li.lnb-daily-timetable:hover{ background-position: -249px -90px }
+#side-menu ul li.lnb-daily-timetable.selected{ background-position: -498px -90px }
+
+#side-menu ul li.lnb-school-rules{ background-position: 0 -135px }
+#side-menu ul li.lnb-school-rules:hover{ background-position: -249px -135px }
+#side-menu ul li.lnb-school-rules.selected{ background-position: -498px -135px }
+
+
+
+#content-header #content-title{ background-image: url(../img/school-life/titles.png); background-repeat: no-repeat; }
+#content-header #content-title h1{ visibility: hidden; }
+
+#content-header #content-title.school-notice{ height: 23px; background-position: 0px 0px }
+#content-header #content-title.home-newsletter{ height: 23px; background-position: 0px -23px }
+#content-header #content-title.daily-timetable{ height: 22px; background-position: 0px -46px }
+#content-header #content-title.school-rules{ height: 23px; background-position: 0px -68px }

@@ -1,0 +1,23 @@
+#side-menu #side-menu-top{ background-image: url(../img/student-council/lnb_top.png) }
+
+#side-menu ul li{ background-image: url(../img/student-council/lnb_menu.png) }
+
+#side-menu ul li.lnb-council-board{ background-position: 0 0 }
+#side-menu ul li.lnb-council-board:hover{ background-position: -249px 0 }
+#side-menu ul li.lnb-council-board.selected{ background-position: -498px 0 }
+
+#side-menu ul li.lnb-autonomy-court{ background-position: 0 -45px }
+#side-menu ul li.lnb-autonomy-court:hover{ background-position: -249px -45px }
+#side-menu ul li.lnb-autonomy-court.selected{ background-position: -498px -45px }
+
+#side-menu ul li.lnb-council-proposal{ background-position: 0 -90px }
+#side-menu ul li.lnb-council-proposal:hover{ background-position: -249px -90px }
+#side-menu ul li.lnb-council-proposal.selected{ background-position: -498px -90px }
+
+
+#content-header #content-title{ background-image: url(../img/student-council/titles.png); background-repeat: no-repeat; }
+#content-header #content-title h1{ visibility: hidden; }
+
+#content-header #content-title.council-board{ height: 23px; background-position: 0px 0px }
+#content-header #content-title.autonomy-court{ height: 23px; background-position: 0px -23px }
+#content-header #content-title.council-proposal{ height: 23px; background-position: 0px -46px }
