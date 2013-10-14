@@ -41,11 +41,9 @@
 	function getMenuTag($level, $noDeco=true) {
 		$html = '';
 		foreach(Context::getMenu($level) as $key => $menu) {
-			if (!$menu->visible) continue;
-			
 			$html .= 
 				'<li class="'.$menu->className . ($menu->selected ? ' ' . $menu->className . '-selected selected' : '') . '">' .
-					'<a href="' . RELATIVE_URL . '/' . (USE_SHORT_URL ? '' : '?menu=') . $menu->title . '" class="'.($noDeco == true ? 'no-deco' : '').'">' .
+					'<a href="' . $menu->href . '" class="'.($noDeco == true ? 'no-deco' : '').'"'.($menu->linkTarget ? ' target="'.$menu->linkTarget.'"' : '').'>' .
 						$menu->title_locale .
 					'</a>' .
 				'</li>';
@@ -361,10 +359,10 @@
 		if (is_string($queryParam)) (object) $queryParam = urlQueryToArray($queryParam);
 		if ($queryParam) {
 			foreach ($queryParam as $key => $content) {
-				if (isset($key)) $queryObj->{$key} = $content;
+				if (isset($key) && $content !== NULL) $queryObj->{$key} = $content;
 			}
 		}
-
+		
 		$parsedUrl['query'] = arrayToUrlQuery($queryObj);
 
 		if (isset($module)) {
@@ -509,7 +507,7 @@
 	 * @param $alertMessage : 정의시 해당 메시지로 경고창을 한번 뛰운 뒤 뒤로 이동
 	 * @param $clearContents : true일때 이전 내용을 ob_clean 한 후 뒤로 이동
 	 */
-	function goBack($alertMessage=NULL, $clearContents=false) {
+	function goBack($alertMessage=NULL, $clearContents=true) {
 		if (!is_string($alertMessage))
 			$alertMessage = fetchLocale($alertMessage);
 

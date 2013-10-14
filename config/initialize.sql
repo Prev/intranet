@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 호스트: localhost
--- 처리한 시간: 13-09-29 20:53
+-- 처리한 시간: 13-10-14 18:19
 -- 서버 버전: 5.1.41-community
 -- PHP 버전: 5.2.12
 
@@ -46,7 +46,15 @@ CREATE TABLE IF NOT EXISTS `intra_article` (
   KEY `board_id` (`board_id`),
   KEY `writer_id` (`writer_id`),
   KEY `top_no` (`top_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- 테이블의 덤프 데이터 `intra_article`
+--
+
+INSERT INTO `intra_article` (`no`, `board_id`, `category`, `title`, `content`, `writer_id`, `top_no`, `order_key`, `is_secret`, `is_notice`, `allow_comment`, `upload_time`, `hits`) VALUES
+(1, 1, NULL, 'dasdasd', '<form action="http://intranet.dimigo.us/?module=login&amp;%3Baction=procLogin">\r\n<input type="text">\r\n<input type="password">\r\n<input type="submit">\r\nsadf</form>', 2, NULL, NULL, 0, 0, 1, '2013-09-29 13:04:08', 0),
+(3, 1, NULL, 'dasdasd', '<p>asdasda</p>', 2, NULL, NULL, 0, 0, 1, '2013-09-29 15:28:46', 1);
 
 -- --------------------------------------------------------
 
@@ -68,7 +76,15 @@ CREATE TABLE IF NOT EXISTS `intra_article_comment` (
   KEY `article_no` (`article_no`),
   KEY `top_id` (`top_id`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 테이블의 덤프 데이터 `intra_article_comment`
+--
+
+INSERT INTO `intra_article_comment` (`id`, `article_no`, `content`, `writer_id`, `write_time`, `top_id`, `parent_id`, `is_secret`) VALUES
+(1, 3, 'dasdasda', 2, '2013-10-14 08:55:41', NULL, NULL, 0),
+(2, 3, 'dadasda', 2, '2013-10-14 08:55:44', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -96,6 +112,7 @@ CREATE TABLE IF NOT EXISTS `intra_board` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `name_locales` tinytext NOT NULL,
+  `menu_id` int(10) unsigned NOT NULL,
   `categorys` tinytext,
   `readable_group` tinytext COMMENT 'json array',
   `commentable_group` tinytext COMMENT 'json array',
@@ -104,16 +121,22 @@ CREATE TABLE IF NOT EXISTS `intra_board` (
   `hide_secret_article` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `extra_vars` text,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name_en` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  UNIQUE KEY `name_en` (`name`),
+  KEY `menu_id` (`menu_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- 테이블의 덤프 데이터 `intra_board`
 --
 
-INSERT INTO `intra_board` (`id`, `name`, `name_locales`, `categorys`, `readable_group`, `commentable_group`, `writable_group`, `admin_group`, `hide_secret_article`, `extra_vars`) VALUES
-(1, 'dormitory-notice', '생활관 공지사항', NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(2, 'cafeteria-notice', '급식실 공지사항', NULL, NULL, NULL, NULL, NULL, 0, NULL);
+INSERT INTO `intra_board` (`id`, `name`, `name_locales`, `menu_id`, `categorys`, `readable_group`, `commentable_group`, `writable_group`, `admin_group`, `hide_secret_article`, `extra_vars`) VALUES
+(1, 'dormitory-notice', '생활관 공지사항', 8, NULL, NULL, NULL, NULL, NULL, 0, NULL),
+(2, 'cafeteria-notice', '급식실 공지사항', 14, NULL, NULL, NULL, NULL, NULL, 0, NULL),
+(3, 'council-board', '학생회 게시판', 20, NULL, NULL, NULL, NULL, NULL, 0, NULL),
+(4, 'autonomy-court', '학생 자치법정', 23, NULL, NULL, NULL, NULL, NULL, 0, NULL),
+(5, 'council-proposal', '학생회 건의사항', 24, NULL, NULL, NULL, NULL, NULL, 0, NULL),
+(6, 'school-notice', '학교 공지사항', 25, NULL, NULL, NULL, NULL, NULL, 0, NULL),
+(7, 'home-newsletter', '가정통신문', 26, NULL, NULL, NULL, NULL, NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -148,6 +171,55 @@ CREATE TABLE IF NOT EXISTS `intra_login_log` (
 -- --------------------------------------------------------
 
 --
+-- 테이블 구조 `intra_meal_menu`
+--
+
+CREATE TABLE IF NOT EXISTS `intra_meal_menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `food_name` text NOT NULL,
+  `allergy` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 테이블의 덤프 데이터 `intra_meal_menu`
+--
+
+INSERT INTO `intra_meal_menu` (`id`, `food_name`, `allergy`) VALUES
+(1, '코다리', '코다리 알레르기');
+
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `intra_meal_table`
+--
+
+CREATE TABLE IF NOT EXISTS `intra_meal_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` text NOT NULL,
+  `meal_time` char(2) NOT NULL,
+  `meal_json` text NOT NULL,
+  `quantity_json` text NOT NULL,
+  `nation_json` text NOT NULL,
+  `date` date NOT NULL,
+  `day` char(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+
+--
+-- 테이블의 덤프 데이터 `intra_meal_table`
+--
+
+INSERT INTO `intra_meal_table` (`id`, `title`, `meal_time`, `meal_json`, `quantity_json`, `nation_json`, `date`, `day`) VALUES
+(5, '코다리의날', 'B', '{\n  "foods" : [\n     {"id" : 1, "name" : "코다리 무침", "name isSpecial" : true , "알러지" : false},\n     {"id" : 2, "name" : "짜장 라이스", "name isSpecial" : false , "알러지" : false},\n      {"id" : 3, "name" : "카레 라이스", "name isSpecial" : false , "알러지" : false},\n      {"id" : 4, "name" : "총각 김치",   "name isSpecial" : false , "알러지" : true},\n      {"id" : 5, "name" : "야쿠르트",   "name isSpecial" : false , "알러지" :  true}\n\n   ]\n}', '{"nutrition" : [{"info" : {"열량" : "865cal", "단백질" : "19g" , "지방" : "19g"}}]}', '{"원산지" : [{ "원산지" : {"코다리" : "북한산", "김치" : "중국산" , "소고기" : "화성산"}}]}', '2013-09-30', 'TH'),
+(7, '', 'B', '{\r\n "foods" : [\r\n     {"id" : 1, "name" : "코다리 무침", "name isSpecial" : true , "알러지" : false},\r\n     {"id" : 2, "name" : "카레 라이스", "name isSpecial" : false , "알러지" : false},\r\n      {"id" : 3, "name" : "걍 라이스", "name isSpecial" : false , "알러지" : false},\r\n     {"id" : 4, "name" : "총각 김치",   "name isSpecial" : false , "알러지" : true},\r\n      {"id" : 5, "name" : "야쿠르트",   "name isSpecial" : false , "알러지" :  true}\r\n\r\n   ]\r\n}', '{"nutrition" : [{"info" : {"열량" : "865cal", "단백질" : "19g" , "지방" : "19g"}}]}', '{"원산지" : [{ "원산지" : {"코다리" : "북한산", "김치" : "중국산" , "소고기" : "화성산"}}]}', '2013-10-01', 'TH'),
+(8, 'ni hen nag kan', 'B', '{\r\n "foods" : [\r\n     {"id" : 1, "name" : "김치 무침", "name isSpecial" : true , "알러지" : false},\r\n      {"id" : 2, "name" : "카레 라이스", "name isSpecial" : false , "알러지" : false},\r\n      {"id" : 3, "name" : "걍 라이스", "name isSpecial" : false , "알러지" : false},\r\n     {"id" : 4, "name" : "총각 김치",   "name isSpecial" : false , "알러지" : true},\r\n      {"id" : 5, "name" : "야쿠르트",   "name isSpecial" : false , "알러지" :  true}\r\n\r\n   ]\r\n}', '{"nutrition" : [{"info" : {"열량" : "865cal", "단백질" : "19g" , "지방" : "19g"}}]}', '{"원산지" : [{ "원산지" : {"코다리" : "북한산", "김치" : "중국산" , "소고기" : "화성산"}}]}', '2013-10-03', 'TH'),
+(11, '', 'L', '{\n  "foods" : [\n     {"id" : 1, "name" : "코다리 무침", "name isSpecial" : true , "알러지" : false},\n     {"id" : 2, "name" : "카레 라이스", "name isSpecial" : false , "알러지" : false},\n      {"id" : 3, "name" : "걍 라이스", "name isSpecial" : false , "알러지" : false},\n     {"id" : 4, "name" : "총각 김치",   "name isSpecial" : false , "알러지" : true},\n      {"id" : 5, "name" : "야쿠르트",   "name isSpecial" : false , "알러지" :  true}\n\n   ]\n}', '{"nutrition" : [{"info" : {"열량" : "865cal", "단백질" : "19g" , "지방" : "19g"}}]}', '{"원산지" : [{ "원산지" : {"코다리" : "북한산", "김치" : "중국산" , "소고기" : "화성산"}}]}', '2013-10-01', 'TH'),
+(12, 'ni hen nag kan', 'D', '{\n  "foods" : [\n     {"id" : 1, "name" : "김치 무침", "name isSpecial" : true , "알러지" : false},\n      {"id" : 2, "name" : "카레 라이스", "name isSpecial" : false , "알러지" : false},\n      {"id" : 3, "name" : "걍 라이스", "name isSpecial" : false , "알러지" : false},\n     {"id" : 4, "name" : "총각 김치",   "name isSpecial" : false , "알러지" : true},\n      {"id" : 5, "name" : "야쿠르트",   "name isSpecial" : false , "알러지" :  true}\n\n   ]\n}', '{"nutrition" : [{"info" : {"열량" : "865cal", "단백질" : "19g" , "지방" : "19g"}}]}', '{"원산지" : [{ "원산지" : {"코다리" : "북한산", "김치" : "중국산" , "소고기" : "화성산"}}]}', '2013-10-03', 'TH');
+
+-- --------------------------------------------------------
+
+--
 -- 테이블 구조 `intra_menu`
 --
 
@@ -166,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `intra_menu` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `title` (`title`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- 테이블의 덤프 데이터 `intra_menu`
@@ -174,12 +246,12 @@ CREATE TABLE IF NOT EXISTS `intra_menu` (
 
 INSERT INTO `intra_menu` (`id`, `title`, `title_locales`, `level`, `is_index`, `visible`, `visible_group`, `parent_id`, `module`, `action`, `extra_vars`) VALUES
 (1, 'home', '홈', 1, 1, 1, NULL, NULL, 'index', NULL, NULL),
-(2, 'school-life', '학교생활', 1, 0, 1, NULL, NULL, NULL, NULL, NULL),
+(2, 'school-life', '학교생활', 1, 0, 1, NULL, NULL, NULL, NULL, '{"linkToSubMenu":true}'),
 (3, 'dormitory', '생활관', 1, 0, 1, NULL, NULL, NULL, NULL, '{"linkToSubMenu":true}'),
 (4, 'cafeteria', '급식실', 1, 0, 1, NULL, NULL, 'board', NULL, '{"linkToSubMenu":true}'),
-(5, 'student-council', '학생자치회', 1, 0, 1, NULL, NULL, NULL, NULL, NULL),
+(5, 'student-council', '학생자치회', 1, 0, 1, NULL, NULL, NULL, NULL, '{"linkToSubMenu":true}'),
 (6, 'u-learning', 'U-러닝', 1, 0, 1, NULL, NULL, 'board', NULL, NULL),
-(7, 'els', '이러닝스튜디오', 1, 0, 1, NULL, NULL, 'page', NULL, NULL),
+(7, 'els', '이러닝스튜디오', 1, 0, 1, NULL, NULL, NULL, NULL, '{"link":"http://els.dimigo.hs.kr", "linkTarget":"_blank"}'),
 (8, 'dormitory-notice', '생활관 공지사항', 2, 0, 1, NULL, 3, 'board', NULL, ''),
 (9, 'stay-request', '잔류 신청/수정/취소', 2, 0, 1, '["student"]', 3, 'stay', 'dispStayRequest', '{"showContentHeader":false}'),
 (10, 'stay-inquiry', '잔류 조회', 2, 0, 1, NULL, 3, 'stay', 'dispStayInquiry', '{"showContentHeader":false}'),
@@ -191,7 +263,14 @@ INSERT INTO `intra_menu` (`id`, `title`, `title_locales`, `level`, `is_index`, `
 (16, 'snack-request', '간식 신청', 2, 0, 1, NULL, 4, NULL, NULL, NULL),
 (17, 'food-coupon-manage', '식권 관리', 2, 0, 1, NULL, 4, NULL, NULL, NULL),
 (18, 'cateteria-ask', '급식실 문의하기', 2, 0, 1, NULL, 4, NULL, NULL, NULL),
-(19, 'food-log', '나의 식사 기록', 2, 0, 1, NULL, 4, NULL, NULL, NULL);
+(19, 'food-log', '나의 식사 기록', 2, 0, 1, NULL, 4, NULL, NULL, NULL),
+(20, 'council-board', '학생회 게시판', 2, 0, 1, NULL, 5, 'board', NULL, NULL),
+(23, 'autonomy-court', '학생 자치법정', 2, 0, 1, NULL, 5, 'board', NULL, NULL),
+(24, 'council-proposal', '학생회 건의사항', 2, 0, 1, NULL, 5, 'board', NULL, NULL),
+(25, 'school-notice', '학교 공지사항', 2, 0, 1, NULL, 2, 'board', NULL, NULL),
+(26, 'home-newsletter', '가정통신문', 2, 0, 1, NULL, 2, 'board', NULL, NULL),
+(27, 'daily-timetable', '일과 시간표', 2, 0, 1, NULL, 2, 'page', NULL, NULL),
+(28, 'school-rules', '학교 규정', 2, 0, 1, NULL, 2, 'page', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -211,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `intra_morning_song_list` (
   PRIMARY KEY (`id`),
   KEY `file_id` (`file_id`),
   KEY `uploader_id` (`uploader_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 -- --------------------------------------------------------
 
@@ -226,7 +305,7 @@ CREATE TABLE IF NOT EXISTS `intra_morning_song_selected` (
   `applying_date` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `list_id` (`list_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 -- --------------------------------------------------------
 
@@ -646,6 +725,12 @@ ALTER TABLE `intra_article_files`
   ADD CONSTRAINT `intra_article_files_ibfk_2` FOREIGN KEY (`file_id`) REFERENCES `intra_files` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
+-- Constraints for table `intra_board`
+--
+ALTER TABLE `intra_board`
+  ADD CONSTRAINT `intra_board_ibfk_1` FOREIGN KEY (`menu_id`) REFERENCES `intra_board` (`menu_id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `intra_menu`
 --
 ALTER TABLE `intra_menu`
@@ -675,6 +760,19 @@ ALTER TABLE `intra_password_change_key`
 --
 ALTER TABLE `intra_password_change_log`
   ADD CONSTRAINT `intra_password_change_log_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `intra_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `intra_stay_auto_form`
+--
+ALTER TABLE `intra_stay_auto_form`
+  ADD CONSTRAINT `intra_stay_auto_form_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `intra_user` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `intra_stay_data`
+--
+ALTER TABLE `intra_stay_data`
+  ADD CONSTRAINT `intra_stay_data_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `intra_user` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `intra_stay_data_ibfk_2` FOREIGN KEY (`stay_id`) REFERENCES `intra_stay_info` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `intra_user_group_user`

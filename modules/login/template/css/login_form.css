@@ -50,6 +50,7 @@
 #login-wrap #checkbox-wrap input{ margin: 0 1px }
 #login-wrap #checkbox-wrap label{ margin-right: 8px }
 #login-wrap #checkbox-wrap .login-bar{ padding: 0px 5px; color:#666; }
+#login-wrap #checkbox-wrap a{ color: black; text-decoration: none; }
 
 #login-wrap #submit-wrap button{
 	background: url(../img/login_btn.png) no-repeat;

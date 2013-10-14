@@ -1,9 +1,11 @@
 {
-	"layout" : "FindpageLayout",
 	"actions": [
 		{
 			"name":"dispDietMain",
-			"view":"dietView"
+			"view":"dietView",
+			"model": "dietModel",
+			"controller" : "dietController",
+			"default":true
 		}
 	]
 }

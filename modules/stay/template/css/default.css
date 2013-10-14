@@ -21,7 +21,7 @@
 
 
 /* #wrap #main-content #main-content-header */
-#main-content-header{ margin:5px 20px 20px 20px; *zoom:1 }
+#main-content-header{ margin:5px 25px 20px 25px; *zoom:1 }
 #main-content-header:after{ content:""; display:block; clear:both }
 #main-content-header #main-content-title{
 	float:left;

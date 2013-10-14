@@ -1,5 +1,40 @@
-#top #title{ font-size: 18pt; font-weight: bolder; display: inline-block; }
-#top #downdiet_btn { width: 125px; height: 30px; float: right; display: inline-block; }
+#container { width: 705px; padding: 22px; position: relative; }
 
-#date { text-align: center; }
-#date #diet_day { font-size: 16pt; font-weight: bolder; }
+#top-bar #title{ font-size: 18pt; font-weight: bolder; display: inline-block; }
+#top-bar #downdiet_btn { width: 125px; height: 30px; float: right; display: inline-block; }
+
+#date { text-align: center; margin-top: 15px;}
+#date #diet-day { font-size: 16pt; font-weight: bolder; }
+#date #before { font-size: 16pt; color: #808080; margin-right: 5px; cursor: pointer;}
+#date #next { font-size: 16pt; color: #808080; margin-left: 5px; cursor: pointer; }
+#date #before-txt { font-size: 10pt; color: #808080; margin-right: 5px; visibility: hidden;}
+#date #next-txt { font-size: 10pt; color: #808080; margin-left: 5px; visibility: hidden;}
+
+#tip { margin-top: 25px; font-size: 9pt;  }
+#tip #allergy-info { margin-left: 65px; }
+#tip #allergy-mark { cursor: pointer; }
+#tip #allergy-popup { background-color: #FFFFFF; border: 1px solid gray; position: absolute; left: 361px; top: 140px; width: 340px; height: 60px; padding: 12px; z-index: 99; }
+#tip #inf-detail { margin-left: 10px; }
+
+#main-table .table-cell { width: 145px; border: 1px solid #C6C6C6; border-right: 0px; margin-top: 10px; position:relative;}
+#main-table .table-cell .special-food { color: #ff1493; font-weight: bold; }
+#main-table .table-cell .m-event { width: 20px; height: 17px; left: 10px; top: 10px; position: absolute; background: magenta; cursor: pointer; }
+#main-table .table-cell .m-eventfood { width: 80px; height: 17px; left: 10px; top: 10px; position: absolute; background: magenta; cursor: pointer; display: none; }
+#main-table .table-cell .stars {visibility: hidden; color: red;}
+#main-table .table-cell .stars2 {visibility: hidden;}
+
+#main-table { border-collapse:collapse; margin-top: 15px; text-align: center; font-size: 9pt; border-top: 2px solid #778899; border-bottom: 2px solid #778899;}
+#main-table #diet-header #division { width: 51px; height: 30px; border: 1px solid gray; background-color: #C6C6C6;}
+#main-table #diet-header .week { width: 172px; height: 30px; border: 1px solid gray; border-right: 0px; background-color: #C6C6C6;}
+#main-table #diet-header .week .week-day { font-weight: bolder; background-color: #C6C6C6; }
+
+#main-table .food-table .day-food { width: 40px; height: 110px; background-color: #F2F2F2; border: 1px solid #C6C6C6; border-left: 0px; }
+#main-table .food-table .inf-menu { width: 80px; height: 118px; background-color: #F2F2F2; border: 1px solid #C6C6C6; display: none;}
+#main-table .nutrition-table {display: none;}
+#main-table .nutrition-table .food-nutrition { width: 80px; height: 50px; background-color: #F2F2F2; border: 1px solid #C6C6C6;}
+#main-table .nutrition-table .kind-nutrition { width: 69px; display: inline-block; margin: 0; color: #2F4F4F;}
+#main-table .nutrition-table .inf-nutrition { width: 69px; text-align: left; display: inline-block; margin: 0; color: #808080;}
+
+#main-table .origin-table { display: none; }
+#main-table .origin-table .inf-origin { width: 80px; height: 35px; background-color: #F2F2F2; border: 1px solid #C6C6C6;}
+#main-table .origin-table .table-cell { color: #808080; }

@@ -105,15 +105,15 @@ body{
 
 #wrap #side-menu{ width: 249px }
 #wrap #side-menu #side-menu-top{ height: 372px; text-align: right; }
-#wrap #side-menu #side-menu-top .hidden{ display: inline-block; font-size: 32px; padding-top: 330px; *zoom:1; }
+#wrap #side-menu #side-menu-top .hidden{ display: inline-block; font-size: 32px; padding-top: 322px; padding-right: 12px; *zoom:1; }
 
 #wrap #side-menu ul li{ height: 45px; }
-#wrap #side-menu ul li .hidden{ display: inline-block; padding: 15px 0 0 12px; font-size: 14px; *zoom:1; }
+#wrap #side-menu ul li .hidden{ display: inline-block; padding: 15px 0 0 17px; font-size: 14px; *zoom:1; }
 
 #wrap #main-content{ border-left: 1px solid #D6D6D6; }
-#wrap #main-content #content-header{ margin: 22px 24px; }
-#wrap #main-content #content-header a{ color: black; text-decoration: none; }
-#wrap #main-content #content-header #content-title h1{ margin: 0; padding: 0; }
+#wrap #main-content #content-header{ margin: 25px; }
+#wrap #main-content #content-header #content-title a{ color: black; text-decoration: none; height: inherit; display: inline-block; *zoom:1; }
+#wrap #main-content #content-header #content-title h1{ margin: 0; padding: 0; height: inherit; font-size: 23px; display: inline-block; *zoom:1; }
 
 #footer{ width:1000px; margin:0 auto; font-size:10px; *zoom:1 }
 #footer:after{ display:block; clear:both; content:"" }

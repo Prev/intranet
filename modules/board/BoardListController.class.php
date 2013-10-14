@@ -7,12 +7,12 @@
 		public function init() {
 
 			$boardName = isset($_GET['board_name']) ? escape($_GET['board_name']) : NULL;
-			$aop = isset($_GET['aop']) ? escape($_GET['aop']) : self::DEFAULT_AOP;
+			$aop = isset($_GET['aop']) ? (int)escape($_GET['aop']) : self::DEFAULT_AOP;
 			$nowPage = isset($_GET['page']) ? escape($_GET['page']) : 1;
 
-			if ($boardName === NULL && $_GET['menu']) {
-				$boardName = $_GET['menu'];
-				$boardInfo = $this->model->getBoardInfo($_GET['menu']);
+			if ($boardName === NULL && Context::getInstance()->selectedMenu) {
+				$boardInfo = $this->model->getBoardInfoByMenuId(Context::getInstance()->selectedMenu->id);
+				$boardName = $boardInfo->name;
 
 				if (!$boardInfo) {
 					Context::printErrorPage(array(
@@ -43,7 +43,23 @@
 			$this->view->isBoardAdmin = $this->checkIsBoardAdmin($boardInfo->admin_group);
 			$this->view->categorys = $boardInfo->categorys ? json_decode($boardInfo->categorys) : NULL;
 
-			Context::getInstance()->selectedMenu = $boardName;
+			
+			// 메뉴가 연결되지 않았을 때 메뉴에 연결
+			if (!isset(Context::getInstance()->selectedMenu)) {
+				$row = DBHandler::for_table('menu')
+					->where('id', $boardInfo->menu_id)
+					->find_one();
+				
+				Context::getInstance()->selectedMenu = $row->getData();
+				
+				while ($row->parent_id != NULL) {
+					$row = DBHandler::for_table('menu')
+						->where('id', $row->parent_id)
+						->find_one();
+					
+					array_unshift(Context::getInstance()->parentMenus, $row->getData());
+				}
+			}
 		}
 
 		public function manufactureArticleDatas($articles) {
@@ -76,9 +92,9 @@
 					$regexp = '/(' . str_replace(' ', '|', $_REQUEST['search']) . ')/i';
 
 					if ($_REQUEST['search_type'] == 'writer')
-						$articles[$i]->writer = preg_replace($regexp, '<strong class="search">$1</strong>', $articles[$i]->writer);
+						$articles[$i]->writer = preg_replace($regexp, '<strong class="searched">$1</strong>', $articles[$i]->writer);
 					else
-						$articles[$i]->title = preg_replace($regexp, '<strong class="search">$1</strong>', $articles[$i]->title);
+						$articles[$i]->title = preg_replace($regexp, '<strong class="searched">$1</strong>', $articles[$i]->title);
 				}
 			}
 			return $articles;

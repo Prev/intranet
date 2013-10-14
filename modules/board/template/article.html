@@ -1,12 +1,12 @@
-<import path="css/article.css">
+<import path="css/article.less">
 <import path="js/article.js">
 
 <div class="article">
 	<div class="article-header clearfix">
 		<div class="ah-top clearfix">
-			<div class="title">
+			<div class="title fl">
 				<condition do="$is_secret">
-					<span class="secret-icon" title="비밀글"><!--비밀글--></span>
+					<span class="secret-icon" title="{# 'en'=>'Secret Article', 'ko'=>'비밀글'}"></span>
 				</condition>
 				<condition do="$category">
 					<span class="category">[{$category}]&nbsp;</span>
@@ -51,19 +51,19 @@
 	</condition>
 
 	<div class="article-buttons clearfix">
-		<div id="comment-label" class="fl">덧글 {count($commentDatas)}개</div>
-		<div class="fl">조회수&nbsp;{$hits}</div>
+		<div id="comment-label" class="fl">{# 'en' => count($commentDatas).' comments', 'ko' => '덧글 '.count($commentDatas).'개'}</div>
+		<div class="fl">{# 'en'=>'hits', 'ko'=>'조회수'}&nbsp;{$hits}</div>
 		
 		<div class="fr cleafix">
 			<condition do="$isBoardAdmin">
 				<div class="fl right-bar">
 					<form name="toggle_form" action="{getUrl('board', 'procToggleNotice')}" method="POST">
 						<input type="hidden" name="article_no" value="{$articleNo}">
-						<a href="#" onclick="if (confirm('{@ echo !$articleData->is_notice ? '이 글을 정말 공지사항으로 등록하시겠습니까?' : '이 글을 공지사항에서 해제하시겠습니까?' }')) toggle_form.submit();">
+						<a href="#" onclick="if (confirm('{@ echo !$articleData->is_notice ? fetchLocale(array('en'=>'Are you sure to register this article notice?', 'ko'=>'이 글을 정말 공지사항으로 등록하시겠습니까?')) : fetchLocale(array('en'=>'Are you sure to unregister this article notice?', 'ko'=>'이 글을 공지사항에서 해제하시겠습니까?')); }')) toggle_form.submit();">
 							<condition do="!$articleData->is_notice">
-								공지&nbsp;등록
+								{# 'en'=>'Register to notice', 'ko'=>'공지&nbsp;등록'}
 							<else>
-								공지&nbsp;해제
+								{# 'en'=>'Unregister in notice', 'ko'=>'공지&nbsp;해제'}
 							</condition>
 						</a>
 					</form>
@@ -71,12 +71,12 @@
 			</condition>
 
 			<div class="fl">
-				<a href="{getUrl('board', 'dispEditor', 'parent_no='.$articleNo)}">답글</a>
+				<a href="{getUrl('board', 'dispEditor', 'parent_no='.$articleNo)}">{# 'en'=>'add reply', 'ko'=>'답글'}</a>
 			</div>
 			
 			<condition do="User::getCurrent()->id == $writer_id">
 				<div class="fl left-bar">
-					<a href="{getUrl('board', 'dispEditor', 'article_no='.$articleNo)}">수정</a>
+					<a href="{getUrl('board', 'dispEditor', 'article_no='.$articleNo)}">{# 'en'=>'modify', 'ko'=>'수정'}</a>
 				</div>
 			</condition>
 
@@ -84,7 +84,7 @@
 				<div class="fl left-bar">
 					<form name="delete_form" action="{getUrl('board', 'procDeleteArticle')}" method="POST">
 						<input type="hidden" name="article_no" value="{$articleNo}">
-						<a href="#" onclick="if (confirm('정말 삭제하시겠습니까?')) delete_form.submit();">삭제</a>
+						<a href="#" onclick="if (confirm('{# 'en'=>'Are you sure to delete this article?', 'ko'=>'정말 삭제하시겠습니까?'}')) delete_form.submit();">{# 'en'=>'delete', 'ko'=>'삭제'}</a>
 					</form>
 				</div>
 			</condition>
@@ -112,26 +112,26 @@
 									<div class="comment-delete-btn fr">
 										<form name="comment_delete_form{$i}" action="{getUrl('board', 'procDeleteComment')}" method="POST">
 											<input type="hidden" name="comment_id" value="{$comment->id}">
-											<a href="#" onclick="if (confirm('정말 삭제하시겠습니까?')) comment_delete_form{$i}.submit();">삭제</a>
+											<a href="#" onclick="if (confirm('{# 'en'=>'Are you sure to delete this article?', 'ko'=>'정말 삭제하시겠습니까?'}')) comment_delete_form{$i}.submit();">{# 'en'=>'delete', 'ko'=>'삭제'}</a>
 										</form>
 									</div>
 								</condition>
 
 								<condition do="User::getCurrent()->id == $comment->writer_id">
 									<div class="comment-update-btn fr">
-										<a href="#" id="comment{$i}-update-a" onclick="toggleUpdateComment({$i}); return false;">수정</a>
+										<a href="#" id="comment{$i}-update-a" onclick="toggleUpdateComment({$i}); return false;">{# 'en'=>'modify', 'ko'=>'수정'}</a>
 									</div>
 								</condition>
 
 								<div class="comment-reply-btn fr">
-									<a href="#" id="comment{$i}-reply-a" onclick="toggleReplyComment({$i}, {$comment->id}); return false;">답글</a>
+									<a href="#" id="comment{$i}-reply-a" onclick="toggleReplyComment({$i}, {$comment->id}); return false;">{# 'en'=>'add reply', 'ko'=>'답글'}</a>
 								</div>
 
 							</div>
 	
 							<condition do="$comment->is_secret">
 								<div class="visible-secret-comment">
-									비밀 덧글입니다
+									{# 'en'=>'Secret comment', 'ko'=>'비밀 덧글입니다'}
 								</div>
 							</condition>
 
@@ -143,7 +143,7 @@
 							</div>
 						</true>
 						<false>
-							<div class="secret-comment">비밀 덧글입니다</div>
+							<div class="secret-comment">{# 'en'=>'Secret comment', 'ko'=>'비밀 덧글입니다'}</div>
 						</false>
 					</condition>
 
@@ -158,14 +158,14 @@
 								<div class="fr">
 									<div class="secret-comment-wrap">
 										<input id="modify-comment{$i}-secret-checkbox" type="checkbox" name="is_secret">
-										<label for="is_secret">비밀 덧글</label>
+										<label for="is_secret">{# 'en'=>'Secret', 'ko'=>'비밀 덧글입니다'}</label>
 									</div>
 										<div>
 										<button class="comment-btn" onclick="this.form.submit(); return false;">
 											<condition do="$comment->is_reply">
-												답글수정
+												{# 'en'=>'Modify reply', 'ko'=>'답글수정'}
 											<else>
-												덧글수정
+												{# 'en'=>'Modify comment', 'ko'=>'덧글수정'}
 											</condition>
 										</button>
 									</div>
@@ -183,15 +183,15 @@
 				<input id="reply-top-id" type="hidden" name="top_id">
 				
 				<div class="fl">
-					<textarea id="reply-textarea" name="comment" class="reply" placeholder="답글을 입력하세요"></textarea>
+					<textarea id="reply-textarea" name="comment" class="reply" placeholder="{# 'en'=>'Input reply', 'ko'=>'답글을 입력하세요'}"></textarea>
 				</div>
 				<div class="fr">
 					<div class="secret-comment-wrap">
 						<input id="reply-secret-comment" type="checkbox" name="is_secret">
-						<label for="is_secret">비밀 덧글</label>
+						<label for="is_secret">{# 'en'=>'Secret', 'ko'=>'비밀 덧글'}</label>
 					</div>
 					<div>
-						<button class="comment-btn" onclick="if (this.form.comment.value == '') { alert('답글을 입력 해 주세요'); return false; } this.form.is_secret.disabled = false; this.form.submit(); return false;">답글달기</button>
+						<button class="comment-btn" onclick="if (this.form.comment.value == '') { alert('{# 'en'=>'Input reply', 'ko'=>'답글을 입력 해 주세요'}'); return false; } this.form.is_secret.disabled = false; this.form.submit(); return false;">{# 'en'=>'add reply', 'ko'=>'답글달기'}</button>
 					</div>
 				</div>
 			</form>
@@ -203,17 +203,17 @@
 				<div class="fl">
 					<condition do="!$articleData->allow_comment">
 						<true>
-							<textarea name="comment" placeholder="덧글을 허용하지 않은 게시글입니다" class="disabled" disabled></textarea>
+							<textarea name="comment" placeholder="{# 'en'=>'Reply is not allowed in this article', 'ko'=>'덧글을 허용하지 않은 게시글입니다'}" class="disabled" disabled></textarea>
 						</true>
 						<false>
 							<condition do="User::getCurrent()">
 								<condition do="$commentable">
-									<textarea name="comment" placeholder="덧글을 입력하세요"></textarea>
+									<textarea name="comment" placeholder="{# 'en'=>'Input comment', 'ko'=>'덧글을 입력하세요'}"></textarea>
 								<else>
-									<textarea name="comment" placeholder="덧글을 쓸 권한이 없습니다" class="disabled" disabled></textarea>
+									<textarea name="comment" placeholder="{# 'en'=>'You have not permission to add a comment', 'ko'=>'덧글을 쓸 권한이 없습니다'}" class="disabled" disabled></textarea>
 								</condition>
 							<else>
-								<textarea name="comment" placeholder="로그인한 유저만 댓글을 남길 수 있습니다" class="disabled" disabled></textarea>
+								<textarea name="comment" placeholder="{# 'en'=>'You need to login to add a comment', 'ko'=>'로그인한 유저만 댓글을 남길 수 있습니다'}" class="disabled" disabled></textarea>
 							</condition>
 						</false>
 					</condition>
@@ -221,10 +221,10 @@
 				<div class="fr">
 					<div class="secret-comment-wrap">
 						<input type="checkbox" name="is_secret">
-						<label for="is_secret">비밀 덧글</label>
+						<label for="is_secret">{# 'en'=>'secret reply', 'ko'=>'비밀 덧글'}</label>
 					</div>
 					<div>
-						<button class="comment-btn" onclick="if (this.form.comment.value == '') { alert('덧글을 입력 해 주세요'); return false; } this.form.submit(); return false;">덧글달기</button>
+						<button class="comment-btn" onclick="if (this.form.comment.value == '') { alert('{# 'en'=>'Input comment', 'ko'=>'덧글을 입력 해 주세요'}'); return false; } this.form.submit(); return false;">{# 'en'=>'add comment', 'ko'=>'덧글달기'}</button>
 					</div>
 				</div>
 			</form>
