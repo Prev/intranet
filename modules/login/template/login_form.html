@@ -11,7 +11,10 @@
 
 
 <div id="login-wrap">
-	<form name="login_form" method="post" action="/?module=login&action=procSecureLogin" onsubmit="return procLogin()">
+	/*************************
+		로그인 action 주의
+	**************/
+	<form name="login_form" method="post" action="{getUrl('login', 'procLogin', 'next='.RELATIVE_URL, ACCOUNT_SERVER_URL)}" onsubmit="return procLogin()">
 		<input type="hidden" name="enc_id">
 		<input type="hidden" name="enc_pw">
 		<input type="hidden" name="check_sum">

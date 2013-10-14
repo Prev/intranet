@@ -1,9 +1,0 @@
-body {margin: 0;}
-#container {width: 670px; margin: 0 auto;}
-#title {width: 670px; height: 38px; margin-top: 30px; margin-bottom: 25px; background: transparent url('./img/title_pwemail.png') no-repeat;}
-#main-box {width: 664px; height: 259px; border: 3px solid #e3e3e3; border-radius: 3px;}
-#main-box #contents {width: 400px; height: 37px; text-align: center; color: transparent; background: transparent url('./img/contents_pwemail.png') no-repeat; background-position: center; margin: 60px auto 25px auto;}
-#main-box #contents #send-mail {font-size: 15px; font-weight: bold;}
-#main-box #contents #three-hour {font-size: 13px; font-weight: bold;}
-#main-box #tip {width: 380px; height: 30px; color: #595959; font-size: 12px; margin: 0 auto;}
-#main-box #login-btn {width: 98px; height: 25px; background: transparent url('./img/btn_login.png') no-repeat; display: block; margin: 30px auto; padding: 0; border: 0; cursor: pointer;}

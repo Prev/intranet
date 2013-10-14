@@ -3,8 +3,6 @@
 	"version":"1.0.0",
 	"author":"prevdev@gmail.com",
 
-	"model":"LoginModel",
-
 	"actions":[
 		{
 			"name":"dispLoginPage",
@@ -12,23 +10,8 @@
 			"default":true
 		},
 		{
-			"name":"procLogin",
-			"controller":"LoginController",
-			"layout":"blank"
-		},
-		{
-			"name":"procSecureLogin",
-			"controller":"LoginController",
-			"layout":"blank"
-		},
-		{
 			"name":"procLogout",
-			"controller":"LoginController",
-			"layout":"blank"
-		},
-		{
-			"name":"procLogout2",
-			"controller":"LoginController",
+			"controller":"LogoutController",
 			"layout":"blank"
 		}
 	]

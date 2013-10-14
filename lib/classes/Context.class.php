@@ -257,8 +257,10 @@
 
 					if (!empty($getVars['menu'.($i+1)])) {
 						$data = $record->find_one();
-						$parentId = $data->id;
-						array_push($this->parentMenus, $data->getData());
+						if ($data) {
+							$parentId = $data->id;
+							array_push($this->parentMenus, $data->getData());
+						}
 					}else {
 						$selectedData = $record->find_one();
 					}
@@ -669,6 +671,9 @@
 		 *
 		 */
 		public function checkSSO() {
+			if (!isset($_COOKIE[SSO_COOKIE_NAME]) && isset($_SESSION[SSO_SESSION_NAME]))
+				unset($_SESSION[SSO_SESSION_NAME]);
+
 			if ($_COOKIE[SSO_COOKIE_NAME.'_synchash'] && $_COOKIE[SSO_COOKIE_NAME.'_synchash'] != $_SESSION[SSO_SESSION_NAME.'_synchash']) {
 				// 와일드 카드 쿠키와 세션의 싱크를 맞춰줌
 				unset($_SESSION[SSO_SESSION_NAME]);

@@ -117,6 +117,11 @@
 		 */
 		define('SESSION_DOMAIN', getSessionDomain());
 		
+		/**
+		 * Define session uri
+		 */
+		define('SESSION_URI', getSessionUri());
+
 
 		/**
 		 * Define server uri
@@ -151,9 +156,16 @@
 	
 
 	/**
+	 	
+	 	올바른 어카운트 서버 url을 지정하십시오
+		
+	**/
+	define('ACCOUNT_SERVER_URL', 'http://127.0.0.1/intranet_account');
+
+	/**
 	 * define sso process file url
 	 */
-	define('SSO_URL', RELATIVE_URL . '/sso-server/');
+	define('SSO_URL', ACCOUNT_SERVER_URL . '/sso-server/');
 
 
 	/**
