@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+#browser-upgrade{ width:1000px; margin:0 auto; position:relative; }
+#browser-upgrade-img{ background:url(upgrade_browser.png) 0 0; position:absolute; width:1000px; height:107px; text-align:center }
+#browser-upgrade ul#browser-upgrade-selector{ position:absolute; width:1000px; height:107px; text-align:right; }
+#browser-upgrade ul#browser-upgrade-selector li{  cursor:pointer  }
+#browser-upgrade ul#browser-upgrade-selector li#browser-upgrade-chrome{ position:absolute; left:544px; top:23px; width:50px; height:45px; }
+#browser-upgrade ul#browser-upgrade-selector li#browser-upgrade-firefox{ position:absolute; left:636px; top:23px; width:50px; height:45px; }
+#browser-upgrade ul#browser-upgrade-selector li#browser-upgrade-ie{ position:absolute; left:725px; top:23px; width:50px; height:45px; }
+#browser-upgrade ul#browser-upgrade-selector li#browser-upgrade-safari{ position:absolute; left:824px; top:23px; width:50px; height:45px; }
+#browser-upgrade ul#browser-upgrade-selector li#browser-upgrade-opera{ position:absolute; left:910px; top:23px; width:50px; height:45px; }
+#browser-upgrade ul#browser-upgrade-selector li#browser-upgrade-close{ position:absolute; left:970px; top:15px; width:20px; height:30px; }
