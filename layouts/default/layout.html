@@ -37,7 +37,6 @@
 							</default>
 						</switch>
 					</div>
-
 					<ul class="child">
 						<li>
 							<a href="{getUrl('login', 'procLogout')}">로그아웃</a>
@@ -82,39 +81,37 @@
 </div>
 <condition do="$selectedTopMenu && $lnb = Context::getMenu(2)">
 	<true>
-		<div id="wrap" class="styled">
-			{@ Context::getInstance()->addHeaderFile('/static/css/'.$selectedTopMenu->title.'.css'); }
-			<div class="clearfix">
-				<div id="side-menu" class="fl">
-					<div id="side-menu-top">
-						<span class="hidden">{$selectedTopMenu->title_locale}</span>
-					</div>
-					<ul>
-						{@ foreach ($lnb as $key => $menu) : }
-							{@ if (!$menu->visible) continue; }
-							<a href="/{@ echo USE_SHORT_URL ? ($selectedTopMenu->title.'/') : '?menu='; }{$menu->title}">
-								{@ if ($menu->selected) $GLOBALS['selectedMenu'] = $menu; }
+		<div id="wrap" class="styled clearfix">
+		{@ Context::getInstance()->addHeaderFile('/static/css/'.$selectedTopMenu->title.'.css'); }
+			<div id="side-menu" class="fl">
+				<div id="side-menu-top">
+					<span class="hidden">{$selectedTopMenu->title_locale}</span>
+				</div>
+				<ul>
+					{@ foreach ($lnb as $key => $menu) : }
+						{@ if (!$menu->visible) continue; }
+						<a href="/{@ echo USE_SHORT_URL ? ($selectedTopMenu->title.'/') : '?menu='; }{$menu->title}">
+							{@ if ($menu->selected) $GLOBALS['selectedMenu'] = $menu; }
 
-								<li class="lnb-{$menu->title}{@ if ($menu->selected) echo ' selected'}">
-									<span class="hidden">{$menu->title_locale}</span>
-								</li>
+							<li class="lnb-{$menu->title}{@ if ($menu->selected) echo ' selected'}">
+								<span class="hidden">{$menu->title_locale}</span>
+							</li>
+						</a>
+					{@ endforeach; }
+				</ul>
+			</div>
+			<div id="main-content" class="fl" style="min-height:{@ echo 372+45*count($lnb)}px">
+				<condition do="$GLOBALS['selectedMenu']->extra_vars->showContentHeader !== false">
+					<div id="content-header">
+						<div id="content-title" class="{$GLOBALS['selectedMenu']->title}">
+							<a href="/{@ echo (USE_SHORT_URL ? $selectedTopMenu->title.'/'.$GLOBALS['selectedMenu']->title : '?menu='.$GLOBALS['selectedMenu']->title); }">
+								<h1>{$GLOBALS['selectedMenu']->title_locale}</h1>
 							</a>
-						{@ endforeach; }
-					</ul>
-				</div>
-				<div id="main-content" class="fl" style="min-height:{@ echo 372+45*count($lnb)}px">
-					<condition do="$GLOBALS['selectedMenu']->extra_vars->showContentHeader !== false">
-						<div id="content-header">
-							<div id="content-title" class="{$GLOBALS['selectedMenu']->title}">
-								<a href="/{@ echo (USE_SHORT_URL ? $selectedTopMenu->title.'/'.$GLOBALS['selectedMenu']->title : '?menu='.$GLOBALS['selectedMenu']->title); }">
-									<h1>{$GLOBALS['selectedMenu']->title_locale}</h1>
-								</a>
-							</div>
 						</div>
-					</condition>
+					</div>
+				</condition>
 
-					{getContent()}
-				</div>
+				{getContent()}
 			</div>
 		</div>
 	</true>

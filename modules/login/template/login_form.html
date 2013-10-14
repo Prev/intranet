@@ -40,21 +40,15 @@
 			<div class="fl">
 				<div id="input-wrap" class="clearfix">
 					<div class="input-warp-content fl">
-						<condition targetie="lte IE 9">
-							<span class="ie-alternative-label">아이디</span>
-						</condition>
 						<input name="id" type="text" placeholder="아이디">
 					</div>
 					<div class="input-warp-content fl">
-						<condition targetie="lte IE 9">
-							<span class="ie-alternative-label">비밀번호</span>
-						</condition>
 						<input name="pw" type="password" placeholder="비밀번호">
 					</div>
 				</div>
 				<div id="checkbox-wrap" class="cleafix">
 					<div class="fl">
-						<input type="checkbox" name="auto_login" checked="checked">
+						<input type="checkbox" name="auto_login">
 						<label for="auto_login">로그인 상태 유지</label>
 						
 						<input type="checkbox" name="secure_login" onclick="toggleSecureLogin(this)">

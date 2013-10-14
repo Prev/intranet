@@ -8,7 +8,7 @@
 		}
 		
 		public function procSecureLogin() {
-			require ROOT_DIR . '/lib/others/lib.rsa.php';
+			require_once( ROOT_DIR . '/lib/others/lib.rsa.php' );
 			
 			$enc_id = $_POST['enc_id'];
 			$enc_pw = $_POST['enc_pw'];
@@ -43,8 +43,8 @@
 		
 		public function procLogout2() {
 			if (!$_COOKIE['pmc_logout']) return;
-
-			setCookie2('pmc_logout', 1, time() - 60);
+			
+			setCookie2('pmc_logout', 0, time()-60);
 			
 			if (isset($_COOKIE[SSO_COOKIE_NAME])) {
 				$this->model->removeSession($_COOKIE[SSO_COOKIE_NAME]);
