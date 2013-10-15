@@ -158,10 +158,30 @@
 	/**
 	 	
 	 	올바른 어카운트 서버 url을 지정하십시오
-		
+		(임시로 자동으로 해둠)
+
 	**/
+
+	switch (getServerInfo()->host) {
+		case '127.0.0.1':
+			define('ACCOUNT_SERVER_URL', 'http://127.0.0.1/intranet_account');
+			break;
+		
+		case 'localhost':
+			define('ACCOUNT_SERVER_URL', 'http://localhost/intranet_account');
+			break;
+
+		case 'intranet.dimigo.us':
+			define('ACCOUNT_SERVER_URL', 'http://account.dimigo.us');
+			break;
+
+		default :
+			define('ACCOUNT_SERVER_URL', RELATIVE_URL);
+			break;
+	}
+
 	//define('ACCOUNT_SERVER_URL', 'http://account.dimigo.us');
-	define('ACCOUNT_SERVER_URL', 'http://127.0.0.1/intranet_account');
+	//define('ACCOUNT_SERVER_URL', 'http://127.0.0.1/intranet_account');
 	//define('ACCOUNT_SERVER_URL', RELATIVE_URL);
 
 	/**

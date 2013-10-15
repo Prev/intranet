@@ -19,7 +19,7 @@
 		"type":"test",
 		"protocol":"http",
 		"host":"intranet.dimigo.us",
-		"session_domain":"dimigo.us",
+		"session_domain":".dimigo.us",
 		"session_uri":"/",
 		"uri":""
 	}
