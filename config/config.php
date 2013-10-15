@@ -160,7 +160,9 @@
 	 	올바른 어카운트 서버 url을 지정하십시오
 		
 	**/
+	//define('ACCOUNT_SERVER_URL', 'http://account.dimigo.us');
 	define('ACCOUNT_SERVER_URL', 'http://127.0.0.1/intranet_account');
+	//define('ACCOUNT_SERVER_URL', RELATIVE_URL);
 
 	/**
 	 * define sso process file url

@@ -20,8 +20,7 @@
 	margin-bottom: 3px;
 }
 #login-wrap #input-wrap input{
-	width: 194px;
-	box-sizing: border-box;
+	width: 170px;
 	font-size: 14px;
 	padding: 7px 12px;
 	background: #fff;
@@ -47,8 +46,9 @@
 }
 
 #login-wrap #checkbox-wrap{ margin: 5px 0 0 2px; }
-#login-wrap #checkbox-wrap input{ margin: 0 1px }
 #login-wrap #checkbox-wrap label{ margin-right: 8px }
+#login-wrap #checkbox-wrap label span{ margin-left: 2px; }
+#login-wrap #checkbox-wrap label input{ margin: 0 1px }
 #login-wrap #checkbox-wrap .login-bar{ padding: 0px 5px; color:#666; }
 #login-wrap #checkbox-wrap a{ color: black; text-decoration: none; }
 

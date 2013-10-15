@@ -6,6 +6,8 @@ window.addEventListener("load", function () {
 	rsa = new RSA(rsaKeys.publicKey, null, rsaKeys.modulus);
 	
 	toggleSecureLogin(form.secure_login);
+
+	form.id.focus();
 });
 
 function toggleSecureLogin(target) {

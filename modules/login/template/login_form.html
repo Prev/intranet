@@ -43,29 +43,33 @@
 			<div class="fl">
 				<div id="input-wrap" class="clearfix">
 					<div class="input-warp-content fl">
-						<input name="id" type="text" placeholder="아이디">
+						<input name="id" type="text" placeholder="아이디" tabindex="10">
 					</div>
 					<div class="input-warp-content fl">
-						<input name="pw" type="password" placeholder="비밀번호">
+						<input name="pw" type="password" placeholder="비밀번호" tabindex="11">
 					</div>
 				</div>
-				<div id="checkbox-wrap" class="cleafix">
+				<div id="checkbox-wrap" class="clearfix">
 					<div class="fl">
-						<input type="checkbox" name="auto_login">
-						<label for="auto_login">로그인 상태 유지</label>
+						<label>
+							<input type="checkbox" name="auto_login" tabindex="13">
+							<span>로그인 상태 유지</span>
+						</label>
 						
-						<input type="checkbox" name="secure_login" onclick="toggleSecureLogin(this)">
-						<label for="secure_login">보안 로그인</label>
+						<label>
+							<input type="checkbox" name="secure_login" tabindex="14" onclick="toggleSecureLogin(this)">
+							<span>보안로그인</span>
+						</label>
 					</div>
 					<div class="fr" class="clearfix">
-						<div class="fl"><a href="{getUrl('idpwfind', 'dispMain')}">아이디/비밀번호 찾기</a></div>
+						<div class="fl"><a href="{getUrl('idpwfind', 'dispMain')}" tabindex="15">아이디/비밀번호 찾기</a></div>
 						<div class="fl login-bar">|</div>
-						<div class="fl"><a href="{getUrl('signup')}">회원가입</a></div>
+						<div class="fl"><a href="{@ echo ACCOUNT_SERVER_URL . '/signup' }" tabindex="16">회원가입</a></div>
 					</div>
 				</div>
 			</div>
 			<div id="submit-wrap" class="fr">
-				<button onclick="procLogin(); return false;">
+				<button onclick="procLogin(); return false;" tabindex="12">
 					<span class="hidden">
 						로그인
 					</span>

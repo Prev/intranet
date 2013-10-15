@@ -17,14 +17,15 @@ window.addEventListener("load", function() {
 				'<li id="browser-upgrade-close" onclick="closeBrowserUpgrade()"></li>' +
 			'</ul>';
 
+	browserUpgrade.style.top = browserUpgradeSize + "px";
 	document.body.insertBefore(browserUpgrade, document.getElementById("header"));
 
-	browserUpgradeTimer = setInterval(browserUpgrade_slide, 5);	
+	browserUpgradeTimer = setInterval(browserUpgrade_slide, 20);	
 });
 
 function browserUpgrade_slide() {
-	
-	browserUpgrade.style.top = (++browserUpgradeSize) + "px";
+	browserUpgradeSize += 3;
+	browserUpgrade.style.top = browserUpgradeSize + "px";
 	
 	if (browserUpgradeSize >= 10)
 		clearInterval(browserUpgradeTimer);

@@ -57,15 +57,15 @@
 	</div>
 	<div id="gnb">
 		<ul class="clearfix">
-			{@ foreach(Context::getMenu(1) as $key => $menu): }
+			{@ $i=1; foreach(Context::getMenu(1) as $key => $menu): }
 				{@ if (!$menu->visible) continue; }
 				{@ if ($menu->selected == true) $selectedTopMenu = $menu; }
 				<condition do="$user">
 					<true>
 						<condition do="$menu->link">
-						<a href="{$menu->link}"{@ echo $menu->linkTarget ? ' target="'.$menu->linkTarget.'"' : ''}>
+						<a tabindex="{$i}" href="{$menu->link}"{@ echo $menu->linkTarget ? ' target="'.$menu->linkTarget.'"' : ''}>
 						<else>
-						<a href="/{@ echo (USE_SHORT_URL ? '' : '?menu=') . $menu->title}">
+						<a tabindex="{$i}" href="/{@ echo (USE_SHORT_URL ? '' : '?menu=') . $menu->title}">
 						</condition>
 							<li class="{$menu->className}{@ if ($menu->selected) echo '-selected'}">
 								<span class="menu-alt">{$menu->title_locale}</span>
@@ -78,7 +78,7 @@
 						</li>
 					</false>
 				</condition>
-			{@ endforeach; }
+			{@ $i++; endforeach; }
 		</ul>
 	</div>
 </div>
@@ -103,7 +103,7 @@
 					{@ endforeach; }
 				</ul>
 			</div>
-			<div id="main-content" class="fl" style="min-height:{@ echo 372+45*count($lnb)}px">
+			<div id="main-content" class="fl" style="min-height:{@ echo 372+20+45*count($lnb)}px">
 				<condition do="$GLOBALS['selectedMenu']->extra_vars->showContentHeader !== false">
 					<div id="content-header">
 						<div id="content-title" class="{$GLOBALS['selectedMenu']->title}">
