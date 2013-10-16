@@ -674,14 +674,14 @@
 			if (!isset($_COOKIE[SSO_COOKIE_NAME]) && isset($_SESSION[SSO_SESSION_NAME]))
 				unset($_SESSION[SSO_SESSION_NAME]);
 
-			if ($_COOKIE[SSO_COOKIE_NAME.'_synchash'] && $_COOKIE[SSO_COOKIE_NAME.'_synchash'] != $_SESSION[SSO_SESSION_NAME.'_synchash']) {
+			if ($_COOKIE[SSO_COOKIE_NAME.'_synchash'] || $_COOKIE[SSO_COOKIE_NAME.'_synchash'] != $_SESSION[SSO_SESSION_NAME.'_synchash']) {
 				// 와일드 카드 쿠키와 세션의 싱크를 맞춰줌
 				unset($_SESSION[SSO_SESSION_NAME]);
 			}
 
 			if (isset($_COOKIE[SSO_COOKIE_NAME]) && !isset($_SESSION[SSO_SESSION_NAME])) {
 				$urlData = getUrlData(SSO_URL . '?sess_key=' . $_COOKIE[SSO_COOKIE_NAME], SSO_AGENT_KEY);
-
+				
 				if (!$urlData) {
 					unset($_SESSION[SSO_SESSION_NAME]);
 					setCookie2(SSO_COOKIE_NAME, '', time()-60);
@@ -695,7 +695,13 @@
 				
 				$ssoData = json_decode($urlData);
 
-				if (!$ssoData || $ssoData->result === 'fail') {
+				if ($ssoData->result == 'expired') {
+					unset($_SESSION[SSO_SESSION_NAME]);
+					setCookie2(SSO_COOKIE_NAME, '', time()-60);
+					return true;
+				}
+
+				if (!$ssoData || $ssoData->result == 'fail') {
 					unset($_SESSION[SSO_SESSION_NAME]);
 					setCookie2(SSO_COOKIE_NAME, '', time()-60);
 

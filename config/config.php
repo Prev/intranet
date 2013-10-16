@@ -132,12 +132,12 @@
 		/**
 		 * Define sso session name
 		 */
-		define('SSO_COOKIE_NAME', 'pmc_sess_key');
+		define('SSO_COOKIE_NAME', 'intranet_sess_key');
 
 		/**
 		 * Define sso session name
 		 */
-		define('SSO_SESSION_NAME', 'pmc_sso_data_' . substr(md5(RELATIVE_URL), 0, 10));
+		define('SSO_SESSION_NAME', 'intranet_sso_data_' . substr(md5(RELATIVE_URL), 0, 10));
 
 
 		/**

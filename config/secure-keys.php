@@ -11,4 +11,4 @@
 	/**
 	 * define sso-agent-key
 	 */
-	define('SSO_AGENT_KEY', 'engine-pmc-sso-key');
+	define('SSO_AGENT_KEY', 'd#-intranet-sso-key');
