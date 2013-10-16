@@ -1,0 +1,13 @@
+{	
+	"name":"404 module",
+	"version":"1.0.0",
+	"author":"prevdev@gmail.com",
+
+	"actions":[
+		{
+			"name":"dispDefault",
+			"view":"Error404View",
+			"default":true
+		}
+	]
+}

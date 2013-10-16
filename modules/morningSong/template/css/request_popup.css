@@ -1,5 +1,11 @@
 @charset "utf-8";
 
+#header-title{
+	width: 92px;
+	height: 19px;
+	background-image: url(../img/song_popup_title.png);
+}
+
 .file-name-text{
 	float:left;
 	margin:5px 5px 0 0;

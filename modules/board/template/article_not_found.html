@@ -1,21 +1,11 @@
-<import path="css/not_found.css">
+{@
+	if (isset($_GET['_menu1']) && isset($_GET['_menu2'])) {
+		$menu1 = $_GET['_menu1'];
+		$menu2 = $_GET['_menu2'];
+		$url = USE_SHORT_URL ? getUrl().'/'.$menu1.'/'.$menu2 : getUrlA('menu1='.$menu1.'&menu2='.$menu2);
 
-<div class="not-found">
-	<div>
-		<img src="./img/warning.png" width="110" height="100">
-	</div>
-	<div class="title">
-		{#
-			'en' => 'Article not found',
-			'ko' => '존재하지 않는 게시글 입니다.'
-		}
-	</div>
-	<div class="go-back">
-		<a href="{getBackUrl()}">
-			{#
-				'en' => 'Back',
-				'ko' => '뒤로가기'
-			}
-		</a>
-	</div>
-</div>
+		echo '<script type="text/javascript">alert("존재하지 않는 게시글 입니다"); location.replace("'.$url.'")</script>';
+	}else {
+		getContent('404');
+	}
+@}

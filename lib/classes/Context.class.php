@@ -355,7 +355,7 @@
 						$arr[$i]->selected = true;
 				}
 
-				if (isset($arr[$i]->visible_group) && User::getCurrent() && !User::getCurrent()->checkGroup(json_decode($arr[$i]->visible_group)))
+				if (isset($arr[$i]->visible_group) && User::getCurrent() && !User::getCurrent()->checkGroup($arr[$i]->visible_group))
 					$arr[$i]->visible = false;
 
 				if ($arr[$i]->is_index && USE_SHORT_URL)
@@ -680,7 +680,7 @@
 			}
 
 			if (isset($_COOKIE[SSO_COOKIE_NAME]) && !isset($_SESSION[SSO_SESSION_NAME])) {
-				$urlData = getUrlData(SSO_URL . '?sess_key=' . $_COOKIE['pmc_sess_key'], SSO_AGENT_KEY);
+				$urlData = getUrlData(SSO_URL . '?sess_key=' . $_COOKIE[SSO_COOKIE_NAME], SSO_AGENT_KEY);
 
 				if (!$urlData) {
 					unset($_SESSION[SSO_SESSION_NAME]);

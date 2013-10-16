@@ -6,8 +6,34 @@
 }
 #login-wrap #login-title{ font-size:24px; margin-bottom:0px; }
 #login-wrap #login-description{ margin: 20px 0 }
-#login-wrap #input-wrap .input-warp-content{ margin-bottom: 5px; }
-#login-wrap #input-wrap .input-warp-content .ie-alternative-label{
+#login-wrap #input-wrap .input-wrap-content{ margin-bottom: 5px; }
+#login-wrap #input-wrap .input-wrap-password{ position: relative; }
+#login-wrap #input-wrap .input-wrap-password #capslock-alert{
+	position: absolute;
+	width: 197px;
+	margin: 3px 1px 0 1px;
+	visibility: hidden;
+}
+
+#login-wrap #input-wrap .input-wrap-password #capslock-alert #capslock-top{
+	position: absolute;
+	width: 100%;
+	height: 7px;
+	background-image: url(../img/capslock_top.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+
+#login-wrap #input-wrap .input-wrap-password #capslock-alert #capslock-description{
+	margin-top: 6px;
+	padding: 3px 0;
+	background-color: #fffabf;
+	text-align: center;
+	border: 1px solid #aaaaaa;
+	color: #3a3a3a;
+}
+
+#login-wrap #input-wrap .input-wrap-content .ie-alternative-label{
 	font-size: 12px;
 	color: #666;
 	*zoom:1;
@@ -45,7 +71,7 @@
 	box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) !important;;
 }
 
-#login-wrap #checkbox-wrap{ margin: 5px 0 0 2px; }
+#login-wrap #checkbox-wrap{ margin: 5px 0 0 2px; width: 397px; }
 #login-wrap #checkbox-wrap label{ margin-right: 8px }
 #login-wrap #checkbox-wrap label span{ margin-left: 2px; }
 #login-wrap #checkbox-wrap label input{ margin: 0 1px }

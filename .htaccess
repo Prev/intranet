@@ -9,7 +9,8 @@ RewriteRule ^sso-server/?$ - [L]
 RewriteRule ^login(\/?)$ ./index.php?module=login&action=dispLoginPage&%{QUERY_STRING} [L,QSA]
 
 # board acticle short url
-RewriteRule ^([0-9]+).*$ ./index.php?module=board&action=dispArticle&article_no=$1&%{QUERY_STRING} [L,QSA]
+RewriteRule ^([0-9]+)/?$ ./index.php?module=board&action=dispArticle&article_no=$1&%{QUERY_STRING} [L,QSA]
+RewriteRule ^([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)/([0-9]+)/?$ ./index.php?module=board&action=dispArticle&article_no=$3&_menu1=$1&_menu2=$2&%{QUERY_STRING} [L,QSA]
 
 # menu short url
 RewriteRule ^([a-zA-Z0-9-_]+)/?$ ./index.php?menu=$1&%{QUERY_STRING} [L,QSA]

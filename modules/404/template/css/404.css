@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+#error-404{
+	width:660px;
+	margin:100px 170px;
+	text-align:left;
+	*zoom:1;
+	font-size:12px;
+	color:transparent;
+	font-size:0px;
+	-moz-user-select:none;
+	-khtml-user-select:none;
+	-webkit-user-select:none;
+	user-select: none;
+	cursor:default;
+}
+#error-404:after{ display:block; clear:both; content:"" }
+
+#error-404 #error-404-left{ float:left }
+#error-404 #error-404-right{ float:right }
+
+#error-404 #error-title,
+#error-404 #error-content,
+#error-404 #error-btn{  background:transparent url(../img/404_sprite.png) no-repeat }
+
+#error-404 #error-title{ width:347px; height:23px; background-position:0 0; }
+#error-404 #error-content{ width:414px; height:110px; background-position:0 -23px; margin-top:40px }
+#error-404 #error-btn{
+	width:182px;
+	height:32px;
+	background-position:0 -133px;
+	
+	margin-top:40px;
+	color:transparent;
+	font-size:0px;
+	background-color: transparent;
+	border: none;
+	border-radius:15px;
+	padding: 0;
+	cursor: pointer;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+#error-404 #error-btn:active{ box-shadow: inset 2px 2px 3px rgba(0,0,0,0.2); }

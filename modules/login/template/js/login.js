@@ -1,7 +1,9 @@
 var form;
 var rsa;
+var capslockAlert;
 
 window.addEventListener("load", function () {
+	capslockAlert = document.getElementById("capslock-alert");
 	form = document.forms.login_form;
 	rsa = new RSA(rsaKeys.publicKey, null, rsaKeys.modulus);
 	
@@ -9,6 +11,15 @@ window.addEventListener("load", function () {
 
 	form.id.focus();
 });
+
+function checkCapsLock(e) {
+	kc = e.keyCode ? e.keyCode : e.which;
+	sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
+	if (((kc >= 65 && kc <= 90) && !sk) || ((kc >= 97 && kc <= 122) && sk))
+		capslockAlert.style.visibility = 'visible';
+	else
+		capslockAlert.style.visibility = 'hidden';
+}
 
 function toggleSecureLogin(target) {
 	if (target.checked)

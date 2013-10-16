@@ -101,6 +101,10 @@
 		}
 
 		public function checkGroup($targetGroups) {
+			if (is_string($targetGroups) && json_decode($targetGroups) !== NULL) {
+				$targetGroups = json_decode($targetGroups);
+			}
+			
 			if (is_array($targetGroups)) {
 				for ($i=0; $i<count($targetGroups); $i++) {
 					if ($targetGroups[$i] == '*')

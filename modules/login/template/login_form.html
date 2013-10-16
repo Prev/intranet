@@ -2,18 +2,9 @@
 <import path="/static/js/encryption/rsa.js">
 <import path="/static/js/encryption/md5.js">
 <import path="js/login.js">
-<script type="text/javascript">
-	var rsaKeys = {
-		publicKey:"{$rsaKeys->publicKey}",
-		modulus:"{$rsaKeys->modulus}"
-	}
-</script>
-
+<script type="text/javascript">var rsaKeys = {publicKey:"{$rsaKeys->publicKey}", modulus:"{$rsaKeys->modulus}"}</script>
 
 <div id="login-wrap">
-	/*************************
-		로그인 action 주의
-	**************/
 	<form name="login_form" method="post" action="{getUrl('login', 'procLogin', 'next='.RELATIVE_URL, ACCOUNT_SERVER_URL)}" onsubmit="return procLogin()">
 		<input type="hidden" name="enc_id">
 		<input type="hidden" name="enc_pw">
@@ -42,11 +33,15 @@
 		<div id="login-contents" class="clearfix">
 			<div class="fl">
 				<div id="input-wrap" class="clearfix">
-					<div class="input-warp-content fl">
+					<div class="input-wrap-content fl">
 						<input name="id" type="text" placeholder="아이디" tabindex="10">
 					</div>
-					<div class="input-warp-content fl">
-						<input name="pw" type="password" placeholder="비밀번호" tabindex="11">
+					<div class="input-wrap-content input-wrap-password fl">
+						<input name="pw" type="password" placeholder="비밀번호" tabindex="11" onkeypress="checkCapsLock(event)">
+						<div id="capslock-alert">
+							<div id="capslock-top"></div>
+							<div id="capslock-description">Caps Lock이 켜져 있습니다.</div>
+						</div>
 					</div>
 				</div>
 				<div id="checkbox-wrap" class="clearfix">
