@@ -17,7 +17,7 @@ function selectSong() {
 }
 
 
-function cancleSelectedSong(dormitoryType, form) {
+function cancelSelectedSong(dormitoryType, form) {
 	form.dormitory_type.value = dormitoryType;
 	form.submit();
 }

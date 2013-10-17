@@ -34,6 +34,12 @@
 			"layout":"blank"
 		},
 		{
+			"name":"procCancelRecommend",
+			"controller":"MorningSongRecommendController",
+			"model":"MorningSongRecommendModel",
+			"layout":"blank"
+		},
+		{
 			"name":"procDeleteSong",
 			"controller":"MorningSongDeleteController",
 			"model":"MorningSongDeleteModel",
@@ -47,11 +53,16 @@
 			"layout":"blank"
 		},
 		{
-			"name":"procCancleSelectedSong",
+			"name":"procCancelSelectedSong",
 			"controller":"MorningSongSelectController",
 			"model":"MorningSongSelectModel",
 			"accessible_group":["dormitory_teacher"],
 			"layout":"blank"
+		},
+		{
+			"name":"getSelectedSongJson",
+			"model":"MorningSongAjaxModel",
+			"print_alone":true
 		}
 	]
 }

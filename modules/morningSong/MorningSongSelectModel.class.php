@@ -18,7 +18,7 @@
 
 		public function checkSelectedSongExists($dormitoryType) {
 			if ($dormitoryType != 1 && $dormitoryType != 2) {
-				Context::printError('dormitoryType 에는 1(본관) 혹은 2(학봉관) 만 들어 올 수 있습니다');
+				Context::printErrorPage('dormitoryType 에는 1(본관) 혹은 2(학봉관) 만 들어 올 수 있습니다');
 			}
 
 			$data = DBHandler::for_table('morning_song_selected')
@@ -36,14 +36,24 @@
 				'applying_date' => date('Y-m-d', $this->tomorrowTimeStamp)
 			));
 			$record->save();
+
+			$record = DBHandler::for_table('morning_song_list')
+				->find_one($songId);
+			$record->set('selected_state', 1);
+			$record->save();
 		}
 
-		public function cancleSelectedSong($dormitoryType) {
+		public function cancelSelectedSong($dormitoryType) {
 			DBHandler::for_table('morning_song_selected')
 				->where('dormitory_type', $dormitoryType)
 				->where('applying_date', date('Y-m-d', $this->tomorrowTimeStamp))
 				->limit(1)
 				->delete_many();
+
+			$record = DBHandler::for_table('morning_song_list')
+				->find_one($songId);
+			$record->set('selected_state', 0);
+			$record->save();
 		}
 
 	}

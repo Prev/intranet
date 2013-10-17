@@ -5,21 +5,26 @@
 		public $selectedDate;
 		public $songLists;
 
+		public $yesterdayTimeStamp;
 		public $todayTimeStamp;
 		public $tomorrowTimeStamp;
 		
 		public function init() {
-			if ((int)date('G') < 7) {
+			if (isset($_GET['date']) && (int)date('G') < 7) {
 				$this->todayTimeStamp = mktime(0,0,0,date('m'),date('d')-1);
 				$this->tomorrowTimeStamp = time();
-				
+				$this->yesterdayTimeStamp = mktime(0,0,0,date('m'),date('d')-2);
 			}else {
 				$this->todayTimeStamp = time();
 				$this->tomorrowTimeStamp = mktime(0,0,0,date('m'),date('d')+1);
+				$this->yesterdayTimeStamp = mktime(0,0,0,date('m'),date('d')-1);
 			}
 		}
 		
 		public function dispDefault() {
+			$this->model->deleteSongsBeforeWeek();
+			$this->model->checkSelectedState( $this->todayTimeStamp );
+
 			$this->selectedDate = date('Y.m.d', $this->todayTimeStamp) . '(' . $this->model->yoil[date('w', $this->todayTimeStamp)] . ')';
 			$this->songLists = $this->model->getMorningSongLists();
 
@@ -31,13 +36,15 @@
 			array_unshift($songUrls, $this->selectedSong_hak ? $this->selectedSong_hak->songUrl : 'null'); // 1
 			array_unshift($songUrls, $this->selectedSong_bon ? $this->selectedSong_bon->songUrl : 'null'); // 0
 
-			echo '<script type="text/javascript">var musicLists = [' . join(',', $songUrls) . ']</script>';
+			echo '<script type="text/javascript">var selectedDate = new Date('.date('Y', $this->todayTimeStamp).', '.(date('m', $this->todayTimeStamp)-1).', '.date('d', $this->todayTimeStamp).'); var musicLists = [' . join(',', $songUrls) . ']</script>';
 
 			$this->execTemplate('morning_song');
 		}
 
 
 		public function dispManageLayout() {
+			$this->model->checkSelectedState( $this->todayTimeStamp );
+			
 			$this->todayDate = date('Y.m.d', $this->todayTimeStamp) . '(' . $this->model->yoil[date('w', $this->todayTimeStamp)] . ')';
 			$this->tomorrowDate = date('Y.m.d', $this->tomorrowTimeStamp) . '(' . $this->model->yoil[date('w', $this->tomorrowTimeStamp)] . ')';
 

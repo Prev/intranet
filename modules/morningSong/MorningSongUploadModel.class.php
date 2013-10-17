@@ -10,7 +10,7 @@
 				'song_extension' => $songExtension,
 				'uploader_id' => User::getCurrent()->id,
 				'upload_time' => date('Y-m-d H:i:s'),
-				'is_selected' => 0
+				'selected_state' => 0
 			));
 			$record->save();
 		}

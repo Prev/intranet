@@ -38,7 +38,7 @@
 				$this->writer_id = $articleData->writer_id;
 				$this->writer = $articleData->writer;
 				$this->url = (USE_SHORT_URL ? 
-					getUrl() . '/' . $this->articleNo :
+					getUrl() . '/' . Context::getInstance()->parentMenus[0]->title.'/'.Context::getInstance()->selectedMenu->title . '/' . $this->articleNo :
 					getUrl('board', 'dispArticle', array('article_no' => $this->articleNo))
 				);
 				$this->content = $articleData->content;

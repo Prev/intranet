@@ -1,11 +1,16 @@
 <import path="css/morning_song.css">
+
+<import path="/static/js/jQuery.js">
 <import path="js/morning_song_play.js">
+<import path="js/swipe_selected_morningsong.js">
 
 <div id="today-morningsong">
-	<div id="prev-button"></div>
+	<div id="prev-button" onclick="viewPrevSong()">
+		<span class="hidden">&lt;</span>
+	</div>
 	<div id="today">
 		<div id="today-title">
-			<span id="date">{$selectedDate}</span><span id="hot-pink">오늘의 기상송</span>
+			<span id="date">{$selectedDate}</span><span id="hot-pink">오늘의&nbsp;기상송</span>
 		</div>
 		<div id="tip">매일 오전 7시에 업데이트됩니다.</div>
 		<div id="song">
@@ -37,7 +42,9 @@
 			</div>
 		</div>
 	</div>
-	<div id="next-button"></div>
+	<div id="next-button"  onclick="viewNextSong()">
+		<span class="hidden">&gt;</span>
+	</div>
 </div>
 <div id="middle-container">
 	<div id="last-morningsong"><a>지난 기상송 보기</a></div>
@@ -73,17 +80,32 @@
 								<li class="song-request-date">{getRelativeTime($song->upload_time)}</li>
 								<li class="favorite-count">{$song->recommend_count}</li>
 								<li class="recommend-btns">
-									<form action="{getUrl('morningSong', 'procRecommend')}" method="POST">
-										<input type="hidden" name="song_id" value="{$song->id}">
-										<button class="recommend-button" onclick="this.form.submit();">
-											<span class="hidden">추천</span>
-										</button>
-									</form>
+									<condition do="$song->uploader_id != User::getCurrent()->id">
+										<condition do="$song->is_recommended">
+											<true>
+												<form action="{getUrl('morningSong', 'procCancelRecommend')}" method="POST">
+													<input type="hidden" name="song_id" value="{$song->id}">
+													<button class="recommend-cancel-button" onclick="this.form.submit();">
+														<span class="n-hidden">추천취소</span>
+													</button>
+												</form>
+											</true>
+											<false>
+												<form action="{getUrl('morningSong', 'procRecommend')}" method="POST">
+													<input type="hidden" name="song_id" value="{$song->id}">
+													<button class="recommend-button" onclick="this.form.submit();">
+														<span class="hidden">추천</span>
+													</button>
+												</form>
+											</false>
+										</condition>
+									</condition>
+
 									<condition do="$song->uploader_id == User::getCurrent()->id">
 										<form action="{getUrl('morningSong', 'procDeleteSong')}" method="POST">
 											<input type="hidden" name="song_id" value="{$song->id}">
-											<button class="delete-button" onclick="this.form.submit();">
-												<span class="hidden">취소</span>
+											<button class="delete-button" onclick="if (confirm('정말 삭제하시겠습니까?')) this.form.submit();">
+												<span class="hidden">삭제</span>
 											</button>
 										</form>
 									</condition>

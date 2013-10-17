@@ -1,6 +1,6 @@
 <?php
 	
-	require 'MorningSongController.class.php';
+	require_once( 'MorningSongController.class.php' );
 
 	class MorningSongDeleteController extends MorningSongController {
 

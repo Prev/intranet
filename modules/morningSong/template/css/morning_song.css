@@ -11,6 +11,9 @@
 #today-morningsong #next-button{ float: right; background-position: -286px 0px; margin:31px 10px 0 12px; }
 #today-morningsong #today{ width: 600px; float: left; margin: 10px 8px; }
 
+#today-morningsong #prev-button span.hidden,
+#today-morningsong #next-button span.hidden{ display: inline-block; font-size: 27px; margin-top: 5px; }
+
 #today-morningsong #today #today-title{ float: left; font-size: 20px; margin:5px 0px 5px 0px; font-weight: bold; }
 #today-morningsong #today #today-title #date{ }
 #today-morningsong #today #today-title #hot-pink{ color: #ec008c; padding:0 5px}

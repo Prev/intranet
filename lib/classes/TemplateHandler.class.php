@@ -159,7 +159,11 @@
 				$importVals->{$keys[$i]} = $values[$i];
 			
 			if (!$importVals->path) {
-				return '<!-- Error loading imports -->';
+				Context::printWarning(array(
+					'en'=>'Path of import tag is invalid',
+					'ko'=>'import 태그의 path가 잘못되었습니다'
+				));
+				return;
 			}
 			
 			if (substr($importVals->path, 0, 1) == '/' || strpos($importVals->path, '://') !== false)

@@ -1,6 +1,6 @@
 <?php
 	
-	require 'MorningSongController.class.php';
+	require_once( 'MorningSongController.class.php' );
 
 	class MorningSongSelectController extends MorningSongController {
 
@@ -23,7 +23,7 @@
 		}
 		
 		
-		public function procCancleSelectedSong() {
+		public function procCancelSelectedSong() {
 			$this->checkRL();
 				
 			if (!$this->model->checkSelectedSongExists($_POST['dormitory_type'])) {
@@ -31,7 +31,7 @@
 				return;
 			}
 
-			$this->model->cancleSelectedSong($_POST['dormitory_type']);
+			$this->model->cancelSelectedSong($_POST['dormitory_type']);
 
 			goBack();
 		}

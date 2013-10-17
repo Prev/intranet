@@ -1,6 +1,6 @@
 <?php
 	
-	require ROOT_DIR . '/lib/others/lib.id3.php';
+	require_once( ROOT_DIR . '/lib/others/lib.id3.php' );
 
 	class MorningSongUploadController extends FileUploadController {
 
@@ -44,8 +44,11 @@
 				$id3Tags = $id3->GetID3Array();
 
 				if ($id3Tags) {
-					$songTitle = iconv('euc-kr', 'utf-8', $id3Tags['TIT2']['Body']);
-					$songArtist = iconv('euc-kr', 'utf-8', $id3Tags['TPE1']['Body']);
+					$songTitle = mb_substr($id3Tags['TIT2']['Body'], 1);
+					$songArtist = mb_substr($id3Tags['TPE1']['Body'], 1);
+
+					$songTitle = iconv('euc-kr', 'utf-8', $songTitle);
+					$songArtist = iconv('euc-kr', 'utf-8', $songArtist);
 				}
 			}
 				

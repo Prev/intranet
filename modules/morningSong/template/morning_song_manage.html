@@ -58,9 +58,9 @@
 				</div>
 
 				<condition do="$tomorrowSong_bon">
-					<form action="{getUrl('morningsong', 'procCancleSelectedSong')}" method="POST">
+					<form action="{getUrl('morningsong', 'procCancelSelectedSong')}" method="POST">
 						<input type="hidden" name="dormitory_type" value="">
-						<button class="cancle-selecting-btn" onclick="cancleSelectedSong(1, this.form); return false;"><span class="hidden">철회</span></button>
+						<button class="cancel-selecting-btn" onclick="cancelSelectedSong(1, this.form); return false;"><span class="hidden">철회</span></button>
 					</form>
 				</condition>
 			</div>
@@ -76,9 +76,9 @@
 				</div>
 
 				<condition do="$tomorrowSong_hak">
-					<form action="{getUrl('morningsong', 'procCancleSelectedSong')}" method="POST">
+					<form action="{getUrl('morningsong', 'procCancelSelectedSong')}" method="POST">
 						<input type="hidden" name="dormitory_type" value="">
-						<button class="cancle-selecting-btn"  onclick="cancleSelectedSong(2); return false;"><span class="hidden">철회</span></button>
+						<button class="cancel-selecting-btn"  onclick="cancelSelectedSong(2); return false;"><span class="hidden">철회</span></button>
 					</form>
 				</condition>
 			</div>

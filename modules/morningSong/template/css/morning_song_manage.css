@@ -25,7 +25,7 @@
 .morningsong .morningsong-container .song .play-btn{ width: 17px; height: 20px; padding: 0; margin-right: 5px; float: left; background:transparent url("../img/morning_song_sprite.png") no-repeat 0 -49px; border: none; cursor: pointer; }
 .morningsong .morningsong-container .song .play-btn.playing{ background-position:-17px -49px }
 
-.morningsong .morningsong-container .song .cancle-selecting-btn{ width: 10px; height: 9px; padding: 0; margin:7px 5px 0px 5px; float: left; background:transparent url("../img/morning_song_sprite.png") no-repeat -34px -49px; border: none; cursor: pointer; }
+.morningsong .morningsong-container .song .cancel-selecting-btn{ width: 10px; height: 9px; padding: 0; margin:7px 5px 0px 5px; float: left; background:transparent url("../img/morning_song_sprite.png") no-repeat -34px -49px; border: none; cursor: pointer; }
 
 
 .morningsong .morningsong-container .song #today-main-building-song{ float: left; padding-top: 3px; }

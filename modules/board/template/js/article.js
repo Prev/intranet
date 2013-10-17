@@ -33,7 +33,7 @@ function toggleUpdateComment(index) {
 
 	cContent.style.display = "none";
 	modifyWrapper.style.display = "block";
-	cUpdateBtn.innerHTML = fetchLocale({"en":"cancle modify", "ko":"수정 취소"});
+	cUpdateBtn.innerHTML = fetchLocale({"en":"cancel modify", "ko":"수정 취소"});
 
 	document.getElementById("modify-comment"+index+"-secret-checkbox").checked = isSecret;
 
@@ -86,7 +86,7 @@ function toggleReplyComment(index, parentId) {
 		cb.className = "";
 	}
 
-	rUpdateBtn.innerHTML = fetchLocale({"en":"cancle reply", "ko":"답글 취소"});
+	rUpdateBtn.innerHTML = fetchLocale({"en":"cancel reply", "ko":"답글 취소"});
 	document.getElementById("reply-parent-id").value = parentId;
 	document.getElementById("reply-top-id").value = topId ? topId : parentId;
 
