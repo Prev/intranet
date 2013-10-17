@@ -108,6 +108,10 @@
 					}
 				}
 			}
+
+			if (!isset($_GET['_menu1']) && isset(Context::getInstance()->selectedMenu) && USE_SHORT_URL)
+				redirect( RELATIVE_URL . '/' . Context::getInstance()->parentMenus[0]->title . '/' . Context::getInstance()->selectedMenu->title . '/' . $articleNo );
+
 		}
 
 	}

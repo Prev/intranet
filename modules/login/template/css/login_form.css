@@ -11,7 +11,7 @@
 #login-wrap #input-wrap .input-wrap-password #capslock-alert{
 	position: absolute;
 	width: 197px;
-	margin: 3px 1px 0 1px;
+	margin: 1px 1px 0 1px;
 	visibility: hidden;
 }
 

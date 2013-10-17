@@ -1,6 +1,7 @@
 var form;
 var rsa;
 var capslockAlert;
+var capslockTimeout;
 
 window.addEventListener("load", function () {
 	capslockAlert = document.getElementById("capslock-alert");
@@ -8,6 +9,7 @@ window.addEventListener("load", function () {
 	rsa = new RSA(rsaKeys.publicKey, null, rsaKeys.modulus);
 	
 	toggleSecureLogin(form.secure_login);
+	document.msCapsLockWarningOff = true;
 
 	form.id.focus();
 });
@@ -15,8 +17,14 @@ window.addEventListener("load", function () {
 function checkCapsLock(e) {
 	kc = e.keyCode ? e.keyCode : e.which;
 	sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
-	if (((kc >= 65 && kc <= 90) && !sk) || ((kc >= 97 && kc <= 122) && sk))
+	if (((kc >= 65 && kc <= 90) && !sk) || ((kc >= 97 && kc <= 122) && sk)) {
 		capslockAlert.style.visibility = 'visible';
+		if (!capslockTimeout)
+			capslockTimeout = setTimeout(function () {
+				capslockAlert.style.visibility = 'hidden';
+				capslockTimeout = null;
+			}, 3000);
+	}
 	else
 		capslockAlert.style.visibility = 'hidden';
 }
