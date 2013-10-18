@@ -58,8 +58,6 @@
 
 			$this->model->insertMorningSong($data->fileId, $songName, $fileExtension);
 
-			$_SESSION['morning_song_agreed'] = 1;
-
 			echo '<script type="text/javascript">window.opener.location.reload();window.close();</script>';
 		}
 

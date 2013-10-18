@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+#content{
+	padding-bottom: 10px;
+}
+
 #header-title{
 	width: 92px;
 	height: 19px;
@@ -13,7 +17,7 @@
 }
 
 .file-name{
-	width:330px;
+	width:380px;
 	float: left;
 	vertical-align: middle;
 
@@ -66,12 +70,28 @@
 .description{
 	margin: 5px 0px 3px 54px;
 	line-height: 1.4em;
-	width: 390px;
+	width: 440px;
 }
 
 .agreement-wrap{
-	margin-top: 15px;
+	margin: 15px 0px 18px 0px;
+	padding-top: 10px;
+	border-top: 1px solid #ccc;
+	color: #8d8d8d;
+	font-size: 12px;
 }
+
+.agreement-wrap h4,
+.agreement-wrap ul,
+.agreement-wrap ol,
+.agreement-wrap li{ margin: 0; padding: 0 }
+
+.agreement-wrap h4{ color: #7a7a7a; margin: 5px 0; }
+.agreement-wrap li{ margin: 2px 0; }
+
+.agreement-wrap ul, .agreement-wrap ol{ list-style: none; }
+.agreement-wrap ol ul li{ margin-left: 12px; }
+
 
 .agreement-wrap input{
 	margin-right: 1px;

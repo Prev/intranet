@@ -41,14 +41,14 @@
 						<input name="pw" type="password" placeholder="비밀번호" tabindex="11" onkeypress="checkCapsLock(event)">
 						<div id="capslock-alert">
 							<div id="capslock-top"></div>
-							<div id="capslock-description"><b>Caps Lock</b>이 켜져 있습니다.</div>
+							<div id="capslock-description"><strong>Caps Lock</strong>이 켜져 있습니다.</div>
 						</div>
 					</div>
 				</div>
 				<div id="checkbox-wrap" class="clearfix">
 					<div class="fl">
 						<label>
-							<input type="checkbox" name="auto_login" tabindex="13">
+							<input type="checkbox" name="auto_login" tabindex="13" onclick="alert('개인정보 보호를 위해 공용 PC에서는 사용에 유의해 주시기 바랍니다')">
 							<span>로그인 상태 유지</span>
 						</label>
 						

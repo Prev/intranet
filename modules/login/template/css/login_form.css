@@ -11,7 +11,7 @@
 #login-wrap #input-wrap .input-wrap-password #capslock-alert{
 	position: absolute;
 	width: 197px;
-	margin: 1px 1px 0 1px;
+	margin: -2px 1px 0 1px;
 	visibility: hidden;
 }
 
@@ -32,6 +32,8 @@
 	border: 1px solid #aaaaaa;
 	color: #3a3a3a;
 }
+
+#login-wrap #input-wrap .input-wrap-password #capslock-alert #capslock-description strong{ color: black }
 
 #login-wrap #input-wrap .input-wrap-content .ie-alternative-label{
 	font-size: 12px;

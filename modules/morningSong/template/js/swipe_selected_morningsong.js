@@ -2,6 +2,8 @@ var mainBuildingSong;
 var subBuildingSong;
 var todayTitle;
 var todayDateTime;
+var prevBtn;
+var nextBtn;
 var yoil = ["일","월","화","수","목","금","토"];
 
 window.addEventListener("load", function() {
@@ -9,6 +11,9 @@ window.addEventListener("load", function() {
 	mainBuildingSong = document.getElementById("main-building-song");
 	subBuildingSong = document.getElementById("sub-building-song");
 	todayTitle = document.getElementById("today-title");
+
+	prevBtn = document.getElementById("prev-button");
+	nextBtn = document.getElementById("next-button");
 
 	if (getHash()) {
 		var date = getHash();
@@ -32,8 +37,22 @@ function getHash() {
 function hashChangeHandler() {
 	rawOutput = (jQuery.browser.msie && parseInt(jQuery.browser.version) <= 9);
 	
+	if (todayDateTime - 1000*60*60*24*7 >= selectedDate.getTime())
+		prevBtn.style.visibility = "hidden";
+
+	if (todayDateTime == selectedDate.getTime())
+		nextBtn.style.visibility = "hidden";
+
 	if (todayDateTime < selectedDate.getTime())
 		return;
+
+	if (lastPlayingIndex === 0 || lastPlayingIndex === 1) {
+		lastPlayingIndex = null;
+		audio.pause();
+
+		if (nowPlayingButton)
+			nowPlayingButton.className = nowPlayingButton.className.split(" playing").join("");
+	}
 
 	$.get(getUrl("morningSong", "getSelectedSongJson", "date="+getHash()+(rawOutput ? "&print_raw=1" : "")), function (data) {
 		todayTitle.innerHTML = '<span id="date">' + selectedDate.getFullYear() + "." + (selectedDate.getMonth()+1) + "." + selectedDate.getDate() + "("+yoil[selectedDate.getDay()]+')</span><span id="hot-pink">' + (todayDateTime == selectedDate.getTime() ? "오늘의 기상송" : "기상송") + "</span>";
@@ -75,13 +94,20 @@ window.addEventListener("hashchange", hashChangeHandler);
 function viewPrevSong() {
 	selectedDate.setDate( selectedDate.getDate() - 1 );
 	location.hash = "#" + selectedDate.getFullYear() + "-" + (selectedDate.getMonth()+1) + "-" + selectedDate.getDate();
+
+	if (todayDateTime - 1000*60*60*24*7 >= selectedDate.getTime())
+		prevBtn.style.visibility = "hidden";
+
+	nextBtn.style.visibility = "visible";
 }
 
 
 function viewNextSong() {
-	if (todayDateTime <= selectedDate.getTime())
-		return;
-
 	selectedDate.setDate( selectedDate.getDate() + 1 );
 	location.hash = "#" + selectedDate.getFullYear() + "-" + (selectedDate.getMonth()+1) + "-" + selectedDate.getDate();
+
+	if (todayDateTime <= selectedDate.getTime())
+		nextBtn.style.visibility = "hidden";
+
+	prevBtn.style.visibility = "visible";
 }
