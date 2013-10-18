@@ -78,7 +78,7 @@
 				<condition do="$tomorrowSong_hak">
 					<form action="{getUrl('morningsong', 'procCancelSelectedSong')}" method="POST">
 						<input type="hidden" name="dormitory_type" value="">
-						<button class="cancel-selecting-btn"  onclick="cancelSelectedSong(2); return false;"><span class="hidden">철회</span></button>
+						<button class="cancel-selecting-btn"  onclick="cancelSelectedSong(2, this.form); return false;"><span class="hidden">철회</span></button>
 					</form>
 				</condition>
 			</div>
