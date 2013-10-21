@@ -31,7 +31,7 @@ function getHash() {
 	if (location.hash.substr(0, 1) == "#")
 		return location.hash.substr(1);
 	else
-		return location.hash
+		return location.hash;
 }
 
 function hashChangeHandler() {
@@ -43,8 +43,10 @@ function hashChangeHandler() {
 	if (todayDateTime == selectedDate.getTime())
 		nextBtn.style.visibility = "hidden";
 
-	if (todayDateTime < selectedDate.getTime())
+	if (todayDateTime < selectedDate.getTime()) {
+		alert("잘못된 값입니다");
 		return;
+	}
 
 	if (lastPlayingIndex === 0 || lastPlayingIndex === 1) {
 		lastPlayingIndex = null;

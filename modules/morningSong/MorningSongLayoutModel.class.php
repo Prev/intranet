@@ -4,17 +4,22 @@
 
 		public $yoil = array('일', '월', '화', '수', '목', '금', '토');
 
-		public function getMorningSongLists() {
-			$arr = DBHandler::for_table('morning_song_list')
+		public function getMorningSongLists($manageMode=false) {
+			$record = DBHandler::for_table('morning_song_list')
 				->select_many('morning_song_list.*', 'user.user_name', 'files.file_hash')
 				->join('user', array(
 					'user.id', '=', 'morning_song_list.uploader_id'
 				))
 				->join('files', array(
 					'files.id', '=', 'morning_song_list.file_id'
-				))
-				->where_not_equal('morning_song_list.selected_state', 2)
-				->find_many();
+				));
+
+			if ($manageMode)
+				$record = $record->where_equal('morning_song_list.selected_state', 0);
+			else
+				$record = $record->where_not_equal('morning_song_list.selected_state', 2);
+			
+			$arr = $record->find_many();
 			
 			for ($i=0; $i < count($arr); $i++) { 
 				if ($arr[$i]->recommend_users) {

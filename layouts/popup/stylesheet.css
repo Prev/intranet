@@ -10,7 +10,7 @@ body{
 
 #header{
 	background-color: #3a3a3a;
-	padding: 15px 0px 15px 25px;
+	padding: 15px 25px 15px 25px;
 	font-size: 20px;
 	color: white;
 }
@@ -20,7 +20,7 @@ body{
 }
 
 #content{
-	padding: 20px;
+	padding: 25px;
 }
 
 #content .pink{

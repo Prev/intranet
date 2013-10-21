@@ -44,16 +44,21 @@
 		}
 
 		public function cancelSelectedSong($dormitoryType) {
-			DBHandler::for_table('morning_song_selected')
+			$record = DBHandler::for_table('morning_song_selected')
+				->select_many('id', 'list_id')
 				->where('dormitory_type', $dormitoryType)
 				->where('applying_date', date('Y-m-d', $this->tomorrowTimeStamp))
+				->find_one();
+
+			$record2 = DBHandler::for_table('morning_song_list')
+				->find_one($record->list_id);
+			$record2->set('selected_state', 0);
+			$record2->save();
+
+			DBHandler::for_table('morning_song_selected')
+				->where('id', $record->id)
 				->limit(1)
 				->delete_many();
-
-			$record = DBHandler::for_table('morning_song_list')
-				->find_one($songId);
-			$record->set('selected_state', 0);
-			$record->save();
 		}
 
 	}

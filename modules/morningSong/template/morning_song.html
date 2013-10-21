@@ -54,7 +54,7 @@
 		<span id="history-explain">
 			최근 1주일간의 기상송 신청 내역입니다.<br/>기상송으로 선정된 곡은 '지난 기상송 보기'에서 확인할 수 있습니다.
 		</span>
-		<button id="request-morningsong-button" onclick="window.open('{getUrl('morningSong', 'dispRequestSongPopup')}', 'post', 'width=560, height=370, top=100, left=100'); return false">
+		<button id="request-morningsong-button" onclick="window.open('{getUrl('morningSong', 'dispRequestSongPopup')}', 'post', 'width=576, height=370, top=100, left=100'); return false">
 			<span class="hidden">기상송 신청하기</span>
 		</button>
 	</div>
@@ -75,7 +75,7 @@
 						{@ $i=2; foreach($songLists as $key => $song) : }
 							<ul>
 								<button id="play-button-{$i}" class="history-list-button" onclick="togglePlayMusic({$i})"><span class="hidden">재생</span></button>
-								<li class="song-title">{$song->song_name}</li>
+								<li class="song-title">{htmlspecialchars($song->song_name)}</li>
 								<li class="song-applicant">{$song->user_name}</li>
 								<li class="song-request-date">{getRelativeTime($song->upload_time)}</li>
 								<li class="favorite-count">{$song->recommend_count}</li>

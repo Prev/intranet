@@ -101,6 +101,9 @@
 		}
 
 		public function checkGroup($targetGroups) {
+			if ($targetGroups === NULL)
+				return true;
+			
 			if (is_string($targetGroups) && json_decode($targetGroups) !== NULL) {
 				$targetGroups = json_decode($targetGroups);
 			}

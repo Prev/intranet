@@ -10,7 +10,7 @@
 		public $tomorrowTimeStamp;
 		
 		public function init() {
-			if (isset($_GET['date']) && (int)date('G') < 7) {
+			if ((int)date('G') < 7) {
 				$this->todayTimeStamp = mktime(0,0,0,date('m'),date('d')-1);
 				$this->tomorrowTimeStamp = time();
 				$this->yesterdayTimeStamp = mktime(0,0,0,date('m'),date('d')-2);
@@ -48,7 +48,7 @@
 			$this->todayDate = date('Y.m.d', $this->todayTimeStamp) . '(' . $this->model->yoil[date('w', $this->todayTimeStamp)] . ')';
 			$this->tomorrowDate = date('Y.m.d', $this->tomorrowTimeStamp) . '(' . $this->model->yoil[date('w', $this->tomorrowTimeStamp)] . ')';
 
-			$this->songLists = $this->model->getMorningSongLists();
+			$this->songLists = $this->model->getMorningSongLists(true);
 			
 			$this->todaySong_bon = $this->model->getSelectedSong(1, $this->todayTimeStamp); // 본관, 오늘
 			$this->todaySong_hak = $this->model->getSelectedSong(2, $this->todayTimeStamp); // 학봉관, 오늘
