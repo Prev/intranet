@@ -56,6 +56,16 @@
 				$songArtist . ' - ' . $songTitle :
 				substr($_FILES['bifile']['name'], 0, strrpos($_FILES['bifile']['name'], '.'));
 
+			if ($this->model->checkDuplicated($data->fileId, $songName)) {
+				$this->close('이미 신청되어있는 기상송은 올릴 수 없습니다');
+				return;
+			}
+
+			if ($this->model->getSongNumUploadedByMe() >= 2) {
+				$this->close('기상송은 최대 2개까지 신청 할 수 있습니다');
+				return;
+			}
+
 			$this->model->insertMorningSong($data->fileId, $songName, $fileExtension);
 
 			echo '<script type="text/javascript">window.opener.location.reload();window.close();</script>';

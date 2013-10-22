@@ -53,7 +53,8 @@
 				return;
 			}
 
-			$commentData = $this->model->getCommentData((int)$_POST['comment_id']);
+			$commentData = $this->model->getCommentData($_POST['comment_id']);
+			$isSecret = evalCheckbox($_POST['is_secret']);
 
 			$me = User::getCurrent();
 			if (!$me || $me->id != $commentData->writer_id) {
@@ -63,11 +64,21 @@
 				));
 				return;
 			}
+			
+			if ($commentData->top_id) {
+				$topCommentData = $this->model->getCommentData($commentData->top_id);
+				if ($topCommentData && $topCommentData->is_secret && !$isSecret) {
+					goBack(array(
+						'en' => 'Cannot modify the comment to unsecret',
+						'ko' => '덧글을 비밀글에서 해제할 수 없습니다'
+					));
+				}
+			}
 
 			$comment = htmlspecialchars($_POST['comment']);
 			$comment = stripslashes($comment);
 
-			$this->model->updateComment($commentData, $comment, evalCheckbox($_POST['is_secret']));
+			$this->model->updateComment($commentData, $comment, $isSecret);
 
 			goBack();
 		}

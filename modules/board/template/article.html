@@ -104,6 +104,8 @@
 					<input type="hidden" id="comment{$i}-top-id" name="top_id" value="{$comment->top_id}">
 					<input type="hidden" id="comment{$i}-is-secret" name="is_secret" value="{@ echo $comment->is_secret ? 1 : 0; }">
 					/* 답글 작성시 사용 */
+					<input type="hidden" id="comment{$i}-top-is-secret" name="top_is_secret" value="{@ echo $comment->top_is_secret ? 1 : 0; }">
+					/* 답글 수정시 사용 (최상위 글이 비밀글일 경우 비밀글만 가능) */
 					
 					<condition do="!$comment->is_secret || $comment->secret_visible">
 						<true>
@@ -164,7 +166,7 @@
 										<label for="is_secret">{# 'en'=>'Secret', 'ko'=>'비밀 덧글'}</label>
 									</div>
 										<div>
-										<button class="comment-btn" onclick="this.form.submit(); return false;">
+										<button class="comment-btn" onclick="this.form.is_secret.disabled = false; this.form.submit(); return false;">
 											<condition do="$comment->is_reply">
 												{# 'en'=>'Modify reply', 'ko'=>'답글수정'}
 											<else>

@@ -25,6 +25,13 @@ window.addEventListener("load", function() {
 	hashChangeHandler();
 });
 
+function openUploadPopup() {
+	if (uploadable)
+		window.open(getUrl('morningSong', 'dispRequestSongPopup'), 'post', 'width=576, height=370, top=100, left=100');
+	else
+		openPopup("기상송 업로드 실패", "기상송은 1인당 최대 2개까지 업로드가 가능합니다. 새 기상송을 등록하시려면 이전에 신청한 기상송을 삭제하고 다시 시도 해 주십시오.");
+}
+
 function getHash() {
 	if (location.hash == "#" || location.hash == "")
 		return selectedDate.getFullYear() + "-" + (selectedDate.getMonth()+1) + "-" + selectedDate.getDate();

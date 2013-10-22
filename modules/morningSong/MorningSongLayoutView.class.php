@@ -31,12 +31,17 @@
 			$this->selectedSong_bon = $this->model->getSelectedSong(1, $this->todayTimeStamp); // 본관
 			$this->selectedSong_hak = $this->model->getSelectedSong(2, $this->todayTimeStamp); // 학봉관
 
+			$uploadable = $this->countSongNumUploadedByMe($this->songLists) < 2;
 
 			$songUrls = $this->model->getSongUrls($this->songLists);
 			array_unshift($songUrls, $this->selectedSong_hak ? $this->selectedSong_hak->songUrl : 'null'); // 1
 			array_unshift($songUrls, $this->selectedSong_bon ? $this->selectedSong_bon->songUrl : 'null'); // 0
 
-			echo '<script type="text/javascript">var selectedDate = new Date('.date('Y', $this->todayTimeStamp).', '.(date('m', $this->todayTimeStamp)-1).', '.date('d', $this->todayTimeStamp).'); var musicLists = [' . join(',', $songUrls) . ']</script>';
+			echo '<script type="text/javascript">'.
+					'var selectedDate = new Date('.date('Y', $this->todayTimeStamp).', '.(date('m', $this->todayTimeStamp)-1).', '.date('d', $this->todayTimeStamp).');'.
+					'var musicLists = [' . join(',', $songUrls) . '];'.
+					'var uploadable = '.($uploadable ? 'true' : 'false').';'.
+				'</script>';
 
 			$this->execTemplate('morning_song');
 		}
@@ -70,6 +75,15 @@
 
 		public function dispRequestSongPopup() {
 			$this->execTemplate('request_popup');
+		}
+
+		private function countSongNumUploadedByMe($songLists) {
+			$num=0;
+			for ($i=0; $i<count($songLists); $i++) { 
+				if ($songLists[$i]->uploader_id == User::getCurrent()->id)
+					$num++;
+			}
+			return $num;
 		}
 
 	}

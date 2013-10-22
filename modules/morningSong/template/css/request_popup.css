@@ -17,7 +17,7 @@
 }
 
 .file-name{
-	width:380px;
+	width:410px;
 	float: left;
 	vertical-align: middle;
 
@@ -30,10 +30,11 @@
 
 .input-file-wrap{
 	position: relative; 
-	width: 55px; 
+	width: 51px; 
 	height: 23px; 
+	margin-top: 1px;
 	overflow: hidden;
-	display:inline-block;
+	float: left;
 }
 
 .input-file-wrap input{
@@ -59,7 +60,7 @@
 	float:left;
 	width:48px;
 	height:19px;
-	margin:1px 3px;
+	margin:1px 0 1px 3px;
 	cursor:pointer;
 	border:0;
 	background-image: url(../img/morning_song_sprite.png);

@@ -30,13 +30,21 @@ function toggleUpdateComment(index) {
 	modifyWrapper = document.getElementById("modify-comment"+index+"-wrap");
 	
 	var isSecret = parseInt(document.getElementById("comment"+index+"-is-secret").value);
+	var topIsSecret = parseInt(document.getElementById("comment"+index+"-top-is-secret").value);
+
+	var cb = document.getElementById("modify-comment"+index+"-secret-checkbox");
+
+	if (topIsSecret) {
+		cb.checked = true;
+		cb.disabled = true;
+		cb.className = "disabled";
+	}else
+		cb.checked = isSecret;
 
 	cContent.style.display = "none";
 	modifyWrapper.style.display = "block";
-	cUpdateBtn.innerHTML = fetchLocale({"en":"cancel modify", "ko":"수정 취소"});
-
-	document.getElementById("modify-comment"+index+"-secret-checkbox").checked = isSecret;
-
+	cUpdateBtn.innerHTML = fetchLocale({"en":"cancle modify", "ko":"수정 취소"});
+	
 	last_commentIndex = index;
 }
 
@@ -86,7 +94,7 @@ function toggleReplyComment(index, parentId) {
 		cb.className = "";
 	}
 
-	rUpdateBtn.innerHTML = fetchLocale({"en":"cancel reply", "ko":"답글 취소"});
+	rUpdateBtn.innerHTML = fetchLocale({"en":"cancle reply", "ko":"답글 취소"});
 	document.getElementById("reply-parent-id").value = parentId;
 	document.getElementById("reply-top-id").value = topId ? topId : parentId;
 
