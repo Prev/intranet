@@ -482,7 +482,7 @@
 		 * @param $targetie : 추가될 IE 정의, @param 이 NULL이 아니면, 헤더 태그는 <!--[if @param]>HEADER_TAG<![endif]--> 로 교체됨
 		 *
 		 */
-		public function addHeaderFile($path, $index=-1, $position='head', $requiredAgent=NULL, $targetie=NULL) {
+		public function addHeaderFile($path, $index=-1, $position='head', $targetie=NULL, $requiredAgent=NULL, $mobile=NULL) {
 			if (substr($path, 0, 2) != '//' && strpos($path, '://') === false) {
 				if (substr($path, 0, 1) != '/')
 					$path = '/' . $path;
@@ -500,18 +500,23 @@
 				}
 			}
 			
+			if (isset($requiredAgent) && strpos(strtolower($_SERVER['HTTP_USER_AGENT']), strtolower($requiredAgent)) === false)
+				return;	
+			if (isset($mobile) && !$this->isMobileMode)
+				return;
+
 			switch ($extension = substr(strrchr($path, '.'), 1)) {
 				case 'css' :
-					$this->headerTagHandler->addCSSFile($path, $index, $position, $requiredAgent, $targetie);
+					$this->headerTagHandler->addCSSFile($path, $index, $position, $targetie);
 					break;
 					
 				case 'js' :
-					$this->headerTagHandler->addJsFile($path, $index, $position, $requiredAgent, $targetie);
+					$this->headerTagHandler->addJsFile($path, $index, $position, $targetie);
 					break;
 					
 				case 'lessc' :	
 				case 'less' :
-					$this->headerTagHandler->addLesscFile($path, $index, $position, $requiredAgent, $targetie);
+					$this->headerTagHandler->addLesscFile($path, $index, $position, $targetie);
 					break;
 					
 				case 'ico' :

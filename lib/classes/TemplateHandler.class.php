@@ -178,8 +178,9 @@
 				'\'' . $absolutePath . '\', ' .
 				(isset($importVals->index) ? $importVals->index : -1) . ', ' .
 				'\'' . (isset($importVals->position) ? $importVals->position : 'head') . '\', ' .
+				'' . (isset($importVals->targetie) ? '\''.$importVals->targetie.'\'' : 'NULL') . ',' .
 				'' . (isset($importVals->requiredAgent) ? '\''.$importVals->requiredAgent.'\'' : 'NULL') . ',' .
-				'' . (isset($importVals->targetie) ? '\''.$importVals->targetie.'\'' : 'NULL') . '' .
+				'' . (isset($importVals->mobile) ? '\''.$importVals->mobile.'\'' : 'NULL') . '' .
 			'); ?>';
 			
 		}
