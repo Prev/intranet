@@ -38,18 +38,24 @@
 			
 
 			if ($fileExtension == 'mp3') {
-				$id3 = new ID3TagsReader(fopen(ROOT_DIR . '/' . $data->uploadedUrl, 'rb'));
-				$id3->ReadAllTags();
+				$fp = fopen(ROOT_DIR . '/' . $data->uploadedUrl, 'rb');
 				
-				$id3Tags = $id3->GetID3Array();
+				if (strtoupper(fread($fp, 3)) == 'ID3') {
+					$id3 = new ID3TagsReader(fopen(ROOT_DIR . '/' . $data->uploadedUrl, 'rb'));
+					$id3->ReadAllTags();
+					
+					$id3Tags = $id3->GetID3Array();
 
-				if ($id3Tags) {
-					$songTitle = mb_substr($id3Tags['TIT2']['Body'], 1);
-					$songArtist = mb_substr($id3Tags['TPE1']['Body'], 1);
+					if ($id3Tags) {
+						$songTitle = mb_substr($id3Tags['TIT2']['Body'], 1);
+						$songArtist = mb_substr($id3Tags['TPE1']['Body'], 1);
 
-					$songTitle = iconv('euc-kr', 'utf-8', $songTitle);
-					$songArtist = iconv('euc-kr', 'utf-8', $songArtist);
+						$songTitle = iconv('euc-kr', 'utf-8', $songTitle);
+						$songArtist = iconv('euc-kr', 'utf-8', $songArtist);
+					}
 				}
+
+				fclose($fp);
 			}
 				
 			$songName = ($songTitle && $songArtist) ? 
@@ -61,10 +67,7 @@
 				return;
 			}
 
-			if ($this->model->getSongNumUploadedByMe() >= 2) {
-				$this->close('기상송은 최대 2개까지 신청 할 수 있습니다');
-				return;
-			}
+			$this->model->deleteSongUploadedByMe();
 
 			$this->model->insertMorningSong($data->fileId, $songName, $fileExtension);
 

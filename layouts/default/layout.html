@@ -44,8 +44,7 @@
 						<li>
 							<a href="{getUrl('login', 'procLogout')}">로그아웃</a>
 						</li>
-						<li>비밀번호변경</li>
-						<li class="final">사이트맵</li>
+						<li class="final">비밀번호 변경</li>
 					</ul>
 				</true>
 				<false>
@@ -62,15 +61,14 @@
 				{@ if ($menu->selected == true) $selectedTopMenu = $menu; }
 				<condition do="$user">
 					<true>
-						<condition do="$menu->link">
-						<a tabindex="{$i}" href="{$menu->link}"{@ echo $menu->linkTarget ? ' target="'.$menu->linkTarget.'"' : ''}>
-						<else>
-						<a tabindex="{$i}" href="/{@ echo (USE_SHORT_URL ? '' : '?menu=') . $menu->title}">
-						</condition>
-							<li class="{$menu->className}{@ if ($menu->selected) echo '-selected'}">
-								<span class="menu-alt">{$menu->title_locale}</span>
-							</li>
-						</a>
+						<li class="{$menu->className}{@ if ($menu->selected) echo '-selected'}">
+							<condition do="$menu->link">
+							<a tabindex="{$i}" href="{$menu->link}"{@ echo $menu->linkTarget ? ' target="'.$menu->linkTarget.'"' : ''}>
+							<else>
+							<a tabindex="{$i}" href="/{@ echo (USE_SHORT_URL ? '' : '?menu=') . $menu->title}">
+							</condition>
+							<span class="menu-alt">{$menu->title_locale}</span></a>
+						</li>
 					</true>
 					<false>
 						<li class="{$menu->className}-disabled">
@@ -134,18 +132,24 @@
 	<div id="footer-right">
 		<div class="footer-right-child">
 			<ul>
-				<a href="https://developer.dimigo.hs.kr" target="_blank"><li id="frc1-3">API</li></a>
+				<li id="frc1-3">
+					<a href="https://developer.dimigo.hs.kr" target="_blank">API</a>
+				</li>
 				<li class="frc1-border"></li>
-				<a href="#"><li id="frc1-2">개인정보취급방침</li></a>
+				<li id="frc1-2">
+					<a href="#">개인정보취급방침</a>
+				</li>
 				<li class="frc1-border"></li>
-				<a href="#"><li id="frc1-1">이용약관</li></a>
+				<li id="frc1-1">
+					<a href="#">이용약관</a>
+				</li>
 			</ul>
 		</div>
 		<div class="footer-right-child">
-			<ul>
-				<a href="http://hangeul.naver.com/font" target="_blank"><li id="frc2-2">설치하기</li></a>
-				<li id="frc2-1">이 웹사이트는 나눔고딕을 설치하시면 더욱 아름답습니다.</li>
-			</ul>
+			<div id="frc2-2">
+				<a href="http://hangeul.naver.com/font" target="_blank">설치하기</a>
+			</div>
+			<div id="frc2-1">이 웹사이트는 나눔고딕을 설치하시면 더욱 아름답습니다.</div>
 		</div>
 	</div>
 </div>

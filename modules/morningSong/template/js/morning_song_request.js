@@ -27,9 +27,13 @@ window.addEventListener("load", function() {
 
 function openUploadPopup() {
 	if (uploadable)
-		window.open(getUrl('morningSong', 'dispRequestSongPopup'), 'post', 'width=576, height=370, top=100, left=100');
+		openUploadPopup2();
 	else
-		openPopup("기상송 업로드 실패", "기상송은 1인당 최대 2개까지 업로드가 가능합니다. 새 기상송을 등록하시려면 이전에 신청한 기상송을 삭제하고 다시 시도 해 주십시오.");
+		openConfirmPopup("기상송 업로드 실패", "이미 신청된 내역이 있습니다. 신청한 기상송을 바꾸시겠습니까?", "", openUploadPopup2, closeConfirmPopup);
+}
+
+function openUploadPopup2() {
+	window.open(getUrl('morningSong', 'dispRequestSongPopup'), 'post', 'width=576, height=380, top=100, left=100');
 }
 
 function getHash() {
@@ -44,7 +48,7 @@ function getHash() {
 function hashChangeHandler() {
 	rawOutput = (jQuery.browser.msie && parseInt(jQuery.browser.version) <= 9);
 	
-	if (todayDateTime - 1000*60*60*24*7 >= selectedDate.getTime())
+	if (todayDateTime - 1000*60*60*24*6 >= selectedDate.getTime())
 		prevBtn.style.visibility = "hidden";
 
 	if (todayDateTime == selectedDate.getTime())
@@ -104,7 +108,7 @@ function viewPrevSong() {
 	selectedDate.setDate( selectedDate.getDate() - 1 );
 	location.hash = "#" + selectedDate.getFullYear() + "-" + (selectedDate.getMonth()+1) + "-" + selectedDate.getDate();
 
-	if (todayDateTime - 1000*60*60*24*7 >= selectedDate.getTime())
+	if (todayDateTime - 1000*60*60*24*6 >= selectedDate.getTime())
 		prevBtn.style.visibility = "hidden";
 
 	nextBtn.style.visibility = "visible";

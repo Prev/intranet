@@ -9,7 +9,7 @@
 		public function init() {
 			if (isset($_REQUEST['search']) && $_REQUEST['search']) {
 				$ignoreKeys = array('=', ':', ';', '-', '_', '(', ')', '%', '\'', '.', '/');
-				$_REQUEST['search'] = str_replace($ignoreKeys, '', $_REQUEST['search']);
+				$_REQUEST['search'] = str_replace($ignoreKeys, '@@#@#', $_REQUEST['search']);
 				$_REQUEST['search'] = trim($_REQUEST['search']);
 			}
 		}

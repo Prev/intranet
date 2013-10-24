@@ -10,6 +10,10 @@
 	background-image: url(../img/song_popup_title.png);
 }
 
+.file-top{
+	margin-right: -20px;
+}
+
 .file-name-text{
 	float:left;
 	margin:5px 5px 0 0;
@@ -17,7 +21,7 @@
 }
 
 .file-name{
-	width:410px;
+	width: 410px;
 	float: left;
 	vertical-align: middle;
 
@@ -29,7 +33,7 @@
 }
 
 .input-file-wrap{
-	position: relative; 
+	position: relative;
 	width: 51px; 
 	height: 23px; 
 	margin-top: 1px;
@@ -51,8 +55,7 @@
 	-ms-filter: "alpha(opacity=0)"; 
 	-khtml-opacity: 0; 
 	-moz-opacity: 0;
-	
-	float:left;
+
 	cursor:pointer;
 }
 
@@ -76,8 +79,10 @@
 
 .agreement-wrap{
 	margin: 15px 0px 18px 0px;
-	padding-top: 10px;
+	padding-top: 13px;
+	padding-bottom: 13px;
 	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 	color: #8d8d8d;
 	font-size: 12px;
 }
@@ -87,7 +92,7 @@
 .agreement-wrap ol,
 .agreement-wrap li{ margin: 0; padding: 0 }
 
-.agreement-wrap h4{ color: #7a7a7a; margin: 5px 0; }
+.agreement-wrap h4{ color: #7a7a7a; margin-bottom: 5px; }
 .agreement-wrap li{ margin: 2px 0; }
 
 .agreement-wrap ul, .agreement-wrap ol{ list-style: none; }

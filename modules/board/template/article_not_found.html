@@ -4,7 +4,7 @@
 		$menu2 = $_GET['_menu2'];
 		$url = USE_SHORT_URL ? getUrl().'/'.$menu1.'/'.$menu2 : getUrlA('menu1='.$menu1.'&menu2='.$menu2);
 
-		echo '<script type="text/javascript">alert("존재하지 않는 게시글 입니다"); location.replace("'.$url.'")</script>';
+		echo '<script type="text/javascript">alert("존재하지 않는 게시물입니다."); location.replace("'.$url.'")</script>';
 	}else {
 		getContent('404');
 	}

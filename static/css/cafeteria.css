@@ -26,14 +26,10 @@
 #side-menu ul li.lnb-food-log:hover{ background-position: -250px -225px }
 #side-menu ul li.lnb-food-log.selected{ background-position: -500px -225px }
 
-/*
-#content-header #content-title{ background-image: url(../img/cafeteria/titles.png); background-repeat: no-repeat; }
-#content-header #content-title h1{ visibility: hidden; }
+#content-header #content-title.cafeteria-notice{
+	height: 23px;
+	background-image: url(../img/cafeteria/title_cafeteria_notice.png);
+	background-repeat: no-repeat;
+}
 
-#content-header #content-title.dormitory-notice{ height: 23px; background-position: 0px 0px }
-#content-header #content-title.stay-request{ height: 24px; background-position: 0px -23px }
-#content-header #content-title.stay-inquiry{ height: 22px; background-position: 0px -47px }
-#content-header #content-title.stay-manage{ height: 22px; background-position: 0px -69px }
-#content-header #content-title.morning-song{ height: 23px; background-position: 0px -91px }
-#content-header #content-title.morning-song-manage{ height: 23px; background-position: 0px -114px }
-*/
+#content-header #content-title h1{ visibility: hidden; }

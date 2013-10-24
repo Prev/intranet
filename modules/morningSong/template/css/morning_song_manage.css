@@ -43,9 +43,6 @@
 
 #middle-container{ padding:10px 20px 30px 20px }
 
-#last-morningsong{ text-align:right; color: #888888; font-size: 11px; padding: 7px 3px 0px 0px; }
-#last-morningsong:after{ content: ""; display: block; clear: both; }
-
 #history-title{ margin:18px 0px 0px 0px; font-size: 20px; font-weight: bold; }
 #history-title:after{ content: ""; display: block; clear: both; }
 #history-title #morningsong{ float: left; }

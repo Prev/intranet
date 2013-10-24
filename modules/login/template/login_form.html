@@ -57,8 +57,8 @@
 							<span>보안로그인</span>
 						</label>
 					</div>
-					<div class="fr" class="clearfix">
-						<div class="fl"><a href="{getUrl('idpwfind', 'dispMain')}" tabindex="15">아이디/비밀번호 찾기</a></div>
+					<div class="fr clearfix">
+						<div class="fl"><a href="{getUrl('idpwfind', 'dispMain', '', ACCOUNT_SERVER_URL)}" tabindex="15">아이디/비밀번호 찾기</a></div>
 						<div class="fl login-bar">|</div>
 						<div class="fl"><a href="{@ echo ACCOUNT_SERVER_URL . '/signup' }" tabindex="16">회원가입</a></div>
 					</div>
@@ -66,9 +66,7 @@
 			</div>
 			<div id="submit-wrap" class="fr">
 				<button onclick="procLogin(); return false;" tabindex="12">
-					<span class="hidden">
-						로그인
-					</span>
+					<span class="hidden">로그인</span>
 				</button>
 			</div>
 		</div>

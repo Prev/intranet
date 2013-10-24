@@ -33,7 +33,7 @@
 	/**
 	 * Define X_UA_Compatible (ie edge)
 	 */
-	define('X_UA_Compatible', 'IE=Edge,chrome=1');
+	define('X_UA_Compatible', 'IE=edge,chrome=1');
 
 	
 	/**

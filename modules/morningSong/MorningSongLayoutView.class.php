@@ -31,7 +31,7 @@
 			$this->selectedSong_bon = $this->model->getSelectedSong(1, $this->todayTimeStamp); // 본관
 			$this->selectedSong_hak = $this->model->getSelectedSong(2, $this->todayTimeStamp); // 학봉관
 
-			$uploadable = $this->countSongNumUploadedByMe($this->songLists) < 2;
+			$uploadable = $this->countSongNumUploadedByMe($this->songLists) < 1;
 
 			$songUrls = $this->model->getSongUrls($this->songLists);
 			array_unshift($songUrls, $this->selectedSong_hak ? $this->selectedSong_hak->songUrl : 'null'); // 1

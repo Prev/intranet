@@ -320,6 +320,7 @@
 				return $this->deleteWhiteSpace($content);
 			}
 
+
 			if (strpos($content, '< ') !== false) {
 				$content = str_replace('< ', '<', $content);
 				return $this->deleteWhiteSpace($content);
@@ -332,6 +333,35 @@
 				$content = str_replace("<\r\n", '<', $content);
 				return $this->deleteWhiteSpace($content);
 			}
+
+
+			if (strpos($content, ' <?php') !== false) {
+				$content = str_replace(' <?php', '<?php', $content);
+				return $this->deleteWhiteSpace($content);
+			}
+			if (strpos($content, "\t<?php") !== false) {
+				$content = str_replace("\t<?php", '<?php', $content);
+				return $this->deleteWhiteSpace($content);
+			}
+			if (strpos($content, "\r\n<?php") !== false) {
+				$content = str_replace("\r\n<?php", '<?php', $content);
+				return $this->deleteWhiteSpace($content);
+			}
+
+
+			if (strpos($content, '?> ') !== false) {
+				$content = str_replace('?> ', '?>', $content);
+				return $this->deleteWhiteSpace($content);
+			}
+			if (strpos($content, "?>\t") !== false) {
+				$content = str_replace("?>\t", '?>', $content);
+				return $this->deleteWhiteSpace($content);
+			}
+			if (strpos($content, "?>\r\n") !== false) {
+				$content = str_replace("?>\r\n", '?>', $content);
+				return $this->deleteWhiteSpace($content);
+			}
+
 			return $content;
 		}
 
