@@ -699,13 +699,13 @@
 				}
 				
 				$ssoData = json_decode($urlData);
-
+				
 				if ($ssoData->result == 'expired') {
 					unset($_SESSION[SSO_SESSION_NAME]);
 					setCookie2(SSO_COOKIE_NAME, '', time()-60);
 					return true;
 				}
-
+				
 				if (!$ssoData || $ssoData->result == 'fail') {
 					unset($_SESSION[SSO_SESSION_NAME]);
 					setCookie2(SSO_COOKIE_NAME, '', time()-60);

@@ -20,6 +20,10 @@ function togglePlayMusic(index) {
 		return;
 
 	if (!audio || audio.src != musicDirUrl + musicLists[index]) {
+		if (typeof Audio == "undefined") {
+			alert("IE8 이하에서는 재생 기능을 지원하지 않습니다.");
+			return;
+		}
 		audio = new Audio(musicDirUrl + musicLists[index]);
 		audio.loop = true;
 	}

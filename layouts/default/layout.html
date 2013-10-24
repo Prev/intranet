@@ -7,6 +7,21 @@
 <import path="ie/upgrade_browser.js" targetie="lte ie 7">
 <import path="ie/upgrade_browser.css" targetie="lte ie 7">
 
+<!-- Piwik -->
+<script type="text/javascript"> 
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://analytics.dimigo.us/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="http://analytics.dimigo.us/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+
 <title>한국디지털미디어고등학교 교내 인트라넷</title>
 
 <div id="header">

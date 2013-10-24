@@ -29,7 +29,10 @@ function openUploadPopup() {
 	if (uploadable)
 		openUploadPopup2();
 	else
-		openConfirmPopup("기상송 업로드 실패", "이미 신청된 내역이 있습니다. 신청한 기상송을 바꾸시겠습니까?", "", openUploadPopup2, closeConfirmPopup);
+		openConfirmPopup("기상송 업로드 실패", "이미 신청된 내역이 있습니다. 신청한 기상송을 바꾸시겠습니까?", "", function () {
+			closeConfirmPopup();
+			openUploadPopup2();
+		}, closeConfirmPopup);
 }
 
 function openUploadPopup2() {
