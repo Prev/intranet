@@ -11,6 +11,15 @@
 				$ignoreKeys = array('=', ':', ';', '-', '_', '(', ')', '%', '\'', '.', '/');
 				$_REQUEST['search'] = str_replace($ignoreKeys, '@@#@#', $_REQUEST['search']);
 				$_REQUEST['search'] = trim($_REQUEST['search']);
+
+				$availbleSearchKeys = array('all', 'title', 'writer');
+				if (!in_array($_REQUEST['search_type'], $availbleSearchKeys)) {
+					Context::printErrorPage(array(
+						'en' => 'Cannot excute board - parameter "search_type" is invalid',
+						'ko' => '게시판을 실행 할 수 없습니다 - 변수 "search_type"가 잘못되었습니다'
+					));
+					return;
+				}
 			}
 		}
 

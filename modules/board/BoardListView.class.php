@@ -25,6 +25,8 @@
 						$this->commonArticleDatas
 					)
 				);
+
+
 				self::execTemplate('board_list');
 			}
 		}

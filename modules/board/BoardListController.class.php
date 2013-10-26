@@ -7,8 +7,24 @@
 		public function init() {
 
 			$boardName = isset($_GET['board_name']) ? escape($_GET['board_name']) : NULL;
-			$aop = isset($_GET['aop']) ? (int)escape($_GET['aop']) : self::DEFAULT_AOP;
-			$nowPage = isset($_GET['page']) ? escape($_GET['page']) : 1;
+			$aop = isset($_GET['aop']) ? intval(escape($_GET['aop'])) : self::DEFAULT_AOP;
+			$nowPage = isset($_GET['page']) ? intval(escape($_GET['page'])) : 1;
+
+			if ($nowPage <= 0) {
+				Context::printErrorPage(array(
+					'en' => 'Cannot excute board - parameter "page" is invalid',
+					'ko' => '게시판을 실행 할 수 없습니다 - 변수 "page"가 잘못되었습니다'
+				));
+				return;
+			}
+
+			if ($aop <= 0) {
+				Context::printErrorPage(array(
+					'en' => 'Cannot excute board - parameter "aop" is invalid',
+					'ko' => '게시판을 실행 할 수 없습니다 - 변수 "aop"가 잘못되었습니다'
+				));
+				return;
+			}
 
 			if ($boardName === NULL && Context::getInstance()->selectedMenu) {
 				$boardInfo = $this->model->getBoardInfoByMenuId(Context::getInstance()->selectedMenu->id);
@@ -95,16 +111,14 @@
 					$article->category = htmlspecialchars($article->category);
 				
 				if (isset($_REQUEST['search']) && $_REQUEST['search']) {
-					$regexp = '/(' . str_replace(' ', '|', $_REQUEST['search']) . ')/i';
-
 					$str = $_REQUEST['search_type'] == 'writer' ? $article->writer : $article->title;
 					$str = str_replace('[', '\\[', $str);
 					$str = str_replace(']', '\\]', $str);
 
 					$searchKeys = explode(' ', $_REQUEST['search']);
 
-					for ($i=0; $i<count($searchKeys); $i++)
-						$str = str_replace($searchKeys[$i], '['.$searchKeys[$i].']', $str);
+					for ($j=0; $j<count($searchKeys); $j++)
+						$str = str_replace($searchKeys[$j], '['.$searchKeys[$j].']', $str);
 
 					$str = str_replace('[', '<strong class="searched">', $str);
 					$str = str_replace(']', '</strong>', $str);

@@ -213,6 +213,8 @@
 	 */
 	function json_encode2($data) {
 		switch(gettype($data)) {
+			case 'NULL':
+				return 'null';
 			case 'boolean':
 				return $data ? 'true' : 'false';
 			case 'integer':

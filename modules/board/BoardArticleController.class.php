@@ -3,7 +3,7 @@
 	class BoardArticleController extends BoardController {
 			
 		public function init() {
-			$articleNo = $_GET['article_no'] ? escape($_GET['article_no']) : ($_GET['no'] ? escape($_GET['no']) : NULL);
+			$articleNo = $_GET['article_no'] ? intval(escape($_GET['article_no'])) : ($_GET['no'] ? escape($_GET['no']) : NULL);
 			$articleData = $this->model->getArticleData($articleNo);
 			$boardName = $articleData->boardName;
 			
