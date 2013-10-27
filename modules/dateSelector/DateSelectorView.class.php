@@ -15,7 +15,7 @@
 
 */
 	class DateSelectorView extends View {
-		
+
 		public $selectorData;
 		public $selectedDate;
 		public $dateArr = array('일','월','화','수','목','금','토');
@@ -69,7 +69,6 @@
 				$dateAttr = 1;
 			else
 				$dateAttr = 2;
-
 
 			return array(0, 0, $dateAttr, $time);
 
