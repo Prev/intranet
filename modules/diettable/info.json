@@ -6,6 +6,12 @@
 			"model": "dietModel",
 			"controller" : "dietController",
 			"default":true
+		},
+		{
+			"name":"dispDietDown",
+			"view":"dietView",
+			"model": "dietModel",
+			"controller" : "dietController"
 		}
 	]
 }

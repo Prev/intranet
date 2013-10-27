@@ -2,15 +2,18 @@
 
 <script type="text/javascript">
 
-var next, before, popup
-var allergy_info
+var next, prev, null_next, null_prev, popup;
+var allergy_info;
 var division;
 
 	window.onload = function() {
-		next         = document.getElementById("next");
-		before       = document.getElementById("before");
-		next_txt     = document.getElementById("next-txt");
-		before_txt   = document.getElementById("before-txt");
+		next       = document.getElementById("next");
+		prev       = document.getElementById("prev");
+		null_next  = document.getElementById("null-next");
+		null_prev  = document.getElementById("null-prev");
+		next_txt   = document.getElementById("next-txt");
+		prev_txt   = document.getElementById("prev-txt");
+		null_txt   = document.getElementById("null-txt");
 
 		popup        = document.getElementById("allergy-popup");
 		allergy_mark = document.getElementById("allergy-mark");
@@ -31,11 +34,23 @@ var division;
 		allergy_mark.addEventListener("mouseover", function() { popup.style.display = "block"; });
 		allergy_mark.addEventListener("mouseout", function() { popup.style.display = "none"; });
 
-		next.addEventListener("mouseover", function() { next_txt.style.visibility = "visible" });
-		next.addEventListener("mouseout" , function() { next_txt.style.visibility = "hidden"; });
-		
-		before.addEventListener("mouseover", function() { before_txt.style.visibility = "visible" });
-		before.addEventListener("mouseout" , function() { before_txt.style.visibility = "hidden"; });
+		if(next) {
+			next.addEventListener("mouseover", function() { next_txt.style.visibility = "visible" });
+			next.addEventListener("mouseout" , function() { next_txt.style.visibility = "hidden"; });
+		}
+		if(null_next) {
+			null_next.addEventListener("mouseover", function() { next_txt.style.visibility = "visible" });
+			null_next.addEventListener("mouseout" , function() { next_txt.style.visibility = "hidden"; });
+		}
+
+		if(prev) {
+			prev.addEventListener("mouseover", function() { prev_txt.style.visibility = "visible" });
+			prev.addEventListener("mouseout" , function() { prev_txt.style.visibility = "hidden"; });
+		}
+		if (null_prev) {
+			null_prev.addEventListener("mouseover", function() { prev_txt.style.visibility = "visible"; null_txt.style.visibility = "visible" });
+			null_prev.addEventListener("mouseout" , function() { prev_txt.style.visibility = "hidden"; null_txt.style.visibility = "hidden" });
+		}
 
 		allergy_info.addEventListener("click", allergy);
 
@@ -60,13 +75,6 @@ var division;
 				m.style.display = "none";
 			});
 		};
-
-		popup.style.display = "none";
-
-		for(var i=0; i<4; i++) {
-			day_food.item(i).rowSpan = 1;
-			division.colSpan = 1;
-		}
 	}
 
 	function infDetailChangeHandler() {
@@ -119,16 +127,16 @@ var division;
 
 	<div id="top-bar">
 		<form>
-			<span id="title">식단표</span>
-			 <input type="submit" value="▤ 식단표 다운로드" id="downdiet_btn">
+			<div id="title"><span class=hidden>식단표</span></div>
 		</form>
 	</div>
 
 	<div id="date">
-		<span id="before-txt">이전(이동불가)</span>
-		{printPrev()}
-		<span id="diet-day">  {printMealDate(0)} ~ {printMealDate(3)}  </span> 
-		{printNext()}
+		<span id="null-txt">(이동불가)</span>
+		<span id="prev-txt">이전</span>
+			{printPrev()}
+				<span id="diet-day">  {printBigMealDate()} </span> 
+			{printNext()}
 		<span id="next-txt">다음</span>
 	</div>
 
@@ -149,7 +157,7 @@ var division;
 	<table id="main-table">
 
 		<tr id="diet-header">
-			<td id="division" colspan="2" style="border-left:0px;">구분</td>
+			<td id="division" style="border-left:0px;">구분</td>
 			<td class="week">
 				<span class="week-day">{dispDay(0)}</span> <br>
 				<span>{printMealDate(0)}</span>
@@ -160,13 +168,7 @@ var division;
 			</td>
 			<td class="week">
 				<span class="week-day">{dispDay(2)}</span> <br>
-				<span><!-- {printMealDate(2)} -->
-
-					<!-- {printAllg("1","b")} -->
-					{printMealDate(2)}
-
-
-				</span>
+				<span>{printMealDate(2)}</span>
 			</td>
 			<td class="week">	
 				<span class="week-day">{dispDay(3)}</span> <br>
@@ -177,7 +179,7 @@ var division;
 
 
 		<tr class="food-table">
-			<td class="day-food" rowspan="3">아침</td>
+			<td class="day-food">아침</td>
 
 			<td class="inf-menu">식단</td>
 
@@ -271,7 +273,7 @@ var division;
 		</tr>
 
 		<tr class="food-table">
-			<td class="day-food" rowspan="3">점심</td>
+			<td class="day-food">점심</td>
 
 			<td class="inf-menu">식단</td>
 
@@ -364,7 +366,7 @@ var division;
 		</tr>
 
 		<tr class="food-table">
-			<td class="day-food" rowspan="3">저녁</td>
+			<td class="day-food">저녁</td>
 
 			<td class="inf-menu">식단</td>
 
@@ -461,7 +463,7 @@ var division;
 		<!-- 간식  -->
 
 		<tr class="food-table" id = "snack">
-			<td class="day-food" rowspan="3">간식</td>
+			<td class="day-food">간식</td>
 
 			<td class="inf-menu">식단</td>
 

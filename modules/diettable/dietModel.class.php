@@ -227,7 +227,7 @@
 						
 						if($data -> title != null){ //파일이 있을때 
 
-								echo '<div class = "m-event">E</div>
+								echo '<div class = "m-event"><span class="hidden">E<span></div>
 								<div class = "m-eventfood">'.$data -> title.'</div>';
 						}
 
@@ -240,6 +240,11 @@
 
 
 		}
+
+		public function tee(){
+			
+		}
+
 
 		public function getMealJson($num,$meal_time){ // 일월...을 숫자로 변환한 값과 급식시간(b,l,d)를 파라미터로 넣음
 
@@ -332,31 +337,33 @@
 			else{
 
 
-			$decode = json_decode($json,true);
-			$array = $decode['foods'];
+			//$decode = json_decode($json,true);
+			//$array = $decode['foods'];
+			$array = json_decode($json);
 			
 			//var_dump2($array); // 짜장 라이스 출력 
 
 							
+				//var_dump2($array[1]->name);
 
 				for($i = 0; $i<1000; $i++){
 
 
-					if($array[$i]["name"] == null){break;}
+					if($array[$i]->name == null){break;}
 
-					if($array[$i]["name isSpecial"] == true){ //해당 음식이 스페셜 음식일때 
+					if($array[$i]->isSpecial == true){ //해당 음식이 스페셜 음식일때 
 
 						echo '<span class="special-food">';
-						echo $array[$i]["name"];
+						echo $array[$i]->name;
 						echo '</span>';
 
 
 
-						if($array[$i]["알러지"] == true){
+						if($array[$i]->isAllergy == true){
 							echo '<span class = "stars" >★</span> ';
 						}
-						else if($array[$i]["알러지"] == false){
-							echo '<span class = "stars2" >ㅗ</span> ';
+						else if($array[$i]->isAllergy == false){
+							echo '<span class = "stars" >ㅗ</span> ';
 						}
 						
 
@@ -365,12 +372,12 @@
 					else{
 
 						echo '<br />';
-						echo $array[$i]["name"];
-							if($array[$i]["알러지"] == true){
+						echo $array[$i]-> name;
+							if($array[$i]-> isAllergy == true){
 							echo '<span class = "stars" >★</span> ';
 						}
-						else if($array[$i]["알러지"] == false){
-							echo '<span class = "stars2" >ㅗ</span> ';
+						else if($array[$i]->isAllergy == false){
+							echo '<span class = "stars" >ㅗ</span> ';
 						}
 
 							
@@ -412,7 +419,7 @@
 
 			if($json == null){
 
-						echo '-';
+						echo 'null';
 			}
 
 			else{
@@ -421,13 +428,13 @@
 				switch ($what) {
 						case '열량':
 							$decode = json_decode($json,true);
-							$array = $decode["nutrition"][0]["info"]["열량"];
+							$array = $decode["열량"];
 							return $array;
 						break;
 
 						case '단백질':
 							$decode = json_decode($json,true);
-							$array = $decode["nutrition"][0]["info"]["단백질"];
+							$array = $decode["단백질"];
 
 							return $array;
 						break;
@@ -435,7 +442,7 @@
 
 						case '지방':
 							$decode = json_decode($json,true);
-							$array = $decode["nutrition"][0]["info"]["지방"];
+							$array = $decode["지방"];
 
 							return $array;
 						break;
@@ -473,33 +480,51 @@
 
 		public function getNationData($json){
 
+		
+
 
 		if($json == null){
 
-						echo '-';
+						echo 'null';
 			}
 
 			else{
 
-			$decode = json_decode($json,true);
-			$array = $decode["원산지"][0]["원산지"]; // 이게 a 
+
+			$array = json_decode($json);
+			//var_dump2($array[1] -> name);
+
+			for($i = 0; $i<1000; $i++){
+
+				if($array[$i]->id == null){break;}
+
+				echo $array[$i] -> name ." : ". $array[$i] -> nation;
+				echo '<br />';
+				
+
+				
+
+				
+
+			}
+			// $array = $decode["원산지"][0]["원산지"]; // 이게 a 
  
-			$i = 0;
-    		$test;
+			// $i = 0;
+   //  		$test;
 
-    		//var_dump2($array);
+   //  		//var_dump2($array);
 
-			foreach ($array as $key => $value) {
+			// foreach ($array as $key => $value) {
 	  
     
 
-    			echo  $key.": ". $value;
-    			echo '<br />';
+   //  			echo  $key.": ". $value;
+   //  			echo '<br />';
 
     	
    
 	
-				}
+			// 	}
 
 
 

@@ -1,27 +1,31 @@
 #container { width: 700px; padding: 25px; position: relative; }
 
-#top-bar #title{ font-size: 18pt; font-weight: bolder; display: inline-block; }
-#top-bar #downdiet_btn { width: 125px; height: 30px; float: right; display: inline-block; }
+#top-bar #title{ background: url(res/title_diettable.png) no-repeat; width: 63px; height: 22px; display: inline-block; }
+#top-bar #downdiet_btn { background: url(res/download_diettable.png); width: 122px; height: 28px; border: none; float: right; display: inline-block; }
 
 #date { margin-top: 25px;}
 #date #diet-day { font-size: 16pt; font-weight: bolder; }
-#date #before { font-size: 16pt; color: #808080; margin-right: 20px; cursor: pointer;}
+#date #prev { font-size: 16pt; color: #808080; margin-right: 20px; cursor: pointer;}
+#date #null-prev { font-size: 16pt; color: #808080; margin-right: 20px; cursor: pointer;}
 #date #next { font-size: 16pt; color: #808080; margin-left: 20px; cursor: pointer; }
-#date #before-txt { font-size: 10pt; color: #808080; margin-right: 5px; margin-left: 115px; visibility: hidden;}
+#date #null-next { font-size: 16pt; color: #808080; margin-left: 20px; cursor: pointer; }
+#date #prev-txt { font-size: 10pt; color: #808080; margin-right: 5px; visibility: hidden; vertical-align: center;}
+#date #null-txt { font-size: 10pt; color: #808080; margin-left: 105px; visibility: hidden; vertical-align: center;}
 #date #next-txt { font-size: 10pt; color: #808080; margin-left: 5px; visibility: hidden;}
 
 #tip { margin-top: 25px; font-size: 11px;  }
 #tip #allergy-info { margin-left: 0px; }
 #tip #allergy-mark { cursor: pointer; }
-#tip #allergy-popup { background-color: #FFFFFF; border: 1px solid gray; position: absolute; left: 361px; top: 140px; width: 340px; height: 60px; padding: 12px;}
+#tip #allergy-popup { background-color: #FFFFFF; border: 1px solid gray; position: absolute; left: 361px; top: 140px; width: 340px; height: 60px; padding: 12px; display: none;}
 #tip #inf-detail { margin-left: 20px; }
 
 #main-table .table-cell { width: 140px; border: 1px solid #C6C6C6; border-right: 0px; margin-top: 10px; position:relative;}
 #main-table .table-cell .special-food { color: #ff1493; font-weight: bold; }
-#main-table .table-cell .m-event { width: 20px; height: 17px; left: 10px; top: 10px; position: absolute; background: magenta; cursor: pointer; }
-#main-table .table-cell .m-eventfood { width: 80px; height: 17px; left: 10px; top: 10px; position: absolute; background: magenta; cursor: pointer; display: none; }
+#main-table .table-cell .m-event { width: 33px; height: 21px; left: -4px; top: 5px; position: absolute; background: url(res/eventmark1.png); cursor: pointer; }
+#main-table .table-cell .m-eventfood { width: 99px; height: 19px; padding-top: 2px; left: -4px; top: 5px; position: absolute; background: url(res/eventmark2.png); cursor: pointer; display: none; color: white; }
 #main-table .table-cell .stars {visibility: hidden; color: red;}
 #main-table .table-cell .stars2 {visibility: hidden;}
+#main-table .table-cell .null-food { color: gray; }
 
 #main-table { border-collapse:collapse; margin-top: 10px; text-align: center; font-size: 9pt; font-weight: bolder; border-top: 2px solid #cccccc; border-bottom: 2px solid #cccccc;}
 #main-table #diet-header #division { width: 142px; height: 30px; border: 1px solid #cccccc; background-color: #e0e0e0;}
@@ -32,8 +36,8 @@
 #main-table .food-table .inf-menu { width: 70px; height: 118px; background-color: #F2F2F2; border: 1px solid #cccccc; display: none;}
 #main-table .nutrition-table {display: none;}
 #main-table .nutrition-table .food-nutrition { width: 70px; height: 50px; background-color: #F2F2F2; border: 1px solid #C6C6C6;}
-#main-table .nutrition-table .kind-nutrition { width: 65px; display: inline-block; margin: 0; color: #2F4F4F;}
-#main-table .nutrition-table .inf-nutrition { width: 65px; text-align: left; display: inline-block; margin: 0; color: #808080;}
+#main-table .nutrition-table .kind-nutrition { width: 35px; display: inline-block; padding-left: 30px; margin: 0; color: #2F4F4F; text-align: left;}
+#main-table .nutrition-table .inf-nutrition { width: 35px; text-align: left; display: inline-block; padding-right: 30px; margin: 0; color: #808080; text-align: right;}
 
 #main-table .origin-table { display: none; }
 #main-table .origin-table .inf-origin { width: 70px; height: 35px; background-color: #F2F2F2; border: 1px solid #C6C6C6;}
