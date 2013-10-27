@@ -6,7 +6,7 @@
 <import path="js/stayRequest.js">
 <import path="js/seatSelector.js">
 <import path="/static/js/popup.js">
-<import path="/static/js/jquery.js">
+<import path="/static/js/jquery.js">			
 
 <div id="main-left-content" class="fl">
 	<div id="seat-balloon">
@@ -234,7 +234,7 @@
 			<div class="aside-sub-item" id="sideinfo-seat"></div>
 		</div>
 		<div id="aside-button">
-			<button id="aside-button-cancel" {@ echo (!$isStayAble || !$myStayData) ? 'class="aside-button-cancel-disabled"' : 'onclick="cancelStay()"' } >잔류 신청 취소</button>
+			<button id="aside-button-cancel" {@ echo (!$isStayAble || !$myStayData) ? 'class="aside-button-cancel-disabled"' : 'onclick="javascript:cancelStayJS();"' } >잔류 신청 취소</button>
 			<button id="aside-button-request" {@
 				if (!$isStayAble)
 					echo 'class="aside-button-request-disabled"';

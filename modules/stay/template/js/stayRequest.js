@@ -329,7 +329,7 @@ function openPopupAndSubmitStay() {
 	);
 }
 
-function cancelStay() {
+function cancelStayJS() {
 	if (!stayAbled_deadline) {
 		var week = new Array('일', '월', '화', '수', '목', '금', '토');
 		var deadlineObj = new Date(deadlineArr[0][0], deadlineArr[0][1]-1, deadlineArr[0][2], deadlineArr[1][0], deadlineArr[1][1], deadlineArr[1][2]);
