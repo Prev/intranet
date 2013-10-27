@@ -34,7 +34,7 @@
 		public function registerStayInfo($data){
 			
 			if($this->isExistStayinfo($data['date']))
-				goBack('이미 해당일의 잔류정가 존재합니다.');
+				goBack('이미 해당일의 잔류정보가 존재합니다.');
 
 			$stayInfo = $this->db->create();
 
@@ -51,7 +51,7 @@
 			$stayInfo->set('goingout_start_time', $data['goingout_start_time']);
 			$stayInfo->set('goingout_end_time', $data['goingout_end_time']);
 			$stayInfo->set('allow_sleep', $data['allow_sleep']);
-			$stayInfo->set('popup_notice', $data['popup_notice_check'] ? $data['popup_notice_text'] : NULL);
+			$stayInfo->set('popup_notice', $data['popup_notice_check'] ? removeXSS(stripslashes($data['popup_notice_text'])) : NULL);
 			$stayInfo->set('temp_disabled', $data['temp_disabled']);
 
 			if ($stayInfo->save())
@@ -98,7 +98,7 @@
 			$stayInfo->set('stay_deadlines_grade2', $this->controller->joinDeadline($data['stay_deadlines_grade2'], $data['stay_deadlines_time2_hour'], $data['stay_deadlines_time2_min']));
 			$stayInfo->set('stay_deadlines_grade3', $this->controller->joinDeadline($data['stay_deadlines_grade3'], $data['stay_deadlines_time3_hour'], $data['stay_deadlines_time3_min']));
 			
-			$stayInfo->set('popup_notice', $data['popup_notice_check'] ? $data['popup_notice_text'] : NULL);
+			$stayInfo->set('popup_notice', $data['popup_notice_check'] ? removeXSS(stripslashes($data['popup_notice_text'])) : NULL);
 			$stayInfo->set('temp_disabled', $data['temp_disabled']);
 
 			if ($stayInfo->save())
