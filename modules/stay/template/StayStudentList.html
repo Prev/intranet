@@ -42,7 +42,7 @@
 
 				<condition do="$stayData[$i]->goingout">
 					<true>
-						<li class="sr-goingout">{$stayData[$i]->goingout}</li>
+						<li class="sr-goingout">{removeXSS(stripslashes($stayData[$i]->goingout))}</li>
 					</true>
 					<false>
 						<li class="sr-goingout null">미신청</li>
@@ -51,7 +51,7 @@
 				
 				<condition do="$stayData[$i]->extra_caption">
 					<true>
-						<li class="sr-etc">{$stayData[$i]->extra_caption}</li>
+						<li class="sr-etc">{removeXSS(stripslashes($stayData[$i]->extra_caption))}</li>
 					</true>
 					<false>
 						<li class="sr-etc null">없음</li>
@@ -64,7 +64,7 @@
 						<li class="sr-hidden">{date('i', strtotime($stayData[$i]->goingout_start_time))}</li>
 						<li class="sr-hidden">{date('H', strtotime($stayData[$i]->goingout_end_time))}</li>
 						<li class="sr-hidden">{date('i', strtotime($stayData[$i]->goingout_end_time))}</li>
-						<li class="sr-hidden">{$stayData[$i]->goingout_cause}</li>
+						<li class="sr-hidden">{removeXSS(stripslashes($stayData[$i]->goingout_cause))}</li>
 					</true>
 					<false></false>
 				</condition>
