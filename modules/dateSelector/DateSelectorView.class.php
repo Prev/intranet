@@ -15,7 +15,7 @@
 
 */
 	class DateSelectorView extends View {
-
+		
 		public $selectorData;
 		public $selectedDate;
 		public $dateArr = array('일','월','화','수','목','금','토');
@@ -77,7 +77,6 @@
 		}
 
 		function dispDateSelector() {
-
 			$this->todayDate = mktime(0,0,0,date("m"), date("d"), date("Y"));
 			$this->selectedDate = strtotime($_REQUEST['date']);
 			$this->recentStayDates= $this->module->recentStayDates;

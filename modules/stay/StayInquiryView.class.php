@@ -7,8 +7,6 @@
 		public $stayInfo;
 
 		function init(){
-
-
 			parent::init();
 
 			if(array_search($this->selectedDate, $this->recentStayDates) === false){
@@ -23,16 +21,13 @@
 				}
 
 			}
-
 			if($this->recentStayDates && $this->isExistStayInfo($this->selectedDate)){
 				$this->stayInfo = $this->model->getStayInfo($this->selectedDate);
 				$this->getSelectedSeatCount = $this->model->getSelectedSeatCount($this->selectedDate);
 			}
-
 		}
 
 		function dispStayInquiry(){
-
 			if($this->recentStayDates && $this->isExistStayInfo($this->selectedDate)){
 				
 				Context::getInstance()->addHeaderTag('<script type="text/javascript">
@@ -40,7 +35,7 @@
 					var seResultURL ="'.getURL('stay', 'ajaxStayStudentList', NULL, NULL, true).'";
 					var exportExcelStayDataURL = "'.getURL('stay','procExportExcelStayData', NULL, NULL, true).'";
 					</script>'
-					);
+				);
 			}
 
 

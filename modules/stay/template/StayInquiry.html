@@ -29,12 +29,12 @@
 </div>
 
 <div id="main-content-header">
-	<div id="main-content-title">잔류조회</div>
+	<a href="{@ echo REAL_URL; }"><div id="main-content-title">잔류조회</div></a>
 	<div id="main-content-header-sidetools">
 		<button id="tool-stay-library" onclick="openSeatPopup()">도서관 좌석 현황 보기</button>
 	</div>
 </div>
-{getContent('dateSelector', 'dispDateSelector', array('recentStayDates' => $recentStayDates))}
+{getContent('dateSelector', 'dispDateSelector', array('recentStayDates' => $recentStayDates, 'showPast' => true))}
 <div class="balloon"><div class="balloon-stat-abled"></div></div>
 {getContent('stay', 'dispStayStudentStat')}
 <div id="main-content-options">

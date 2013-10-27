@@ -1,6 +1,5 @@
 <import path="css/dateSelector.css">
 <import path="js/dateSelector.js">
-	
 <div id="date-selector">
 	<div class="balloon">
 		<div class="balloon-date-abled"></div>
@@ -9,7 +8,7 @@
 		<div class="janryu-prev"></div>
 	</div>
 	<div id="date-selector-data">
-		<ul id="date-container" style="left:{@ echo $leftWidth < 0 ? $leftWidth : '0'}px{$width}">
+		<ul id="date-container" style="left:{@ echo $leftWidth < 0 ? $leftWidth : '0'}px; min-width: {@ echo count($selectorData)*24; }px">
 			{@ foreach($selectorData as $key => $data): }	
 				<condition do="$data[0]">
 					<true>

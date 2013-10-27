@@ -9,8 +9,9 @@
 		function init(){	
 			$this->selectedDate = $_REQUEST['date'];
 			$this->isTeacher = $_REQUEST['isTeacher'] == 1 ? true : false;
-			$this->recentStayDates = $this->module->actionData->name != 'dispStayManage' ? $this->model->getRecentStayDates() : $this->model->getRecentStayDates(true);
-			
+			$this->recentStayDates = $this->module->actionData->name == 'dispStayRequest' ?
+				$this->model->getRecentStayDates(true) :
+				$this->model->getRecentStayDates();
 		}
 
 
