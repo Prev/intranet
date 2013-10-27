@@ -1,13 +1,12 @@
 <?php
 	
 	/**
-	 *
-	 * @ 한국디지털미디어고등학교 홈페이지 개편 및 시스템 전산화 프로젝트
+	 * 한국디지털미디어고등학교 홈페이지 개편 및 시스템 전산화 프로젝트
 	 * 
-	 * @ engine pmc 사용
-	 *	- github.com/Prev/engine-pmc
+	 * @ developed by Dimigo SHIFT Team
+	 * @ engine pmc 사용 (github.com/Prev/engine-pmc)
 	 *
-	 * @ 2013.05 ~ 10
+	 * @ 2013.05 ~ 11
 	 */
 	
 	define('PMC', true);
@@ -19,6 +18,9 @@
 	$oContext->init(getDBInfo());
 	
 	if ($oContext->checkSSO()) {
+		if (!User::getCurrent() && $oContext->moduleID != 'login' && $oContext->moduleID != '404')
+			goLogin();
+
 		ModuleHandler::initModule($oContext->moduleID, $oContext->moduleAction);
 		$oContext->procLayout();
 	}

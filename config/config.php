@@ -172,7 +172,7 @@
 			break;
 
 		case 'intranet.dimigo.us':
-			define('ACCOUNT_SERVER_URL', 'http://account.dimigo.us');
+			define('ACCOUNT_SERVER_URL', 'https://account.dimigo.us');
 			break;
 
 		default :

@@ -130,6 +130,9 @@
 			$this->setLayout(LAYOUT_NAME);
 			$this->printAlone = false;
 			$this->isMobileMode = false;
+			
+			/*
+			@@@@ 모바일 충분히 오픈할 수 있었는데 디자인팀이랑 오ㅇㅇ PM이 느려서 오픈못함 ㄱ-ㄱ-ㄱ-ㄱ-ㄱ-ㄱㄱ-ㄱ- ㅗㅗㅗㅗㅗㅗㅗㅗ
 
 			$mobileAgents  = array('iphone','lgtelecom','skt','mobile','samsung','nokia','blackberry','android','android','sony','phone');
 			
@@ -154,7 +157,7 @@
 					$this->isMobileMode = false;
 					setCookie2('mobile', 0, 0);
 				}
-			}
+			}*/
 
 			// locale 이라는 변수가 넘어왔을 때, 쿠키를 심어 지속되로고 설정
 			if (isset($_GET['locale']))
@@ -292,11 +295,14 @@
 					}
 				}
 			}else if ($selectedData === false && !$this->moduleID) {
-				self::printErrorPage(array(
+				$this->moduleID = '404';
+				$this->procLayout();
+				exit;
+				/*self::printErrorPage(array(
 					'en' => 'Cannot find requested menu',
 					'ko' => '해당 메뉴를 찾을 수 없습니다'
 				));
-				return;
+				return;*/
 			}
 		}
 		
