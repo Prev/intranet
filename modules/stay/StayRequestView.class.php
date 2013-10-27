@@ -222,7 +222,7 @@
 					var stayType = "'.($this->myStayData ? 'update' : 'new').'";
 					var continuousDates = '.($continuousDates ? json_encode2($continuousDates) : 'null').';
 					var autoFormData = '.($autoFormDataStr ? $autoFormDataStr : 'null').';
-					var cancelStayURL ="'.getURL('stay', 'procCancelStay').'";
+					var cancelStayURL ="'.getURL('stay', 'procCancelStay', NULL, NULL, true).'";
 				</script>');
 
 			}else{

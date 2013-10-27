@@ -37,8 +37,8 @@
 				
 				Context::getInstance()->addHeaderTag('<script type="text/javascript">
 					var date = "'.$this->selectedDate.'";
-					var seResultURL ="'.getURL('stay', 'ajaxStayStudentList').'";
-					var exportExcelStayDataURL = "'.getURL('stay','procExportExcelStayData').'";
+					var seResultURL ="'.getURL('stay', 'ajaxStayStudentList', NULL, NULL, true).'";
+					var exportExcelStayDataURL = "'.getURL('stay','procExportExcelStayData', NULL, NULL, true).'";
 					</script>'
 					);
 			}

@@ -26,7 +26,7 @@
 
 		function getDeadlineStr($time){
 			$dateArr = array('일','월','화','수','목','금','토');
-			return $time != NULL ? date('Y.m.d', $time).'('.$dateArr[date('w', $time)].')' : NULL;
+			return $time != NULL ? date('Y.m.d', $time).'.('.$dateArr[date('w', $time)].')' : NULL;
 		}
 
 		function getMealAllowLevel($val){
@@ -75,19 +75,19 @@
 
 				if($page == 2){
 					Context::getInstance()->addHeaderTag('<script type="text/javascript">
-						var deleteStayInfoURL = "'.getURL('stay','procDeleteStayInfo').'";
-						var closeStayInfoURL = "'.getURL('stay', 'procCloseStayInfo').'";
+						var deleteStayInfoURL = "'.getURL('stay','procDeleteStayInfo', NULL, NULL, true).'";
+						var closeStayInfoURL = "'.getURL('stay', 'procCloseStayInfo', NULL, NULL, true).'";
 						</script>');
 				}else if($page == 3 || $page == 4){
 					$this->maxStudentNumber = $this->model->getMaxStudentNumber();
 
 					Context::getInstance()->addHeaderTag('<script type="text/javascript">
-						var saveStayDataURL = "'.getURL('stay','procSaveStayData').'";
-						var getStaySeatsURL = "'.getURL('stay','ajaxStayStudentsSeatList').'";
-						var deleteStayDataURL = "'.getURL('stay', 'procDeleteStayData').'";
-						var cancelCloseStayInfoURL =  "'.getURL('stay', 'procCancelCloseStayInfo').'";
-						var confirmStayInfoURL = "'.getURL('stay', 'procConfirmStayInfo').'";
-						var exportExcelStayDataURL = "'.getURL('stay','procExportExcelStayData').'";
+						var saveStayDataURL = "'.getURL('stay','procSaveStayData', NULL, NULL, true).'";
+						var getStaySeatsURL = "'.getURL('stay','ajaxStayStudentsSeatList', NULL, NULL, true).'";
+						var deleteStayDataURL = "'.getURL('stay', 'procDeleteStayData', NULL, NULL, true).'";
+						var cancelCloseStayInfoURL =  "'.getURL('stay', 'procCancelCloseStayInfo', NULL, NULL, true).'";
+						var confirmStayInfoURL = "'.getURL('stay', 'procConfirmStayInfo', NULL, NULL, true).'";
+						var exportExcelStayDataURL = "'.getURL('stay','procExportExcelStayData', NULL, NULL, true).'";
 						</script>');
 				}				
 				self::execTemplate('StayManage'.$page);

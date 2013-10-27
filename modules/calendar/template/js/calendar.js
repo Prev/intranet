@@ -118,12 +118,12 @@ function getDateinfo(target){
 			else
 				date = new Date(year, month, day);
 				
-			$('#stay-manage-deadline-grade-'+i).val(date.getFullYear() + '.' + fillZero(date.getMonth()+1) + '.' + fillZero(date.getDate()) + '('+ dayLists[date.getDay()] + ')');
+			$('#stay-manage-deadline-grade-'+i).val(date.getFullYear() + '.' + fillZero(date.getMonth()+1) + '.' + fillZero(date.getDate()) + '.('+ dayLists[date.getDay()] + ')');
 			
 		}
 	}else{
 		date = new Date(year, month, day);
-		$('#stay-manage-deadline-grade-'+grade).val(date.getFullYear() + '.' + fillZero(date.getMonth() + 1) + '.' + fillZero(date.getDate()) + '('+ dayLists[date.getDay()] + ')');
+		$('#stay-manage-deadline-grade-'+grade).val(date.getFullYear() + '.' + fillZero(date.getMonth() + 1) + '.' + fillZero(date.getDate()) + '.('+ dayLists[date.getDay()] + ')');
 	}
 	closeCalendar();
 }
@@ -143,7 +143,7 @@ function convertToDate(target){
 		month = dateStr.substring(4,6);
 		day = dateStr.substring(6,8);
 		date = new Date(year,month - 1,day);
-		$(target).val(year+'.'+month+'.'+day+'('+ dayLists[date.getDay()] + ')').change();
+		$(target).val(year+'.'+month+'.'+day+'.('+ dayLists[date.getDay()] + ')').change();
 		
 	}
 }
