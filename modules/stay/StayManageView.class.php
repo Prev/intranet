@@ -6,6 +6,7 @@
 
 		public $stayInfo;
 		public $selectedSeatCount;
+		public $maxStudentNumber;
 
 		function init(){
 			if($this->module->user->department != 'dormitory')
@@ -78,6 +79,8 @@
 						var closeStayInfoURL = "'.getURL('stay', 'procCloseStayInfo').'";
 						</script>');
 				}else if($page == 3 || $page == 4){
+					$this->maxStudentNumber = $this->model->getMaxStudentNumber();
+
 					Context::getInstance()->addHeaderTag('<script type="text/javascript">
 						var saveStayDataURL = "'.getURL('stay','procSaveStayData').'";
 						var getStaySeatsURL = "'.getURL('stay','ajaxStayStudentsSeatList').'";

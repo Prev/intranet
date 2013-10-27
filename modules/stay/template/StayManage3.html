@@ -127,7 +127,7 @@
                        	{@ endfor;}
                         </select>
                         <select name="number" id="main-content-seat-choose-number" onchange="changeChoose()">
-                        {@ for ($i=1; $i<=37; $i++) :}
+                        {@ for ($i=1; $i<=$maxStudentNumber; $i++) :}
                     		<option value="{$i}">{$i}번</option>
                        	{@ endfor;}
                         </select>

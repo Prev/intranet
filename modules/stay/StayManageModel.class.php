@@ -22,6 +22,15 @@
 		
 		}
 
+
+		public function getMaxStudentNumber(){
+			$data = DBHandler::for_table('user_student')
+			->max('number');
+
+			return $data;
+		}
+
+
 		public function registerStayInfo($data){
 			
 			if($this->isExistStayinfo($data['date']))

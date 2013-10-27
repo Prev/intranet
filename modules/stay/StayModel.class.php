@@ -19,6 +19,7 @@
 			preg_match('/\d+/', $str, $matches);
 			return ($matches[0] ? $matches[0] : 0);
 		}	
+
 		
 		public function sort_by($a, $b) {
 			if($this->getNumber($a[$this->key]) == $a[$this->key] && $this->getNumber($b[$this->key]) == $b[$this->key])
