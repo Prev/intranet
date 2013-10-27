@@ -37,12 +37,12 @@
 		function getSeats($key, $number){
 			$grade = substr($this->seatData->$key->$number, 0, 1);
 
-			if($this->myStayData !== NULL && $this->myStayData['library_seat'] === $key.set0($number))
+			if($this->myStayData && $this->myStayData['library_seat'] === $key.set0($number))
 				return '<dd id="seat-'.$key.set0($number).'" class="seat_sel-'.$number.'" onclick="seatSelectHandler(this)"></dd>';
 			else if ($grade) {
 				return '<dd id="seat-'.$key.set0($number).'" class="seat_grade'.$grade.'-'.$number.'" onmouseover="seatOverHandler(this, \''.$this->seatData->$key->$number.'\')" onmouseout="seatOutHandler(this)"></dd>';
 			}else {
-				if ($this->myStayData !== NULL && $this->myStayData['library_seat'] === NULL)
+				if ($this->myStayData && $this->myStayData['library_seat'] === NULL)
 					return '<dd id="seat-'.$key.set0($number).'" class="seat_disabled-'.$number.'" onclick="seatSelectHandler(this)"></dd>';
 				else
 					return '<dd id="seat-'.$key.set0($number).'" class="seat_default-'.$number.'" onclick="seatSelectHandler(this)"></dd>';
@@ -69,7 +69,7 @@
 				}
 				Context::getInstance()->addHeaderTag('<script type="text/javascript">
 					var date = "'.$this->selectedDate.'";
-					var seResultURL="'.getURL('stay', 'ajaxStayStudentList').'";
+					var seResultURL="'.getURL('stay', 'ajaxStayStudentList', NULL, NULL, true).'";
 					var page ="'.$page.'"
 					</script>');
 

@@ -18,11 +18,11 @@
 /* #stay-request-seat #stay-request-seat-bottom */
 #stay-request-seat-bottom { width:476px; margin:20px auto 0 auto; }
 #stay-request-seat-bottom:after { content:""; display:block; clear:both; }
-#stay-request-seat-bottom ul { list-style:none; padding:0; margin:0; }
+#stay-request-seat-bottom ul { list-style:none; padding:0; margin:0; margin-top: 2px; }
 #stay-request-seat-bottom ul li { display:block; height:23px; width:447px; margin-top:0px; }
 #stay-request-seat-bottom dl { height:23px; margin:0; }
 #stay-request-seat-bottom dd{ display:inline-block; margin:0; width:23px; height:22px; float:left; }
-#stay-request-seat-bottom .seat_row_pad{ margin-bottom:18px; }
+#stay-request-seat-bottom .seat_row_pad{ margin-bottom:23px; }
 #stay-request-seat-bottom .seat_col_pad{ margin:0px 5px; }
 #stay-request-seat-bottom #seat_name { width:19px; height:542px; float:left; background:url(../img/seat_name.png?2) no-repeat; margin-right:10px; margin-top: 1px }
 #stay-request-seat-bottom #seat_box{ float:left; }

@@ -83,3 +83,8 @@
 .balloon .balloon-stat-abled {background-position: -34px -43px;} 
 .balloon .balloon-option-abled {background-position: -68px -43px;}
 .balloon .balloon-result-abled {background-position: -102px -43px;} 
+
+
+
+#stay-request-seat-bottom ul { margin-top: 0px !important; }
+#stay-request-seat-bottom .seat_row_pad{ margin-bottom:18px !important; }

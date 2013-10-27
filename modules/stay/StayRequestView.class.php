@@ -27,8 +27,12 @@
 		}
 
 		function getMealData($string){
-			if(!$this->getStayAble())
-				return ' class="disabled" disabled="disabled"';
+			if (!$this->getStayAble()) {
+				if ($this->myStayData && $this->myStayData['apply_'.$string])
+					return ' checked="checked" class="disabled" disabled="disabled"';
+				else
+					return ' class="disabled" disabled="disabled"';
+			}
 
 			$number = $this->stayInfo['allowlevel_'.$string];
 			switch($number){
@@ -36,15 +40,12 @@
 					return ' class="disabled" disabled="disabled"';
 					break;
 				case 2:
-					if($this->myStayData !== NULL && $this->myStayData['apply_'.$string]){
-						$applyMeal = $myStayData['apply_'.$string];
-
-						if($applyMeal == 1)
-							return ' checked="checked"';
-						else
-							return NULL;
-					}else
-						return NULL;
+					if ($this->myStayData && $this->myStayData['apply_'.$string]){
+						return ' checked="checked"';
+					}else if ($string == 'lunch')
+						return ' checked="checked"';
+					else
+						return '';
 					
 					break;
 				case 3:
@@ -53,9 +54,13 @@
 			}
 		}
 
-		function getGoingoutApplyed(){
-			if(!$this->getStayAble())
-				return ' class="disabled" disabled="disabled"';
+		function getGoingoutApplyed() {
+			if (!$this->getStayAble()) {
+				if($this->myStayData != NULL && $this->myStayData['apply_goingout'])
+					return ' class="disabled" disabled="disabled" checked = "checked"';
+				else
+					return ' class="disabled" disabled="disabled"';
+			}
 
 			if($this->stayInfo["allow_goingout"] == 0)
 				return ' class="disabled" disabled="disabled"';
@@ -66,27 +71,33 @@
 		}
 
 		function getGoingoutData($type, $type2, $isStatusChecker){
-			if($isStatusChecker){
-				if(!$this->getStayAble() || !$this->stayInfo['allow_goingout'])
-					return ' disabled" disabled="disabled"';
+			if ($isStatusChecker){
+				if ($this->myStayData['goingout_'.$type.'_time'])
+					return '';
 				else
-					return NULL;
+					return ' disabled" disabled="disabled"';
 			}else{
-				if($this->stayInfo['allow_goingout']){
-					if($this->myStayData !== NULL && $this->myStayData['goingout_'.$type.'_time']){
+				if ($this->stayInfo['allow_goingout']){
+					if ($this->myStayData && $this->myStayData['goingout_'.$type.'_time']){
 						$goingoutTime = strtotime($this->myStayData['goingout_'.$type.'_time']);
-						if($type2 == 'hour')
+						if ($type2 == 'hour')
+							return date('H', $goingoutTime);
+						else if($type2 == 'minute')
+							return date('i', $goingoutTime);
+					}else {
+						$goingoutTime = strtotime($this->stayInfo[$type=='start' ? 'goingout_start_time' : 'goingout_end_time']);
+						if ($type2 == 'hour')
 							return date('H', $goingoutTime);
 						else if($type2 == 'minute')
 							return date('i', $goingoutTime);
 					}
-				}
+				}else
+					return NULL;
 			}
-			return ' disabled" disabled="disabled"';
 		}
 
 		function getGoingoutTimeTip(){
-			if(!$this->getStayAble())
+			if (!$this->getStayAble())
 				return NULL;
 			else if ($this->stayInfo['allow_goingout'] == 0)
 				return '오늘은 외출신청을 할 수 없습니다.';
@@ -95,45 +106,60 @@
 		}
 
 		function getGoingoutCause(){
-			if(!$this->getStayAble())
-				return ' class="disabled" disabled="disabled"';
+			if(!$this->getStayAble()) {
+				if($this->myStayData && $this->myStayData['goingout_cause'])
+					return ' value="'.$this->myStayData['goingout_cause'].'" class="disabled" disabled="disabled"';
+				else
+					return ' class="disabled" disabled="disabled"';
+			}
 
 			if($this->stayInfo['allow_goingout'] == 0)
 				return ' class="disabled" disabled="disabled"';
-			else if($this->myStayData !== NULL && $this->myStayData['goingout_cause'])
+			else if($this->myStayData && $this->myStayData['goingout_cause'])
 				return ' value="'.$this->myStayData['goingout_cause'].'"';
 			else
 				return ' class="disabled" disabled="disabled"';
 		}
 
 		function getSleepData(){
-			if(!$this->getStayAble())
-				return ' class="disabled" disabled="disabled"';
+			if(!$this->getStayAble()) {
+				if($this->myStayData && $this->myStayData['apply_sleep'] == 1)
+					return ' class="disabled" disabled="disabled" checked="checked"';
+				else
+					return ' class="disabled" disabled="disabled"';
+			}
 
 			if($this->stayInfo['allow_sleep'] == 0)
 				return ' class="disabled" disabled="disabled"';
-			else if($this->myStayData !== NULL && $this->myStayData['apply_sleep'] == 0)
+			else if($this->myStayData && $this->myStayData['apply_sleep'] == 0)
 				return NULL;
 			else
 				return ' checked="checked"';
 		}
 
 		function getExtraCaption(){
+			if(!$this->getStayAble()) {
+				if($this->myStayData && $this->myStayData['extra_caption'])
+					return ' class="disabled" disabled="disabled" value="'.$this->myStayData['extra_caption'].'"';
+				else
+					return ' class="disabled" disabled="disabled" value=""';
+			}
 
-			if(!$this->getStayAble())
-				return ' class="disabled" disabled="disabled" value=""';
-
-			if($this->myStayData !== NULL && $this->myStayData['extra_caption'])
+			if($this->myStayData && $this->myStayData['extra_caption'])
 				return ' value="'.$this->myStayData['extra_caption'].'"';
 			else
 				return NULL;
 		}
 
 		function getSeatApplyed(){
-			if(!$this->getStayAble())
-				return 'class="disabled" disabled="disabled"';
+			if(!$this->getStayAble()) {
+				if($this->myStayData && $this->myStayData['library_seat'] === NULL)
+					return 'class="disabled" disabled="disabled" checked="checked"';
+				else
+					return 'class="disabled" disabled="disabled"';
+			}
 
-			if($this->myStayData !== NULL && $this->myStayData['library_seat'] === NULL)
+			if($this->myStayData && $this->myStayData['library_seat'] === NULL)
 				return ' checked="checked"';
 			else
 				return NULL;

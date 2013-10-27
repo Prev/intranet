@@ -16,7 +16,9 @@ $(document).ready(function() {
 		$(this).val($(this).val().replace(/[^0-9\.]/,''));
 	});
 	$('#main-content-seat-top-right input[type=text]').attr("disabled",true);
-	$('#apply_goingout').click(function(){	
+	$('#apply_goingout').click(function(){
+		if ($(this).is(':disabled'))return;
+
 		if($(this).is(':checked')){
 			$('#main-content-seat-top-right input[type=text]').attr("disabled",false)
 			$('.apply_goingout_disable').attr('class','apply_goingout_able');	

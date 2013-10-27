@@ -39,23 +39,22 @@
 				$grade = NULL;
 
 			if($this->callType == 1){
-
-				if ($this->myStayData !== NULL && $this->myStayData['library_seat'] === $key.set0($number))
+				if ($this->myStayData && $this->myStayData['library_seat'] === $key.set0($number))
 					return '<dd id="seat-'.$key.set0($number).'" class="seat_sel-'.$number.'" onclick="seatSelectHandler(this)"></dd>';
 				else if ($grade) {
 					return '<dd id="seat-'.$key.set0($number).'" class="seat_grade'.$grade.'-'.$number.'" onmouseover="seatOverHandler(this, \''.$this->seatData->$key->$number.'\')" onmouseout="seatOutHandler(this)"></dd>';
 				}else {
 					if (!$this->selectedDate || !$this->isStayAble)
 						return '<dd id="seat-'.$key.set0($number).'" class="seat_disabled-'.$number.'"></dd>';
-					else/* if ($this->myStayData !== NULL && $this->myStayData['library_seat'] === NULL)
+					else if ($this->myStayData && $this->myStayData['library_seat'] === NULL)
 						return '<dd id="seat-'.$key.set0($number).'" class="seat_disabled-'.$number.'" onclick="seatSelectHandler(this)"></dd>';
-					else*/
+					else
 						return '<dd id="seat-'.$key.set0($number).'" class="seat_default-'.$number.'" onclick="seatSelectHandler(this)"></dd>';
 				}			
 
 			}else if($this->callType == 2){
 
-				if ($this->myStayData !== NULL && $this->myStayData['library_seat'] === $key.set0($number))
+				if ($this->myStayData && $this->myStayData['library_seat'] === $key.set0($number))
 					return '<dd id="seat-'.$key.set0($number).'" class="seat_sel-'.$number.'" onmouseover="seatOverHandler_inquiry(this, \''.$this->seatData->$key->$number.'\')" onmouseout="seatOutHandler(this)"></dd>';
 				else if ($grade)
 					return '<dd id="seat-'.$key.set0($number).'" class="seat_grade'.$grade.'-'.$number.'" onmouseover="seatOverHandler_inquiry(this, \''.$this->seatData->$key->$number.'\')" onmouseout="seatOutHandler(this)"></dd>';
@@ -64,7 +63,7 @@
 
 			}else if($this->callType == 3){
 
-				if($this->myStayData !== NULL && $this->myStayData['library_seat'] === $key.set0($number))
+				if($this->myStayData && $this->myStayData['library_seat'] === $key.set0($number))
 					return '<dd id="seat-'.$key.set0($number).'" class="seat_sel-'.$number.'" onclick="seatSelectHandler(this)"></dd>';
 				else if ($grade)
 					return '<dd id="seat-'.$key.set0($number).'" class="seat_grade'.$grade.'-'.$number.'" onmouseover="seatOverHandler(this, \''.$this->seatData->$key->$number.'\')" onmouseout="seatOutHandler(this)" onclick="seatSelectHandler(this)"></dd>';

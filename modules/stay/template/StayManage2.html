@@ -76,25 +76,25 @@
             <div class="balloon"><div class="balloon-set-deadline-disabled"></div></div>
             <ul>
                 <li>
-                    <span>조식 급식 신청 </span>
+                    <span>조식 급식 신청&nbsp;</span>
                     <select id="allowlevel_breakfast" disabled>
                         <option>{getMealAllowLevel($stayInfo->allowlevel_breakfast)}</option>
                     </select>
                 </li>
                 <li>
-                    <span>중식 급식 신청</span>
+                    <span>중식 급식 신청&nbsp;</span>
                     <select id="allowlevel_lunch" disabled>
                         <option>{getMealAllowLevel($stayInfo->allowlevel_lunch)}</option>
                     </select>
                 </li>
                 <li>
-                    <span>석식 급식 신청</span>
+                    <span>석식 급식 신청&nbsp;</span>
                     <select id="allowlevel_dinner" disabled>
                     	<option>{getMealAllowLevel($stayInfo->allowlevel_dinner)}</option>
                     </select>
                 </li>
                 <li id="stay-manage-meal-forhelp">
-                    <span>간식 급식 신청</span>
+                    <span>간식 급식 신청&nbsp;</span>
                     <select id="allowlevel_snack" disabled>
                     	<option>{getMealAllowLevel($stayInfo->allowlevel_snack)}</option>
                     </select>
@@ -119,7 +119,7 @@
         <div id="stay-manage-goingout">
         <div class="balloon"><div class="balloon-set-goingout-disabled"></div></div>
             <input type="checkbox" disabled="disabled"{printIF($stayInfo->allow_goingout, ' checked="checked"')} value="1" name="allow_goingout">
-			<span class="stay-manage-disabled">외출을 허용합니다.&nbsp;</span>
+			<span class="stay-manage-disabled">&nbsp;외출을 허용합니다.&nbsp;</span>
 			<span{printIF(!$stayInfo->allow_goingout, ' class="stay-manage-disabled"')}>
 				(외출 가능 시간:
                         <input name="goingout_start_time_hour" type="text" disabled="disabled" class="stay-manage-goingout-time disabled" value="{printIF(isset($stayInfo->goingout_start_time), date('H', strtotime($stayInfo->goingout_start_time)))}" maxlength="2">시
@@ -130,7 +130,7 @@
 	    </div>
         <div id="stay-manage-sleep" class="stay-manage-disabled">
         	<div class="balloon"><div class="balloon-set-sleep-disabled"></div></div>
-            <input type="checkbox" disabled="disabled"{printIF($stayInfo->allow_sleep, ' checked="checked"', '')} name="allow_sleep"> 기숙사 숙박 신청을 허용합니다.
+            <input type="checkbox" disabled="disabled"{printIF($stayInfo->allow_sleep, ' checked="checked"', '')} name="allow_sleep">&nbsp;기숙사 숙박 신청을 허용합니다.
         </div>
         <div id="stay-manage-popup">
         	<div class="balloon"><div class="balloon-set-popup-abled"></div></div>
@@ -150,7 +150,7 @@
         </div>
         <div id="stay-manage-temp-end">
         	<div class="balloon"><div class="balloon-temp-end-abled"></div></div>
-            <input type="checkbox" name="temp_disabled" value="1"{printIF($stayInfo['temp_disabled'], ' checked="checked"', '')}> 잔류 신청을 임시 마감합니다. <span id="stay-manage-temp-end-tip">이 항목을 체크하면 잔류 신청 접수를 잠시 중단할 수 있습니다.</span>
+            <input type="checkbox" name="temp_disabled" value="1"{printIF($stayInfo['temp_disabled'], ' checked="checked"', '')}>&nbsp;잔류 신청을 임시 마감합니다. <span id="stay-manage-temp-end-tip">이 항목을 체크하면 잔류 신청 접수를 잠시 중단할 수 있습니다.</span>
         </div>
         <div id="stay-manage-btn">
         	<input type="button" id="stay-manage-btn-del-setting" value="" onclick="deleteStayInfo()" />
