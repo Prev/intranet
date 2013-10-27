@@ -81,17 +81,6 @@ function registerStayInfo(){
 		return;			
 	}
 	
-	var stayDate = new Date(form.date.value)
-	    , deadlineGrade1 = new Date(form.stay_deadlines_grade1.value)
-	    , deadlineGrade2 = new Date(form.stay_deadlines_grade2.value)
-	    , deadlineGrade3 = new Date(form.stay_deadlines_grade3.value);
-	
-	if(isNaN(stayDate.getTime()) || (isNaN(deadlineGrade1.getTime()) && isNaN(deadlineGrade2.getTime()) && isNaN(deadlineGrade3.getTime()))){
-		openPopup("잔류 마감일의 형식에 오류가 있습니다", "잔류 마감일의 형식에 오류가 있습니다.<br />" +
-		"잔류 마감일을 다시 한번 확인 해 주세요.");
-		return;
-	}
-	
 	if(form.stay_title.value == ''){
 		openPopup("잔류 제목이 설정되지 않았습니다.", "잔류 제목을 입력하지 않으셨습니다.<br />" +
 		"잔류 제목을 입력해 주세요.");
@@ -99,6 +88,28 @@ function registerStayInfo(){
 	}else if(form.stay_title.value.length > 8){
 		openPopup("잔류 제목이 너무 깁니다.", "입력하신 잔류 제목은 너무 깁니다.<br />" +
 		"잔류 제목은 4~5자가 적당하며, 최대 8자까지 입력할 수 있습니다.");
+		return;
+	}
+
+	var splitedDeadlineGrade1, splitedDeadlineGrade2, splitedDeadlineGrade3;
+	splitedDeadlineGrade1 = form.stay_deadlines_grade1.value.split('.');
+	splitedDeadlineGrade2 = form.stay_deadlines_grade2.value.split('.');
+	splitedDeadlineGrade3 = form.stay_deadlines_grade3.value.split('.');
+
+	if(splitedDeadlineGrade1.length != 4 || splitedDeadlineGrade2.length != 4 || splitedDeadlineGrade3.length != 4){
+		openPopup("잔류 마감일의 형식에 오류가 있습니다", "잔류 마감일의 형식에 오류가 있습니다.<br />" +
+		"잔류 마감일을 다시 한번 확인 해 주세요.");
+		return;
+	}
+
+	var stayDate = new Date(form.date.value)
+	    , deadlineGrade1 = new Date(splitedDeadlineGrade1[0], splitedDeadlineGrade1[1]-1, splitedDeadlineGrade1[2])
+	    , deadlineGrade2 = new Date(splitedDeadlineGrade2[0], splitedDeadlineGrade2[1]-1, splitedDeadlineGrade2[2])
+	    , deadlineGrade3 = new Date(splitedDeadlineGrade3[0], splitedDeadlineGrade3[1]-1, splitedDeadlineGrade3[2]);
+	
+	if(isNaN(stayDate.getTime()) || (isNaN(deadlineGrade1.getTime()) && isNaN(deadlineGrade2.getTime()) && isNaN(deadlineGrade3.getTime()))){
+		openPopup("잔류 마감일의 형식에 오류가 있습니다", "잔류 마감일의 형식에 오류가 있습니다.<br />" +
+		"잔류 마감일을 다시 한번 확인 해 주세요.");
 		return;
 	}
 		
@@ -173,9 +184,22 @@ function updateStayInfoPopup(){
 	var stayDate;
 	var deadlineGrade1,deadlineGrade2,deadlineGrade3;
 	stayDate = new Date(form.date.value);
-	deadlineGrade1 = new Date(form.stay_deadlines_grade1.value);
-	deadlineGrade2 = new Date(form.stay_deadlines_grade2.value);
-	deadlineGrade3 = new Date(form.stay_deadlines_grade3.value);
+
+	var splitedDeadlineGrade1, splitedDeadlineGrade2, splitedDeadlineGrade3;
+	splitedDeadlineGrade1 = form.stay_deadlines_grade1.value.split('.');
+	splitedDeadlineGrade2 = form.stay_deadlines_grade2.value.split('.');
+	splitedDeadlineGrade3 = form.stay_deadlines_grade3.value.split('.');
+
+	if(splitedDeadlineGrade1.length != 4 || splitedDeadlineGrade2.length != 4 || splitedDeadlineGrade3.length != 4){
+		openPopup("잔류 마감일의 형식에 오류가 있습니다", "잔류 마감일의 형식에 오류가 있습니다.<br />" +
+		"잔류 마감일을 다시 한번 확인 해 주세요.");
+		return;
+	}
+
+	var stayDate = new Date(form.date.value)
+	    , deadlineGrade1 = new Date(splitedDeadlineGrade1[0], splitedDeadlineGrade1[1]-1, splitedDeadlineGrade1[2])
+	    , deadlineGrade2 = new Date(splitedDeadlineGrade2[0], splitedDeadlineGrade2[1]-1, splitedDeadlineGrade2[2])
+	    , deadlineGrade3 = new Date(splitedDeadlineGrade3[0], splitedDeadlineGrade3[1]-1, splitedDeadlineGrade3[2]);
 	
 	openConfirmPopup("잔류 일정을 수정 하시겠습니까?",
 	  "<ul>" + 
@@ -197,10 +221,21 @@ function updateStayInfoPopup(){
 function closeStayInfo(){
 	var form = document.stay_manage_data;
 
-	deadlineGrade1 = new Date(form.stay_deadlines_grade1.value);
-	deadlineGrade2 = new Date(form.stay_deadlines_grade2.value);
-	deadlineGrade3 = new Date(form.stay_deadlines_grade3.value);
+	var splitedDeadlineGrade1, splitedDeadlineGrade2, splitedDeadlineGrade3;
+	splitedDeadlineGrade1 = form.stay_deadlines_grade1.value.split('.');
+	splitedDeadlineGrade2 = form.stay_deadlines_grade2.value.split('.');
+	splitedDeadlineGrade3 = form.stay_deadlines_grade3.value.split('.');
 
+	if(splitedDeadlineGrade1.length != 4 || splitedDeadlineGrade2.length != 4 || splitedDeadlineGrade3.length != 4){
+		openPopup("잔류 마감일의 형식에 오류가 있습니다", "잔류 마감일의 형식에 오류가 있습니다.<br />" +
+		"잔류 마감일을 다시 한번 확인 해 주세요.");
+		return;
+	}
+
+	var deadlineGrade1 = new Date(splitedDeadlineGrade1[0], splitedDeadlineGrade1[1]-1, splitedDeadlineGrade1[2])
+	    , deadlineGrade2 = new Date(splitedDeadlineGrade2[0], splitedDeadlineGrade2[1]-1, splitedDeadlineGrade2[2])
+	    , deadlineGrade3 = new Date(splitedDeadlineGrade3[0], splitedDeadlineGrade3[1]-1, splitedDeadlineGrade3[2]);
+	
 	openConfirmPopup("정말 잔류 신청을 즉시 마감 하시겠습니까?",
 		"<ul>" + 
 		"<li><span>잔류명</span>"+(form.stay_title.value ? form.stay_title.value : '제목없음')+"</li>" +
