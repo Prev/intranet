@@ -14,6 +14,7 @@
 				if (!$me || (isset($arr[$i]->writable_group) && !$me->checkGroup($arr[$i]->writable_group)))
 					continue;
 				
+				$arr[$i]->isBoardAdmin = $this->controller->checkIsBoardAdmin( $arr[$i]->admin_group );
 				$arr[$i]->name_locale = fetchLocale($arr[$i]->name_locales);
 				array_push($lists, $arr[$i]);
 			}

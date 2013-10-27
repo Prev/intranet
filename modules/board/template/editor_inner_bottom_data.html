@@ -14,3 +14,13 @@
 		</li>
 	</ul>
 </div>
+
+<script type="text/javascript">
+	var boardId = document.getElementById("board-selector").value;
+	if (isBoardAdminPerBoards[boardId])
+		document.forms.tx_editor_form.is_notice.disabled = false;
+	else {
+		document.forms.tx_editor_form.is_notice.disabled = true;
+		document.forms.tx_editor_form.is_notice.checked = false;
+	}
+</script>

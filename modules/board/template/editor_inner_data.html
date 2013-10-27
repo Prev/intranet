@@ -23,13 +23,15 @@
 <script type="text/javascript">
 	var categorys = [];
 	var selectedCategory = null;
-	
+	var isBoardAdminPerBoards = [];
+
 	{@ foreach ($boardLists as $key => $board) : }
 		<condition do="$board->categorys">
 			categorys[{$board->id}] = {$board->categorys};
 		<else>
 			categorys[{$board->id}] = null;
 		</condition>
+		isBoardAdminPerBoards[{$board->id}] = {@ echo $board->isBoardAdmin ? 1 : 0; };
 	{@ endforeach; }
 </script>
 <script type="text/javascript" src="./js/editor_inner_data.js"></script>

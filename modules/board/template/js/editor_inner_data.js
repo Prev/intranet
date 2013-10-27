@@ -23,6 +23,15 @@ function selectCategory() {
 			selector.appendChild(node);
 		}
 	}
+
+	if (document.forms.tx_editor_form.is_notice) {
+		if (isBoardAdminPerBoards[boardId])
+			document.forms.tx_editor_form.is_notice.disabled = false;
+		else {
+			document.forms.tx_editor_form.is_notice.disabled = true;
+			document.forms.tx_editor_form.is_notice.checked = false;
+		}
+	}
 }
 
 selectCategory();

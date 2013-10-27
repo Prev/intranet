@@ -3,6 +3,8 @@
 	"version":"1.0.0",
 	"author":"prevdev@gmail.com",
 
+	"controller":"BoardController",
+
 	"actions":[
 		{
 			"name":"dispList",
