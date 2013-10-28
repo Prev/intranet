@@ -10,7 +10,6 @@
 	<div class="morningsong-container">
 		<div class="morningsong-container-title">
 			<span id="today-date">{$todayDate}</span><span class="hot-pink">오늘의 기상송</span>
-			<input type="button" id="today-download-all-button"/>
 		</div>
 		<span id="tip">매일 오전 7시에 업데이트됩니다.</span>
 		<div class="song">
@@ -57,7 +56,6 @@
 	<div class="morningsong-container">
 		<div class="morningsong-container-title">
 			<span id="tomorrow-date">{$tomorrowDate}</span><span class="hot-pink">내일의 기상송</span>
-			<input type="button" id="tomorrow-download-all-button"/>
 		</div>
 		<div class="song">
 			<div class="main-building">
@@ -131,7 +129,7 @@
 					<ul>
 						<input type="checkbox" class="check-box">
 						<button id="play-button-{$i}"  class="history-list-button" onclick="togglePlayMusic({$i})"><span class="hidden">재생</span></button>
-						<li class="song-title">{htmlspecialchars($song->song_name)}</li>
+						<li class="song-title">{$song->song_name}</li>
 						<li class="song-applicant">{$song->user_name}</li>
 						<li class="song-request-date">{getRelativeTime($song->upload_time)}</li>
 						<li class="recommends">{$song->recommend_count}</li>

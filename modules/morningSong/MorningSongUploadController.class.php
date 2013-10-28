@@ -69,7 +69,7 @@
 
 			$this->model->deleteSongUploadedByMe();
 
-			$this->model->insertMorningSong($data->fileId, $songName, $fileExtension);
+			$this->model->insertMorningSong($data->fileId, htmlspecialchars($songName), $fileExtension);
 
 			echo '<script type="text/javascript">window.opener.location.reload();window.close();</script>';
 		}

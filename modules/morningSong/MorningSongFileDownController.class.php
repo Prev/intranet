@@ -2,7 +2,7 @@
 	
 	class MorningSongFileDownController extends FileDownController {
 
-		public function procDownloadFile() {
+		public function procDownloadFile($fileType=NULL, $fileName=NULL, $fileHash=NULL, $fileSize=NULL) {
 			$data = $this->model->getFileData($_REQUEST['song_id']);
 			if (!$data) {
 				echo 'Invalid file';
