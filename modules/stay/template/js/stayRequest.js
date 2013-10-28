@@ -222,7 +222,7 @@ function enterFrameHandler() {
 		aicGoingout.style.padding = "";
 	
 	sideinfo_sleep.innerHTML = (form.apply_sleep.checked) ? "신청" : "미신청";
-	sideinfo_extra_caption.innerHTML = (form.extra_caption.value) ? form.extra_caption.value : "없음";
+	sideinfo_extra_caption.innerHTML = htmlspecialchars((form.extra_caption.value) ? form.extra_caption.value : "없음");
 	
 	if (!form.disapply_seat.checked && selectedSeat)
 		sideinfo_seat.innerHTML = selectedSeat.id.split("-")[1];
@@ -400,5 +400,16 @@ function set0(str, length) {
 	if (!length) length =  2;
 	for (var i=0; i<length - str.length; i++)
 		str = "0" + str;
+	return str;
+}
+
+function htmlspecialchars(str) {
+	if (typeof(str) == "string") {
+		str = str.replace(/&/g, "&amp;");
+		str = str.replace(/"/g, "&quot;");
+		str = str.replace(/'/g, "&#039;");
+		str = str.replace(/</g, "&lt;");
+		str = str.replace(/>/g, "&gt;");
+	}
 	return str;
 }
