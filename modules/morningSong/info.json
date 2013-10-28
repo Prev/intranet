@@ -63,6 +63,16 @@
 			"name":"getSelectedSongJson",
 			"model":"MorningSongAjaxModel",
 			"print_alone":true
+		},
+
+
+		{
+			"name":"procDownloadFile",
+			"inherit":"file.procDownloadFile",
+			"controller":"MorningSongFileDownController",
+			"model":"MorningSongFileDownModel",
+			"allow_web_access":true,
+			"accessible_group":["dormitory_teacher"]
 		}
 	]
 }

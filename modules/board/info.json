@@ -92,6 +92,15 @@
 			"model":"BoardCommentModel",
 			"controller":"BoardCommentController",
 			"layout":"blank"
+		},
+
+
+		{
+			"name":"procDownloadFile",
+			"inherit":"file.procDownloadFile",
+			"controller":"BoardFileDownController",
+			"model":"BoardFileDownModel",
+			"allow_web_access":true
 		}
 	]
 }

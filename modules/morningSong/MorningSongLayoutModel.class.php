@@ -55,6 +55,7 @@
 
 			$data = DBHandler::for_table('morning_song_selected')
 				->select_many('morning_song_selected.dormitory_type',
+					'morning_song_list.id',
 					'morning_song_list.song_name',
 					'morning_song_list.song_extension',
 					'files.file_hash'

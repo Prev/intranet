@@ -24,6 +24,13 @@
 						선정된 곡이 없습니다.
 					</condition>
 				</div>
+
+				<condition do="$todaySong_bon">
+					<form action="{getUrl('morningsong', 'procDownloadFile')}" method="POST">
+						<input type="hidden" name="song_id" value="{$todaySong_bon->id}">
+						<button onclick="">다운로드</button>
+					</form>
+				</condition>
 			</div>
 			<div class="sub-building">
 				<div class="building">학봉관</div>
@@ -35,7 +42,14 @@
 						선정된 곡이 없습니다.
 					</condition>
 				</div>
-            </div>
+
+				<condition do="$todaySong_hak">
+					<form action="{getUrl('morningsong', 'procDownloadFile')}" method="POST">
+						<input type="hidden" name="song_id" value="{$todaySong_hak->id}">
+						<button onclick="">다운로드</button>
+					</form>
+				</condition>
+			</div>
 		</div>
 	</div>
 </div>
@@ -52,7 +66,7 @@
 				<div id="tomorrow-main-building-song">
 					<condition do="$tomorrowSong_bon">
 						{$tomorrowSong_bon->song_name}
-					<else>	
+					<else>
 						선정된 곡이 없습니다.
 					</condition>
 				</div>
@@ -61,6 +75,10 @@
 					<form action="{getUrl('morningsong', 'procCancelSelectedSong')}" method="POST">
 						<input type="hidden" name="dormitory_type" value="">
 						<button class="cancel-selecting-btn" onclick="cancelSelectedSong(1, this.form); return false;"><span class="hidden">철회</span></button>
+					</form>
+					<form action="{getUrl('morningsong', 'procDownloadFile')}" method="POST">
+						<input type="hidden" name="song_id" value="{$tomorrowSong_bon->id}">
+						<button onclick="">다운로드</button>
 					</form>
 				</condition>
 			</div>
@@ -79,6 +97,10 @@
 					<form action="{getUrl('morningsong', 'procCancelSelectedSong')}" method="POST">
 						<input type="hidden" name="dormitory_type" value="">
 						<button class="cancel-selecting-btn"  onclick="cancelSelectedSong(2, this.form); return false;"><span class="hidden">철회</span></button>
+					</form>
+					<form action="{getUrl('morningsong', 'procDownloadFile')}" method="POST">
+						<input type="hidden" name="song_id" value="{$tomorrowSong_hak->id}">
+						<button onclick="">다운로드</button>
 					</form>
 				</condition>
 			</div>

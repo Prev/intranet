@@ -1,8 +1,8 @@
 <?php
 	
-	class FileDownModel extends Model {
+	class BoardFileDownModel extends Model {
 
-		public function getFileUrl($fileHash, $articleNo=NULL) {
+		public function getFileData($fileHash, $articleNo=NULL) {
 			$row = DBHandler::for_table('files')
 				->select_many('files.*', 'article_files.file_name')
 				->join('article_files', array(
@@ -14,5 +14,5 @@
 
 			return $row->find_one();
 		}
-
+		
 	}
