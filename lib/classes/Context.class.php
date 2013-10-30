@@ -130,6 +130,7 @@
 			$this->setLayout(LAYOUT_NAME);
 			$this->printAlone = false;
 			$this->isMobileMode = false;
+			$this->isRealMobile = false;
 			
 			/*
 			@@@@ 모바일 충분히 오픈할 수 있었는데 디자인팀이랑 오ㅇㅇ PM이 느려서 오픈못함 ㄱ-ㄱ-ㄱ-ㄱ-ㄱ-ㄱㄱ-ㄱ- ㅗㅗㅗㅗㅗㅗㅗㅗ
@@ -296,8 +297,6 @@
 				}
 			}else if ($selectedData === false && !$this->moduleID) {
 				$this->moduleID = '404';
-				$this->procLayout();
-				exit;
 				/*self::printErrorPage(array(
 					'en' => 'Cannot find requested menu',
 					'ko' => '해당 메뉴를 찾을 수 없습니다'
@@ -727,6 +726,7 @@
 				$_SESSION[SSO_SESSION_NAME] = $ssoData;
 				$_SESSION[SSO_SESSION_NAME.'_synchash'] = md5($urlData);
 				setCookie2(SSO_COOKIE_NAME.'_synchash', md5($urlData), strtotime($ssoData->expireTime));
+				setCookie2(SSO_COOKIE_NAME, $_COOKIE[SSO_COOKIE_NAME], strtotime($ssoData->expireTime));
 
 				User::initCurrent();
 				return true;

@@ -130,7 +130,7 @@
 	 * @param $compareLocal에 값을 지정시 현재 언어정보와 같은지 비교한 값을 반환 (bool type)
 	 */
 	function getLocale($compareLocale=NULL) {
-		if (isset($_GET['locale']))
+		/*if (isset($_GET['locale']))
 			$locale = $_GET['locale'];
 		else if (isset($_COOKIE['locale']))
 			$locale = $_COOKIE['locale'];
@@ -142,7 +142,8 @@
 		if ($compareLocale)
 			return strtolower($locale) == strtolower($compareLocale);
 		else
-			return strtolower($locale);
+			return strtolower($locale);*/
+		return 'ko';
 	}
 	/**
 	 * 언어를 파싱함

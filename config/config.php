@@ -172,7 +172,11 @@
 			break;
 
 		case 'intranet.dimigo.us':
-			define('ACCOUNT_SERVER_URL', 'https://account.dimigo.us');
+			define('ACCOUNT_SERVER_URL', 'http://account.dimigo.us');
+			break;
+
+		case 'intranet.dimigo.hs.kr':
+			define('ACCOUNT_SERVER_URL', 'https://account.dimigo.hs.kr');
 			break;
 
 		default :

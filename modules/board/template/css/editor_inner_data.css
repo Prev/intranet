@@ -1,3 +1,5 @@
+#wrap{ width: 700px; }
+
 #board-top-container{ margin-bottom: 10px }
 #board-top-container #board-selector{
 	width: 130px;
@@ -13,7 +15,7 @@
 }
 
 #board-top-container #board-title{
-	width: 652px;
+	width: 452px;
 	margin: 0;
 	margin-left: 5px;
 	padding: 2px 4px;

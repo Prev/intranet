@@ -135,11 +135,9 @@
 		</condition>
 
 		<div class="board-btn-wrap">
-			<a href="{getUrl('board', 'dispEditor', 'board_name='.$boardName)}">
-				<button class="board-btn">
-					<span class="hidden">글쓰기</span>
-				</button>
-			</a>
+			<button class="board-btn" onclick="location.href = '{getUrl('board', 'dispEditor', 'board_name='.$boardName)}'">
+				<span class="hidden">글쓰기</span>
+			</button>
 		</div>
 	</div>
 
