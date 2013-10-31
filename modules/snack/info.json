@@ -1,0 +1,36 @@
+{
+	"name" 			: 		"snack module",
+	"author" 		: 		"이관형, 서유림",
+	"version" 		: 		"1.0.1(2013.08.10)",
+
+	"actions":[
+		{
+			"name" : "dispRequest",
+			"view" : "SnackRequestView"
+		},
+		{
+			"name" : "dispNowRequest",
+			"view" : "SnackRequestView",
+			"model" : "SnackRequestModel",
+			"controller" : "SnackRequestController",
+			"allow_web_access" : false
+		},
+		{
+			"name" :"dispRequestList",
+			"view" : "SnackRequestView",
+			"model" : "SnackRequestModel",
+			"controller" : "SnackRequestController",
+			"allow_web_access" : false
+		},
+		{
+			"name": "dispCalendar",
+			"view": "SnackCalendarView",
+			"print_alone" : true
+		},
+		{
+			"name": "procRequest",
+			"model": "SnackRequestModel",
+			"controller" : "SnackRequestController"
+		}
+	]
+}

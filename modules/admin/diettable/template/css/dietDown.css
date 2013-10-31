@@ -1,0 +1,24 @@
+#container { width: 700px; padding: 25px; background-color: #ffffff; position: relative; font-size: 9pt}
+
+#container #title { font-size: 18pt; font-weight: bolder; }
+#container #view-btn { float: right; width: 125px; height: 30px; }
+#container #tip { width: 684px; padding: 8px; margin-top: 20px; background-color: #F2F2F2; border: solid 1px #cccccc; }
+
+#container #table-header { background-color: #eeeeee; }
+#container #main-table { width: 700px; margin-top: 18px; border-top: solid 2px #cccccc; border-bottom: solid 2px #cccccc; border-collapse: collapse; }
+#container #main-table #head-title { width: 535px; height: 30px; font-weight: bolder; text-align: center; border: solid 1px #cccccc; border-left: 0px; }
+#container #main-table #head-date { width: 90px; height: 30px; font-weight: bolder; text-align: center; border: solid 1px #cccccc; }
+#container #main-table #head-down { width: 75px; height: 30px; font-weight: bolder; text-align: center; border: solid 1px #cccccc; border-right: 0px; }
+
+#container #main-table .file-title { width: 535px; height: 30px; border: solid 1px #cccccc; border-left: 0px; }
+#container #main-table .file-date { width: 90px; height: 30px; border: solid 1px #cccccc; text-align: center; }
+#container #main-table .file-down { width: 75px; height: 30px; border: solid 1px #cccccc; text-align: center; border-right: 0px; }
+
+#page-btn {margin-top: 20px; height: 14px; text-align: center; }
+#page-btn ul { list-style-type: none; display: inline-block; vertical-align: bottom;}
+#page-btn li { float: left; border-right: 1px solid #000000; width: 20px; text-align: center; }
+#page-btn a {text-decoration: none; color: #696969;}
+#page-btn div {display: inline-block; width: 50px; border-right: 1px solid #000000; text-align: center;}
+#page-btn #current-page a { color: #000000; font-weight: bolder; }
+#page-btn #prev-btn { width: 40px; }
+#page-btn #next-btn { width: 40px; }

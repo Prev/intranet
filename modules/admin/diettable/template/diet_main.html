@@ -1,0 +1,558 @@
+<import path="css/dietMain.css">
+
+<script type="text/javascript">
+
+var next, before, popup
+var allergy_info
+var division;
+
+	window.onload = function() {
+		next         = document.getElementById("next");
+		before       = document.getElementById("before");
+		next_txt     = document.getElementById("next-txt");
+		before_txt   = document.getElementById("before-txt");
+
+		popup        = document.getElementById("allergy-popup");
+		allergy_mark = document.getElementById("allergy-mark");
+		allergy_info = document.getElementById("allergy-info");
+		stars        = document.getElementsByClassName("stars");
+		
+		division     = document.getElementById("division");
+		day_food     = document.getElementsByClassName("day-food");
+		nutrition    = document.getElementsByClassName("nutrition-table");
+		origin       = document.getElementsByClassName( "origin-table" );
+		inf_detail   = document.getElementById("inf-detail");
+		inf_menu     = document.getElementsByClassName("inf-menu");
+		week         = document.getElementsByClassName("week");
+
+		m_event      = document.getElementsByClassName("m-event");
+		m_eventfood  = document.getElementsByClassName("m-eventfood");
+
+		allergy_mark.addEventListener("mouseover", function() { popup.style.display = "block"; });
+		allergy_mark.addEventListener("mouseout", function() { popup.style.display = "none"; });
+
+		next.addEventListener("mouseover", function() { next_txt.style.visibility = "visible" });
+		next.addEventListener("mouseout" , function() { next_txt.style.visibility = "hidden"; });
+		
+		before.addEventListener("mouseover", function() { before_txt.style.visibility = "visible" });
+		before.addEventListener("mouseout" , function() { before_txt.style.visibility = "hidden"; });
+
+		allergy_info.addEventListener("click", allergy);
+
+		inf_detail.addEventListener("click", infDetailChangeHandler);
+
+		for (var i = 0; i < m_event.length; i++) {
+			m_event.item(i).addEventListener( "mouseover", function (event) {
+				var m = event.target || event.srcElement;
+				for (var j = 0; j < m_event.length; j++) {
+					if (m_event[j] == m) {
+						m_eventfood[j].style.display = "block";
+					}
+				};
+			});
+			
+			m_eventfood.item(i).addEventListener("mouseover",  function (event) {
+				var m = event.target || event.srcElement;
+				m.style.display = "block";
+			});
+			m_eventfood.item(i).addEventListener("mouseout", function (event) {
+				var m = event.target || event.srcElement;
+				m.style.display = "none";
+			});
+		};
+
+		popup.style.display = "none";
+
+		for(var i=0; i<4; i++) {
+			day_food.item(i).rowSpan = 1;
+			division.colSpan = 1;
+		}
+	}
+
+	function infDetailChangeHandler() {
+		console.log( inf_detail.checked );
+		if (inf_detail.checked == true) {
+		
+			division.colSpan = 2;
+
+			for(var j=0; j<4; j++) {
+				day_food.item(j).rowSpan = 3;
+				day_food.item(j).style.width = "71px";
+				inf_menu.item(j).style.display = "table-cell";
+				origin.item(j).style.display = "table-row";
+				nutrition.item(j).style.display = "table-row";
+			}
+		}
+
+		else {
+			
+			division.colSpan = 1;
+
+			for(var k=0; k<4; k++) {
+				day_food.item(k).rowSpan = 1;
+				day_food.item(j).style.width = "140px";
+				inf_menu.item(k).style.display = "none";
+				origin.item(k).style.display = "none";
+				nutrition.item(k).style.display = "none";
+			}
+		}
+	}
+
+	function allergy() {
+		if(stars.item(0) == null) {}
+
+		else if (allergy_info.checked == true) {
+			for(var j=0; j<stars.length; j++) {
+				stars.item(j).style.visibility = "visible";
+			}
+		}
+
+		else if(allergy_info.checked == false) {
+			for(var k=0; k<stars.length; k++) {
+				stars.item(k).style.visibility = "hidden";
+			}
+		}
+	}
+</script>
+
+<div id="container">
+
+	<div id="top-bar">
+		<form>
+			<span id="title">식단표</span>
+			 <input type="submit" value="▤ 식단표 다운로드" id="downdiet_btn">
+		</form>
+	</div>
+
+	<div id="date">
+		<span id="before-txt">이전(이동불가)</span>
+		{printPrev()}
+		<span id="diet-day">  {printMealDate(0)} ~ {printMealDate(3)}  </span> 
+		{printNext()}
+		<span id="next-txt">다음</span>
+	</div>
+
+	<div id="tip">
+		<span>우리 급식실은 국내산 쌀, 돼지고기, 소고기, 김치, 고춧가루만을 사용합니다.</span>
+
+		<span class="fr">
+			<input type="checkbox" id="allergy-info"> <span id="allergy-mark">&nbsp;알레르기 표시 보기</span>  
+				<div id="allergy-popup">
+					<strong>알레르기 표시</strong><br>
+					<span>★ 표시가 된 식단은 난류, 우유, 메밀, 땅콩, 대두, 밀, 고등어, 게, 새우, 돼지고기, 복숭아, 토마토가 포함되어 있는 음식입니다. 식품 알레르기가 있는 학생은 참고하시기 바랍니다.</span>
+				</div>
+			<input type="checkbox" id="inf-detail"> <span>&nbsp;영양정보/원산지 보기</span>
+		</span>
+	</div>
+
+
+	<table id="main-table">
+
+		<tr id="diet-header">
+			<td id="division" colspan="2" style="border-left:0px;">구분</td>
+			<td class="week">
+				<span class="week-day">{dispDay(0)}</span> <br>
+				<span>{printMealDate(0)}</span>
+			</td>
+			<td class="week">
+				<span class="week-day">{dispDay(1)}</span> <br>
+				<span>{printMealDate(1)}</span>
+			</td>
+			<td class="week">
+				<span class="week-day">{dispDay(2)}</span> <br>
+				<span><!-- {printMealDate(2)} -->
+
+					<!-- {printAllg("1","b")} -->
+					{printMealDate(2)}
+
+
+				</span>
+			</td>
+			<td class="week">	
+				<span class="week-day">{dispDay(3)}</span> <br>
+				<span>{printMealDate(3)}</span>
+			</td>
+			
+		</tr>
+
+
+		<tr class="food-table">
+			<td class="day-food" rowspan="3">아침</td>
+
+			<td class="inf-menu">식단</td>
+
+				<td class="table-cell"> <!-- 월요일 조식 -->
+					{printMealTitle("0","b")}
+					{printMealData("0","b")}
+				</td>
+				<td class="table-cell"> <!-- 화요일 조식  -->
+					{printMealTitle("1","b")}
+					{printMealData("1","b")}
+				</td>
+				<td class="table-cell"> <!-- 수요일 조식  -->
+					{printMealTitle("2","b")}
+					{printMealData("2","b")}
+				</td>
+				<td class="table-cell"> <!-- 목요일 조식  -->
+					{printMealTitle("3","b")}
+					{printMealData("3","b")}
+				</td>
+		</tr>
+
+		<tr class="nutrition-table">
+			<td class="food-nutrition">영양정보</td>
+
+				<td class="table-cell">
+
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("0","b","열량")}</span><br>
+						<span>{printMealNutrition("0","b","단백질")}</span><br>
+						<span>{printMealNutrition("0","b","지방")}</span>
+					</div>
+				</td>
+				<td class="table-cell">
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("1","b","열량")}</span><br>
+						<span>{printMealNutrition("1","b","단백질")}</span><br>
+						<span>{printMealNutrition("1","b","지방")}</span>
+					</div>
+				</td>
+				<td class="table-cell">
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("2","b","열량")}</span><br>
+						<span>{printMealNutrition("2","b","단백질")}</span><br>
+						<span>{printMealNutrition("2","b","지방")}</span>
+					</div>
+				</td>
+				<td class="table-cell">
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("3","b","열량")}</span><br>
+						<span>{printMealNutrition("3","b","단백질")}</span><br>
+						<span>{printMealNutrition("3","b","지방")}</span>
+					</div>
+				</td>
+		</tr>
+
+		<tr class="origin-table">
+			<td class="inf-origin">원산지</td>
+
+			<td class="table-cell">
+				{printNation("0","b")}
+			</td>
+			<td class="table-cell">
+				{printNation("1","b")}
+			</td>
+			<td class="table-cell">
+				{printNation("2","b")}
+			</td>
+			<td class="table-cell">
+				{printNation("3","b")}
+			</td>
+		</tr>
+
+		<tr class="food-table">
+			<td class="day-food" rowspan="3">점심</td>
+
+			<td class="inf-menu">식단</td>
+
+				<td class="table-cell"> <!-- 월요일 중식   -->
+					{printMealTitle("0","l")}
+					{printMealData("0","l")}
+				</td>
+				<td class="table-cell"> <!-- 화요일 중식   -->
+					{printMealTitle("1","l")}
+					{printMealData("1","l")}
+				</td>
+				<td class="table-cell"> <!-- 수요일 중식   -->
+					{printMealTitle("2","l")}
+					{printMealData("2","l")}
+				</td>
+				<td class="table-cell"> <!-- 목요일 중식   -->
+					{printMealTitle("3","l")}
+					{printMealData("3","l")}
+				</td>
+		</tr>
+
+		<tr class="nutrition-table">
+			<td class="food-nutrition">영양정보</td>
+
+				<td class="table-cell">
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("0","l","열량")}</span><br>
+						<span>{printMealNutrition("0","l","단백질")}</span><br>
+						<span>{printMealNutrition("0","l","지방")}</span>
+					</div>
+				</td>
+				<td class="table-cell">
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("1","l","열량")}</span><br>
+						<span>{printMealNutrition("1","l","단백질")}</span><br>
+						<span>{printMealNutrition("1","l","지방")}</span>
+					</div>
+				</td>
+				<td class="table-cell">
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("2","l","열량")}</span><br>
+						<span>{printMealNutrition("2","l","단백질")}</span><br>
+						<span>{printMealNutrition("2","l","지방")}</span>
+					</div>
+				</td>
+				<td class="table-cell">
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("3","l","열량")}</span><br>
+						<span>{printMealNutrition("3","l","단백질")}</span><br>
+						<span>{printMealNutrition("3","l","지방")}</span>
+					</div>
+				</td>
+		</tr>
+
+		<tr class="origin-table">
+			<td class="inf-origin">원산지</td>
+
+			<td class="table-cell">
+				{printNation("0","l")}
+			</td>
+			<td class="table-cell">
+				{printNation("1","l")}
+			</td>
+			<td class="table-cell">
+				{printNation("2","l")}
+			</td>
+			<td class="table-cell">
+				{printNation("3","l")}
+			</td>
+		</tr>
+
+		<tr class="food-table">
+			<td class="day-food" rowspan="3">저녁</td>
+
+			<td class="inf-menu">식단</td>
+
+				<td class="table-cell"> <!-- 월요일 석식    -->
+					{printMealTitle("0","d")}
+					{printMealData("0","d")}
+				</td>
+				<td class="table-cell"> <!-- 화요일 석식    -->
+					{printMealTitle("1","d")}
+					{printMealData("1","d")}
+				</td>
+				<td class="table-cell"> <!-- 수요일 석식    -->
+					{printMealTitle("2","d")}
+					{printMealData("2","d")}
+				</td>
+				<td class="table-cell"> <!-- 목요일 석식    -->
+					{printMealTitle("3","d")}
+					{printMealData("3","d")}
+				</td>
+		</tr>
+
+		<tr class="nutrition-table">
+			<td class="food-nutrition">영양정보</td>
+
+				<td class="table-cell">
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("0","d","열량")}</span><br>
+						<span>{printMealNutrition("0","d","단백질")}</span><br>
+						<span>{printMealNutrition("0","d","지방")}</span>
+					</div>
+				</td>
+				<td class="table-cell">
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("1","d","열량")}</span><br>
+						<span>{printMealNutrition("1","d","단백질")}</span><br>
+						<span>{printMealNutrition("1","d","지방")}</span>
+					</div>
+				</td>
+				<td class="table-cell">
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("2","d","열량")}</span><br>
+						<span>{printMealNutrition("2","d","단백질")}</span><br>
+						<span>{printMealNutrition("2","d","지방")}</span>
+					</div>
+				</td>
+				<td class="table-cell">
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("3","d","열량")}</span><br>
+						<span>{printMealNutrition("3","d","단백질")}</span><br>
+						<span>{printMealNutrition("3","d","지방")}</span>
+					</div>
+				</td>
+		</tr>
+
+		<tr class="origin-table">
+			<td class="inf-origin">원산지</td>
+
+			<td class="table-cell">
+				{printNation("0","d")}
+			</td>
+			<td class="table-cell">
+				{printNation("1","d")}
+			</td>
+			<td class="table-cell">
+				{printNation("2","d")}
+			</td>
+			<td class="table-cell">
+				{printNation("3","d")}
+			</td>
+		</tr>
+
+
+
+		<!-- 간식  -->
+
+		<tr class="food-table" id = "snack">
+			<td class="day-food" rowspan="3">간식</td>
+
+			<td class="inf-menu">식단</td>
+
+				<td class="table-cell"> <!-- 월요일 조식 -->
+					{printMealTitle("0","s")}
+					{printMealData("0","s")}
+				</td>
+				<td class="table-cell"> <!-- 화요일 조식  -->
+					{printMealTitle("1","s")}
+					{printMealData("1","s")}
+				</td>
+				<td class="table-cell"> <!-- 수요일 조식  -->
+					{printMealTitle("2","s")}
+					{printMealData("2","s")}
+				</td>
+				<td class="table-cell"> <!-- 목요일 조식  -->
+					{printMealTitle("3","s")}
+					{printMealData("3","s")}
+				</td>
+		</tr>
+
+		<tr class="nutrition-table">
+			<td class="food-nutrition">영양정보</td>
+
+				<td class="table-cell">
+
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("0","s","열량")}</span><br>
+						<span>{printMealNutrition("0","s","단백질")}</span><br>
+						<span>{printMealNutrition("0","s","지방")}</span>
+					</div>
+				</td>
+				<td class="table-cell">
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("1","s","열량")}</span><br>
+						<span>{printMealNutrition("1","s","단백질")}</span><br>
+						<span>{printMealNutrition("1","s","지방")}</span>
+					</div>
+				</td>
+				<td class="table-cell">
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("2","s","열량")}</span><br>
+						<span>{printMealNutrition("2","s","단백질")}</span><br>
+						<span>{printMealNutrition("2","s","지방")}</span>
+					</div>
+				</td>
+				<td class="table-cell">
+					<div class="kind-nutrition">
+						<span>열량</span><br>
+						<span>단백질</span><br>
+						<span>지방</span>
+					</div>
+					<div class="inf-nutrition">
+						<span>{printMealNutrition("3","s","열량")}</span><br>
+						<span>{printMealNutrition("3","s","단백질")}</span><br>
+						<span>{printMealNutrition("3","s","지방")}</span>
+					</div>
+				</td>
+		</tr>
+
+		<tr class="origin-table">
+			<td class="inf-origin">원산지</td>
+
+			<td class="table-cell">
+				{printNation("0","s")}
+			</td>
+			<td class="table-cell">
+				{printNation("1","s")}
+			</td>
+			<td class="table-cell">
+				{printNation("2","s")}
+			</td>
+			<td class="table-cell">
+				{printNation("3","s")}
+			</td>
+		</tr>
+
+	</table>
+</div>

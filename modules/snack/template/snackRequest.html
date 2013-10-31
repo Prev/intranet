@@ -1,0 +1,111 @@
+{@ $closeDate = new DateTime($snackInfo->closedate);
+	$todayDate = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+	$magamday = intval(($closeDate->getTimestamp() - $todayDate) / 86400); 
+	$period = explode("-", $snackInfo->period);
+	$period_str = explode("/", $period[0]);
+	$period_end = explode("/", $period[1]);
+	$calendar_ym = date("Ym");
+}
+<import path="./css/snack.css">
+<import path="./js/snack.js">
+
+
+	<div id="content">
+		<!--탭 시작-->
+		<div id="tabmenu">
+			<div id="tab_a" class="tab_on">
+				<div id="request">
+					진행 중인 간식 신청
+				</div>
+			</div>
+
+			<div id="tab_b" class="tab_off" onclick="location.href = '{getUrlA('type=list', REAL_URL)}'">
+				<div id="request_data">
+					나의 간식 신청 내역
+				</div>
+			</div>
+		</div>
+		<!--탭 종료-->
+		<div id="tab_a_content" class="view-on">
+			<condition do="empty($snackInfo) || $magamday < 0">
+				<div id="nolist">진행중인 신청 내역이 없습니다.</div>
+			</condition>
+			<condition do="!(empty($snackInfo)) && !($magamday <0)">
+				<form name="addForm" method="post" action="{getUrl('snack', 'procRequest')}">
+				<div class="month_requ">{$snackInfo->title} 간식</div>
+				
+				<div class="submit">
+				<condition do="empty($currentSnack)">
+					<true>
+						<input type="text" style="display:none;" readonly="readonly" id="type" name="type" value="1">
+						<input type="text" style="display:none;" readonly="readonly" id="id" name="id" value="{$snackInfo->id}">
+						<input type="submit" value="간식 신청" class="submitbt">
+					</true>
+					<false>
+						<input type="text" style="display:none;" readonly="readonly" id="type" name="type" value="2">
+						<input type="text" style="display:none;" readonly="readonly" id="id" name="id" value="{$snackInfo->id}">
+						<input type="submit" value="간식 취소" class="submitbt">
+					</false>
+				</condition>
+				</div>
+				</form>
+				<div class="text">
+					- 급식 신청 마감 기한: {date_format($closeDate, 'Y년 m월 d일')}({$yoil[date('w', $closeDate->getTimestamp())]})
+					<condition do="$magamday == 0">
+						<span id="alarm" class="text">[오늘 마감]</span>
+					</condition>
+					<condition do="$magamday > 0">
+						<span id="alarm" class="text">[마감 {$magamday}일 전]</span>
+					</condition>
+				</div>
+				<div class="text">
+					- 급식 기간: {$period_str[0]}년 {$period_str[1]}월 {$period_str[2]}일({@ echo($yoil[date('w', strtotime($period_str[0].$period_str[1].$period_str[2]))])}) ~ {$period_end[0]}년 {$period_end[1]}월 {$period_end[2]}일({@ echo($yoil[date('w', strtotime($period_end[0].$period_end[1].$period_end[2]))])}) (단, 주말 제외)
+					 <img src="./img/cal_icon.png" alt="클릭하시면 달력이 표시됩니다." onclick="javascript:showCalendar('calendar')" id="calendar_image">
+				</div>
+				
+				<div class="text">- 급식비: 단가 {number_format($snackInfo->price)}원 × 총 {number_format($snackInfo->number)}식 = {number_format(intval($snackInfo->price) * intval($snackInfo->number))}원</div>
+					<!-- UI Object -->
+					<div id="calendar" class="view-off" onmouseout="javascript:hideCalendar(event);">                 
+
+					    <div class="calendar_period">
+							<a href="#" onclick="moveMonth('prev')"><img src="http://static.naver.com/groupware/2010/btn_cal_prevmonth.gif" width="12" height="13" alt="다음달"></a>
+					        <span id="period_caption"><strong>{@ echo date("Y년 n월"); }</strong></span>
+							<a href="#" onclick="moveMonth('next')"><img src="http://static.naver.com/groupware/2010/btn_cal_nextmonth.gif" width="12" height="13" alt="다음달"></a>
+							<!--<a href="#" class="close"><img src="http://imgnews.naver.com/image/news/2007/new_section/btn_close.gif" alt="달력 레이어 닫기" width="15" height="14"></a>-->
+					    </div>
+
+					    <table cellspacing="0" border="1">
+	                    <tr>
+		                    <td class="weekday">일</td>
+		                    <td class="weekday">월</td>
+		                    <td class="weekday">화</td>
+		                    <td class="weekday">수</td>
+		                    <td class="weekday">목</td>
+		                    <td class="weekday">금</td>
+		                    <td class="weekday">토</td>
+	                    </tr>
+	                    <table>
+	                    <div id="ajax_calendar"></div>
+						<form name="hiddenForm"> 
+						<input type="hidden" name="calendar_ym" value="{$calendar_ym}">
+						<input type="hidden" name="" value="{$calendar_ym}"> 
+						</form> 
+					    </table>
+					</div>
+			</condition>
+			<div><hr class="hrline_top"></div>
+			<div><hr class="hrline"></div>
+
+				<div id="use_info_a" class="view-on">
+					<div><strong>이용안내</strong></div>
+					<div class="info_right">	
+						<div class="text">- 신청/취소가 가능한 간식 신청만 표시됩니다.</div>
+						<div class="text">- 급식 메뉴 및 급식 여부는 급식실 사정 또는 학교 일정에 따라 달라질 수 있습니다.</div>
+						<div class="text">- 궁금하신 점은 <a href="">급식실 문의</a> 게시판을 이용하시거나 본관 지하 1층의 영양상담실을 방문하여 상담하시기 바랍니다.
+						</div>
+
+					</div>	
+				</div>
+			<div><hr class="hrline_bottom" style="margin-top:15px"></div>
+		</div>
+	</div><!--content_side 종료 -->

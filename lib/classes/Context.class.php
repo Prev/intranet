@@ -691,7 +691,9 @@
 
 			if (isset($_COOKIE[SSO_COOKIE_NAME]) && !isset($_SESSION[SSO_SESSION_NAME])) {
 				$urlData = getUrlData(SSO_URL . '?sess_key=' . $_COOKIE[SSO_COOKIE_NAME], SSO_AGENT_KEY);
-				
+				//var_dump2($urlData);
+				//exit;
+
 				if (!$urlData) {
 					unset($_SESSION[SSO_SESSION_NAME]);
 					setCookie2(SSO_COOKIE_NAME, '', time()-60);

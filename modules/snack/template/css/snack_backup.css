@@ -1,0 +1,170 @@
+@charset "utf-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+html,body{
+	font-family:'Nanum Gothic'; font-size:9pt;
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea,button {margin:0;padding:0}
+fieldset,img {border:0 none}
+dl,ul,ol,menu,li {list-style:none}
+blockquote, q {quotes: none}
+blockquote:before, blockquote:after,q:before, q:after {content:'';content:none}
+input,select,textarea,button {vertical-align:middle}
+button {border:0 none;background-color:transparent;cursor:pointer}
+body,th,td,input,select,textarea,button {font-size:12px;line-height:1.5;font-family:'돋움',dotum,sans-serif;color:#333} /* color값은 디자인가이드에 맞게사용 */
+a {color:#333;text-decoration:none}
+a:active, a:hover {text-decoration:underline}
+address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
+
+#school_alarm{
+	margin-top: -17px;
+	margin-bottom : 15px;
+}
+.view-on,  {
+	display:block;
+}
+
+.view-off {
+	display:none;
+}
+
+#content {
+	background-color:#fff;
+	width: 1000px; height: 700px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 6px
+
+	}
+
+#title{ 
+	font-weight: bold;
+	font-size: 18pt;
+	margin-top:22px;
+	margin-bottom:15px;
+	}
+#left_side{
+	width:249px; height:371px;
+	background-image: url(https://intranet.dimigo.hs.kr/static.img/dormitory/lnb_MenuTop.png);
+	float:left;
+	}
+
+#content_side {
+	width:700px;
+	float:left;
+	margin-left:20px;
+}
+#tabmenu{
+	width: 100%;
+	height: 35px;
+	border:1px solid  rgb(198,198,198);
+	background-color: rgb(242,242,242);
+	}
+#request,#request_data{
+	width: 120px; height: 15px;
+	float: left;
+	font-family: 'Nanum Gothic';
+	font-size: 9pt;
+	text-align: center;
+	margin:10px 10px 10px 10px; 
+}
+
+.tab_off {
+	background-color: #F2F2F2;
+}
+
+.tab_on {
+	background-color: #fff;
+	font-weight: bold;
+}
+
+#tab_a,#tab_b{
+	width: 140px; height: 35px;
+	border-right: 1px solid #C6C6C6;
+	float: left;
+	cursor:pointer;
+}
+
+.tab_a_content,.tab_b_content,#no_snack_data{
+	width: 700px; height: 450px;
+	margin-top: 60px
+}
+#no{
+	margin: 0 auto
+}
+.submitbt{
+	width:120px ; height:40px
+}
+
+.hrline {
+	border-top:1px solid rgb(215,215,215);
+	margin-top: 3px; z-index:-1;
+}
+#line{
+	margin-bottom:50px;
+}
+#month_requ{
+	width: 120px; height: 18px;
+	font-size: 12pt; font-family: 'Nanum Gothic'; font-weight: bold;
+	margin: 25px 0px 10px 0px
+}
+
+.text,.text_2{
+	width: 625px; height: 20px;
+	font-size:9pt; font-family: 'Nanum Gothic';
+}
+div.text_2{
+	margin-left: 70px
+}
+
+span#margin{
+	margin-left: 5px
+}
+
+#line_1, #line_2, #line_3{
+	width: 700px; height: 10px;
+	margin-top: 30px
+}
+
+#alarm{
+	color:#ff1418; font-weight: bold
+}
+
+#submit{
+	float:right;
+}
+div a{ 
+	color: rgb(255, 0, 192);
+}
+
+.info_right{
+	width : 600; height : 70 ; margin-top: -13px
+}
+
+/* UI Object */
+#calendar_image{
+	width: 15px; height: 15px;
+	cursor: pointer;
+}
+#calendar{overflow:hidden;width:170px; height:160px; border:1px solid #E6E6E6; font-size:12px;line-height:12px;
+		text-align:center; float: right; position:absolute; margin-left:150px; margin-top:5px;}
+#calendar a{text-decoration:none !important; background-color:#fff; z-index:1;}
+#calendar img{border:0}
+#calendar .calendar_period{clear:both;margin:11px 0 23px}
+#calendar .calendar_period a{display:inline-block;margin:-1px -1px 0;padding:1px;vertical-align:middle}
+#calendar .calendar_period a img{vertical-align:top}
+#calendar .calendar_period strong{display:inline-block;width:83px;font-family:verdana;font-size:13px;color:#333;line-height:15px;text-align:center}
+#calendar table{width:168px;margin:0 auto 11px;border:0}
+#calendar table caption,#calendar table thead{display:none}
+#calendar table td{padding:0;border:0;width:18px; background:#fff;border:0;border-bottom:3px solid #fff;font-family:verdana,tahoma;font-size:10px;line-height:12px}
+#calendar table td.selectable a{background:#fffcb2}
+#calendar table td.selected a{background:#e5f2ff}
+#calendar table td.today a{background:#7f7f7f;color:#fff}
+#calendar table td a{display:block;width:24px;height:13px;color:#000;text-align:center;letter-spacing:-1px}
+#calendar table td.sun a{color:#f00}
+#calendar table td.sat a{color:#00f}
+#calendar .calendar_input_period{margin:0 5px 0;padding:4px 0;border-top:1px solid #e5e5e5;color:#666}
+#calendar .calendar_input_period .tilde{margin:0 -3px;font-family:tahoma;font-size:11px;color:#aaa}
+#calendar .calendar_input_period input.date{width:62px;height:14px;margin-top:1px;*margin:0 0 -1px;padding:2px 0 0 4px;border:1px solid #ccc;font-family:tahoma;font-size:11px;line-height:13px;vertical-align:top}
+#calendar .calendar_input_period a.btn_cal{color:#454545}
+
+/* //UI Object */

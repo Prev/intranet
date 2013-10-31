@@ -1,0 +1,117 @@
+{@ $closeDate = new DateTime($snackInfo->closedate);
+	$todayDate = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+	$magamday = intval(($closeDate->getTimestamp() - $todayDate) / 86400); 
+	$period = explode("-", $snackInfo->period);
+	$period_str = explode("/", $period[0]);
+	$period_end = explode("/", $period[1]);
+	$calendar_ym = date("Ym");
+}
+<import path="./css/snack.css">
+	
+	<div id="content">
+		<!--탭 시작-->
+		<div id="tabmenu">
+			<div id="tab_a" class="tab_off" onclick="location.href = '{getUrlA('type=request&page=1', REAL_URL)}'" >
+				<div id="request">
+					진행 중인 간식 신청
+				</div>
+			</div>
+
+			<div id="tab_b" class="tab_on">
+				<div id="request_data">
+					나의 간식 신청 내역
+				</div>
+			</div>
+		</div>
+		<div id="tab_b_content" class="view-on">
+			<condition do="count($snackList) >= 1">
+			<true>
+				{@ for ($j=0; $j<count($snackList); $j++): }
+
+				<div class="snack_list">
+					<div class="month_requ">{$snackList[$j]->title} 간식</div>
+					<div class="text">
+						- 급식기간: {$snackList[$j]->period_start->year}년 {$snackList[$j]->period_start->month}월 {$snackList[$j]->period_start->day}일({$snackList[$j]->period_start->yoil}) ~
+						{$snackList[$j]->period_end->year}년 {$snackList[$j]->period_end->month}월 {$snackList[$j]->period_end->day}일({$snackList[$j]->period_end->yoil}) (단, 주말 제외)
+					</div>
+					<div class="text">
+						- 급식 신청 일시: {$snackList[$j]->reqdate->year}년 {$snackList[$j]->reqdate->month}월 {$snackList[$j]->reqdate->day}일({$snackList[$j]->reqdate->yoil}) {$snackList[$j]->reqtime->time1}시 {$snackList[$j]->reqtime->time2}분 {$snackList[$j]->reqtime->time3}초
+					</div>
+
+					<div class="text">
+						- 급식비: 단가 {number_format($snackList[$j]->price)}원 × 총 {number_format($snackList[$j]->number)}식 = {number_format(intval($snackList[$j]->price) * intval($snackList[$j]->number))}원</div>
+				</div> 
+				<div><hr class="hrline"></div>
+				{@ endfor; }
+				
+				<div class="paginate">
+					
+					<condition do="$pageNumbers->prevBtn != NULL">
+						<true>
+							<div><a href="{getUrlA('page=1', REAL_URL)}" class="pre_end">맨앞</a></div>
+							<div>
+								<a href="{getUrlA('page='.$pageNumbers->prevBtn, REAL_URL)}" class="pre">
+									이전
+								</a>
+							</div>
+						</true>
+						<false>
+							<div><a href="{getUrlA('page=1', REAL_URL)}" class="pre_end2">맨앞</a></div>
+						</false>
+					</condition>
+					
+					{@ foreach ($pageNumbers->pages as $key => $n): }
+						<condition do="$n == $nowPage">
+							<true>
+								<div>
+									<strong>{$n}</strong>
+								</div>
+							</true>
+							<false>
+								<div>
+									<a href="{getUrlA('page='.$n, REAL_URL)}">{$n}</a>
+								</div>
+							</false>
+						</condition>
+					{@ endforeach; }
+					
+					<condition do="$pageNumbers->nextBtn != NULL">
+						<true>
+							<div>
+								<a href="{getUrlA('page='.$pageNumbers->nextBtn, REAL_URL)}" class="next">
+									다음
+								</a>
+							</div>
+							<div><a href="{getUrlA('page='.$pageNumbers->totalNum, REAL_URL)}" class="next_end">맨뒤</a></div>
+						</true>
+						<false>
+							<div><a href="{getUrlA('page='.$pageNumbers->totalNum, REAL_URL)}" class="next_end2">맨뒤</a></div>
+						</false>
+					</condition>
+				</div>
+			</true>
+			<false>
+				<div id="nolist">간식 신청 내역이 없습니다.</div>
+			</false>
+		</condition>
+			<div><hr class="hrline_top"></div>
+			<div><hr class="hrline"></div>
+				
+				<div id="use_info_b">
+					<div><strong>이용안내</strong></div>
+					<div class="info_right">
+						<div class="text">- '간식 신청 취소' 버튼은 취소가 가능한 간식 신청에만 표시됩니다.
+						</div>
+						<div class="text">
+						- 급식 메뉴 및 급식 여부는 급식실 사정 또는 학교 일정에 따라 달라질 수 있습니다.
+						</div>
+						<div class="text">
+						- 간식 신청 내역은 관계법령에 따라 5년간 보관됩니다.
+						</div>
+						<div class="text" id="text">- 궁금하신 점이 있거나 변동사항이 있다면 <a href="">급식실 문의</a> 게시판을 이용하시거나 본관 지하 1층의 영양상담실을 방문하여 상담하 <span id="margin">시기 바랍니다.</span></div>
+					</div>
+				</div>
+
+			<div><hr class="hrline_bottom"></div>
+		</div>
+	</div><!--content_side 종료 -->

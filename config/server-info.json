@@ -10,7 +10,7 @@
 	{
 		"type":"test",
 		"protocol":"http",
-		"host":"localhost",
+		"host":"root",
 		"session_domain":"localhost",
 		"session_uri":"/",
 		"uri":"/intranet"

@@ -8,6 +8,11 @@
 		 var $recentMonday;
 		 var $para;
 
+		
+		 
+
+
+
 		public function init(){ //이주의 월요일 날짜를 전역변수에 저장한다. 
 
 		
@@ -83,6 +88,66 @@
        			
 
        		}
+       }
+
+
+
+       public function setNowMealBackground(){
+
+	       	
+            $now = strtotime(date("Y-m-d H:i:s"));
+            
+            $break_start = strtotime(date('Y-m-d').'21:31:00');
+            $break_start2 = strtotime(date('Y-m-d').'00:00:00');
+            $break_end = strtotime(date('Y-m-d').'07:50:00');
+
+            $lunch_end = strtotime(date('Y-m-d').'01:10:00');
+
+            $dinner_end = strtotime(date('Y-m-d').'19:20:00');
+
+            $snack_end = strtotime(date('Y-m-d').'21:30:00');
+            
+
+            // var_dump2($break_start2);
+            // var_dump2($break_end);
+            // var_dump2($now);
+
+
+            if($break_start < $now && $break_end > $now){
+
+            	echo "style= 'background-color: magenta;' ";
+
+
+             }
+
+
+
+            if($break_start2 < $now && $break_end > $now){
+
+            	echo "style= 'background-color: magenta;' ";
+
+            }
+
+
+
+           if($break_end < $now && $lunch_end > $now ){
+
+            	echo "style= 'background-color: magenta;' ";
+            }
+	       	
+	       	if($dinner_end < $now && $break_start > $now ){
+
+            	echo "style= 'background-color: magenta;' ";
+            }
+	       	
+
+	       
+
+						
+
+			
+
+
        }
 
 
@@ -227,7 +292,7 @@
 						
 						if($data -> title != null){ //파일이 있을때 
 
-								echo '<div class = "m-event"><span class="hidden">E<span></div>
+								echo '<div class = "m-event"></div>
 								<div class = "m-eventfood">'.$data -> title.'</div>';
 						}
 
@@ -329,7 +394,7 @@
 
 			if($json == null){
 
-						echo '<span class="special-food">';
+						echo '<span class="null-food">';
 						echo '급식정보가 없습니다.';
 						echo '</span>';
 			}
@@ -419,7 +484,7 @@
 
 			if($json == null){
 
-						echo 'null';
+						echo '-';
 			}
 
 			else{
@@ -485,7 +550,7 @@
 
 		if($json == null){
 
-						echo 'null';
+						echo '-';
 			}
 
 			else{

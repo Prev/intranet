@@ -129,7 +129,7 @@
 					<ul>
 						<input type="checkbox" class="check-box">
 						<button id="play-button-{$i}"  class="history-list-button" onclick="togglePlayMusic({$i})"><span class="hidden">재생</span></button>
-						<li class="song-title">{$song->song_name}</li>
+						<li class="song-title">{htmlspecialchars($song->song_name)}</li>
 						<li class="song-applicant">{$song->user_name}</li>
 						<li class="song-request-date">{getRelativeTime($song->upload_time)}</li>
 						<li class="recommends">{$song->recommend_count}</li>

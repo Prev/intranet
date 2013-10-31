@@ -1,0 +1,81 @@
+@charset "utf-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+html,body{
+	font-family:'Nanum Gothic';
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea,button {margin:0;padding:0}
+fieldset,img {border:0 none}
+dl,ul,ol,menu,li {list-style:none}
+blockquote, q {quotes: none}
+blockquote:before, blockquote:after,q:before, q:after {content:'';content:none}
+input,select,textarea,button {vertical-align:middle}
+button {border:0 none;background-color:transparent;cursor:pointer}
+body,th,td,input,select,textarea,button {font-size:12px;line-height:1.5;font-family:'나눔고딕','nanumgothic',sans-serif;color:#333} /* color값은 디자인가이드에 맞게사용 */
+a {color:#333;text-decoration:none}
+a:active, a:hover {text-decoration:underline}
+address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
+#school_alarm{margin-top: -17px;margin-bottom : 15px;}
+.view-on,  {display:block;}
+.view-off {display:none;}
+
+#title{ font-weight: bold;font-size: 18pt;margin-top:22px;margin-bottom:15px;}
+
+#content { width: 700px; margin: 20px 25px;}
+#tabmenu{width: 100%;height: 35px;border:1px solid  #C6C6C6;background-color: #F2F2F2;}
+#tabmenu #request,#request_data{width: 120px; height: 15px;float: left;font-family: 'Nanum Gothic';font-size: 9pt;text-align: center;margin-top: 8px;margin-left:8px}
+.tab_off {background-color: #F2F2F2;}
+.tab_on {background-color: #fff;font-weight: bold;}
+#tabmenu #tab_a,#tab_b{width: 140px; height: 35px;border-right: 1px solid #C6C6C6;float: left;cursor:pointer;}
+#tabmenu .tab_a_content,.tab_b_content{width: 700px; height: 450px;margin-top: 60px}
+#nolist {text-align:center; padding:90px 0 60px 0; }
+.submit{float:right;}
+.submit input.submitbt{width:120px ; height:40px}
+.hrline {border-top:1px solid #D7D7D7;margin-top: 30px; margin-bottom:15px;z-index:-1;}
+.hrline_top{margin-top: 30px;margin-bottom:50px;z-index: -1;border-top: 1px solid #D7D7D7;}
+.hrline_bottom{margin-top:15px;z-index: -1;border-top: 1px solid #D7D7D7;}
+div.month_requ{height: 18px;font-size: 12pt; font-family: 'Nanum Gothic'; font-weight: bold;margin: 25px 0px 13px 0px}
+div.text{width: 625px; height: 22px;font-size:9pt; font-family: 'Nanum Gothic';}
+div#text{width: 633px;height: 32px}
+.info_right .text{margin-left: 70px}
+span#margin{margin-left: 5px}
+#alarm{color:#ff1418; font-weight: bold}
+div.text a{ color: #FF00C0;}
+#use_info_a,#use_info_b strong{margin-top: 5px}
+#use_info_a .info_right{width : 600px; height : 70px ; margin-top: -17px}
+#use_info_b {width:700px; height:100px;}
+#use_info_b .info_right{width : 600px; height : 70px ; margin-top: -17px}
+
+/* UI Object */
+#calendar_image{margin-left:5px;width: 15px; height: 15px;cursor: pointer;}
+#calendar{overflow:hidden;width:170px; height:165px; border:1px solid #E6E6E6; font-size:12px;line-height:12px;
+		text-align:center; float: right; position:absolute;margin-left:320px; margin-top:-27px ; background-color: #fff}
+#calendar a{text-decoration:none !important; background-color:#fff; z-index:1;}
+#calendar img{border:0}
+#calendar .calendar_period{width:100%; display:inline-block; background-color:#fff; clear:both;padding:11px 0 11px}
+#calendar .calendar_period a{display:inline-block; margin:-1px -1px 0;padding:1px;vertical-align:middle}
+#calendar .calendar_period strong{display:inline-block; font-family:verdana;font-size:13px;color:#333;line-height:15px;text-align:center}
+#calendar table{width:168px;margin:0 auto 11px;border:0}
+/*#calendar table caption,#calendar table thead{display:none}
+#calendar table td{padding:0;border:0;width:18px; background:#fff;border:0;border-bottom:3px solid #fff;font-family:verdana,tahoma;font-size:10px;line-height:12px}
+#calendar table td.selectable a{background:#fffcb2}
+#calendar table td.selected a{background:#e5f2ff}
+#calendar table td.today a{background:#7f7f7f;color:#fff}
+#calendar table td a{display:block;width:24px;height:13px;color:#000;text-align:center;letter-spacing:-1px}
+#calendar table td.sun a{color:#f00}
+#calendar table td.sat a{color:#00f}
+#calendar table td.weekday {font-size:13px;}
+*/
+/* //UI Object */
+
+.paginate{margin-top:27px; margin-bottom:59px; text-align:center; }
+.paginate div {display:inline-block; }
+.paginate a,.paginate strong{display:inline-block;position:relative;margin-left:-7px;padding:3px 8px 1px 7px;border-right:1px solid #ccc;border-left:1px solid #ccc;background:#fff;color:#313031;font-family:'돋움',Dotum,'굴림',Gulim, AppleGothic, Sans-serif;font-size:12px;font-weight:bold;line-height:normal;text-decoration:none}
+.paginate strong{color:#ec008c !important}
+.paginate a:hover{background:#f7f7f7}
+.paginate a.pre{padding:3px 8px 1px 16px;border:none;background:url(http://static.naver.com/common/paginate/bu_pg1_l1.gif) no-repeat 8px 6px !important;font-weight:normal}
+.paginate a.pre_end{padding:3px 8px 1px 16px;border:none;background:url(http://static.naver.com/common/paginate/bu_pg1_l2.gif) no-repeat 4px 6px !important;font-weight:normal}
+.paginate a.pre_end2{padding:3px 8px 1px 16px;border:none;border-right:1px solid #ccc;background:url(http://static.naver.com/common/paginate/bu_pg1_l2.gif) no-repeat 4px 6px !important;font-weight:normal}
+.paginate a.next{padding:3px 16px 1px 8px;border:none;background:url(http://static.naver.com/common/paginate/bu_pg1_r1.gif) no-repeat 37px 6px !important;font-weight:normal}
+.paginate a.next_end{padding:3px 16px 1px 8px;border:none;background:url(http://static.naver.com/common/paginate/bu_pg1_r2.gif) no-repeat 37px 6px !important;font-weight:normal}
+.paginate a.next_end2{padding:3px 16px 1px 8px;border:none;background:url(http://static.naver.com/common/paginate/bu_pg1_r2.gif) no-repeat 37px 6px !important;font-weight:normal}
