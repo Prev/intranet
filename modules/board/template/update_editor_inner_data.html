@@ -1,16 +1,10 @@
 <import path="css/editor_inner_data.css">
 
 <input type="hidden" name="article_no" value="{$_GET['article_no']}">
+<input type="hidden" name="board_id" value="{$boardId}">
 
 <div id="board-top-container" class="clearfix">
 	<div class="fl">
-		<select id="board-selector" name="board_id">
-			{@ foreach ($boardLists as $key => $value) : }
-				<option value="{$value->id}"{@ if ($value->id == $articleData->board_id) echo ' selected="selected"';}>
-					{$value->name_locale}
-				</option>
-			{@ endforeach; }
-		</select>
 		<select id="category-selector" name="category"></select>
 	</div>
 	<div class="fl">

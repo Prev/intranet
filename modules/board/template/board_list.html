@@ -133,12 +133,13 @@
 				</a>
 			</div>
 		</condition>
-
-		<div class="board-btn-wrap">
-			<button class="board-btn" onclick="location.href = '{getUrl('board', 'dispEditor', 'board_name='.$boardName)}'">
-				<span class="hidden">글쓰기</span>
-			</button>
-		</div>
+		<condition do="User::getCurrent()->checkGroup($boardInfo->writable_group)">
+			<div class="board-btn-wrap">
+				<button class="board-btn" onclick="location.href = '{getUrl('board', 'dispEditor', 'board_name='.$boardName)}'">
+					<span class="hidden">글쓰기</span>
+				</button>
+			</div>
+		</condition>
 	</div>
 
 	<div class="search-box">

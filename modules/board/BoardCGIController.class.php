@@ -32,7 +32,7 @@
 
 			if (isset($_POST['parent_no'])) {
 				$boardId = $this->model->getParentArticleBoardId($_POST['parent_no']);
-				
+
 				if (!$boardId) {
 					goBack(array(
 						'en' => 'You can\'t write reply to non-existing post',

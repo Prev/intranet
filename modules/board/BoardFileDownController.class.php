@@ -8,6 +8,15 @@
 				echo 'Invalid file';
 				return;
 			}
+			
+			if ($data->readable_group) {
+				$me = User::getCurrent();
+				if (!$me || !$me->checkGroup($data->readable_group)) {
+					echo 'Permission denined';
+					return;
+				}
+			}
+
 			parent::procDownloadFile('binaries', $data->file_name, $data->file_hash, $data->file_size);
 		}
 

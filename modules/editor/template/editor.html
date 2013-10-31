@@ -20,10 +20,12 @@
 		}
 		
 	</form>
-</div>
 
-<div style="text-align:center">
-	<button onclick='Editor.save()' class="save-btn">{# 'en'=>'Save', 'ko'=>'저장' }</button>
+	<div class="button-wrap">
+		<button onclick="Editor.save()" class="save-btn">확인</button>
+		<button onclick="location.href='{getBackUrl()}'" class="save-btn">작성취소</button>
+	</div>
+
 </div>
 
 <script type="text/javascript">
@@ -201,5 +203,4 @@
 			}
 		}
 	}
-
-	</script>
+</script>

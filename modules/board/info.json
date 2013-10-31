@@ -25,6 +25,7 @@
 		{
 			"name":"dispEditor",
 			"model":"BoardEditorModel",
+			"controller":"BoardEditorController",
 			"view":"BoardEditorView"
 		},
 		{

@@ -53,4 +53,31 @@
 				))
 				->find_many();
 		}
+
+		public function getMenuIdByBoardName($boardName) {
+			$row = DBHandler::for_table('board')
+				->select('menu_id')
+				->where('name', $boardName)
+				->find_one();
+			
+			if ($row)
+				return $row->menu_id;
+			else
+				return false;
+		}
+
+		public function getMenuIdByArticleNo($articleNo) {
+			$row = DBHandler::for_table('article')
+				->select('board.menu_id')
+				->where('article.no', $articleNo)
+				->join('board', array(
+					'board.id', '=', 'article.board_id'
+				))
+				->find_one();
+			
+			if ($row)
+				return $row->menu_id;
+			else
+				return false;
+		}
 	}

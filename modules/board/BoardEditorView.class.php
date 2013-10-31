@@ -4,6 +4,7 @@
 		
 		var $boardLists;
 		var $boardName;
+		var $boardId;
 		var $title;
 
 		public function init() {
@@ -33,8 +34,11 @@
 
 			if (isset($_GET['board_name'])) {
 				for ($i=0; $i<count($this->boardLists); $i++) {
-					if ($_GET['board_name'] == $this->boardLists[$i]->name)
+					if ($_GET['board_name'] == $this->boardLists[$i]->name) {
+						$this->boardId = $this->boardLists[$i]->id;
 						$boardUseAble = true;
+						Context::set('isBoardAdmin', $this->controller->checkIsBoardAdmin($this->boardLists[$i]->admin_group));
+					}
 				}
 				if (!$boardUseAble) {
 					goBack(array(
@@ -67,6 +71,8 @@
 			$this->articleData = $this->model->getArticleData($_GET['article_no']);
 			$this->fileDatas = $this->model->getArticleFiles($_GET['article_no']);
 
+			$this->boardId = $this->articleData->board_id;
+
 			if (User::getCurrent()->id != $this->articleData->writer_id) {
 				goBack(array(
 					'en' => 'Permission Denined',
@@ -81,5 +87,7 @@
 		public function dispEditorInnerBottomData() {
 			$this->articleData = $this->module->articleData;
 			$this->execTemplate('editor_inner_bottom_data');
+
+			$this->isBoardAdmin = Context::get('isBoardAdmin');
 		}
 	}

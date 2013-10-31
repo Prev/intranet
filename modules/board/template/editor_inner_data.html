@@ -4,15 +4,10 @@
 	<input type="hidden" name="parent_no" value="{$_GET['parent_no']}">
 </condition>
 
+<input type="hidden" name="board_id" value="{$boardId}">
+
 <div id="board-top-container" class="clearfix">
 	<div class="fl">
-		<select id="board-selector" name="board_id" onclick="selectCategory()">
-			{@ foreach ($boardLists as $key => $board) : }
-				<option value="{$board->id}"{@ if ($board->name == $boardName) echo ' selected="selected"';}>
-					{$board->name_locale}
-				</option>
-			{@ endforeach; }
-		</select>
 		<select id="category-selector" name="category"></select>
 	</div>
 	<div class="fl">
@@ -23,15 +18,13 @@
 <script type="text/javascript">
 	var categorys = [];
 	var selectedCategory = null;
-	var isBoardAdminPerBoards = [];
-
+	
 	{@ foreach ($boardLists as $key => $board) : }
 		<condition do="$board->categorys">
 			categorys[{$board->id}] = {$board->categorys};
 		<else>
 			categorys[{$board->id}] = null;
 		</condition>
-		isBoardAdminPerBoards[{$board->id}] = {@ echo $board->isBoardAdmin ? 1 : 0; };
 	{@ endforeach; }
 </script>
 <script type="text/javascript" src="./js/editor_inner_data.js"></script>

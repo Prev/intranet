@@ -36,6 +36,14 @@
 				}
 			}
 
+			if (mb_strlen($_POST['comment']) > 40000) {
+				goBack(array(
+					'en' => 'Comment length is too long',
+					'ko' => '댓글이 너무 깁니다'
+				));
+				return;
+			}
+
 			$comment = htmlspecialchars($_POST['comment']);
 			$comment = stripslashes($comment);
 

@@ -75,20 +75,4 @@ div.tx-canvas div.tx-wysiwyg-padding{height:100%;width:0;left:0;position:absolut
 .tx-attach-box li.tx-attach-size{float:right;padding:5px 5px 0 0;}.tx-attach-box .tx-attach-size-up{font-weight:bold;color:#FB6235;}.tx-attach-box .tx-attach-size-used{font-weight:bold;}.tx-attach-box .tx-attach-list{margin:0 5px 0 4px;height:84px;padding:3px;border:1px #D5D5D5 solid;background:#FFF;overflow:-moz-scrollbars-vertical;scrollbar-3dlight-color:#FFF;scrollbar-arrow-color:#9f9f9f;scrollbar-darkshadow-color:#FFF;scrollbar-face-color:#e6e6e6;scrollbar-highlight-color:#c3c3c3;scrollbar-shadow-color:#c3c3c3;scrollbar-track-color:#F3F3F3;overflow:hidden;overflow-y:scroll;-moz-user-select:none;-khtml-user-select:none;}.tx-attach-box .tx-attach-list li{height:16px;padding:3px 3px 2px 3px;clear:both;}.tx-attach-box .tx-attach-list li.tx-hovered{background:#F2F2F2;}.tx-attach-box .tx-attach-list li.tx-clicked{background:#C8D9F7;}.tx-attach-box .tx-attach-list li dl{width:100%;margin:0;padding:0;}.tx-attach-box .tx-attach-list li .tx-name{float:left;font-size:11px;font-family:dotum,verdana;color:#666;padding:1px 0 0 0;cursor:pointer;}
 .tx-attach-box .tx-attach-list li.tx-existed .tx-name{color:#999;}.tx-attach-box .tx-attach-list .tx-name strong{font-family:dotum;font-size:11px;color:#ed1c24;font-weight:normal;letter-spacing:-1px;}.tx-attach-box .tx-attach-list li.tx-existed .tx-insert{display:none;}.tx-attach-box .tx-attach-list li.tx-boxonly .tx-insert{display:none;}.tx-attach-box .tx-attach-list dd.tx-button{float:right;}.tx-attach-box .tx-attach-list li a.tx-insert{float:left;display:block;width:15px;height:15px;margin:0 0 0 3px;text-indent:-100em;overflow:hidden;background:url(../images/icon/editor/btn_a_upload.gif?v=2) no-repeat;cursor:pointer;}.tx-attach-box .tx-attach-list li a.tx-delete{float:left;display:none;width:15px;height:15px;text-indent:-100em;overflow:hidden;background:url(../images/icon/editor/btn_a_delete.gif?v=2) no-repeat;cursor:pointer;}.tx-attach-box .tx-attach-list li.tx-hovered a.tx-delete{display:block;}.tx-attach-box .tx-attach-list li.tx-clicked a.tx-delete{display:block;}.tx-attach-box a.tx-attach-two-images{float:left;margin-right:4px;width:21px;height:20px;text-indent:-100em;overflow:hidden;background:url(../images/icon/editor/btn_images_two.gif?v=2) no-repeat;cursor:pointer;}
 .tx-attach-box a.tx-attach-three-images{float:left;margin:0;width:24px;height:20px;text-indent:-100em;overflow:hidden;background:url(../images/icon/editor/btn_images_three.gif?v=2) no-repeat;cursor:pointer;}
-.save-btn{
-	width: 198px;
-	background-color: #FBFBFB;
-	background-image: -webkit-linear-gradient(top,#FBFBFB,#EAEAEA);
-	background-image: -moz-linear-gradient(top,#FBFBFB,#EAEAEA);
-	background-image: -ms-linear-gradient(top,#FBFBFB,#EAEAEA);
-	background-image: -o-linear-gradient(top,#FBFBFB,#EAEAEA);
-	background-image: linear-gradient(top,#FBFBFB,#EAEAEA);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#FBFBFB',EndColorStr='#EAEAEA');
-	border: 1px solid #E0E0E0;
-	border-radius: 5px;
-	text-align: center;
-	font-size: 14px;
-	padding: 12px 0;
-	color: black;
-}
 .tx-insert{ display: none !important }

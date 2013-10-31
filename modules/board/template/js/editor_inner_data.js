@@ -1,13 +1,13 @@
 function selectCategory() {
 	var selector = document.getElementById("category-selector");
-	var boardId = document.getElementById("board-selector").value;
+	var boardId = document.forms.tx_editor_form.board_id;
 	var node;
 
 	selector.innerHTML = "";
 
 	node = document.createElement('option');
 	node.value = "none";
-	node.innerHTML = "말머리 선택";
+	node.innerHTML = "말머리 미지정";
 
 	selector.appendChild(node);
 
@@ -21,15 +21,6 @@ function selectCategory() {
 				node.selected = true;
 
 			selector.appendChild(node);
-		}
-	}
-
-	if (document.forms.tx_editor_form.is_notice) {
-		if (isBoardAdminPerBoards[boardId])
-			document.forms.tx_editor_form.is_notice.disabled = false;
-		else {
-			document.forms.tx_editor_form.is_notice.disabled = true;
-			document.forms.tx_editor_form.is_notice.checked = false;
 		}
 	}
 }
