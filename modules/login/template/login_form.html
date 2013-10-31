@@ -35,10 +35,10 @@
 			<div class="fl">
 				<div id="input-wrap" class="clearfix">
 					<div class="input-wrap-content fl">
-						<input name="id" type="text" placeholder="아이디" tabindex="10">
+						<input name="id" type="text" placeholder="아이디" tabindex="1">
 					</div>
 					<div class="input-wrap-content input-wrap-password fl">
-						<input name="pw" type="password" placeholder="비밀번호" tabindex="11" onkeypress="checkCapsLock(event)">
+						<input name="pw" type="password" placeholder="비밀번호" tabindex="2" onkeypress="checkCapsLock(event)">
 						<div id="capslock-alert">
 							<div id="capslock-top"></div>
 							<div id="capslock-description"><strong>Caps Lock</strong>이 켜져 있습니다.</div>
@@ -48,24 +48,24 @@
 				<div id="checkbox-wrap" class="clearfix">
 					<div class="fl">
 						<label>
-							<input type="checkbox" name="keep_login" tabindex="13" onclick="if (this.checked) alert('개인정보 보호를 위해 공용 PC에서는 사용에 유의해 주시기 바랍니다.')">
+							<input type="checkbox" name="keep_login" tabindex="4" onclick="if (this.checked) alert('개인정보 보호를 위해 공용 PC에서는 사용에 유의해 주시기 바랍니다.')">
 							<span>로그인 상태 유지</span>
 						</label>
 						
 						<label>
-							<input type="checkbox" name="secure_login" tabindex="14" onclick="toggleSecureLogin(this)">
+							<input type="checkbox" name="secure_login" tabindex="5" onclick="toggleSecureLogin(this)">
 							<span>보안로그인</span>
 						</label>
 					</div>
 					<div class="fr clearfix">
 						<div class="fl"><a href="{getUrl('idpwfind', 'dispMain', '', ACCOUNT_SERVER_URL)}" tabindex="15">아이디/비밀번호 찾기</a></div>
 						<div class="fl login-bar">|</div>
-						<div class="fl"><a href="{@ echo ACCOUNT_SERVER_URL . '/signup' }" tabindex="16">회원가입</a></div>
+						<div class="fl"><a href="{@ echo ACCOUNT_SERVER_URL . '/signup' }" tabindex="6">회원가입</a></div>
 					</div>
 				</div>
 			</div>
 			<div id="submit-wrap" class="fr">
-				<button onclick="procLogin(); return false;" tabindex="12">
+				<button onclick="procLogin(); return false;" tabindex="3">
 					<span class="hidden">로그인</span>
 				</button>
 			</div>
