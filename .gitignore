@@ -1,4 +1,5 @@
 _etc/*
 files/*
 files/pmc_error.log
+config/database.php
 .DS_Store

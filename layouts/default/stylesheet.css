@@ -20,7 +20,7 @@ body{
 	background-color:#fcfcfc;
 }
 
-#header { background-color: #323232; color: white }
+#header { background-color: #323232; color: white; min-width: 1000px; }
 #header #header-line { height: 3px; background-color: #ec008c }
 #header #header-content {
 	width: 1000px;

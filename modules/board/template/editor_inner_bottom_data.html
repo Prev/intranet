@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div id="board-bottom-container">
 	<ul>
 		<condition do="$isBoardAdmin">
@@ -29,4 +30,37 @@
 			</div>
 		</li>
 	</ul>
+=======
+<div id="board-bottom-container">
+	<ul>
+		<condition do="$isBoardAdmin">
+			<li class="clearfix notice">
+				<div class="section fl">공지사항</div>
+				<div class="fl">
+					<input type="checkbox" onclick="if (this.form.is_secret.checked && this.form.is_notice.checked) { alert('비밀글은 공지사항으로 등록할 수 없습니다'); this.form.is_secret.checked = false; } this.form.is_secret.disabled = this.checked;" name="is_notice"{@ if ($articleData->is_notice) echo 'checked="checked"' }>
+					&nbsp;<label for ="is_notice">이 글을 공지사항으로 등록합니다.</label>
+				</div>
+			</li>
+		</condition>
+		<li class="clearfix">
+			<div class="section fl">글쓰기 설정</div>
+			<div class="fl">
+				<label for ="allow_comment">
+					<input type="checkbox" name="allow_comment" {@ echo ($articleData && !$articleData->allow_comment) ? '' : 'checked="checked"' }>
+					&nbsp;<span>댓글 허용</span>
+				</label>
+
+				<label for ="allow_reply">
+					<input type="checkbox" name="allow_reply" {@ echo ($articleData && !$articleData->allow_reply) ? '' : 'checked="checked"' }>
+					&nbsp;<span>답글 허용</span>
+				</label>
+
+				<label for ="is_secret">
+					<input type="checkbox" onclick="if (this.form.is_secret.checked && this.form.is_notice.checked) { alert('공지사항은 비밀글로 등록할 수 없습니다'); return false; }"name="is_secret" {@ if ($articleData->is_secret) echo 'checked="checked"' }>
+					&nbsp;<span>비밀글</span>
+				</label>
+			</div>
+		</li>
+	</ul>
+>>>>>>> 게시판 답글 허용 추가
 </div>

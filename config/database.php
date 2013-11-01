@@ -16,7 +16,7 @@
 			'type' => 'mysql',
 			'host' => 'localhost',
 			'username' => 'root',
-			'password' => 'root',
+			'password' => 'apmsetup',
 			'database_name' => 'intranet',
 			'prefix' => 'intra_'
 		);

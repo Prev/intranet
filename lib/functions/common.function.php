@@ -364,7 +364,7 @@
 	 *		* 우선 순위는 module==action > queryParam > url
 	 * @param $module이 NULL일시 @param $action은 무시됨
 	 */
-	function getUrl($module=NULL, $action=NULL, $queryParam=NULL, $url=NULL, $removeAmp=false) {
+	function getUrl($module=NULL, $action=NULL, $queryParam=NULL, $url=NULL, $removeAmp=true) {
 		if (!$url) $url = RELATIVE_URL;
 		
 		$parsedUrl = parse_url($url);
@@ -497,9 +497,9 @@
 	 */
 	function getBackUrl() {
 		if ($_GET['next'])
-			return urldecode($_GET['next']);
+			return removeXSS(urldecode($_GET['next']));
 		else if ($_SERVER['HTTP_REFERER'])
-			return $_SERVER['HTTP_REFERER'];
+			return removeXSS($_SERVER['HTTP_REFERER']);
 		else
 			return RELATIVE_URL;
 	}
@@ -537,10 +537,10 @@
 	function goBack($alertMessage=NULL, $clearContents=true) {
 		if (!is_string($alertMessage))
 			$alertMessage = fetchLocale($alertMessage);
-
+		
 		if ($clearContents) {
 			ob_clean();
-
+			
 			echo Context::getInstance()->getDoctype() .
 				'<html><head>' .
 				'<script type="text/javascript">' .
