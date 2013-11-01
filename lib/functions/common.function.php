@@ -364,7 +364,7 @@
 	 *		* 우선 순위는 module==action > queryParam > url
 	 * @param $module이 NULL일시 @param $action은 무시됨
 	 */
-	function getUrl($module=NULL, $action=NULL, $queryParam=NULL, $url=NULL, $removeAmp=true) {
+	function getUrl($module=NULL, $action=NULL, $queryParam=NULL, $url=NULL, $removeAmp=false) {
 		if (!$url) $url = RELATIVE_URL;
 		
 		$parsedUrl = parse_url($url);
