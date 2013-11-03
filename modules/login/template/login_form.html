@@ -6,7 +6,7 @@
 <script type="text/javascript">var rsaKeys = {publicKey:"{$rsaKeys->publicKey}", modulus:"{$rsaKeys->modulus}"}</script>
 
 <div id="login-wrap">
-	<form name="login_form" method="post" action="{getUrl('login', 'procLogin', 'next='.RELATIVE_URL, ACCOUNT_SERVER_URL)}" onsubmit="return procLogin()">
+	<form name="login_form" method="post" action="{getUrl('login', 'procSecureLogin', 'next='.RELATIVE_URL, ACCOUNT_SERVER_URL)}" onsubmit="return procLogin()">
 		<input type="hidden" name="enc_id">
 		<input type="hidden" name="enc_pw">
 		<input type="hidden" name="check_sum">
@@ -50,11 +50,6 @@
 						<label>
 							<input type="checkbox" name="keep_login" tabindex="4" onclick="if (this.checked) alert('개인정보 보호를 위해 공용 PC에서는 사용에 유의해 주시기 바랍니다.')">
 							<span>로그인 상태 유지</span>
-						</label>
-						
-						<label>
-							<input type="checkbox" name="secure_login" tabindex="5" onclick="toggleSecureLogin(this)">
-							<span>보안로그인</span>
 						</label>
 					</div>
 					<div class="fr clearfix">
