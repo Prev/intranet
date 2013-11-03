@@ -22,5 +22,13 @@
 		"session_domain":".dimigo.us",
 		"session_uri":"/",
 		"uri":""
+	},
+	{
+		"type":"test",
+		"protocol":"http",
+		"host":"lab.prev.kr",
+		"session_domain":"lab.prev.kr",
+		"session_uri":"/",
+		"uri":"/intranet"
 	}
 ]

@@ -23,7 +23,7 @@
 
 		/*return (object) array(
 			'type' => 'mysql',
-			'host' => 'dimigo.us',
+			'host' => 'localhost',
 			'username' => 'dimigoshift',
 			'password' => '#pmfucking',
 			'database_name' => 'intranet',

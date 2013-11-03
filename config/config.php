@@ -164,11 +164,9 @@
 
 	switch (getServerInfo()->host) {
 		case '127.0.0.1':
-			define('ACCOUNT_SERVER_URL', 'http://127.0.0.1/intranet_account');
-			break;
-		
 		case 'localhost':
-			define('ACCOUNT_SERVER_URL', 'http://localhost/intranet_account');
+		case 'lab.prev.kr':
+			define('ACCOUNT_SERVER_URL', 'http://'.getServerInfo()->host.'/intranet_account');
 			break;
 
 		case 'intranet.dimigo.us':

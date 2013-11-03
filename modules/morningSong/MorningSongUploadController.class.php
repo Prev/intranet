@@ -15,10 +15,11 @@
 				return;
 			}
 			
-			$imageExtensions = array('mp3', 'wma', 'wav');
+			$mucisExtensions = array('mp3', 'wma', 'wav');
 
 			$fileExtension = strtolower(substr(strrchr($_FILES['bifile']['name'], '.'), 1));
-			if (!in_array($fileExtension, $imageExtensions)) {
+
+			if (!in_array($fileExtension, $mucisExtensions)) {
 				ErrorLogger::log('Attempt upload '.$_FILES['upload']['type'].' file as music');
 				$this->close('음악 파일만 업로드 할 수 있습니다');
 				return;

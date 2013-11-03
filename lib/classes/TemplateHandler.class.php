@@ -64,7 +64,7 @@
 			// insert module realitve url in relative src (./.*), href and action
 			$html = preg_replace_callback('`((?:src|href|action)=(?:\"|\'))(.*?)((?:\"|\'))`i', array($this, 'parseUrl'), $html);
 			$html = preg_replace_callback('/(<style[\s\S]*?url\((?:\'|\")?)(.*?)((?:\'|\")\))/i', array($this, 'parseUrl'), $html);
-			$html = preg_replace_callback('/(style=".*?url\((?:\'|\"))(.*?)((?:\'|\")\)")/i', array($this, 'parseUrl'), $html);
+			$html = preg_replace_callback('/(style=(?:"|\').*?url\()(.*)?(\))/i', array($this, 'parseUrl'), $html);
 
 			// targetie condition
 			$html = preg_replace('`<condition\s+targetie\s*=\s*"([^"]+)"\s*>([\s\S]*?)</condition>`i', '<!--[if $1]>$2<![endif]-->', $html);
