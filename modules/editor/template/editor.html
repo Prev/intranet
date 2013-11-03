@@ -22,8 +22,12 @@
 	</form>
 
 	<div class="button-wrap">
-		<button onclick="Editor.save()" class="save-btn">확인</button>
-		<button onclick="location.href='{getBackUrl()}'" class="save-btn">작성취소</button>
+		<button onclick="Editor.save()" class="save-btn">
+			<span class="hidden">확인</span>
+		</button>
+		<button onclick="location.href='{getBackUrl()}'" class="cancle-btn">
+			<span class="hidden">작성취소</span>
+		</button>
 	</div>
 
 </div>

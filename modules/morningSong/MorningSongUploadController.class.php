@@ -10,6 +10,14 @@
 				return;
 			}
 
+			if (!$_FILES['bifile']) {
+				$this->close(array(
+					'en' => 'Error on uploading',
+					'ko' => '업로드 도중 오류가 발생했습니다'
+				));
+				return;
+			}
+
 			if ((int)($_FILES['bifile']['size']) > 1024 * 1024 * 10) {
 				$this->close('파일 용량이 10MB를 초과합니다');
 				return;
