@@ -10,7 +10,7 @@
 #stay-manage #stay-manage-title #stay-manage-title-text { width:80px; height:14px; }
 #stay-manage #stay-manage-title #stay-manage-title-tip { font-size:11px; color:#666; }
 
-#stay-manage #stay-manage-deadline { padding:15px 17px; margin-top:30px; background-color:#E7E7E7; *zoom:1; }
+#stay-manage #stay-manage-deadline { padding:15px 0px 15px 17px; margin-top:30px; background-color:#E7E7E7; *zoom:1; }
 #stay-manage #stay-manage-deadline:after { content:""; display:block; clear:both; }
 
 #stay-manage #stay-manage-deadline #stay-manage-deadline-left { float:left; }
@@ -57,7 +57,7 @@
 #apply-setting{background:url(../img/sprite_stay_manage.png) no-repeat 0 -236px; width:189px; height:36px; border:0; cursor:pointer}
 
 .balloon {position: absolute; width: 0px; height: 0px;}
-.balloon .balloon-select-date-abled, .balloon-set-deadline-abled, .balloon-set-sleep-abled, .balloon-set-goingout-abled, .balloon-set-meal-abled, .balloon-set-name-abled, .balloon-set-popup-abled, .balloon-temp-end-abled {position: relative; background: url('../../static.img/dormitory/stay_manage_balloon_sprite.png') no-repeat; width: 34px; height: 43px; float: left; }
+.balloon .balloon-select-date-abled, .balloon-set-deadline-abled, .balloon-set-sleep-abled, .balloon-set-goingout-abled, .balloon-set-meal-abled, .balloon-set-name-abled, .balloon-set-popup-abled, .balloon-temp-end-abled {position: relative; background: url('../img/stay_manage_balloon_sprite.png') no-repeat; width: 34px; height: 43px; float: left; }
 .balloon-select-date-abled{left:-20px;top:-29px}
 .balloon-set-deadline-abled, .balloon-set-sleep-abled, .balloon-set-goingout-abled, .balloon-set-meal-abled, .balloon-set-name-abled, .balloon-set-popup-abled, .balloon-temp-end-abled{left: -37px; top: -49px;}
 

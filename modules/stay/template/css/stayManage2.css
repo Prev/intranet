@@ -12,7 +12,7 @@
 #stay-manage #stay-manage-title #stay-manage-title-text { width:80px; height:14px; }
 #stay-manage #stay-manage-title #stay-manage-title-tip { font-size:11px; color:#666; }
 
-#stay-manage #stay-manage-deadline { padding:15px 17px; margin-top:30px; background-color:#E7E7E7; *zoom:1; }
+#stay-manage #stay-manage-deadline { padding:15px 0px 15px 17px; margin-top:30px; background-color:#E7E7E7; *zoom:1; }
 #stay-manage #stay-manage-deadline:after { content:""; display:block; clear:both; }
 
 #stay-manage #stay-manage-deadline #stay-manage-deadline-left { float:left; }

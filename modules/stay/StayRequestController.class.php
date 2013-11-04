@@ -99,14 +99,13 @@
 			}
 
 
-			if (!$formDatas->disapply_seat && !selectedSeat) {
-				alert("도서관 좌석을 선택하십시오.\r또는 '별도의 좌석을 ~합니다' 를 선택하십시오.");
-				return;
-			}
-			
-			if ($this->model->getSeatInfo($infoData->{'id'}, $formDatas->seat_data)) 
+			if (!$formDatas->disapply_seat && !selectedSeat)
+				goBack("도서관 좌석을 선택하십시오.\r또는 '별도의 좌석을 ~합니다' 를 선택하십시오.");
+			else if(strlen($formDatas->seat_data) > 3)
+				goBack('도서관 좌석 가지고 장난치지 마세요.');
+			else if ($this->model->getSeatInfo($infoData->{'id'}, $formDatas->seat_data)) 
 				goBack('좌석 선택에 오류가 발생했습니다.');
-			
+
 			if ($this->model->getMyStayData($date)) {
 
 				$stayData = DBHandler::for_table('stay_data')
