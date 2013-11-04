@@ -23,7 +23,7 @@
 #stay-manage-deadline-mid ul li .stay-manage-deadline-date { width:86px; height:12px; }
 #stay-manage-deadline-mid ul li div { float:left; } 
 #stay-manage-deadline-mid ul li .stay-manage-deadline-calendar { width:14px; height:14px; margin:2px 0px 0px 4px; background-image:url(../img/sprite3.png); background-position-x:0px; }
-#stay-manage-deadline-mid ul li .stay-manage-deadline-erase { width:10px; height:10px; margin:4px 0px 0px 4px; background-image:url(../img/sprite3.png); background-position-x:-14px; }
+#stay-manage-deadline-mid ul li .stay-manage-deadline-erase { width:10px; height:10px; margin:4px 0px 0px 4px; background-image:url(../img/sprite3.png); background-position: -14px 0px; }
 #stay-manage-deadline-mid ul li .stay-manage-deadline-calendar:hover { cursor:pointer; }
 #stay-manage-deadline-mid ul li .stay-manage-deadline-erase:hover { cursor:pointer; }
 #stay-manage-deadline-mid ul li .stay-manage-deadline-time-hour { width:20px; height:12px; margin:0px 3px; }
