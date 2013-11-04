@@ -297,6 +297,8 @@
 				}
 			}else if ($selectedData === false && !$this->moduleID) {
 				$this->moduleID = '404';
+				$this->selectedMenu = NULL;
+				$this->parentMenus = array();
 				/*self::printErrorPage(array(
 					'en' => 'Cannot find requested menu',
 					'ko' => '해당 메뉴를 찾을 수 없습니다'

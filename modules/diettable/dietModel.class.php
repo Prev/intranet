@@ -89,7 +89,7 @@
 
        public function setNowMealBackground($type){
 
-       	$now = strtotime(date("Y-m-d H:i:s"));
+       	$now = time();
             
         $break_start = strtotime(date('Y-m-d').' 00:00:01');
         $break_end = strtotime(date('Y-m-d').' 07:45:00');
@@ -98,6 +98,7 @@
         $snack_end = strtotime(date('Y-m-d').' 21:30:00');
 
         $lunch_start = strtotime(date('Y-m-d').' 12:10:00');
+        $lunch_start2 = strtotime(date('Y-m').'-'.(date('d')+1).' 12:10:00');
         $lunch_end = strtotime(date('Y-m-d').' 13:10:00');
         $dinner_start = strtotime(date('Y-m-d').' 18:20:00');
         $dinner_end = strtotime(date('Y-m-d').' 18:30:00');
@@ -124,7 +125,7 @@
        			break;
 
        			case 'nb':
-       			  if($break_start < $now && $break_end > $now){
+       			  if($snack_end < $now && $lunch_start2 > $now){
 
        					echo "style= 'background-color: rgb(244,219,218);' ";
 

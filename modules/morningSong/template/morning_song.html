@@ -104,7 +104,7 @@
 									<condition do="$song->uploader_id == User::getCurrent()->id">
 										<form action="{getUrl('morningSong', 'procDeleteSong')}" method="POST">
 											<input type="hidden" name="song_id" value="{$song->id}">
-											<button class="delete-button" onclick="if (confirm('정말 삭제하시겠습니까?')) this.form.submit();">
+											<button class="delete-button" onclick="if (confirm('정말 삭제하시겠습니까?')) this.form.submit(); return false;">
 												<span class="hidden">삭제</span>
 											</button>
 										</form>

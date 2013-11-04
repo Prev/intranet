@@ -91,7 +91,7 @@
 	/**
 	 * Define log file's path
 	 */
-	define('LOG_FILE_PATH', (ROOT_DIR . '/files/pmc_error.log'));
+	define('LOG_FILE_PATH', (ROOT_DIR . '/files/intranet_error.log'));
 	
 	
 	/**
