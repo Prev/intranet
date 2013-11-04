@@ -25,11 +25,11 @@
 	-moz-box-shadow: none;
 }
 
-#board-bottom-container{ margin-top: 20px; }
+#board-bottom-container{ margin-top: 10px; }
 
 #board-bottom-container ul{ list-style: none; margin: 0; padding: 0 }
 #board-bottom-container ul li{ margin: 0; padding: 0; margin-right: 20px }
 
 #board-bottom-container .notice{ margin-bottom: 10px; }
-#board-bottom-container .section{ width: 90px; }
+#board-bottom-container .section{ width: 90px; font-weight: bold }
 #board-bottom-container label{ margin-right: 15px; }

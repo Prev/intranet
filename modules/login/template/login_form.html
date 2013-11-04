@@ -1,5 +1,6 @@
 <import path="css/login_form.css">
 <import path="/static/js/placeholder.js">
+<import path="/static/js/encryption/base64.js">
 <import path="/static/js/encryption/rsa.js">
 <import path="/static/js/encryption/md5.js">
 <import path="js/login.js">
@@ -11,19 +12,6 @@
 		<input type="hidden" name="enc_pw">
 		<input type="hidden" name="check_sum">
 		<input type="hidden" name="next" value="{$next}">
-		
-		<condition do="$errorType">
-			<div id="error-message">
-				<condition do="$errorType == 'fail'">
-					<div class="bold">올바르지 않은 아이디 또는 비밀번호입니다.</div>
-					<div>등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.</div>
-				</condition>
-				<condition do="$errorType == 'fail_sec'">
-					<div class="bold">보안로그인에 오류가 발생했습니다.</div>
-					<div>자주 이 메시지가 발생하는 경우에는 "보안로그인"을 해제 한 후 로그인 해 주십시오.</div>
-				</condition>
-			</div>
-		</condition>
 
 		<div id="login-title">
 			<img src="./img/login_title.png" width="198" height="66" alt="로그인">
