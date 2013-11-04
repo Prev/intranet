@@ -1,21 +1,15 @@
 <?php
-
-
-
-	
-
-	class dietModel extends Model{
-		 var $recentMonday;
-		 var $para;
-
 		
-		 
+	/*
+	 * 개발 : 11기 웹프로그래밍과 김도형
+	 */
 
 
+	class DietModel extends Model{
+		var $recentMonday;
+		var $para;
 
 		public function init(){ //이주의 월요일 날짜를 전역변수에 저장한다. 
-
-		
 		
 		$para = $this-> getpara();	
 
@@ -509,7 +503,7 @@
 							echo '<span class = "stars" >★</span> ';
 						}
 						else if($array[$i]->isAllergy == false){
-							echo '<span class = "stars-none" style = "display: none;" >ㅗ</span> ';
+							//echo '<span class = "stars-none" style = "display: none;" >ㅗ</span> ';
 						}
 						
 
@@ -523,7 +517,7 @@
 							echo '<span class = "stars" >★</span> ';
 						}
 						else if($array[$i]->isAllergy == false){
-							echo '<span class = "stars-none" style = "display: none;" >ㅗ</span> ';
+							//echo '<span class = "stars-none" style = "display: none;" >ㅗ</span> ';
 						}
 
 							

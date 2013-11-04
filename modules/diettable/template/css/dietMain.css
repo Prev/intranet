@@ -21,7 +21,7 @@
 #tip #inf-detail { margin-left: 20px; }
 
 #main-table .table-cell { width: 140px; border: 1px solid #C6C6C6; border-right: 0px; margin-top: 10px; position:relative;}
-#main-table .table-cell .special-food { color: #FF00FF; }
+#main-table .table-cell .special-food { color: #ff0080; font-weight: bold }
 #main-table .table-cell .m-event { width: 33px; height: 21px; left: -4px; top: 5px; position: absolute; background: url(res/eventmark1.png); cursor: pointer; }
 #main-table .table-cell .m-eventfood { width: 99px; height: 19px; padding-top: 2px; left: -4px; top: 5px; position: absolute; background: url(res/eventmark2.png); cursor: pointer; display: none; color: white; }
 #main-table .table-cell .stars { display: none; color: red;}

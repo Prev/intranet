@@ -1,4 +1,9 @@
 <?php
+	
+	/*
+	 * 개발 : 11기 웹프로그래밍과 김도형
+	 */
+
 
 	class dietView extends View {
 		
@@ -35,7 +40,7 @@
 
 			if($this -> model -> getpara() == -1){
 				$para = $this -> model -> getpara() +1;
-				echo '<span id="next" onclick = "location.href = \''.getUrlA('para='.$para, REAL_URL).'\'">&gt;</span>';
+				echo '<span id="next" onclick = "location.href = \''.getUrlA('offset='.$para, REAL_URL).'\'">&gt;</span>';
 			}
 
 			else if (!$data || count($data) == 0  ) {
@@ -46,7 +51,7 @@
 
 			else {
 				$para = $this -> model -> getpara() +1;
-				echo '<span id="next" onclick = "location.href = \''.getUrlA('para='.$para, REAL_URL).'\'">&gt;</span>';
+				echo '<span id="next" onclick = "location.href = \''.getUrlA('offset='.$para, REAL_URL).'\'">&gt;</span>';
 			}
 		
 		}
@@ -69,7 +74,7 @@
 			
 			if($this -> model -> getpara() == 1){
 				$para = $this -> model -> getpara() -1;
-				echo '<span id="next" onclick = "location.href = \''.getUrlA('para='.$para, REAL_URL).'\'">&gt;</span>';
+				echo '<span id="next" onclick = "location.href = \''.getUrlA('offset='.$para, REAL_URL).'\'">&gt;</span>';
 			}
 
 			else if (!$data || count($data) == 0) {
@@ -78,7 +83,7 @@
 			
 			else {
 				$para = $this -> model -> getpara() -1;
-				echo '<span id="prev" onclick = "location.href = \''.getUrlA('para='.$para, REAL_URL).'\'"><</span>';
+				echo '<span id="prev" onclick = "location.href = \''.getUrlA('offset='.$para, REAL_URL).'\'"><</span>';
 			}
 
 		}
