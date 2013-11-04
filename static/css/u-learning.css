@@ -1,0 +1,18 @@
+#side-menu #side-menu-top{ background-image: url(../img/u-learning/lnb_top.png) }
+
+#side-menu ul li{ background-image: url(../img/u-learning/lnb_menu.png) }
+
+#side-menu ul li.lnb-sugang{ background-position: 0 0 }
+#side-menu ul li.lnb-sugang:hover{ background-position: -249px 0 }
+#side-menu ul li.lnb-sugang.selected{ background-position: -498px 0 }
+
+#side-menu ul li.lnb-sugang-manage{ background-position: 0 -45px }
+#side-menu ul li.lnb-sugang-manage:hover{ background-position: -249px -45px }
+#side-menu ul li.lnb-sugang-manage.selected{ background-position: -498px -45px }
+
+
+#content-header #content-title{ background-image: url(../img/u-learning/titles.png); background-repeat: no-repeat; }
+#content-header #content-title h1{ visibility: hidden; }
+
+#content-header #content-title.sugang{ height: 23px; background-position: 0px 0px }
+#content-header #content-title.sugang-manage{ height: 23px; background-position: 0px -23px }

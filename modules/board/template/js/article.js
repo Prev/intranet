@@ -105,9 +105,9 @@ window.addEventListener("load", function (e) {
 	commentLists = document.getElementById("comment-list");
 	
 	var replyWrapperEx = document.getElementById("reply-comment-wrap-ex");
+	if (replyWrapperEx)
+		REPLY_COMMENT_INNER_HTML = replyWrapperEx.innerHTML;
 
-	REPLY_COMMENT_INNER_HTML = replyWrapperEx.innerHTML;
-
-
-	document.getElementsByClassName("article-comment-wrap")[0].removeChild(replyWrapperEx);
+	if (document.getElementsByClassName("article-comment-wrap").length > 0)
+		document.getElementsByClassName("article-comment-wrap")[0].removeChild(replyWrapperEx);
 })
