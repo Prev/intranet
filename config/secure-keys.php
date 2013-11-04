@@ -4,8 +4,8 @@
 	 * define login rsa keys (hex)
 	 */
 	define('RSA_PUBLIC_KEY', '10001');
-	define('RSA_PRIVATE_KEY', '3c6c9ac18899b33cdfb03503eb81fc9');
-	define('RSA_MODULUS', '801d5852519f4382e8faa29ae15222d');
+	define('RSA_PRIVATE_KEY', '3600adee74dd40a2832daec21ecec591');
+	define('RSA_MODULUS', '37762c4b414c3150991d8eb2495913e9');
 
 
 	/**

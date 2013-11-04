@@ -10,7 +10,7 @@
 #side-menu ul li.lnb-diet-table:hover{ background-position: -250px -45px }
 #side-menu ul li.lnb-diet-table.selected{ background-position: -500px -45px }
 
-#side-menu ul li.lnb-snack-request{ background-position: 0 -90px }
+/*#side-menu ul li.lnb-snack-request{ background-position: 0 -90px }
 #side-menu ul li.lnb-snack-request:hover{ background-position: -250px -90px }
 #side-menu ul li.lnb-snack-request.selected{ background-position: -500px -90px }
 
@@ -24,11 +24,17 @@
 
 #side-menu ul li.lnb-food-log{ background-position: 0 -225px }
 #side-menu ul li.lnb-food-log:hover{ background-position: -250px -225px }
-#side-menu ul li.lnb-food-log.selected{ background-position: -500px -225px }
+#side-menu ul li.lnb-food-log.selected{ background-position: -500px -225px }*/
 
 #content-header #content-title.cafeteria-notice{
 	height: 23px;
 	background-image: url(../img/cafeteria/title_cafeteria_notice.png);
+	background-repeat: no-repeat;
+}
+
+#content-header #content-title.diet-table{
+	height: 22px;
+	background-image: url(../img/cafeteria/title_diettable.png);
 	background-repeat: no-repeat;
 }
 

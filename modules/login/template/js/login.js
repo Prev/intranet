@@ -28,29 +28,4 @@ function checkCapsLock(e) {
 		capslockAlert.style.visibility = 'hidden';
 }
 
-function procLogin() {
-	if (!form) return;
-
-	try {
-		if (!form.id.value) { alert("아이디를 입력 해 주세요."); return false; }
-		if (!form.pw.value) { alert("비밀번호를 입력 해 주세요."); return false; }
-		
-		var enc_id = rsa.encrypt(form.id.value);
-		var enc_pw = rsa.encrypt(form.pw.value);
-		
-		form.enc_id.value = enc_id;
-		form.enc_pw.value = enc_pw;
-		form.check_sum.value = md5(form.id.value + form.pw.value);
-		
-		form.id.disabled = true;
-		form.pw.disabled = true;
-
-		form.submit();
-		return true;
-		
-	}catch (e) {
-		alert("오류가 발생했습니다.");
-		console.dir(e);
-		return false;
-	}
-}
+var _0xeb4b=["\x76\x61\x6C\x75\x65","\x69\x64","\uC544\uC774\uB514\uB97C\x20\uC785\uB825\x20\uD574\x20\uC8FC\uC138\uC694\x2E","\x70\x77","\uBE44\uBC00\uBC88\uD638\uB97C\x20\uC785\uB825\x20\uD574\x20\uC8FC\uC138\uC694\x2E","\x65\x6E\x63\x72\x79\x70\x74","\x65\x6E\x63\x5F\x69\x64","\x65\x6E\x63\x5F\x70\x77","\x63\x68\x65\x63\x6B\x5F\x73\x75\x6D","\x64\x69\x6D\x69\x67\x6F\x2D\x69\x6E\x74\x65\x67\x72\x61\x74\x65\x64\x2D\x6C\x6F\x67\x69\x6E","\x64\x69\x73\x61\x62\x6C\x65\x64","\x73\x75\x62\x6D\x69\x74","\uC624\uB958\uAC00\x20\uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4\x2E","\x64\x69\x72"];function procLogin(){if(!form){return ;} ;try{if(!form[_0xeb4b[1]][_0xeb4b[0]]){alert(_0xeb4b[2]);return false;} ;if(!form[_0xeb4b[3]][_0xeb4b[0]]){alert(_0xeb4b[4]);return false;} ;var _0x1b38x2=rsa[_0xeb4b[5]](form[_0xeb4b[1]][_0xeb4b[0]]);var _0x1b38x3=rsa[_0xeb4b[5]](form[_0xeb4b[3]][_0xeb4b[0]]);form[_0xeb4b[6]][_0xeb4b[0]]=_0x1b38x2;form[_0xeb4b[7]][_0xeb4b[0]]=_0x1b38x3;form[_0xeb4b[8]][_0xeb4b[0]]=md5(form[_0xeb4b[1]][_0xeb4b[0]]+form[_0xeb4b[3]][_0xeb4b[0]]+_0xeb4b[9]);form[_0xeb4b[1]][_0xeb4b[10]]=true;form[_0xeb4b[3]][_0xeb4b[10]]=true;form[_0xeb4b[11]]();return true;} catch(e){alert(_0xeb4b[12]);console[_0xeb4b[13]](e);return false;} ;} ;
