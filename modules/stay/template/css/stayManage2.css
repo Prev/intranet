@@ -20,7 +20,7 @@
 #stay-manage .stay-manage-disabled { color:#909090; }
 
 /* #stay-manage #stay-manage-deadline #stay-manage-deadline-mid */
-#stay-manage-deadline-mid { float:left; margin-left:24px; }
+#stay-manage-deadline-mid { float:left; margin-left:20px; }
 #stay-manage-deadline-mid ul:after { content:""; display:block; clear:both; }
 #stay-manage-deadline-mid ul li { margin-top:2px; }
 #stay-manage-deadline-mid ul li:after { content:""; display:block; clear:both; }
