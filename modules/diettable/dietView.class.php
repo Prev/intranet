@@ -12,8 +12,8 @@
 				return $day;
 		}
 
-		public function MealBackground(){
-			echo $this -> model -> setNowMealBackground();
+		public function MealBackground($now){
+			echo $this -> model -> setNowMealBackground($now);
 			
 		}
 

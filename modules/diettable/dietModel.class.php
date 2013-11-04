@@ -92,53 +92,134 @@
 
 
 
-       public function setNowMealBackground(){
+
+       public function setNowMealBackground($type){
+
+       	$now = strtotime(date("Y-m-d H:i:s"));
+            
+        $break_start = strtotime(date('Y-m-d').' 00:00:01');
+        $break_end = strtotime(date('Y-m-d').' 07:45:00');
+       
+        $break_start2 = strtotime(date('Y-m-d').' 23:59:59');
+        $snack_end = strtotime(date('Y-m-d').' 21:30:00');
+
+        $lunch_start = strtotime(date('Y-m-d').' 12:10:00');
+        $lunch_end = strtotime(date('Y-m-d').' 13:10:00');
+        $dinner_start = strtotime(date('Y-m-d').' 18:20:00');
+        $dinner_end = strtotime(date('Y-m-d').' 18:30:00');
+        $asdf = strtotime(date('Y-m-d',strtotime("+1 days")).' 00:00:01');
+
+      	
+
+
+
+       $paracon = $this -> controller -> parame;
+
+       if($paracon != null && $paracon != 0){
+
+       }
+       else{
+       	switch ($type) {
+       		    case 'b': //0시 이전에 바꾸기 
+       			
+       				if($snack_end < $now && $break_start2 > $now && $asdf < $now){
+       					echo "style= 'background-color: rgb(244,219,218);' ";
+
+       				}
+
+       			break;
+
+       			case 'nb':
+       			  if($break_start < $now && $break_end > $now){
+
+       					echo "style= 'background-color: rgb(244,219,218);' ";
+
+       				}
+       			break;
+
+
+       			case 'l':
+       			 if($break_end < $now && $lunch_start > $now){
+
+       			 	echo "style= 'background-color: rgb(244,219,218);' ";
+       			 }
+       			break;
+
+       			case 'd':
+       			if($lunch_end < $now && $dinner_start > $now){
+
+       			 	echo "style= 'background-color: rgb(244,219,218);' ";
+       			 }
+       			break;
+
+       			case 's':
+       			 if($dinner_end < $now && $snack_end > $now){
+
+       			 	echo "style= 'background-color: rgb(244,219,218);' ";
+       			 }
+       			break;
+       		
+       		
+       	}
+
+       }
+
+       }
+
+
+
+
+
+       // public function setNowMealBackground(){
 
 	       	
-            $now = strtotime(date("Y-m-d H:i:s"));
+       //      $now = strtotime(date("Y-m-d H:i:s"));
             
-            $break_start = strtotime(date('Y-m-d').'21:31:00');
-            $break_start2 = strtotime(date('Y-m-d').'00:00:00');
-            $break_end = strtotime(date('Y-m-d').'07:50:00');
+       //      $break_start = strtotime(date('Y-m-d').' 00:00:01');
+       //      $break_start2 = strtotime(date('Y-m-d').' 23:59:59');
+       //      $break_end = strtotime(date('Y-m-d').' 07:45:00');
+       //      $break_end2 = strtotime(date('Y-m-d',strtotime("+1 days")).' 07:50:00');
 
-            $lunch_end = strtotime(date('Y-m-d').'01:10:00');
+       //      $lunch_end = strtotime(date('Y-m-d').' 01:10:00');
 
-            $dinner_end = strtotime(date('Y-m-d').'19:20:00');
+       //      $dinner_end = strtotime(date('Y-m-d').' 19:20:00');
 
-            $snack_end = strtotime(date('Y-m-d').'21:30:00');
+       //      $snack_end = strtotime(date('Y-m-d').' 21:30:00');
             
 
-            // var_dump2($break_start2);
-            // var_dump2($break_end);
-            // var_dump2($now);
+       //      // var_dump2($break_start2);
+       //      // var_dump2($break_end);
+       //      // var_dump2($now);
 
 
-            if($break_start < $now && $break_end > $now){
+       //      if($snack_end < $now && $break_start2 > $now){
 
-            	echo "style= 'background-color: magenta;' ";
-
-
-             }
+       //      	echo "style= 'background-color: magenta;' ";
 
 
+       //       }
 
-            if($break_start2 < $now && $break_end > $now){
-
-            	echo "style= 'background-color: magenta;' ";
-
-            }
+       //       if($break_start < $now){
+       //       	echo "style= 'background-color: magenta;' ";
+       //       }
 
 
 
-           if($break_end < $now && $lunch_end > $now ){
 
-            	echo "style= 'background-color: magenta;' ";
-            }
+
+           
+
+
+
+       //     if($break_end < $now && $lunch_end > $now ){
+
+       //      	echo "style= 'background-color: magenta;' ";
+       //      }
 	       	
-	       	if($dinner_end < $now && $break_start > $now ){
+	      //  	if($dinner_end < $now && $break_start > $now ){
 
-            	echo "style= 'background-color: magenta;' ";
-            }
+       //      	echo "style= 'background-color: magenta;' ";
+       //      }
 	       	
 
 	       
@@ -148,7 +229,7 @@
 			
 
 
-       }
+       // }
 
 
     
@@ -428,7 +509,7 @@
 							echo '<span class = "stars" >★</span> ';
 						}
 						else if($array[$i]->isAllergy == false){
-							echo '<span class = "stars" >ㅗ</span> ';
+							echo '<span class = "stars-none" style = "display: none;" >ㅗ</span> ';
 						}
 						
 
@@ -442,7 +523,7 @@
 							echo '<span class = "stars" >★</span> ';
 						}
 						else if($array[$i]->isAllergy == false){
-							echo '<span class = "stars" >ㅗ</span> ';
+							echo '<span class = "stars-none" style = "display: none;" >ㅗ</span> ';
 						}
 
 							
