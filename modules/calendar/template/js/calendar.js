@@ -13,11 +13,12 @@ function initCalendar(){
 	year = date.getFullYear();
 	month = date.getMonth();
 	captionTitle = document.getElementById("calendar-caption-title");
-	calendar = document.getElementById("calendar");
+	calendar = document.getElementById("calendar");ㅣ
 	dayLists = new Array('일','월','화','수','목','금','토');
 	
 	makeCalendar();
 }
+
 function changeCalendar(target){
 	
 	if(captionTitle == null)
