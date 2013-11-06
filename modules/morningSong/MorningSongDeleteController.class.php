@@ -7,7 +7,7 @@
 		public function procDeleteSong() {
 			$this->checkRLS();
 
-			if (User::getCurrent()->id != $this->model->getMorningSongUploaderId($_POST['song_id'])) {
+			if (User::getCurrent()->id != $this->model->getMorningSongUploaderId($_POST['song_id']) && !User::getCurrent()->checkGroup('dormitory_teacher')) {
 				goBack('권한이 없습니다');
 				return;
 			}

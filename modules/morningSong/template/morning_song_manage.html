@@ -156,6 +156,13 @@
 								<input type="hidden" name="song_id" value="">
 								<button class="recommend-button" onclick="confirmSelectSong({$song->id}, this.form); return false;"><span class="hidden">선정</span></button>
 							</form>
+
+							<form action="{getUrl('morningSong', 'procDeleteSong')}" method="POST">
+								<input type="hidden" name="song_id" value="{$song->id}">
+								<button class="delete-button" onclick="if (confirm('정말 삭제하시겠습니까?')) this.form.submit(); return false;">
+									<span class="hidden">삭제</span>
+								</button>
+							</form>
 						</li>
 					</ul>
 				{@ $i++; endforeach; }
