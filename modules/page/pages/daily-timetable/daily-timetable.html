@@ -1,1 +1,28 @@
-<div style="margin: 0 25px">준비중입니다</div>
+<style type="text/css">
+	#body{
+		width: 700px;
+		padding: 25px;
+		padding-top: 0;
+	}
+	#body ul{ margin-left: 30px }
+</style>
+{@
+
+	$rUrl = ROOT_DIR . '/modules/page/pages/daily-timetable/';
+
+	if ($_GET['mod'] == 'sat' && $_GET['grade'] == 2)
+		require $rUrl.'sat-2g.html';
+	else if ($_GET['mod'] == 'sun' && $_GET['grade'] == 2)
+		require $rUrl.'sun-2g.html';
+	else if ($_GET['grade'] == 2)
+		require $rUrl.'default-2g.html';
+
+
+	else if ($_GET['mod'] == 'sat')
+		require $rUrl.'sat.html';
+	else if ($_GET['mod'] == 'sun')
+		require $rUrl.'sun.html';
+	else
+		require $rUrl.'default.html';
+
+@}

@@ -2,12 +2,13 @@
 	"name":"index module",
 	"version":"1.0.0",
 	"author":"prevdev@gmail.com",
-	"controller":"IndexController",
 
 	"actions":[
 		{
 			"name":"dispDefault",
 			"view":"IndexView",
+			"controller":"IndexController",
+			"model":"IndexModel",
 			"default":true
 		}
 	]

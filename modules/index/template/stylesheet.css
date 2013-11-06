@@ -1,0 +1,175 @@
+@charset "utf-8";
+
+#wrap {
+	font-size: 12px;
+	font-family: 나눔고딕, nanumgothic;
+}
+
+#top{
+	margin-bottom: 15px;
+}
+
+#top #calender #calendar-solar{
+	font-size: 23px;
+	font-weight: bold;
+	display: inline-block;
+	*zoom: 1;
+}
+#top #calender #calendar-lunar{
+	color: #616161;
+	margin-left: 3px;
+	display: inline-block;
+	*zoom: 1;
+}
+
+#top #today-song {
+	margin-top: 6px;
+}
+
+#top #today-song h4{
+	display: inline-block;
+	*zoom: 1;
+	margin: 0;
+	padding: 0;
+	margin-right: 5px;
+	font-size: 12px;
+}
+#top #today-song button{
+	width: 17px;
+	height: 17px;
+	border: none;
+	outline: none;
+	background: transparent url(./img/song_controls.png) no-repeat 0 0;
+}
+
+#top #today-song button.playing{
+	background-position: -17px 0;
+}
+
+#main{
+	margin-bottom: 30px;
+}
+
+#main h3{
+	font-size: 15px;
+}
+
+#main .tile{
+	padding: 10px 20px;
+	background-color: white;
+	border: 1px solid #CCC;
+	border-radius: 5px;
+	box-shadow: 1px 0px 4px rgb(215, 215, 215);
+}
+
+#main #weather{
+	width: 438px;
+	height: 115px;
+}
+#main #weather #today,
+#main #weather #tomorrow{
+	width: 210px;
+	margin-top: 10px;
+}
+
+#main #weather h3{
+	margin: 0;
+	padding: 0;
+	font-size: 17px;
+	color: #444;
+	margin-bottom: 8px;
+}
+#main #weather #tomorrow h3{ color: #888 }
+
+#main #weather img{
+	margin-right: 4px;
+}
+
+#main #weather h4{
+	margin: 0;
+	padding: 0;
+	margin-top: 5px;
+	font-size: 15px;
+	color: #444;
+}
+#main #weather strong{
+	display: inline-block;
+	padding-left: 1px;
+	color: #fe5400;
+	*zoom: 1;
+}
+#main #weather .weak{
+	display: inline-block;
+	padding-left: 1px;
+	color: #999;
+	*zoom: 1;
+}
+
+#main #weather .weather-content{
+	border-right: 1px solid #ddd;
+}
+
+#main #meal{
+	width: 510px;
+	height: 115px;
+	padding-left: 0;
+	padding-right: 0;
+	background-color: #fff9c7;
+}
+
+#main #meal h3{
+	padding-left: 18px;
+	margin-top: 2px;
+	margin-bottom: 8px;
+}
+
+#main #meal #meal-content{
+	margin-left: -20px;
+}
+
+#main #meal ul li{
+	padding: 3px 0;
+	border-top: 1px solid #f2ecbd;
+}
+#main #meal ul li.final{ border-bottom: 1px solid #f2ecbd }
+
+#main #meal ul.meal-type{ width: 50px; }
+#main #meal ul.meal-data{ width: 457px; }
+#main #meal div.space{
+	width: 1px;
+	height: 96px;
+	border-top: 1px solid #f2ecbd;
+	border-right: 1px solid #fae0b3;
+	border-left: 1px solid #fae0b3;
+}
+#main #meal ul.meal-type li{ padding: 3px; padding-left: 25px; }
+#main #meal ul.meal-data li{ padding-left: 3px; }
+#main #meal ul li strong{ color: #ec008c; }
+
+
+#main .second-tile{
+	width: 286px;
+	height: 150px;
+	margin-top: 10px;
+}
+
+#main .second-tile ul li{ margin: 4px 0; }
+#main .second-tile ul li .dot{ margin-right: 3px }
+#main .second-tile ul li .article{ width: 200px; overflow: hidden; white-space: nowrap; }
+#main .second-tile ul li .article a{ color: #555; text-decoration: none; }
+#main .second-tile ul li .write-time{ color: #aaa; }
+
+#main #notice-school,
+#main #notice-dormitory{ margin-right: 9px }
+#main #about-intranet{ width: 326px; height: 172px; padding: 0; border: none; }
+
+
+#main .second-tile .board-header{
+	margin-top: 4px;
+	margin-bottom: 10px;
+	padding-bottom: 4px;
+	border-bottom: 1px solid #EEE;
+}
+
+#main .second-tile .board-header h3{ margin: 0; padding: 0 }
+#main .second-tile .board-header a{ color: #999; text-decoration: none }

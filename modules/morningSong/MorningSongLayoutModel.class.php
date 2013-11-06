@@ -89,7 +89,7 @@
 					'morning_song_selected.list_id', '=', 'morning_song_list.id'
 				))
 				->where('morning_song_list.selected_state', 1)
-				->where('morning_song_selected.applying_date', date('Y-m-d', $todayTimeStamp))
+				->where_lt('morning_song_selected.applying_date', date('Y-m-d', $todayTimeStamp))
 				->find_many();
 
 			if ($arr) {

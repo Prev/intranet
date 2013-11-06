@@ -1,4 +1,148 @@
-<div style="padding:100px 0 50px 0; text-align:center">
-	<p style="text-align:center; font-weight:bold; font-size:26px; margin-bottom:10px">디미고 인트라넷에 오신것을 환영합니다.</p>
-	<!--<p style="margin-top:5px; font-size:16px; color:#666">각종 인트라넷 서비스 문의는 본교 IT특성화부에 요청 해주시길 바랍니다.</p>-->
+<import path="stylesheet.css">
+
+<script type="text/javascript">
+	var audio = {@ echo $morningSong->songUrl ? 'new Audio("'.$morningSong->songUrl.'")' : 'null'};
+	var nowPlaying = false;
+	function togglePlayMusic(target) {
+		if (!audio) return;
+
+		if (nowPlaying) {
+			audio.pause();
+			nowPlaying = false;
+			target.className = "";
+		}else {
+			audio.play();
+			nowPlaying = true;
+			target.className = "playing";
+		}
+	}
+</script>
+
+<div id="top" class="clearfix">
+	<div id="calender" class="fl">
+		<div id="calendar-solar">
+			{date('Y')}년&nbsp;{date('m')}월&nbsp;{date('d')}일&nbsp;{$yoil[date('w')]}요일
+		</div>
+		<div id="calendar-lunar">
+			(음)&nbsp;{$lunarDate['month']}.{$lunarDate['day']}
+		</div>
+	</div>
+	<condition do="$morningSong">
+		<div id="today-song" class="fr">
+			<h4>오늘의 기상송</h4>
+			<button onclick="togglePlayMusic(this)"><span class="hidden">재생</span></button>
+			<span>{$morningSong->song_name}</span>
+		</div>
+	</condition>
+</div>
+
+<div id="main" class="clearfix">
+	<div id="weather" class="tile fl clearfix">
+		<div id="today" class="fl">
+			<h3>오늘의 날씨</h3>
+			<div class="weather-content clearfix">
+				<div class="fl">
+					<img src="./img/sun.png">
+				</div>
+				<div class="fl">
+					<h4>{$weather->now->typeKr}</h4>
+					<div>
+						<span>기온</span>
+						<strong>{$weather->now->temperature}&#8451;</strong>
+						<span class="weak">(어제보다&nbsp;{$weather->now->diff}&#8451;)</span>
+					</div>
+					<div>
+						<span>강수확률</span>
+						<span class="weak">{$weather->now->humidity}%</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="tomorrow" class="fr">
+			<h3>내일의 날씨</h3>
+			<div class="clearfix">
+				<div class="fl">
+					<img src="./img/sun.png">
+				</div>
+				<div class="fl">
+					<h4>{$weather->tomorrow->typeKr}</h4>
+					<div>
+						<span>기온</span>
+						<strong>{$weather->tomorrow->temperature}&#8451;</strong>
+						<span class="weak">(어제보다&nbsp;{$weather->tomorrow->diff}&#8451;)</span>
+					</div>
+					<div>
+						<span>강수확률</span>
+						<span class="weak">{$weather->tomorrow->humidity}%</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="meal" class="tile fr">
+		<h3>오늘의 메뉴</h3>
+		<div class="clearfix">
+			<ul class="meal-type fl">
+				<li>아침</li>
+				<li>점심</li>
+				<li>저녁</li>
+				<li class="final">간식</li>
+			</ul>
+			<div class="space fl"></div>
+			<ul class="meal-data fl">
+				<li>{$meals->breakfast}</li>
+				<li>{$meals->lunch}</li>
+				<li>{$meals->dinner}</li>
+				<li class="final">{$meals->snack}</li>
+			</ul>
+		</div>
+	</div>
+	<div class="clearfix">
+		<div id="notice-school" class="tile second-tile fl">
+			<div class="board-header clearfix">
+				<h3 class="fl">학교 공지사항</h3>
+				<span class="fr">
+					<a href="/school-life/school-notice">더보기 &gt;</a>
+				</span>
+			</div>
+			<ul>
+				{@ foreach($noticeArticles as $key => $article) : }
+				<li class="clearfix">
+					<div class="fl dot">·</div>
+					<div class="fl article">
+						<a href="/school-life/school-notice/{$article->no}">{$article->title}</a>
+					</div>
+					<div class="fr write-time">{$article->uploadTime}</div>
+				</li>
+				{@ endforeach; }
+			</ul>
+		</div>
+
+		<div id="notice-dormitory" class="tile second-tile fl">
+			<div class="board-header clearfix">
+				<h3 class="fl">생활관 공지사항</h3>
+				<span class="fr">
+					<a href="/dormitory/dormitory-notice">더보기 &gt;</a>
+				</span>
+			</div>
+			<ul>
+				{@ foreach($dormitoryArticles as $key => $article) : }
+				<li class="clearfix">
+					<div class="fl dot">·</div>
+					<div class="fl article">
+						<a href="/dormitory/dormitory-notice/{$article->no}">{$article->title}</a>
+					</div>
+					<div class="fr write-time">{$article->uploadTime}</div>
+				</li>
+				{@ endforeach; }
+			</ul>
+		</div>
+
+		<div id="about-intranet" class="tile second-tile fr">
+			<a href="http://event.dimigo.us" target="_blank">
+				<img src="./img/about.png" width="326" height="172">
+			</a>
+		</div>
+	</div>
 </div>

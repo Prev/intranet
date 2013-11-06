@@ -49,10 +49,10 @@
 #history-list #song-title{ width: 365px; }
 #history-list #song-applicant{ width: 85px; }
 #history-list #song-request-date{ width: 100px; }
-#history-list #favorite-count{ width: 40px; }
-#history-list #recommend-btns{ width: 110px; }
+#history-list #favorite-count{ width: 42px; }
+#history-list #recommend-btns{ width: 108px; }
 
-#history-list #scroll-box{ height: 268px; margin: 0; padding: 0; overflow:auto; border-bottom: 1px solid #e0e0e0; }
+#history-list #scroll-box{ width: 700px; height: 268px; margin: 0; padding: 0; overflow:auto; border-bottom: 1px solid #e0e0e0; }
 #history-list #scroll-box form{ display: inline; }
 #history-list #scroll-box ul{ border-bottom: 1px solid #e0e0e0; padding: 3px 0px; font-size: 13px; }
 #history-list #scroll-box ul.final{ border-bottom:none; }
