@@ -38,16 +38,17 @@
 			// <title>title</title>
 			$html = preg_replace_callback('`<title>(.*?)</title>`', array($this, 'parseTitle'), $html);
 
+			// {@ PHPCode @}
+			$html = preg_replace_callback('/{@([\s\S]+?)@}/', array($this, 'parseCode'), $html);
 
 			// {# Locale code }
 			// ex) {# 'en'=>'Error on this page', 'ko'=> '이 페이지에 오류가 있습니다' }
 			$html = preg_replace('/{#([\s\S]+?)}/', '{@ echo fetchLocale(array($1)); }', $html);
 			
-			// {@ PHPCode } or {@ PHPCode @}
+			// {@ PHPCode }
 			//$html = preg_replace_callback('/{@((?:[^(?:{@)]|\W)+?)@}/', array($this, 'parseCode'), $html);
-			$html = preg_replace_callback('/{@([\s\S]+?)@}/', array($this, 'parseCode'), $html);
 			$html = preg_replace_callback('/{@([\s\S]+?)}/', array($this, 'parseCode'), $html);
-			
+
 			/*
 			 * {$a} -> <?php echo $__attr->a ( Context::get('a') or View->a ) ?> 
 			 * {&a} -> $__attr->a ( Context::get('a') or View->a )

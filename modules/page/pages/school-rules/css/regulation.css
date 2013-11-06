@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+#container{ width: 700px; margin: 0 25px 25px 25px }
+
+#selet-tapbar {width: 700px; height: 35px; margin-bottom: 41px; border: 1px solid #c6c6c6; background-color: #f2f2f2;}
+#selet-tapbar .regulation-tap {width: 120px; height: 24px; font-size: 11px; color: black; text-align: center; padding-top: 11px; float: left; border-right: 1px solid #c6c6c6;}
+#selet-tapbar #selected-tap {font-weight: bold; background-color: #ffffff;}
+
+#description {margin: 0px 0px 40px 0px; text-align: center;}
+#description #selected-regulation {font-size: 15px; font-weight: bold; margin-bottom: 11px;}
+#description #regulation-introduction {font-size: 11px; margin-bottom: 10px;}
+#description #enhance {font-size: 10px; color: #767570;}
+#description #enhance div {display: inline-block;}
+#description #enhance #enforce-date {width: 146px; border-right: 1px solid #767570;}
+#description #enhance #prev-regulation {width: 100px; border-right: 1px solid #767570; text-align: center;}
+#description #enhance #print-regulation {width: 96px; border-right: 1px solid #767570; text-align: center;}
+#description #enhance #download-regulation {width: 96px; text-align: center;}
+
+#index-container {width: 700px; padding:30px 0px 20px 31px; border-top: 1px solid #bebebe; border-bottom: 1px solid #bebebe;}
+#index-container .index-bundle {width: 335px; font-size: 10px; position: relative; display: inline-block;}
+#index-container .index-bundle .index-pair {margin-bottom: 9px;}
+#index-container .index-bundle .index-pair .index-number {display: inline;}
+#index-container .index-bundle .index-pair .index-title {position: absolute; left: 45px; color: #ff0080; font-weight: bold; display: inline;}
+
+#content {font-size: 11px; line-height: 1.6;}
+#content h3 {font-size: 14px; font-weight: bold; text-align: center; margin: 30px 0px 0px 0px;}
+#content h4 {margin: 30px 0px 10px 0px; font-size: 11px; font-weight: bold;}
+#content ul {padding: 0;}
+#content p {margin: 0;}
+#content ul li ul {padding-left: 20px;}
+#content li {list-style: none;}
+#content li ul {margin-bottom: 8px;}
+#content li ul li {margin: 0;}
+
+table {display: inline-table; border-collapse: collapse; border: 1px solid #E0E0E0;}
+table .header th {background-color: #E5E5E5 !important;}
+table tr th {font-weight: bold;}
+table tr th[rowspan] {background-color: #FAFAFA;}

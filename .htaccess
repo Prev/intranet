@@ -17,6 +17,11 @@ RewriteRule ^([a-zA-Z0-9-_]+)/?$ ./index.php?menu=$1&%{QUERY_STRING} [L,QSA]
 RewriteRule ^([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)/?$ ./index.php?menu1=$1&menu2=$2&%{QUERY_STRING} [L,QSA]
 
 
+# timetable, school rule page html
+RewriteRule ^school-life/daily-timetable/(.+).html$ ./index.php?module=page&page=daily-timetable&file=$1
+RewriteRule ^school-life/school-rules/(.+).html$ ./index.php?module=page&page=school-rules&file=$1
+
+
 # sub-directory php access denied
 RewriteRule ^(.+)/(.+)\.php$ [L,F]
 

@@ -1,0 +1,108 @@
+@charset "utf-8";
+
+#container{
+	width: 700px;
+	margin: 0 25px;
+	font-size: 12px;
+}
+
+#tap {
+	height:35px;
+	border:1px solid #d7d7d7;
+	background-color:#f2f2f2;
+}
+#tap div {
+	width:140px;
+	height:35px;
+	text-align:center;
+	display:inline-block;
+	*zoom: 1;
+}
+#tap div a {
+	padding: 10px 20px;
+	color: black;
+	text-decoration: none;
+	display:inline-block;
+	*zoom: 1;
+}
+#tap .tap_button_on {
+	font-weight:bold;
+	background-color:#FFFFFF;
+}
+#tap .tap_button_off {
+	font-weight:normal;
+}
+#tap .tap_button {
+	margin-left:-4px;
+	border-left:1px solid #d7d7d7;
+	border-right:1px solid #d7d7d7;
+}
+
+#title {
+	margin-top: 30px;
+}
+#title h3 {
+	margin: 0px;
+	margin-bottom: 5px;
+	font-size: 16px;
+}
+#title div span {
+	color: #767570;
+}
+#title div div {
+	display: inline-block;
+	float: right;
+}
+#title div div label {
+	cursor: pointer;
+}
+
+table {
+	margin-top: 30px;
+	border-collapse:collapse;
+}
+table th, table td {
+	height:30px;
+	margin:0px;
+	padding:0px;
+	border:1px solid #c6c6c6;
+	border-collapse:collapse;
+	text-align:center;
+}
+table th {
+	height: 20px !important;
+	background-color: #f2f2f2;
+}
+
+#notice {
+	width: 700px;
+	height: 68px;
+	margin-top: 30px;
+	padding: 20px 0px 20px;
+	border-top: 1px solid #bbb;
+	border-bottom: 1px solid #bbb;
+}
+#notice #notice_left {
+	font-size:13px;
+	font-weight:bold;
+	float:left;
+}
+#notice #notice_right {
+	margin-right: 110px;
+	font-size:12px;
+	float:right;
+}
+#notice #notice_right ul li {
+	margin-bottom:7px;
+	list-style:none;
+}
+
+.clearfix:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.old .clearfix {
+	zoom: 1;
+}

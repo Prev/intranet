@@ -1,1 +1,18 @@
-<div style="margin: 0 25px">준비중입니다</div>
+<import path="./css/regulation.css">
+
+<div id="container">
+	{@
+		if (!isset($_GET['file'])) {
+			redirect(getRealUrl() . '/livingRegulation.html');
+			return;
+		}
+		$rUrl = ROOT_DIR . '/modules/page/pages/school-rules/';
+		$file = basename($_GET['file']);
+		$fileDir = $rUrl . $file . '.html';
+
+		if (is_file($fileDir))
+			require $fileDir;
+		else
+			echo '잘못된 경로입니다.';
+	@}
+</div>

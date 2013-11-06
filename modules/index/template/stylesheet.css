@@ -23,7 +23,7 @@
 }
 
 #top #today-song {
-	margin-top: 6px;
+	margin-top: 8px;
 }
 
 #top #today-song h4{
@@ -40,7 +40,10 @@
 	border: none;
 	outline: none;
 	background: transparent url(./img/song_controls.png) no-repeat 0 0;
+	vertical-align: middle;
 }
+
+#top #today-song button .hidden{ display: none }
 
 #top #today-song button.playing{
 	background-position: -17px 0;
@@ -142,7 +145,7 @@
 	border-right: 1px solid #fae0b3;
 	border-left: 1px solid #fae0b3;
 }
-#main #meal ul.meal-type li{ padding: 3px; padding-left: 25px; }
+#main #meal ul.meal-type li{ padding: 3px; text-align: right; }
 #main #meal ul.meal-data li{ padding-left: 3px; }
 #main #meal ul li strong{ color: #ec008c; }
 
