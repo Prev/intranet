@@ -163,11 +163,13 @@
 										</div>
 											<div>
 											<button class="comment-btn" onclick="this.form.is_secret.disabled = false; this.form.submit(); return false;">
-												<condition do="$comment->is_reply">
-													{# 'en'=>'Modify reply', 'ko'=>'답글수정'}
-												<else>
-													{# 'en'=>'Modify comment', 'ko'=>'댓글수정'}
-												</condition>
+												<span class="hidden">
+													<condition do="$comment->is_reply">
+														{# 'en'=>'Modify reply', 'ko'=>'답글수정'}
+													<else>
+														{# 'en'=>'Modify comment', 'ko'=>'댓글수정'}
+													</condition>
+												</span>
 											</button>
 										</div>
 									</div>
@@ -192,7 +194,7 @@
 							<label for="is_secret">{# 'en'=>'Secret', 'ko'=>'비밀 댓글'}</label>
 						</div>
 						<div>
-							<button class="comment-btn" onclick="if (this.form.comment.value == '') { alert('{# 'en'=>'Input reply', 'ko'=>'답글을 입력 해 주세요'}'); return false; } this.form.is_secret.disabled = false; this.form.submit(); return false;">{# 'en'=>'add reply', 'ko'=>'답글달기'}</button>
+							<button class="comment-btn" onclick="if (this.form.comment.value == '') { alert('{# 'en'=>'Input reply', 'ko'=>'답글을 입력 해 주세요'}'); return false; } this.form.is_secret.disabled = false; this.form.submit(); return false;"><span class="hidden">{# 'en'=>'add reply', 'ko'=>'답글달기'}</span></button>
 						</div>
 					</div>
 				</form>
@@ -218,7 +220,7 @@
 							<label for="is_secret">{# 'en'=>'secret reply', 'ko'=>'비밀 댓글'}</label>
 						</div>
 						<div>
-							<button class="comment-btn" onclick="if (this.form.comment.value == '') { alert('{# 'en'=>'Input comment', 'ko'=>'댓글을 입력 해 주세요'}'); return false; } this.form.submit(); return false;">{# 'en'=>'add comment', 'ko'=>'댓글달기'}</button>
+							<button class="comment-btn" onclick="if (this.form.comment.value == '') { alert('{# 'en'=>'Input comment', 'ko'=>'댓글을 입력 해 주세요'}'); return false; } this.form.submit(); return false;"><span class="hidden">{# 'en'=>'add comment', 'ko'=>'댓글달기'}</span></button>
 						</div>
 					</div>
 				</form>

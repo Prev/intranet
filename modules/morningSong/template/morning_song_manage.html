@@ -27,7 +27,9 @@
 				<condition do="$todaySong_bon">
 					<form action="{getUrl('morningsong', 'procDownloadFile')}" method="POST">
 						<input type="hidden" name="song_id" value="{$todaySong_bon->id}">
-						<button onclick="">다운로드</button>
+						<button onclick="this.form.submit(); return false;" class="download-btn">
+							<span class="hidden">다운로드</span>
+						</button>
 					</form>
 				</condition>
 			</div>
@@ -45,7 +47,9 @@
 				<condition do="$todaySong_hak">
 					<form action="{getUrl('morningsong', 'procDownloadFile')}" method="POST">
 						<input type="hidden" name="song_id" value="{$todaySong_hak->id}">
-						<button onclick="">다운로드</button>
+						<button onclick="this.form.submit(); return false;" class="download-btn">
+							<span class="hidden">다운로드</span>
+						</button>
 					</form>
 				</condition>
 			</div>
@@ -76,7 +80,9 @@
 					</form>
 					<form action="{getUrl('morningsong', 'procDownloadFile')}" method="POST">
 						<input type="hidden" name="song_id" value="{$tomorrowSong_bon->id}">
-						<button onclick="">다운로드</button>
+						<button onclick="this.form.submit(); return false;" class="download-btn">
+							<span class="hidden">다운로드</span>
+						</button>
 					</form>
 				</condition>
 			</div>
@@ -98,7 +104,11 @@
 					</form>
 					<form action="{getUrl('morningsong', 'procDownloadFile')}" method="POST">
 						<input type="hidden" name="song_id" value="{$tomorrowSong_hak->id}">
-						<button onclick="">다운로드</button>
+						<button onclick="this.form.submit(); return false;" class="download-btn">
+							<button onclick="this.form.submit(); return false;" class="download-btn">
+								<span class="hidden">다운로드</span>
+							</button>
+						</button>
 					</form>
 				</condition>
 			</div>
@@ -128,8 +138,15 @@
 				{@ $i=4; foreach($songLists as $key => $song) : }
 					<ul>
 						<input type="checkbox" class="check-box">
-						<button id="play-button-{$i}"  class="history-list-button" onclick="togglePlayMusic({$i})"><span class="hidden">재생</span></button>
-						<li class="song-title">{htmlspecialchars($song->song_name)}</li>
+						<button id="play-button-{$i}" class="history-list-button" onclick="togglePlayMusic({$i})">
+							<span class="hidden">재생</span>
+						</button>
+						<li class="song-title">
+							<span>{htmlspecialchars($song->song_name)}</span>
+							<button onclick="location.href = '{getUrl('morningsong', 'procDownloadFile', 'song_id='.$song->id)}'" class="download-btn">
+								<span class="hidden">다운로드</span>
+							</button>
+						</li>
 						<li class="song-applicant">{$song->user_name}</li>
 						<li class="song-request-date">{getRelativeTime($song->upload_time)}</li>
 						<li class="recommends">{$song->recommend_count}</li>

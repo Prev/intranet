@@ -64,5 +64,7 @@
 #history-list #scroll-box .favorite-count{ width: 40px; text-align: center; padding-top: 3px; }
 #history-list #scroll-box .recommend-btns{ width: 110px; text-align: center; padding: 0px 0px; }
 #history-list #scroll-box .recommend-btns .recommend-button{ height: 19px; width: 32px; padding: 0; margin: 2px 0px 0px 0px; background:transparent url("../img/morning_song_sprite.png") no-repeat 0px 0px; border: none; cursor: pointer; margin-right: 2px }
+#history-list #scroll-box .recommend-btns .recommend-cancel-button{ height: 19px; width: 52px; padding: 0; margin: 2px 0px 0px 0px; background:transparent url("../img/btn_cancel-reccommend.png") no-repeat 0px 0px; border: none; cursor: pointer }
+
 #history-list #scroll-box .recommend-btns .delete-button{ height: 19px; width: 32px; padding: 0; margin: 2px 0px 0px 0px; background:transparent url("../img/morning_song_sprite.png") no-repeat -64px 0px; border: none; cursor: pointer; }
 #history-list #scroll-box #no-song{ text-align: center; padding: 110px 0 }
