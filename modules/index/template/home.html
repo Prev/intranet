@@ -42,10 +42,10 @@
 			<h3>오늘의 날씨</h3>
 			<div class="weather-content clearfix">
 				<div class="fl">
-					<img src="./img/sun.png">
+					<img src="http://openweathermap.org/img/w/{$weather->now->weatherIcon}.png">
 				</div>
 				<div class="fl">
-					<h4>{$weather->now->typeKr}</h4>
+					<h4>{$weather->now->weather}</h4>
 					<div>
 						<span>기온</span>
 						<strong>{$weather->now->temperature}&#8451;</strong>
@@ -62,10 +62,10 @@
 			<h3>내일의 날씨</h3>
 			<div class="clearfix">
 				<div class="fl">
-					<img src="./img/sun.png">
+					<img src="http://openweathermap.org/img/w/{$weather->tomorrow->weatherIcon}.png">
 				</div>
 				<div class="fl">
-					<h4>{$weather->tomorrow->typeKr}</h4>
+					<h4>{$weather->tomorrow->weather}</h4>
 					<div>
 						<span>기온</span>
 						<strong>{$weather->tomorrow->temperature}&#8451;</strong>
@@ -81,7 +81,7 @@
 	</div>
 
 	<div id="meal" class="tile fr">
-		<h3>오늘의 메뉴</h3>
+		<h3>{@ echo (time() > strtotime('21:30:00')) ? '내일' : '오늘';}의 메뉴</h3>
 		<div class="clearfix">
 			<ul class="meal-type fl">
 				<li>아침</li>

@@ -46,9 +46,14 @@
 		}
 
 		public function getMealData() {
+			if (time() > strtotime('21:30:00'))
+				$date = date('Y-m-d', mktime(0,0,0,date('m'),date('d')+1));
+			else
+				$date = date('Y-m-d');
+
 			$arr = DBHandler::for_table('meal_table')
 				->select_many('meal_time', 'meal_json')
-				->where('date', date('Y-m-d'))
+				->where('date', $date)
 				->find_many();
 			
 			$obj = new StdClass();

@@ -28,6 +28,7 @@
 			$separateTime1 = strtotime('07:30:00');
 			$separateTime2 = strtotime('13:10:00');
 			$separateTime3 = strtotime('19:30:00');
+			$separateTime4 = strtotime('21:30:00');
 
 			foreach (array('breakfast', 'lunch', 'dinner', 'snack') as $key => $dish) {
 				if (!$this->meals->{$dish})
@@ -36,7 +37,8 @@
 					($now < $separateTime1 && $dish == 'breakfast') ||
 					($now > $separateTime1 && $now < $separateTime2 && $dish == 'lunch') ||
 					($now > $separateTime2 && $now < $separateTime3 && $dish == 'dinner') ||
-					($now > $separateTime3 && $dish == 'snack')
+					($now > $separateTime3 && $now < $separateTime4 && $dish == 'dinner') ||
+					($now > $separateTime4 && $dish == 'breakfast')
 				)
 				$this->meals->{$dish} = '<strong>'.$this->meals->{$dish}.'</strong>';	
 			}

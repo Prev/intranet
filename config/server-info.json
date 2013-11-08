@@ -30,5 +30,13 @@
 		"session_domain":"lab.prev.kr",
 		"session_uri":"/",
 		"uri":"/intranet"
+	},
+	{
+		"type":"running",
+		"protocol":"https",
+		"host":"intranet.dimigo.hs.kr",
+		"session_domain":".dimigo.hs.kr",
+		"session_uri":"/",
+		"uri":"/"
 	}
 ]

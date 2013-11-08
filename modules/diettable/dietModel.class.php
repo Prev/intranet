@@ -478,19 +478,16 @@
 			else{
 
 
-			//$decode = json_decode($json,true);
-			//$array = $decode['foods'];
-			$array = json_decode($json);
-			
-			//var_dump2($array); // 짜장 라이스 출력 
-
-							
+				//$decode = json_decode($json,true);
+				//$array = $decode['foods'];
+				$array = json_decode($json);
+				
+				//var_dump2($array); // 짜장 라이스 출력 
+								
 				//var_dump2($array[1]->name);
 
-				for($i = 0; $i<1000; $i++){
-
-
-					if($array[$i]->name == null){break;}
+				for ($i = 0; $i<count($array); $i++){
+					if (!$array[$i]->name) continue;
 
 					if($array[$i]->isSpecial == true){ //해당 음식이 스페셜 음식일때 
 
@@ -511,16 +508,14 @@
 					}
 
 					else{
-
-						echo '<br />';
 						echo $array[$i]-> name;
-							if($array[$i]-> isAllergy == true){
+						
+						if ($array[$i]-> isAllergy == true){
 							echo '<span class = "stars" >★</span> ';
-						}
-						else if($array[$i]->isAllergy == false){
+						}else if($array[$i]->isAllergy == false){
 							//echo '<span class = "stars-none" style = "display: none;" >ㅗ</span> ';
 						}
-
+						echo '<br />';
 							
 					}
 

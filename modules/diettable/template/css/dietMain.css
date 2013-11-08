@@ -17,7 +17,7 @@
 #tip { margin-top: 25px; font-size: 11px; }
 #tip #allergy-info { margin-left: 0px; }
 #tip #allergy-mark { cursor: pointer; }
-#tip #allergy-popup { background-color: #FFFFFF; border: 1px solid gray; position: absolute; left: 361px; top: 140px; width: 340px; height: 60px; padding: 12px; display: none;}
+#tip #allergy-popup { background-color: #FFFFFF; border: 1px solid gray; position: absolute; left: 361px; top: 70px; width: 340px; height: 60px; padding: 12px; display: none; z-index:1; }
 #tip #inf-detail { margin-left: 20px; }
 
 #main-table .table-cell { width: 140px; border: 1px solid #C6C6C6; border-right: 0px; margin-top: 10px; position:relative; padding: 5px 0 }
