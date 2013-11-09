@@ -17,6 +17,16 @@
 			$nowData = json_decode($nowData);
 			$tomorrowDate = json_decode($tomorrowDate);
 
+			if (!$nowData->weatherId || !$tomorrowDate->weatherId) {
+				$this->controller->makeWeatherCache(true);
+				
+				$nowData = file_get_contents($this->nowDatFile);
+				$tomorrowDate = file_get_contents($this->tomorrowDatFile);
+				
+				$nowData = json_decode($nowData);
+				$tomorrowDate = json_decode($tomorrowDate);
+			}
+
 			$diff = $nowData->temperature - $tomorrowDate->temperature;
 			$nowData->diff = ($diff >= 0) ? '+'.$diff : (string)$diff;
 			$diff *= -1;

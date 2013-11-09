@@ -1,0 +1,12 @@
+{	
+	"name":"credit module",
+
+	"actions":[
+		{
+			"name":"dispDefault",
+			"view":"CreditView",
+			"layout":"blank",
+			"default":true
+		}
+	]
+}

@@ -2,15 +2,15 @@
 	
 	class IndexController extends Controller {
 
-		public function makeWeatherCache() {
-			if (!is_file($this->model->nowDatFile) || (time() - filemtime($this->model->nowDatFile)) > 3600) {
+		public function makeWeatherCache($updateByForce = false) {
+			if ($updateByForce || !is_file($this->model->nowDatFile) || (time() - filemtime($this->model->nowDatFile)) > 3600) {
 				$data = getUrlData('http://api.openweathermap.org/data/2.5/weather?q=seoul,kr');
 				$data = json_decode($data);
 				
 				$this->makeWeatherCacheFile($data, $this->model->nowDatFile);
 			}
 
-			if (!is_file($this->model->tomorrowDatFile) ||  date('Y-m-d', filemtime($this->model->tomorrowDatFile)) != date('Y-m-d')) {
+			if ($updateByForce || !is_file($this->model->tomorrowDatFile) ||  date('Y-m-d', filemtime($this->model->tomorrowDatFile)) != date('Y-m-d')) {
 				$data = getUrlData('http://api.openweathermap.org/data/2.5/forecast?q=seoul,kr');
 				$data = json_decode($data);
 				
@@ -50,7 +50,7 @@
 			else if ($obj->weatherId == 803 || $obj->weatherId == 804)
 				$obj->weather = '먹구름';
 			else
-				$obj->weather = '??';
+				$obj->weather = $data->weather[0]->main;
 
 			$fp = fopen($fileName, 'w');
 			fwrite($fp, json_encode($obj));

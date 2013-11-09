@@ -1,0 +1,326 @@
+<import path="stylesheet.css">
+<import path="favicon.ico">
+
+<import path="/static/js/jQuery.js">
+<import path="./js/credit.js" position="body-bottom">
+<import path="./js/three.min.js" position="body-bottom">
+<import path="./js/stats.min.js" position="body-bottom">
+<import path="./js/tween.min.js" position="body-bottom">
+<import path="./js/Sparks.js" position="body-bottom">
+<import path="./js/helvetiker_regular.typeface.js" position="body-bottom">
+
+<title>Dimigo SHIFT Credit</title>
+
+<div id="tile-frame">
+	<div id="tile-box">
+		<div class="tile-line clearfix">
+			<div class="tiles"><div id="t-1-1-top"></div></div>
+			<div class="tiles"><div id="t-1-2"></div></div>
+			<div class="tiles"><div id="t-1-3"></div></div>
+			<div class="tiles"><div id="t-1-4"></div></div>
+			<div class="tiles">
+				<div id="tile-admin"></div>
+			</div>
+			<div class="tiles"><div id="t-1-5"></div></div>
+			<div class="tiles"><div id="t-1-7"></div></div>
+			<div class="tiles"><div id="t-1-8"></div></div>
+		</div>
+		<div class="tile-line clearfix">
+			<div class="tiles"><div id="t-2-1"></div></div>
+			<div class="tiles"><div id="t-2-2"></div></div>
+			<div class="tiles">
+				<div id="tile-player"></div>
+			</div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"><div id="t-2-7"></div></div>
+			<div class="tiles"><div id="t-2-8"></div></div>
+		</div>
+		<div class="tile-line clearfix">
+			<div class="tiles"><div id="t-3-1"></div></div>
+			<div class="tiles">
+				<div id="tile-app"></div>
+			</div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles">
+				<div id="t-3-7-top"></div>
+				<div id="t-3-7-rig"></div>
+				<div id="t-3-7-bot"></div>
+				<div id="t-3-7-lef"></div>
+			</div>
+			<div class="tiles"><div id="t-3-8"></div></div>
+		</div>
+		<div class="tile-line clearfix">
+			<div class="tiles"><div id="t-4-1"></div></div>
+			<div class="tiles"><div id="t-4-2"></div></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"><div id="t-4-7"></div></div>
+			<div class="tiles"><div id="t-4-8"></div></div>
+		</div>
+		<div class="tile-line clearfix">
+			<div class="tiles"><div id="t-5-1"></div></div>
+			<div class="tiles"><div id="t-5-2"></div></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles">
+				<div id="tile-tablet"></div>
+				<div id="t-5-7"></div>
+			</div>
+			<div class="tiles"><div id="t-5-8"></div></div>
+		</div>
+		<div class="tile-line clearfix">
+			<div class="tiles"><div id="t-6-1"></div></div>
+			<div class="tiles"><div id="t-6-2"></div></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"><div id="t-6-7"></div></div>
+			<div class="tiles"><div id="t-6-8"></div></div>
+		</div>
+		<div class="tile-line clearfix">
+			<div class="tiles">
+				<div id="t-7-1"></div>
+			</div>
+			<div class="tiles long-tiles">
+				<div id="t-7-2"></div>
+			</div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"><div id="t-7-7"></div></div>
+			<div class="tiles"><div id="t-7-8"></div></div>
+		</div>
+		<div class="tile-line clearfix">
+			<div class="tiles"><div id="t-8-1"></div></div>
+			<div class="tiles"><div id="t-8-2"></div></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"><div id="t-8-7"></div></div>
+			<div class="tiles"><div id="t-8-8"></div></div>
+		</div>
+		<div class="tile-line clearfix">
+			<div class="tiles"><div id="t-9-1"></div></div>
+			<div class="tiles"><div id="t-9-2"></div></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles">
+				<div id="t-9-7"></div>
+			</div>
+			<div class="tiles"><div id="t-9-8"></div></div>
+		</div>
+		<div class="tile-line clearfix">
+			<div class="tiles long-tiles">
+				<div id="t-10-1"></div>
+			</div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"><div id="t-10-7"></div></div>
+			<div class="tiles"><div id="t-10-8"></div></div>
+		</div>
+		<div class="tile-line clearfix">
+			<div class="tiles"><div id="t-11-1"></div></div>
+			<div class="tiles"><div id="t-11-2"></div></div>
+			<div class="tiles"><div id="t-11-3"></div></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"><div id="t-11-7"></div></div>
+			<div class="tiles"><div id="t-11-8"></div></div>
+		</div>
+		<div class="tile-line clearfix">
+			<div class="tiles"><div id="t-12-1"></div></div>
+			<div class="tiles"><div id="t-12-2"></div></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"><div id="t-12-7-top"></div></div>
+			<div class="tiles"><div id="t-12-8"></div></div>
+		</div>
+		<div class="tile-line clearfix">
+			<div class="tiles"><div id="t-13-1"></div></div>
+			<div class="tiles"><div id="t-13-2"></div></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"><div id="t-13-7"></div></div>
+			<div class="tiles"><div id="t-13-8"></div></div>
+		</div>
+		<div class="tile-line clearfix">
+			<div class="tiles"><div id="t-14-1"></div></div>
+			<div class="tiles"><div id="t-14-2"></div></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"><div id="t-14-7"></div></div>
+			<div class="tiles"><div id="t-14-8"></div></div>
+		</div>
+		<div class="tile-line clearfix">
+			<div class="tiles"><div id="t-15-1"></div></div>
+			<div class="tiles"><div id="t-15-2"></div></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"></div>
+			<div class="tiles"><div id="t-15-7"></div></div>
+			<div class="tiles"><div id="t-15-8"></div></div>
+		</div>
+	</div>
+</div>
+<div id="contain">
+	<div class="team">
+		<div class="title">프로젝트 진행 총괄</div>
+		<div class="member clearfix"><div class="position">프로젝트 매니저</div><div class="name">오찬영</div></div>
+		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영</div></div>
+		<div class="member clearfix"><div class="position">개발 총괄</div><div class="name">한수훈, 이영수</div></div>
+		<div class="member clearfix"><div class="position">디자인 총괄</div><div class="name">오찬영</div></div>
+		<div class="member clearfix"><div class="position">지도교사</div><div class="name">정희범 선생님, <span id="yeosu">박성수 선생님</span></div></div>
+	</div>
+	<div class="team">
+		<div class="title">대외용 PC웹</div>
+		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영, 정희범 선생님</div></div>
+		<div class="member clearfix"><div class="position">개발</div><div class="name">한수훈, 김재원</div></div>
+		<div class="member clearfix"><div class="position">디자인</div><div class="name">지주희</div></div>
+	</div>
+	<div class="team">
+		<div class="title">대외용 모바일웹</div>
+		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영, 정희범 선생님</div></div>
+		<div class="member clearfix"><div class="position">개발</div><div class="name">한수훈, 강성일, 한바환</div></div>
+		<div class="member clearfix"><div class="position">디자인</div><div class="name">오찬영, 박채영, 김기윤</div></div>
+	</div>
+	<div class="team">
+		<div class="title">인트라넷</div>
+		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영</div></div>
+		<div class="member clearfix"><div class="position">DB 설계</div><div class="name">이영수</div></div>
+		<div class="member clearfix"><div class="position">서버 지원</div><div class="name">박성수 선생님, 한수훈</div></div>
+		<div class="member clearfix"><div class="position">API 개발</div><div class="name">강성일</div></div>
+		<div class="member clearfix"><div class="position">프론트엔드 개발</div><div class="name">이강원, 안병찬</div></div>
+		<div class="member clearfix"><div class="position">백엔드 개발</div><div class="name">이영수, 한수훈, 강성일, 김재원, 안병찬</div></div>
+		<div class="member clearfix"><div class="position">Notification 개발</div><div class="name">강성일, 정성민</div></div>
+		<div class="member clearfix"><div class="position">UX 설계/UI 디자인</div><div class="name">오찬영</div></div>
+		<div class="member clearfix"><div class="position">일러스트</div><div class="name">고수영</div></div>
+		<div class="member clearfix"><div class="position">보안 지원</div><div class="name">윤건영</div></div>
+	</div>
+	<div class="team-cancelled">
+		<div class="title">인트라넷 모바일웹</div>
+		<div class="removed-mark removed-mark1"></div>
+		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영</div></div>
+		<div class="member clearfix"><div class="position">개발</div><div class="name">이강원</div></div>
+		<div class="member clearfix"><div class="position">디자인</div><div class="name">오찬영, 박채영</div></div>
+	</div>
+	<div class="team-cancelled">
+		<div class="title">인트라넷 모바일 애플리케이션</div>
+		<div class="removed-mark removed-mark2"></div>			
+		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영</div></div>
+		<div class="member clearfix"><div class="position">개발</div><div class="name">정성민, 강성일</div></div>
+		<div class="member clearfix"><div class="position">디자인</div><div class="name">지주희, 오찬영</div></div>
+	</div>
+	<div class="team">
+		<div class="title">통합 회원가입</div>
+		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영</div></div>
+		<div class="member clearfix"><div class="position">개발</div><div class="name">한수훈, 이영수, 김재원, 이강원, 안병찬</div></div>
+		<div class="member clearfix"><div class="position">디자인</div><div class="name">오찬영, 지주희</div></div>
+		<div class="member clearfix"><div class="position">일러스트</div><div class="name">고수영</div></div>
+	</div>
+	<div class="team-cancelled">
+		<div class="title">디미고 내정보</div>
+		<div class="removed-mark removed-mark3"></div>
+		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영</div></div>
+		<div class="member clearfix"><div class="position">개발</div><div class="name">김재원, 이영수, 한수훈, 강성일</div></div>
+		<div class="member clearfix"><div class="position">디자인</div><div class="name">박채영, 오찬영</div></div>
+	</div>
+	<div class="team-cancelled">
+		<div class="title">웹하드</div>
+		<div class="removed-mark removed-mark4"></div>
+		<div class="member clearfix"><div class="position">기획</div><div class="name">강성일</div></div>
+		<div class="member clearfix"><div class="position">개발</div><div class="name">강성일</div></div>
+		<div class="member clearfix"><div class="position">디자인</div><div class="name">Synergy Design Commucations</div></div>
+	</div>
+	<div class="team-cancelled">
+		<div class="title">급식 시스템 개발</div>
+		<div class="removed-mark removed-mark5"></div>
+		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영, 이수호</div></div>
+		<div class="member clearfix"><div class="position">개발</div><div class="name">이수호</div></div>
+		<div class="member clearfix"><div class="position">디자인</div><div class="name">박채영, 김정연, 오찬영</div></div>
+		<div class="member clearfix"><div class="position">협조</div><div class="name">(주)ARAKOR</div></div>
+	</div>
+	<div class="team-cancelled">
+		<div class="title">외출/택배 시스템 개발</div>
+		<div class="removed-mark removed-mark6"></div>
+		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영, 이수호</div></div>
+		<div class="member clearfix"><div class="position">개발</div><div class="name">이수호</div></div>
+		<div class="member clearfix"><div class="position">디자인</div><div class="name">박채영, 김정연, 오찬영</div></div>
+		<div class="member clearfix"><div class="position">협조</div><div class="name">JnJ Communcations</div></div>
+	</div>
+	<div class="team">
+		<div class="title">미디어팀</div>
+		<div class="member clearfix"><div class="position">총괄</div><div class="name">윤두원</div></div>
+		<div class="member clearfix"><div class="position">연출</div><div class="name">윤두원, 오찬영</div></div>
+		<div class="member clearfix"><div class="position">촬영</div><div class="name">윤두원, 오찬영</div></div>
+		<div class="member clearfix"><div class="position">2D Graphics</div><div class="name">권주오</div></div>
+		<div class="member clearfix"><div class="position">성우</div><div class="name">이은숙 선생님</div></div>
+		<div class="member clearfix"><div class="position">녹음</div><div class="name">서윤호 선생님</div></div>
+		<div class="member clearfix"><div class="position">음악</div><div class="name">구본욱, 서윤호 선생님</div></div>
+		<div class="member clearfix multi-line"><div class="position">장비지원</div><div class="name">한국디지털미디어고등학교 e-learning 스튜디오(정희범 선생님)</div></div>
+		<div class="member clearfix multi-line"><div class="position"></div><div class="name">김태철 선생님</div></div>
+		<div class="member clearfix multi-line"><div class="position"></div><div class="name">함지연 선생님</div></div>
+		<div class="member clearfix multi-line"><div class="position"></div><div class="name">송인우 선생님</div></div>
+		<div class="member clearfix multi-line"><div class="position">출연</div><div class="name">함지연 선생님, 고수영, 박채영, 김정연, 정성민, 강성일, 구본욱,</div></div>
+		<div class="member clearfix multi-line"><div class="position"></div><div class="name">지주희, 이수호, 오찬영, 한바환, 한수훈, 김성록, 이영빈, 김석주,</div></div>
+		<div class="member clearfix multi-line"><div class="position"></div><div class="name">차주영, 김진종, 김근영, 채린, 곽헌우, 이진혁, 전태종, 전덕하,</div></div>
+		<div class="member clearfix multi-line"><div class="position"></div><div class="name">이태수, 서영호, 유재범, 최규원, 박소현, 김가영, 권주오, 김종호,</div></div>
+		<div class="member clearfix multi-line"><div class="position"></div><div class="name">김다연, 권주오, 김종호, 김다연, 류재철, 박남수, 백미경, 김지완,</div></div>
+		<div class="member clearfix multi-line"><div class="position"></div><div class="name">김재원, 안병찬, 이강원, 이영수</div></div>
+	</div>
+	<div class="team">
+		<div class="title">Special thanks to</div>
+		<div class="member clearfix member-center">박주현 교감선생님</div>
+		<div class="member clearfix member-center">정희범 선생님</div>
+		<div class="member clearfix member-center">임재훈 선생님</div>
+		<div class="member clearfix member-center">김혁준 선생님</div>
+		<div class="member clearfix member-center">서윤호 선생님</div>
+		<div class="member clearfix member-center">이민주 선생님</div>
+		<div class="member clearfix member-center"></div>
+		<div class="member clearfix member-center">한국디지털미디어고등학교 생활관</div>
+		<div class="member clearfix member-center">한국디지털미디어고등학교 IT특성화부</div>
+		<div class="member clearfix member-center">한국디지털미디어고등학교 학생지원부</div>
+		<div class="member clearfix member-center"></div>
+		<div class="member clearfix member-center">윤건영</div>
+		<div class="member clearfix member-center">이기호</div>
+		<div class="member clearfix member-center">김도형</div>
+		<div class="member clearfix member-center">김동현</div>
+		<div class="member clearfix logo logo1">
+			<ul class="logo-box">
+				<li><div id="synergy"></div></li>
+				<li><div id="parameter"></div></li>
+				<li class="final"><div id="arakor"></div></li>
+			</ul>
+		</div>
+		<div class="member clearfix logo logo2">
+			<ul class="logo-box" style="width:320px;">
+				<li><div id="dimigo" style=""></div></li>
+				<li class="final"><div id="youknow-ent">유노엔터테인먼트</div></li>
+			</ul>
+		</div>
+	</div>
+	<div class="member clearfix member-center">그리고 프로젝트 진행에 도움을 주시고 응원을 보내주신 모든 분들</div>
+	<div id="footer">Copyright &copy; Korea Digital Media High School. All rights reserved.</div>
+</div>

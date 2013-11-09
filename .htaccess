@@ -5,8 +5,9 @@ RewriteEngine On
 RewriteRule ^sso-server/index.php$ - [L]
 RewriteRule ^sso-server/?$ - [L]
 
-# login module short url
+# login, credit module short url
 RewriteRule ^login(\/?)$ ./index.php?module=login&action=dispLoginPage&%{QUERY_STRING} [L,QSA]
+RewriteRule ^credit(\/?)$ ./index.php?module=credit&%{QUERY_STRING} [L,QSA]
 
 # board acticle short url
 RewriteRule ^([0-9]+)/?$ ./index.php?module=board&action=dispArticle&article_no=$1&%{QUERY_STRING} [L,QSA]

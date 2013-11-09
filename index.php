@@ -18,7 +18,7 @@
 	$oContext->init(getDBInfo());
 	
 	if ($oContext->checkSSO()) {
-		if (!User::getCurrent() && $oContext->moduleID != 'login')
+		if (!User::getCurrent() && $oContext->moduleID != 'login' && $oContext->moduleID != 'credit')
 			goLogin();
 
 		ModuleHandler::initModule($oContext->moduleID, $oContext->moduleAction);
