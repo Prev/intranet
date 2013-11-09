@@ -10,7 +10,7 @@
 				$this->makeWeatherCacheFile($data, $this->model->nowDatFile);
 			}
 
-			if ($updateByForce || !is_file($this->model->tomorrowDatFile) ||  date('Y-m-d', filemtime($this->model->tomorrowDatFile)) != date('Y-m-d')) {
+			if ($updateByForce || !is_file($this->model->tomorrowDatFile) || (time() - filemtime($this->model->tomorrowDatFile)) > 7200 || date('Y-m-d', filemtime($this->model->tomorrowDatFile)) != date('Y-m-d')) {
 				$data = getUrlData('http://api.openweathermap.org/data/2.5/forecast?q=seoul,kr');
 				$data = json_decode($data);
 				
