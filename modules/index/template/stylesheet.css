@@ -103,7 +103,7 @@
 }
 #main #weather .weak{
 	display: inline-block;
-	padding-left: 1px;
+	padding-left: 2px;
 	color: #999;
 	*zoom: 1;
 }

@@ -39,6 +39,7 @@
 #main-content-options ul:after { content:""; display:block; clear:both; }
 #main-content-options ul li { float:left; padding:0px 7px; list-style:none; }
 #main-content-options ul li.grade-title{ margin-top:2px }
+#main-content-options input{ margin-right: 2px; }
 
 /* #wrap #main-content #main-content-se-btn-container */
 #main-content-se-btn-container{ margin:17px 0 23px 0 }

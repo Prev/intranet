@@ -9,7 +9,7 @@ window.addEventListener("load", function () {
 	librarySeatCode = document.getElementById("library-seat-wrap").innerHTML;
 	document.getElementById("library-seat-wrap").innerHTML = "";
 
-	//initLibrarySeat();
+	initLibrarySeat();
 });
 
 function initLibrarySeat() {
