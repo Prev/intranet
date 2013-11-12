@@ -39,6 +39,7 @@
 	height: 17px;
 	border: none;
 	outline: none;
+	margin-right: 2px;
 	background: transparent url(./img/song_controls.png) no-repeat 0 0;
 	vertical-align: middle;
 }
@@ -85,7 +86,8 @@
 #main #weather #tomorrow h3{ color: #888 }
 
 #main #weather img{
-	margin-right: 4px;
+	margin-right: 6px;
+	margin-top: 4px;
 }
 
 #main #weather h4{

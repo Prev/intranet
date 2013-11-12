@@ -9,15 +9,10 @@
 #description {margin: 0px 0px 40px 0px; text-align: center;}
 #description #selected-regulation {font-size: 15px; font-weight: bold; margin-bottom: 11px;}
 #description #regulation-introduction {font-size: 11px; margin-bottom: 10px;}
-#description #enhance {font-size: 10px; color: #767570;}
-#description #enhance div {display: inline-block;}
-#description #enhance #enforce-date {width: 146px; border-right: 1px solid #767570;}
-#description #enhance #prev-regulation {width: 100px; border-right: 1px solid #767570; text-align: center;}
-#description #enhance #print-regulation {width: 96px; border-right: 1px solid #767570; text-align: center;}
-#description #enhance #download-regulation {width: 96px; text-align: center;}
+#description #enforcement-date {font-size: 11px; color: #767570;}
 
 #index-container {width: 700px; padding:30px 0px 20px 31px; border-top: 1px solid #bebebe; border-bottom: 1px solid #bebebe;}
-#index-container .index-bundle {width: 335px; font-size: 10px; position: relative; display: inline-block;}
+#index-container .index-bundle {width: 335px; font-size: 11px; position: relative; display: inline-block;}
 #index-container .index-bundle .index-pair {margin-bottom: 9px;}
 #index-container .index-bundle .index-pair .index-number {display: inline;}
 #index-container .index-bundle .index-pair .index-title {position: absolute; left: 45px; color: #ff0080; font-weight: bold; display: inline;}
@@ -27,6 +22,7 @@
 #content h4 {margin: 30px 0px 10px 0px; font-size: 11px; font-weight: bold;}
 #content ul {padding: 0;}
 #content p {margin: 0;}
+#content a{color: #ff0080;}
 #content ul li ul {padding-left: 20px;}
 #content li {list-style: none;}
 #content li ul {margin-bottom: 8px;}
