@@ -8,8 +8,8 @@
 
 #tap {
 	height:35px;
-	border:1px solid #d7d7d7;
-	background-color:#f2f2f2;
+	border:1px solid #cccccc;
+	background-color:#eeeeee;
 }
 #tap div {
 	width:140px;
@@ -28,14 +28,15 @@
 #tap .tap_button_on {
 	font-weight:bold;
 	background-color:#FFFFFF;
+	border-bottom: 1px solid #ffffff !important;
 }
 #tap .tap_button_off {
 	font-weight:normal;
 }
 #tap .tap_button {
 	margin-left:-4px;
-	border-left:1px solid #d7d7d7;
-	border-right:1px solid #d7d7d7;
+	border-left:1px solid #cccccc;
+	border-right:1px solid #cccccc;
 }
 
 #title {
@@ -59,6 +60,7 @@
 
 table {
 	margin-top: 30px;
+	margin-bottom: 25px;
 	border-collapse:collapse;
 }
 table th, table td {
@@ -71,13 +73,14 @@ table th, table td {
 }
 table th {
 	height: 20px !important;
-	background-color: #f2f2f2;
+	background-color: #eeeeee;
 }
 
 #notice {
 	width: 700px;
 	height: 68px;
 	margin-top: 30px;
+	margin-bottom: 25px;
 	padding: 20px 0px 20px;
 	border-top: 1px solid #bbb;
 	border-bottom: 1px solid #bbb;

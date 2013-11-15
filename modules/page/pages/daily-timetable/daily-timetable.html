@@ -1,9 +1,12 @@
 <import path="./css/daily-timetable.css">
 
 <div id="container">
-	{@
+	<?php
+		$grade = User::getCurrent()->grade;
+		$g2 = $grade ? '_'.$grade : '';
+
 		if (!isset($_GET['file'])) {
-			redirect(getRealUrl() . '/timetable.html');
+			redirect(getRealUrl() . '/timetable'.$g2.'.html');
 			return;
 		}
 		$rUrl = ROOT_DIR . '/modules/page/pages/daily-timetable/';
@@ -14,5 +17,5 @@
 			require $fileDir;
 		else
 			echo '잘못된 경로입니다.';
-	@}
+	?>
 </div>

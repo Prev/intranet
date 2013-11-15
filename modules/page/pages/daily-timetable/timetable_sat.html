@@ -8,11 +8,13 @@
 	<h3>토요일 중 일과 시간표</h3>
 	<div class="clearfix">
 		<span>토요일 중 학생 일과 시간표입니다. (2013년 3월 4일부터 적용)</span>
+		<?php if ($grade) { ?>
 		<div>
-						<label>
-				<input type="checkbox" onclick="location.href='timetable_sat_1.html'" /> 1학년 시간표만 보기
+			<label>
+				<input type="checkbox" onclick="location.href='timetable_sat_<?php echo $grade; ?>.html'" /> <?php echo $grade; ?>학년 시간표만 보기
 			</label>
-					</div>
+		</div>
+		<?php } ?>
 	</div>
 </div>
 

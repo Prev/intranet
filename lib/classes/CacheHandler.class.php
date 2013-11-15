@@ -40,7 +40,7 @@
 		 *
 		 * @param $filePath is like '/layouts/default/layout.html'
 		 */
-		static public function execTemplate($filePath, $module=NULL) {
+		static public function execTemplate($filePath, $module=NULL, $zipBlank=true) {
 			if (substr($filePath, 0, strlen(ROOT_DIR)) == ROOT_DIR) $filePath = substr($filePath, strlen(ROOT_DIR));
 			if (substr($filePath, 0, 1) != '/') $filePath = '/' . $filePath;
 			
@@ -75,7 +75,8 @@
 				$content = TemplateHandler::compileTemplate(
 					file_get_contents(ROOT_DIR . $filePath),
 					$module,
-					$relativePath
+					$relativePath,
+					$zipBlank
 				);
 				self::makeTemplateCache(
 					$filePath,

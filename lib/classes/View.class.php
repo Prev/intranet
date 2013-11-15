@@ -20,7 +20,7 @@
 			$this->controller = $controller;
 		}
 		
-		public function execTemplate($templateName) {
+		public function execTemplate($templateName, $zipBlank=true) {
 			if (substr($templateName, strlen($templateName)-5, 5) != '.html')
 				$templateName .= '.html';
 			
@@ -44,7 +44,7 @@
 				(substr($templateName, 0, 1) == '/') ?
 					ROOT_DIR . $templateName :
 					$moduledir . '/template/' . $templateName
-			, $this->module);
+			, $this->module, $zipBlank);
 			
 		}
 	}

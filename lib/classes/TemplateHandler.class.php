@@ -15,12 +15,11 @@
 		private $relativePath;
 		private static $instance;
 
-
-		public static function compileTemplate($html, $module=NULL, $relativePath='/') {
+		public static function compileTemplate($html, $module=NULL, $relativePath='/', $zipBlank=true) {
 			if (!self::$instance) self::$instance = new TemplateHandler();
-			return self::$instance->_compileTemplate($html, $module, $relativePath);
+			return self::$instance->_compileTemplate($html, $module, $relativePath, $zipBlank);
 		}
-		private function _compileTemplate($html, $module=NULL, $relativePath='/') {
+		private function _compileTemplate($html, $module=NULL, $relativePath='/', $zipBlank=true) {
 			$this->module = $module;
 			$this->relativePath = $relativePath;
 			
@@ -118,7 +117,7 @@
 			
 			//$html = join('::$', explode('::$__attr->', $html));
 
-			if (ZIP_BLANK) $html = $this->deleteWhiteSpace($html);
+			if (ZIP_BLANK && $zipBlank) $html = $this->deleteWhiteSpace($html);
 			return $html;
 		}
 		
