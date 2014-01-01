@@ -1,16 +1,16 @@
 <import path="css/login_form.css">
 <import path="/static/js/placeholder.js">
-<import path="/static/js/encryption/base64.js">
-<import path="/static/js/encryption/rsa.js">
-<import path="/static/js/encryption/md5.js">
+#<import path="/static/js/encryption/base64.js">
+#<import path="/static/js/encryption/rsa.js">
+#<import path="/static/js/encryption/md5.js">
 <import path="js/login.js">
-<script type="text/javascript">var rsaKeys = {publicKey:"{$rsaKeys->publicKey}", modulus:"{$rsaKeys->modulus}"}</script>
-
+/*<script type="text/javascript">var rsaKeys = {publicKey:"{$rsaKeys->publicKey}", modulus:"{$rsaKeys->modulus}"}</script>
+*/
 <div id="login-wrap">
-	<form name="login_form" method="post" action="{getUrl('login', 'procSecureLogin', 'next='.RELATIVE_URL, ACCOUNT_SERVER_URL)}" onsubmit="return procLogin()">
-		<input type="hidden" name="enc_id">
+	<form name="login_form" method="post" action="{getUrl('login', 'procLogin', 'next='.RELATIVE_URL, ACCOUNT_SERVER_URL)}" onsubmit="return procLogin()">
+		/*<input type="hidden" name="enc_id">
 		<input type="hidden" name="enc_pw">
-		<input type="hidden" name="check_sum">
+		<input type="hidden" name="check_sum">*/
 		<input type="hidden" name="next" value="{$next}">
 
 		<div id="login-title">
@@ -58,10 +58,4 @@
 			<a href="http://dimigo.hs.kr">본교 홈페이지 바로가기</a>
 		</div>
 	</form>
-	<!--*개발팀 임시 아이디/비밀번호 :<br>
-	학생 계정 : tester_s(1-1), tester_s2(2-1), tester_3(3-1)<br>
-	교사 계정 : tester_t(2-4 담임), tester_t2(생활관 부장), tester_t3(교장)<br>
-	학부모 계정 : tester_p<br>
-	<br>
-	일괄 비밀번호 : 1234 -->
 </div>

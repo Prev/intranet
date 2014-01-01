@@ -1,0 +1,27 @@
+#nginx configuration
+
+location /sso-server {
+	include php;
+	break;
+}
+
+location / {
+	rewrite ^/login(\/?)$ /index.php?module=login&action=dispLoginPage&$query_string;
+	rewrite ^/credit(\/?)$ /index.php?module=credit&$query_string;
+
+	rewrite ^/school-life/daily-timetable/(.+).html$ ./index.php?module=page&page=daily-timetable&file=$1;
+	rewrite ^/school-life/school-rules/(.+).html$ ./index.php?module=page&page=school-rules&file=$1;
+	
+	rewrite ^/([0-9]+).*$ /index.php?module=board&action=dispArticle&article_no=$1&$query_string;
+	rewrite ^/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)/([0-9]+)/?$ ./index.php?module=board&action=dispArticle&article_no=$3&_menu1=$1&_menu2=$2&$query_string;
+
+	rewrite ^/([a-zA-Z0-9-_]+)/?$ /index.php?menu=$1&$query_string;
+	rewrite ^/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)/?$ /index.php?menu1=$1&menu2=$2$query_string;
+}
+
+location ~ ^/(.+)/(.+)\.php$ { return 403; }
+location ~ ^/config/(.+)$ { return 403; }
+location ~ ^/modules/(.+)/info\.json$ { return 403; }
+location ~ ^/modules/(.+)/template/(.+)\.html$ { return 403; }
+location ~ ^/layouts/(.+)\.html$ { return 403; }
+location = /files/pmc_error\.log { return 403; }
