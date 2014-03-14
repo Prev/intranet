@@ -92,7 +92,7 @@
 
 			$this->leftWidth = -1 * ($this->passWidth-(24*5)-39);
 
-			self::execTemplate('DateSelector');
+			self::execTemplate('dateSelector');
 		}
 
 	}

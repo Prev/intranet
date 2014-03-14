@@ -177,3 +177,7 @@
 
 #main .second-tile .board-header h3{ margin: 0; padding: 0 }
 #main .second-tile .board-header a{ color: #999; text-decoration: none }
+
+
+#main #notice-school .no-content,
+#main #notice-dormitory .no-content{ margin: 50px 100px; color: #999; }

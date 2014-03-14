@@ -88,7 +88,7 @@
 			$this->stayInfo = $this->model->getStayInfo($this->selectedDate);
 
 			$this->isStayAble = $this->getStayAble();
-			self::execTemplate('StaystudentsSeatList');
+			self::execTemplate('StayStudentsSeatList');
 		}
 
 		function ajaxStayStudentsSeatList(){

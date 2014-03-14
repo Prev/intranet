@@ -5,7 +5,7 @@
 	} 
 
 	//음->양 변환
-	function LunarToSola($yyyymmdd){ 
+	function LunarToSolar($yyyymmdd){ 
 		$getYEAR = substr($yyyymmdd,0,4); 
 		$getMONTH = substr($yyyymmdd,4,2); 
 		$getDAY = substr($yyyymmdd,6,2); 
@@ -163,7 +163,7 @@
 	}
 
 	//양->음 변환
-	function SolaToLunar($yyyymmdd) {
+	function SolarToLunar($yyyymmdd) {
 		$getYEAR = substr($yyyymmdd,0,4); 
 		$getMONTH = substr($yyyymmdd,4,2); 
 		$getDAY = substr($yyyymmdd,6,2); 
@@ -282,8 +282,8 @@
 
 		$gf_sol2lun = 1; 
 
-		if($m2<10) $m2="0".$m2; 
-		if($sday<10) $td="0".$td; 
+		//if($m2<10) $m2="0".$m2; 
+		//if($sday<10) $td="0".$td; 
 
 		$Ary[year]=$ryear;
 		$Ary[month]=$m2;

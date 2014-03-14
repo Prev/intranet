@@ -13,7 +13,7 @@
 		public $meals;
 
 		public function dispDefault() {
-			$this->lunarDate = SolaToLunar(date('Ymd'));
+			$this->lunarDate = SolarToLunar(date('Ymd'));
 			
 			$this->morningSong = $this->model->getMorningSongData();
 

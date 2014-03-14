@@ -107,15 +107,19 @@
 				</span>
 			</div>
 			<ul>
-				{@ foreach($noticeArticles as $key => $article) : }
-				<li class="clearfix">
-					<div class="fl dot">·</div>
-					<div class="fl article">
-						<a href="/school-life/school-notice/{$article->no}">{$article->title}</a>
-					</div>
-					<div class="fr write-time">{$article->uploadTime}</div>
-				</li>
-				{@ endforeach; }
+				<condition do = "count($noticeArticles) > 0">
+					{@ foreach($noticeArticles as $key => $article) : }
+					<li class="clearfix">
+						<div class="fl dot">·</div>
+						<div class="fl article">
+							<a href="/school-life/school-notice/{$article->no}">{$article->title}</a>
+						</div>
+						<div class="fr write-time">{$article->uploadTime}</div>
+					</li>
+					{@ endforeach; }
+				<else>
+					<div class="no-content">내용이 없습니다</div>
+				</condition>
 			</ul>
 		</div>
 
@@ -127,20 +131,24 @@
 				</span>
 			</div>
 			<ul>
-				{@ foreach($dormitoryArticles as $key => $article) : }
-				<li class="clearfix">
-					<div class="fl dot">·</div>
-					<div class="fl article">
-						<a href="/dormitory/dormitory-notice/{$article->no}">{$article->title}</a>
-					</div>
-					<div class="fr write-time">{$article->uploadTime}</div>
-				</li>
-				{@ endforeach; }
+				<condition do = "count($dormitoryArticles) > 0">
+					{@ foreach($dormitoryArticles as $key => $article) : }
+					<li class="clearfix">
+						<div class="fl dot">·</div>
+						<div class="fl article">
+							<a href="/dormitory/dormitory-notice/{$article->no}">{$article->title}</a>
+						</div>
+						<div class="fr write-time">{$article->uploadTime}</div>
+					</li>
+					{@ endforeach; }
+				<else>
+					<div class="no-content">내용이 없습니다</div>
+				</condition>
 			</ul>
 		</div>
 
 		<div id="about-intranet" class="tile second-tile fr">
-			<a href="http://event.dimigo.us" target="_blank">
+			<a href="/dormitory/stay-request">
 				<img src="./img/about.png" width="326" height="172">
 			</a>
 		</div>
