@@ -74,7 +74,7 @@
 			
 			if($this -> model -> getpara() == 1){
 				$para = $this -> model -> getpara() -1;
-				echo '<span id="next" onclick = "location.href = \''.getUrlA('offset='.$para, REAL_URL).'\'">&gt;</span>';
+				echo '<span id="prev" onclick = "location.href = \''.getUrlA('offset='.$para, REAL_URL).'\'">&lt;</span>';
 			}
 
 			else if (!$data || count($data) == 0) {
@@ -83,7 +83,7 @@
 			
 			else {
 				$para = $this -> model -> getpara() -1;
-				echo '<span id="prev" onclick = "location.href = \''.getUrlA('offset='.$para, REAL_URL).'\'"><</span>';
+				echo '<span id="prev" onclick = "location.href = \''.getUrlA('offset='.$para, REAL_URL).'\'">&lt;</span>';
 			}
 
 		}
@@ -161,7 +161,8 @@
 
 		public function printNation($num,$type){
 			$nation_json = $this -> model -> getNationJson($num,$type);
-			$nation = $this -> model -> getNationData($nation_json);
+			
+			return $this -> model -> getNationData($nation_json);
 		}
 	}
 

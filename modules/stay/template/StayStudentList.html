@@ -3,7 +3,7 @@
 		<dd><ul class="none-data">잔류 데이터가 없습니다.</ul></dd>
 	</true>
 	<false>
-		{@ for ($i=count($stayData)-1; $i>=0; $i--) :}
+		{@ for ($i=0; $i<count($stayData); $i++) :}
 
 		<condition do="$isCalledByGetContent ||
 		(($allowedClass[$stayData[$i]['grade']-1 ][$stayData[$i]['class']-1 ]) &&

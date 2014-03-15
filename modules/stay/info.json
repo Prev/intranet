@@ -31,28 +31,33 @@
 		{
 			"name":"procRegisterStayInfo",
 			"controller":"StayManageController",
-			"model":"StayManageModel"
+			"model":"StayManageModel",
+			"accessible_group":["dormitory_teacher"]
 		},
 		{
 			"name":"procDeleteStayInfo",
 			"controller":"StayManageController",
-			"model":"StayManageModel"
+			"model":"StayManageModel",
+			"accessible_group":["dormitory_teacher"]
 		},
 		{
 			"name":"procUpdateStayInfo",
 			"controller":"StayManageController",
-			"model":"StayManageModel"
+			"model":"StayManageModel",
+			"accessible_group":["dormitory_teacher"]
 		},
 		{
 			"name":"procCloseStayInfo",
 			"controller":"StayManageController",
-			"model":"StayManageModel"
+			"model":"StayManageModel",
+			"accessible_group":["dormitory_teacher"]
 		},
 		{
 			"name":"procSaveStayData",
 			"controller":"StayManageController",
 			"model":"StayManageModel",
 			"layout":"blank",
+			"accessible_group":["dormitory_teacher"],
 			"print_alone":true
 		},
 		{
@@ -60,12 +65,14 @@
 			"controller":"StayManageController",
 			"model":"StayManageModel",
 			"layout":"blank",
+			"accessible_group":["dormitory_teacher"],
 			"print_alone":true
 		},
 		{
 			"name":"procCancelCloseStayInfo",
 			"controller":"StayManageController",
-			"model":"StayManageModel"
+			"model":"StayManageModel",
+			"accessible_group":["dormitory_teacher"]
 		},
 		{
 			"name":"procExportExcelStayData",
@@ -78,13 +85,15 @@
 		{
 			"name":"procConfirmStayInfo",
 			"controller":"StayManageController",
-			"model":"StayManageModel"
+			"model":"StayManageModel",
+			"accessible_group":["dormitory_teacher"]
 		},
         {
             "name":"dispStayManage",
             "view":"StayManageView",
             "model":"StayManageModel",
-            "controller":"StayManageController"
+            "controller":"StayManageController",
+            "accessible_group":["dormitory_teacher"]
         },
         {
         	"name":"dispStayStudentsSeatList",

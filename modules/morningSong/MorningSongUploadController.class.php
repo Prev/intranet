@@ -43,7 +43,7 @@
 			
 			if (!$data) return;
 
-			chmod(ROOT_DIR . $data->uploadFileUrl, 0755);
+			//chmod(ROOT_DIR . $data->uploadFileUrl, 0755);
 			
 
 			if ($fileExtension == 'mp3') {

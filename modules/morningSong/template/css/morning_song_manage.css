@@ -80,5 +80,4 @@
 #history-list #scroll-box .select .recommend-button{ height: 19px; width: 32px; padding: 0; margin: 2px 0px 0px 0px; background:transparent url("../img/morning_song_sprite.png") no-repeat -96px 0px; border: none;  cursor: pointer; }
 
 
-
-.download-btn{ width: 13px; height: 14px; margin-left: 5px; background: white url(../img/btn_download.png) no-repeat 0 4px; border: none; outline: none; }
+.download-btn{ width: 13px; height: 14px; margin-left: 5px; background: transparent url(../img/btn_download.png) no-repeat 0 4px; border: none; outline: none; }

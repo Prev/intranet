@@ -9,8 +9,8 @@
 		public $maxStudentNumber;
 
 		function init(){
-			if($this->module->user->department != 'dormitory')
-				goBack('생활관 교사만 이용 가능합니다.');
+			//if($this->module->user->department != 'dormitory')
+			//	goBack('생활관 교사만 이용 가능합니다.');
 
 			parent::init();
 		}

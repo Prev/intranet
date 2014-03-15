@@ -138,8 +138,17 @@
 			$stayId = $this->getStayInfo($date)->{'id'};
 
 			return DBHandler::for_table('stay_data')
-				->select('*')
-				->where('stay_id',$stayId)
+				->select_many('stay_data.*', 'user_student.grade', 'user_student.class', 'user_student.number', 'user_student.gender', 'user_student.dormitory', 'user.user_name')
+				->join('user_student', array(
+					'user_student.user_id', '=', 'stay_data.user_id'
+				))
+				->join('user', array(
+					'user.id', '=', 'user_student.user_id'
+				))
+				->where('stay_data.stay_id',$stayId)
+				->order_by_asc('user_student.grade')
+				->order_by_asc('user_student.class')
+				->order_by_asc('user_student.number')
 				->find_many();
 		}
 
@@ -158,8 +167,7 @@
 			}
 
 			$data = $this->getStayData($date);
-
-			for($i=count($data) - 1;$i >= 0; $i--){
+			for($i=0; $i<count($data); $i++){
 				$data2 = DBHandler::for_table('user_student')
 				->select_many('grade', 'class')
 				->where('user_id', $data[$i]->user_id)
@@ -192,22 +200,9 @@
 
 			$stayData = array();
 
-			for($i = count($data) - 1; $i >= 0; $i--){
-
-				$data2 = DBHandler::for_table('user_student')
-				->select_many('user_student.grade', 'user_student.class', 'user_student.number', 'user_student.gender', 'user_student.dormitory', 'user.user_name')
-				->join('user', array('user.id', '=', 'user_student.user_id'))
-				->where('user.id', $data[$i]->user_id)
-				->find_one();
-
-				$data[$i]->grade = (int)$data2->grade;
-				$data[$i]->class = (int)$data2->class;
-				$data[$i]->number = (int)$data2->number;
-
-				$data[$i]->user_name = $data2->user_name;
-				$data[$i]->gender = $data2->gender;
-				$data[$i]->dormitory_type = $data2->dormitory;
-				$data[$i]->student_number = $data2->grade.$data2->class.set0($data2->number);
+			for($i = 0; $i < count($data); $i++){
+				$data[$i]->dormitory_type = $data[$i]->dormitory;
+				$data[$i]->student_number = $data[$i]->grade.$data[$i]->class.set0($data[$i]->number);
 
 				if($data[$i]->apply_goingout)
 					$data[$i]->goingout = $data[$i]->goingout_cause.'('.date('H:i', strtotime($data[$i]->goingout_start_time)).'~'.date('H:i', strtotime($data[$i]->goingout_end_time)).')';

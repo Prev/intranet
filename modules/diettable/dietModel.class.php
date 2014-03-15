@@ -493,7 +493,7 @@
 
 						echo '<span class="special-food">';
 						echo $array[$i]->name;
-						echo '</span>';
+						echo '</span><br>';
 
 
 
@@ -515,7 +515,7 @@
 						}else if($array[$i]->isAllergy == false){
 							//echo '<span class = "stars-none" style = "display: none;" >ㅗ</span> ';
 						}
-						echo '<br />';
+						echo '<br>';
 							
 					}
 
@@ -615,66 +615,25 @@
 		}
 
 		public function getNationData($json){
-
-		
-
-
-		if($json == null){
-
-						echo '-';
-			}
+			if ($json == null)
+				return '-';
 
 			else{
+				$array = json_decode($json);
+				$str = '';
 
+				for ($i = 0; $i<1000; $i++){
+					if ($array[$i]->name == null) break;
 
-			$array = json_decode($json);
-			//var_dump2($array[1] -> name);
+					$str .= $array[$i]->name ." - ". $array[$i]->nation . '<br>';
+				}
 
-			for($i = 0; $i<1000; $i++){
-
-				if($array[$i]->id == null){break;}
-
-				echo $array[$i] -> name ." : ". $array[$i] -> nation;
-				echo '<br />';
-				
-
-				
-
-				
-
+				return $str;
 			}
-			// $array = $decode["원산지"][0]["원산지"]; // 이게 a 
- 
-			// $i = 0;
-   //  		$test;
-
-   //  		//var_dump2($array);
-
-			// foreach ($array as $key => $value) {
-	  
-    
-
-   //  			echo  $key.": ". $value;
-   //  			echo '<br />';
-
-    	
-   
-	
-			// 	}
-
-
-
 
 		}
 
-}
-
-
-
-
-
-
-		}
+	}
 
 
 

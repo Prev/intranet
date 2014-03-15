@@ -27,7 +27,8 @@
 
 			$this->callType = $this->module->callType ? $this->module->callType : ($_REQUEST['callType'] ? $_REQUEST['callType'] : 0);
 
-			if($this->callType == 3 && $this->module->user->department != 'dormitory')
+			//if($this->callType == 3 && $this->module->user->department != 'dormitory')
+			if($this->callType == 3 && !User::getCurrent()->checkGroup('dormitory_teacher'))
 				goBack('에러가 발생했습니다.');
 		}
 

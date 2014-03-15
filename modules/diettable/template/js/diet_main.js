@@ -80,7 +80,6 @@ window.onload = function() {
 }
 
 function infDetailChangeHandler() {
-	console.log( inf_detail.checked );
 	if (inf_detail.checked == true) {
 	
 		division.colSpan = 2;
