@@ -22,6 +22,10 @@
 	define('PMC', true);
 	define('ROOT_DIR', dirname(__FILE__));
 
+	if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == 'off') {
+		//header('Location: https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+	}
+
 	require ROOT_DIR . '/config/config.php';
 
 	$oContext = Context::getInstance();

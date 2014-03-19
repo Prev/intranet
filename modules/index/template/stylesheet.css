@@ -147,7 +147,13 @@
 	border-left: 1px solid #fae0b3;
 }
 #main #meal ul.meal-type li{ padding: 3px; text-align: right; }
-#main #meal ul.meal-data li{ padding-left: 3px; }
+#main #meal ul.meal-data li{
+	padding-left: 3px;
+	overflow: hidden;
+	height: 14px;
+	line-height: 15px;
+	padding-right: 1px;
+}
 #main #meal ul li strong{ color: #ec008c; }
 
 

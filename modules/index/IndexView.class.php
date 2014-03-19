@@ -37,7 +37,7 @@
 					($now < $separateTime1 && $dish == 'breakfast') ||
 					($now > $separateTime1 && $now < $separateTime2 && $dish == 'lunch') ||
 					($now > $separateTime2 && $now < $separateTime3 && $dish == 'dinner') ||
-					($now > $separateTime3 && $now < $separateTime4 && $dish == 'dinner') ||
+					($now > $separateTime3 && $now < $separateTime4 && $dish == 'snack') ||
 					($now > $separateTime4 && $dish == 'breakfast')
 				)
 				$this->meals->{$dish} = '<strong>'.$this->meals->{$dish}.'</strong>';	
