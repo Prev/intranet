@@ -36,7 +36,12 @@
 		}
 
 		public function cancelRecommend($songId, $recommendUsers) {
-			$recommendUsers = array_splice($recommendUsers, User::getCurrent()->id, 1);
+			$tmp = array();
+			for ($i=0; $i<count($recommendUsers); $i++) { 
+				if (User::getCurrent()->id != $recommendUsers[$i])
+					array_push($tmp, $recommendUsers[$i]);
+			}
+			$recommendUsers = $tmp;
 
 			if (!$recommendUsers)
 				$recommendUsers = NULL;

@@ -46,7 +46,7 @@
 #history-list li{ list-style: none; float: left; margin: 0; padding: 0; /* outline: 1px solid black; */}
 
 #history-list #first-line{ height: 22px; background-color: #eeeeee; border-bottom: 1px solid #cccccc; border-top: 1px solid #cccccc; padding-top: 9px; text-align: center !important; font-weight: bold; }
-#history-list #song-title{ width: 365px; }
+#history-list #song-title{ width: 350px; }
 #history-list #song-applicant{ width: 85px; }
 #history-list #song-request-date{ width: 100px; }
 #history-list #favorite-count{ width: 42px; }
@@ -58,7 +58,7 @@
 #history-list #scroll-box ul.final{ border-bottom:none; }
 #history-list #scroll-box .history-list-button{ width: 17px; height: 20px; padding: 0; margin:3px 5px 0 3px; float: left; background:transparent url("../img/morning_song_sprite.png") no-repeat 0px -49px; border: none; cursor: pointer; }
 #history-list #scroll-box .history-list-button.playing{ background-position: -17px -49px; }
-#history-list #scroll-box .song-title{ width: 340px; padding: 3px 0px; }
+#history-list #scroll-box .song-title{ width: 325px; padding: 3px 0px; }
 #history-list #scroll-box .song-applicant{ width: 85px; text-align: center; padding-top: 3px; }
 #history-list #scroll-box .song-request-date{ width: 100px; text-align: center; padding-top: 3px; }
 #history-list #scroll-box .favorite-count{ width: 40px; text-align: center; padding-top: 3px; }

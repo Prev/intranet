@@ -13,6 +13,7 @@
 				exit;
 			}
 
+			header_remove();
 			header('Content-Type: application/octet-stream'); 
 			header('Content-Disposition: attachment; filename='. $fileName); 
 			header('Content-Length: '.$fileSize); 

@@ -14,7 +14,7 @@
 				return;
 			}
 
-			if (in_array(User::getCurrent()->id, $recommendUsers)) {
+			if ($recommendUsers && array_search(User::getCurrent()->id, $recommendUsers) !== false) {
 				goBack('이미 추천을 하셨습니다');
 				return;
 
@@ -29,7 +29,7 @@
 
 			$recommendUsers = $this->model->getRecommendUsers($_POST['song_id']);
 			
-			if (!in_array(User::getCurrent()->id, $recommendUsers)) {
+			if ($recommendUsers && array_search(User::getCurrent()->id, $recommendUsers) === false) {
 				goBack('추천하지 않은 기상송입니다');
 				return;
 
