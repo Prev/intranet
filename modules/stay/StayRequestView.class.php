@@ -40,13 +40,14 @@
 					return ' class="disabled" disabled="disabled"';
 					break;
 				case 2:
-					if ($this->myStayData && $this->myStayData['apply_'.$string]){
-						return ' checked="checked"';
-					}else if ($string == 'lunch')
-						return ' checked="checked"';
-					else
-						return '';
-					
+					if ($this->myStayData !== NULL && isset($this->myStayData['apply_'.$string])) {
+						if ($this->myStayData['apply_'.$string] == 1)
+							return ' checked="checked"';
+						else
+							return '';
+					}else {
+						return ($string == 'lunch') ? ' checked="checked"' : '';
+					}
 					break;
 				case 3:
 					return ' class="disabled" checked="checked" disabled="disabled"';

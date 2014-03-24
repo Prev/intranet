@@ -1,16 +1,16 @@
 <import path="css/login_form.css">
 <import path="/static/js/placeholder.js">
-#<import path="/static/js/encryption/base64.js">
-#<import path="/static/js/encryption/rsa.js">
-#<import path="/static/js/encryption/md5.js">
+<import path="/static/js/encryption/base64.js">
+<import path="/static/js/encryption/rsa.js">
+<import path="/static/js/encryption/md5.js">
 <import path="js/login.js">
-/*<script type="text/javascript">var rsaKeys = {publicKey:"{$rsaKeys->publicKey}", modulus:"{$rsaKeys->modulus}"}</script>
-*/
+<script type="text/javascript">var rsaKeys = {publicKey:"{$rsaKeys->publicKey}", modulus:"{$rsaKeys->modulus}"}</script>
+
 <div id="login-wrap">
-	<form name="login_form" method="post" action="{getUrl('login', 'procLogin', 'next='.RELATIVE_URL, ACCOUNT_SERVER_URL)}" onsubmit="return procLogin()">
-		/*<input type="hidden" name="enc_id">
+	<form name="login_form" method="post" action="{getUrl('login', 'procSecureLogin', 'next='.RELATIVE_URL, ACCOUNT_SERVER_URL)}" onsubmit="return procLogin()">
+		<input type="hidden" name="enc_id">
 		<input type="hidden" name="enc_pw">
-		<input type="hidden" name="check_sum">*/
+		<input type="hidden" name="check_sum">
 		<input type="hidden" name="next" value="{$next}">
 
 		<div id="login-title">
