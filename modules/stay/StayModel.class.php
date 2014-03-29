@@ -105,7 +105,7 @@
 
 		}
 
-		public function getRecentStayDates($loadPassData=false, $maxNum=60) {
+		public function getRecentStayDates($loadPassData=true, $maxNum=60) {
 			
 			$todayDate = date('Y-m-d');
 			$day60Before = date('Y-m-d', mktime(0,0,0,date('m'), date('d')-$maxNum, date('y')));
