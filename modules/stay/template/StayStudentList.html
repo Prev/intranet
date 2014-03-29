@@ -6,11 +6,17 @@
 		{@ for ($i=0; $i<count($stayData); $i++) :}
 
 		<condition do="$isCalledByGetContent ||
-		(($allowedClass[$stayData[$i]['grade']-1 ][$stayData[$i]['class']-1 ]) &&
-		(($stayData[$i]->gender == 'm' && array_search('male', $options) !== false) || ($stayData[$i]->gender == 'f' && array_search('female', $options) !== false)) &&
-		 ($stayData[$i]->dormitory_type == 1 && array_search('bon', $options)) || ($stayData[$i]->dormitory_type == 2 && array_search('hak', $options)))">
-
-			<true>
+		(
+			$allowedClass[$stayData[$i]['grade']-1][$stayData[$i]['class']-1 ] == true &&
+			(
+				($stayData[$i]->gender == 'm' && array_search('male', $options) !== false) ||
+				($stayData[$i]->gender == 'f' && array_search('female', $options) !== false)
+			) &&
+			(
+				$stayData[$i]->dormitory_type == 1 && array_search('bon', $options) !== false ||
+				$stayData[$i]->dormitory_type == 2 && array_search('hak', $options) !== false
+			)
+		)">
 				<condition do="$callType==3">
 					<true>
 						<dd><ul id="student_number_{$stayData[$i]->student_number}" onclick="getStudent(this,{$stayData[$i]->student_number})">
@@ -68,8 +74,8 @@
 					</true>
 					<false></false>
 				</condition>
-				</ul></dd>
-		</true>
+				</ul>
+			</dd>
 	</condition>
 		{@ endfor;}
 	</false>
