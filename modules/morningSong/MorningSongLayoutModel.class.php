@@ -104,7 +104,7 @@
 
 		public function deleteSongsBeforeWeek() {
 			$arr = DBHandler::for_table('morning_song_list')
-				->select_many('morning_song_list.id', 'morning_song_list.file_id', 'morning_song_list.song_extension', 'files.file_hash')
+				->select_many('morning_song_list.id', 'morning_song_list.file_id', 'morning_song_list.song_extension', 'morning_song_list.selected_state', 'files.file_hash')
 				->where_lt('morning_song_list.upload_time', date('Y-m-d H:i:s', mktime(0,0,0,date('m'),date('d')-7)))
 				->join('files', array(
 					'files.id', '=', 'morning_song_list.file_id'
@@ -112,6 +112,14 @@
 				->find_many();
 
 			for ($i=0; $i<count($arr); $i++) { 
+				if ($arr[$i]->selected_state != 0) {
+					$row2 = DBHandler::for_table('morning_song_selected')
+						->where('list_id', $arr[$i]->id)
+						->find_one();
+
+					if (strtotime($row2->applying_date) + 14*24*60*60 > time() ) continue;
+				}
+
 				$row = DBHandler::for_table('files')
 					->select_many('files.file_hash', 'morning_song_list.song_extension')
 					->where('files.id', $arr[$i]->file_id)
