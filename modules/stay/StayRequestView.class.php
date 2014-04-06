@@ -14,11 +14,30 @@
 		function init(){
 			parent::init();
 
+
 			if ($this->module->user->userType != 's')
 				goBack('권한이 없습니다. (잔류 신청은 학생만 가능합니다.)');
 
 			$this->recentStayDates = $this->model->getRecentStayDates();
-			
+
+			// 가장 가까운 잔류 일자를 찾아서 그녀석 선택하도록 유도한다.
+			if(!isset($selectedDate)){
+				$todayDate = mktime(0,0,0,date("m"),date("d"),date("Y"));
+
+				if(array_search($this->selectedDate, $this->recentStayDates) === false){
+					$count = count($this->recentStayDates);
+
+					for($i=0;$i<$count-1;$i++){
+						if($todayDate <= strtotime($this->recentStayDates[$i])){
+							$_REQUEST['date'] = $this->recentStayDates[$i];
+							$this->selectedDate = $this->recentStayDates[$i];
+							break;
+						}
+					}
+
+				}
+			}
+
 			if($this->recentStayDates && $this->isExistStayInfo($this->selectedDate)){
 				$this->stayInfo = $this->model->getStayInfo($this->selectedDate);
 				$this->deadline = $this->getDeadline($this->module->user->{'grade'});
