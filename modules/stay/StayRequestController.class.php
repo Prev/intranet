@@ -50,7 +50,11 @@
 				goBack('잔류가 임시마감되었습니다.');
 	
 			$todayDate = mktime(0,0,0,date("m"),date("d"),date("Y"));
-	
+		
+			if($this->module->user->{'grade'} == 1){
+				if(time() <= strtotime($this->view->getDeadline(3)))
+					$this->throwError("그렇게 뚫고 싶으세요? 이런데다가 컴퓨터 실력 과시하지마세요... 쪽팔리지도 않으세요?");
+			}
 			if ($infoData['allowlevel_breakfast'] == 1 && $formDatas->apply_breakfast != 0)
 				$this->throwError('급식 조작하지 마세요.');
 			else if ($infoData['allowlevel_breakfast'] == 3 && $formDatas->apply_breakfast != 1)
@@ -148,9 +152,9 @@
 				$stayData->set('extra_caption', $formDatas->extra_caption ? htmlspecialchars($formDatas->extra_caption) : null);
 				$stayData->set('library_seat', $formDatas->seat_data ? $formDatas->seat_data : null);
 
-				if ($stayData->save())
+				if ($stayData->save()){
 					goBack('잔류신청에 성공하였습니다.');
-				else
+				}else
 					goBack('잔류신청 도중 오류가 발생했습니다.');
 
 
