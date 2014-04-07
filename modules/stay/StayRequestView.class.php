@@ -42,6 +42,12 @@
 				$this->stayInfo = $this->model->getStayInfo($this->selectedDate);
 				$this->deadline = $this->getDeadline($this->module->user->{'grade'});
 				$this->isStayAble = $this->getStayAble();
+
+				if($this->module->user->{'grade'} == 1){
+					
+					if(time() <= strtotime($this->getDeadline(3)))
+						goBack("1학년은 3학년 잔류 신청이 마감된 이후 잔류 신청을 할 수 있습니다.");
+				}
 			}
 		}
 
