@@ -21,15 +21,7 @@
 			else if (!$_REQUEST['infoId'])
 				goBack('잘못된 접근입니다!');
 			
-			/* 
-				- 1학년들의 컴퓨터 잘안다고 나대는 행위는 그냥 냅둔다... 
-				- 알아서 혼나라...
-			*/
-			/*if($this->module->user->{'grade'} == 1){
-				if(time() <= strtotime($this->view->getDeadline(3)))
-					goBack("컴퓨터 잘안다고 해도 이러시면 안되죠...");
-			}*/
-
+			
 			$formDatas = (object) array();
 			$formKeys = array('date','infoId','apply_breakfast','apply_lunch','apply_dinner','apply_snack','apply_goingout','goingout_start_hour', 'goingout_start_minute',
 						'goingout_end_hour','goingout_end_minute','goingout_cause','apply_sleep','extra_caption','disapply_seat','seat_data');
@@ -160,6 +152,8 @@
 					goBack('잔류신청에 성공하였습니다.');
 				else
 					goBack('잔류신청 도중 오류가 발생했습니다.');
+
+
 			}
 		}
 
@@ -167,7 +161,7 @@
 			
 			if(!$_REQUEST['date'])
 				goBack('날짜가 입력되지 않았습니다.');
-			
+
 			if ($_REQUEST['continuous_dates']) {
 				$dateArr = array('일','월','화','수','목','금','토');
 				$dates = explode(',', $_REQUEST['date']);
