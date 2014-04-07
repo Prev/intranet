@@ -53,8 +53,9 @@
 		
 			if($this->module->user->{'grade'} == 1){
 				if(time() <= strtotime($this->view->getDeadline(3)))
-					$this->throwError('1학년은 '.$this->view->getDeadline(3).'까지 잔류 신청을 할 수 없습니다.'');
+					$this->throwError('1학년은 '.$this->view->getDeadline(3).'까지 잔류 신청을 할 수 없습니다.\r\n이렇게 까지 뚫고싶으세요???...');
 			}
+
 			if ($infoData['allowlevel_breakfast'] == 1 && $formDatas->apply_breakfast != 0)
 				$this->throwError('급식 조작하지 마세요.');
 			else if ($infoData['allowlevel_breakfast'] == 3 && $formDatas->apply_breakfast != 1)
