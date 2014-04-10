@@ -122,9 +122,9 @@
 				$stayData->set('apply_goingout', $formDatas->apply_goingout);
 				$stayData->set('goingout_start_time', $formDatas->apply_goingout ? $formDatas->goingout_start_hour.':'.$formDatas->goingout_start_minute.':00' : null);
 				$stayData->set('goingout_end_time', $formDatas->apply_goingout ? $formDatas->goingout_end_hour.':'.$formDatas->goingout_end_minute.':00' : null);
-				$stayData->set('goingout_cause', $formDatas->goingout_cause ? htmlspecialchars($formDatas->goingout_cause) : null);
+				$stayData->set('goingout_cause', $formDatas->goingout_cause ? removeXSS($formDatas->goingout_cause) : null);
 				$stayData->set('apply_sleep', $formDatas->apply_sleep);
-				$stayData->set('extra_caption', $formDatas->extra_caption ? htmlspecialchars($formDatas->extra_caption) : null);
+				$stayData->set('extra_caption', $formDatas->extra_caption ? removeXSS($formDatas->extra_caption) : null);
 				$stayData->set('library_seat', $formDatas->seat_data ? $formDatas->seat_data : null);
 
 				if($stayData->save())
@@ -144,9 +144,9 @@
 				$stayData->set('apply_goingout', $formDatas->apply_goingout);
 				$stayData->set('goingout_start_time', $formDatas->apply_goingout ? $formDatas->goingout_start_hour.':'.$formDatas->goingout_start_minute.':00' : null);
 				$stayData->set('goingout_end_time', $formDatas->apply_goingout ? $formDatas->goingout_end_hour.':'.$formDatas->goingout_end_minute.':00' : null);
-				$stayData->set('goingout_cause', $formDatas->goingout_cause ? htmlspecialchars($formDatas->goingout_cause) : null);
+				$stayData->set('goingout_cause', $formDatas->goingout_cause ? removeXSS($formDatas->goingout_cause) : null);
 				$stayData->set('apply_sleep', $formDatas->apply_sleep);
-				$stayData->set('extra_caption', $formDatas->extra_caption ? htmlspecialchars($formDatas->extra_caption) : null);
+				$stayData->set('extra_caption', $formDatas->extra_caption ? removeXSS($formDatas->extra_caption) : null);
 				$stayData->set('library_seat', $formDatas->seat_data ? $formDatas->seat_data : null);
 
 				if ($stayData->save()){
