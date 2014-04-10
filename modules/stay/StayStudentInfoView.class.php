@@ -45,7 +45,7 @@
 				else if ($grade) {
 					return '<dd id="seat-'.$key.set0($number).'" class="seat_grade'.$grade.'-'.$number.'" onmouseover="seatOverHandler(this, \''.$this->seatData->$key->$number.'\')" onmouseout="seatOutHandler(this)"></dd>';
 				}else {
-					if (!$this->selectedDate || !$this->isStayAble)
+					if (!$this->selectedDate || !$this->isStayAble || $this->module->blockedBefore3Grade)
 						return '<dd id="seat-'.$key.set0($number).'" class="seat_disabled-'.$number.'"></dd>';
 					else if ($this->myStayData && $this->myStayData['library_seat'] === NULL)
 						return '<dd id="seat-'.$key.set0($number).'" class="seat_disabled-'.$number.'" onclick="seatSelectHandler(this)"></dd>';

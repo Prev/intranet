@@ -28,6 +28,8 @@
 		}
 
 		function getStayAble(){
+			if ($this->blockedBefore3Grade) return false;
+
 			$tmp = $this->stayInfo['stay_deadlines_grade'.$this->module->user->{'grade'}];
 			return $tmp && $this->stayInfo['temp_disabled'] == 0 ? (strtotime($tmp) >= time()) : false;
 		}

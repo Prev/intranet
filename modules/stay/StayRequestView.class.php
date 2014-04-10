@@ -10,6 +10,7 @@
 		public $seatData;
 		public $isStayAble;
 		public $getSelectedSeatCount;
+		public $blockedBefore3Grade;
 
 		function init(){
 			parent::init();
@@ -41,12 +42,14 @@
 			if($this->recentStayDates && $this->isExistStayInfo($this->selectedDate)){
 				$this->stayInfo = $this->model->getStayInfo($this->selectedDate);
 				$this->deadline = $this->getDeadline($this->module->user->{'grade'});
-				$this->isStayAble = $this->getStayAble();
-
+				
 				if($this->module->user->{'grade'} != 3){
 					if(time() <= strtotime($this->getDeadline(3)))
-						goBack($this->module->user->{'grade'}."학년은 ".$this->getDeadline(3)." 이후에 잔류 신청을 할 수 있습니다.");
+						$this->blockedBefore3Grade = true;
+						//goBack($this->module->user->{'grade'}."학년은 ".$this->getDeadline(3)." 이후에 잔류 신청을 할 수 있습니다.");
 				}
+
+				$this->isStayAble = $this->getStayAble();
 			}
 		}
 
@@ -245,6 +248,14 @@
 							disabledCheckboxes();
 						});
 					</script>');
+				}else if ($this->blockedBefore3Grade) {
+					Context::getInstance()->addHeaderTag('<script type="text/javascript">
+						window.addEventListener("load", function () {
+							openPopup("아직 잔류신청을 할 수 없습니다.", "<div>1,2 학년은 3학년 잔류 신청이 마감된 이후에 잔류 신청을 할 수 있습니다.</div><div>해당 학년은 '.$this->getDeadline(3).' 부터 잔류신청을 할 수 있습니다.</div>", "");
+							disabledCheckboxes();
+						});
+					</script>');
+					
 				}else if(!$this->isStayAble){
 					$arrDayOfWeek = array('일','월','화','수','목','금','토');
 					Context::getInstance()->addHeaderTag('<script type="text/javascript">
