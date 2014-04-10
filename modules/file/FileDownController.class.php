@@ -4,7 +4,7 @@
 
 		protected function procDownloadFile($fileType, $fileName, $fileHash, $fileSize) {
 			$fileDir = ROOT_DIR . '/files/attach/' . $fileType . '/' . $fileHash;
-			var_dump2($fileDir);
+			
 			if (!is_file($fileDir)) {
 				echo fetchLocale(array(
 					'en' => 'file not exists',
