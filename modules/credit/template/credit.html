@@ -9,6 +9,8 @@
 <import path="./js/Sparks.js" position="body-bottom">
 <import path="./js/helvetiker_regular.typeface.js" position="body-bottom">
 
+<meta name="viewport" content="width=2000px">
+
 <title>Dimigo SHIFT Credit</title>
 
 <div id="tile-frame">
@@ -28,8 +30,7 @@
 		<div class="tile-line clearfix">
 			<div class="tiles"><div id="t-2-1"></div></div>
 			<div class="tiles"><div id="t-2-2"></div></div>
-			<div class="tiles">
-				<div id="tile-player"></div>
+			<div class="tiles" style="visibility:hidden">
 			</div>
 			<div class="tiles"></div>
 			<div class="tiles"></div>
@@ -133,7 +134,7 @@
 			<div class="tiles"><div id="t-10-7"></div></div>
 			<div class="tiles"><div id="t-10-8"></div></div>
 		</div>
-		<div class="tile-line clearfix">
+		<!--<div class="tile-line clearfix">
 			<div class="tiles"><div id="t-11-1"></div></div>
 			<div class="tiles"><div id="t-11-2"></div></div>
 			<div class="tiles"><div id="t-11-3"></div></div>
@@ -142,7 +143,7 @@
 			<div class="tiles"></div>
 			<div class="tiles"><div id="t-11-7"></div></div>
 			<div class="tiles"><div id="t-11-8"></div></div>
-		</div>
+		</div>-->
 		<div class="tile-line clearfix">
 			<div class="tiles"><div id="t-12-1"></div></div>
 			<div class="tiles"><div id="t-12-2"></div></div>
@@ -163,7 +164,7 @@
 			<div class="tiles"><div id="t-13-7"></div></div>
 			<div class="tiles"><div id="t-13-8"></div></div>
 		</div>
-		<div class="tile-line clearfix">
+		<!--<div class="tile-line clearfix">
 			<div class="tiles"><div id="t-14-1"></div></div>
 			<div class="tiles"><div id="t-14-2"></div></div>
 			<div class="tiles"></div>
@@ -172,7 +173,7 @@
 			<div class="tiles"></div>
 			<div class="tiles"><div id="t-14-7"></div></div>
 			<div class="tiles"><div id="t-14-8"></div></div>
-		</div>
+		</div>-->
 		<div class="tile-line clearfix">
 			<div class="tiles"><div id="t-15-1"></div></div>
 			<div class="tiles"><div id="t-15-2"></div></div>
@@ -187,94 +188,86 @@
 </div>
 <div id="contain">
 	<div class="team">
-		<div class="title">프로젝트 진행 총괄</div>
+		<h2 class="title">프로젝트 개요</h2>
+		<div class="member clearfix"><div class="position">팀 이름</div><div class="name">Dimigo SHIFT</div></div>
+		
 		<div class="member clearfix"><div class="position">프로젝트 매니저</div><div class="name">오찬영</div></div>
-		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영</div></div>
-		<div class="member clearfix"><div class="position">개발 총괄</div><div class="name">한수훈, 이영수</div></div>
-		<div class="member clearfix"><div class="position">디자인 총괄</div><div class="name">오찬영</div></div>
+		<div class="member clearfix"><div class="position">개발 총괄</div><div class="name">이영수, 한수훈</div></div>
 		<div class="member clearfix"><div class="position">지도교사</div><div class="name">정희범 선생님, <span id="yeosu">박성수 선생님</span></div></div>
+		
+		<div class="member clearfix"><div class="position">1차 개발 기간</div><div class="name">2013년 1월~4월</div></div>
+		<div class="member clearfix"><div class="position">2차 개발 기간</div><div class="name">2013년 7월~12월</div></div>
+		
 	</div>
 	<div class="team">
-		<div class="title">대외용 PC웹</div>
+		<h2 class="title">대외용 PC웹</h2>
 		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영, 정희범 선생님</div></div>
 		<div class="member clearfix"><div class="position">개발</div><div class="name">한수훈, 김재원</div></div>
 		<div class="member clearfix"><div class="position">디자인</div><div class="name">지주희</div></div>
 	</div>
 	<div class="team">
-		<div class="title">대외용 모바일웹</div>
+		<h2 class="title">대외용 모바일웹</h2>
 		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영, 정희범 선생님</div></div>
 		<div class="member clearfix"><div class="position">개발</div><div class="name">한수훈, 강성일, 한바환</div></div>
 		<div class="member clearfix"><div class="position">디자인</div><div class="name">오찬영, 박채영, 김기윤</div></div>
 	</div>
 	<div class="team">
-		<div class="title">인트라넷</div>
-		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영</div></div>
-		<div class="member clearfix"><div class="position">DB 설계</div><div class="name">이영수</div></div>
-		<div class="member clearfix"><div class="position">서버 지원</div><div class="name">박성수 선생님, 한수훈</div></div>
-		<div class="member clearfix"><div class="position">API 개발</div><div class="name">강성일</div></div>
-		<div class="member clearfix"><div class="position">프론트엔드 개발</div><div class="name">이강원, 안병찬</div></div>
-		<div class="member clearfix"><div class="position">백엔드 개발</div><div class="name">이영수, 한수훈, 강성일, 김재원, 안병찬</div></div>
-		<div class="member clearfix"><div class="position">Notification 개발</div><div class="name">강성일, 정성민</div></div>
-		<div class="member clearfix"><div class="position">UX 설계/UI 디자인</div><div class="name">오찬영</div></div>
-		<div class="member clearfix"><div class="position">일러스트</div><div class="name">고수영</div></div>
+		<h2 class="title">인트라넷 1차 개발</h2>
+		<div class="member clearfix"><div class="position">프로젝트 총괄</div><div class="name">오찬영</div></div>
+		<div class="member clearfix"><div class="position">개발 총괄</div><div class="name">한수훈</div></div>
+		<div class="member clearfix"><div class="position">백엔드 개발</div><div class="name">한수훈, 강성일, 이영수, 김재원</div></div>
+		<div class="member clearfix"><div class="position">프론트엔드 개발</div><div class="name">이영수, 김재원, 안병찬, 이강원</div></div>
+		<div class="member clearfix"><div class="position">디자인</div><div class="name">오찬영, 박채영, 김정연</div></div>
+		<div class="member clearfix"><div class="position">영상 및 미디어</div><div class="name">윤두원, 구본욱</div></div>
 		<div class="member clearfix"><div class="position">보안 지원</div><div class="name">윤건영</div></div>
-	</div>
-	<div class="team-cancelled">
-		<div class="title">인트라넷 모바일웹</div>
-		<div class="removed-mark removed-mark1"></div>
-		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영</div></div>
-		<div class="member clearfix"><div class="position">개발</div><div class="name">이강원</div></div>
-		<div class="member clearfix"><div class="position">디자인</div><div class="name">오찬영, 박채영</div></div>
-	</div>
-	<div class="team-cancelled">
-		<div class="title">인트라넷 모바일 애플리케이션</div>
-		<div class="removed-mark removed-mark2"></div>			
-		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영</div></div>
-		<div class="member clearfix"><div class="position">개발</div><div class="name">정성민, 강성일</div></div>
-		<div class="member clearfix"><div class="position">디자인</div><div class="name">지주희, 오찬영</div></div>
-	</div>
+		<div class="member clearfix"><div class="position">일러스트</div><div class="name">고수영</div></div>
+		</div>
 	<div class="team">
-		<div class="title">통합 회원가입</div>
+		<h2 class="title" style="margin-bottom:13px">인트라넷 2차 개발</h2>
+		<h3 class="sub-title" style="margin-top:13px">본부</h3>
+		<div class="member clearfix"><div class="position">프로젝트 매니저</div><div class="name">오찬영</div></div>
+		<div class="member clearfix"><div class="position">지도 교사</div><div class="name">정희범 선생님, 박성수 선생님</div></div>
+
+		<h3 class="sub-title">개발부</h3>
+		<div class="member clearfix"><div class="position">총괄</div><div class="name">이영수</div></div>
+		<div class="member clearfix"><div class="position">멘토</div><div class="name">강성일</div></div>
+		<div class="member clearfix"><div class="position">코어 및 잔류 개발팀</div><div class="name">이영수, 김재원</div></div>
+		<div class="member clearfix"><div class="position">키오스크 개발팀</div><div class="name">김동현, 김태영</div></div>
+		<div class="member clearfix"><div class="position">모바일 개발 및 프론트앤드 지원팀</div><div class="name">이강원, 권동주</div></div>
+		<div class="member clearfix"><div class="position">모듈 개발 1팀</div><div class="name">김도형, 이재훈</div></div>
+		<div class="member clearfix"><div class="position">모듈 개발 2팀</div><div class="name">이관형, 서유림</div></div>
+	
+		<h3 class="sub-title">미디어 디자인부</h3>
+		<div class="member clearfix"><div class="position">총괄</div><div class="name">윤두원</div></div>
+		<div class="member clearfix"><div class="position">디자인팀</div><div class="name">송진경, 최예지, 권지수, 윤지선, 이현정</div></div>
+		<div class="member clearfix"><div class="position">미디어팀</div><div class="name">윤두원, 권우빈, 이예령, 홍순민</div></div>
+		
+		<h3 class="sub-title">보안지원부</h3>
+		<div class="member clearfix"><div class="position">총괄</div><div class="name">윤건영</div></div>
+		<div class="member clearfix"><div class="position">팀원</div><div class="name">서승완, 조영호, 송연주, 김상훈, 김준식</div></div>
+		
+	</div>
+	
+	<div class="team">
+		<h2 class="title">통합 회원정보 및 회원가입</h2>
 		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영</div></div>
-		<div class="member clearfix"><div class="position">개발</div><div class="name">한수훈, 이영수, 김재원, 이강원, 안병찬</div></div>
+		<div class="member clearfix"><div class="position">개발</div><div class="name">이영수, 김도형, 이재훈, 한수훈</div></div>
 		<div class="member clearfix"><div class="position">디자인</div><div class="name">오찬영, 지주희</div></div>
 		<div class="member clearfix"><div class="position">일러스트</div><div class="name">고수영</div></div>
 	</div>
-	<div class="team-cancelled">
-		<div class="title">디미고 내정보</div>
-		<div class="removed-mark removed-mark3"></div>
-		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영</div></div>
-		<div class="member clearfix"><div class="position">개발</div><div class="name">김재원, 이영수, 한수훈, 강성일</div></div>
-		<div class="member clearfix"><div class="position">디자인</div><div class="name">박채영, 오찬영</div></div>
-	</div>
-	<div class="team-cancelled">
-		<div class="title">웹하드</div>
-		<div class="removed-mark removed-mark4"></div>
-		<div class="member clearfix"><div class="position">기획</div><div class="name">강성일</div></div>
-		<div class="member clearfix"><div class="position">개발</div><div class="name">강성일</div></div>
-		<div class="member clearfix"><div class="position">디자인</div><div class="name">Synergy Design Commucations</div></div>
-	</div>
-	<div class="team-cancelled">
-		<div class="title">급식 시스템 개발</div>
-		<div class="removed-mark removed-mark5"></div>
+	
+	<div class="team">
+		<h2 class="title">RFID 급식 시스템</h2>
 		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영, 이수호</div></div>
-		<div class="member clearfix"><div class="position">개발</div><div class="name">이수호</div></div>
-		<div class="member clearfix"><div class="position">디자인</div><div class="name">박채영, 김정연, 오찬영</div></div>
+		<div class="member clearfix"><div class="position">개발</div><div class="name">김동현, 이수호, 김태영</div></div>
+		<div class="member clearfix"><div class="position">디자인</div><div class="name">권지수, 오찬영, 박채영, 김정연</div></div>
 		<div class="member clearfix"><div class="position">협조</div><div class="name">(주)ARAKOR</div></div>
 	</div>
-	<div class="team-cancelled">
-		<div class="title">외출/택배 시스템 개발</div>
-		<div class="removed-mark removed-mark6"></div>
-		<div class="member clearfix"><div class="position">기획</div><div class="name">오찬영, 이수호</div></div>
-		<div class="member clearfix"><div class="position">개발</div><div class="name">이수호</div></div>
-		<div class="member clearfix"><div class="position">디자인</div><div class="name">박채영, 김정연, 오찬영</div></div>
-		<div class="member clearfix"><div class="position">협조</div><div class="name">JnJ Communcations</div></div>
-	</div>
+
+
 	<div class="team">
-		<div class="title">미디어팀</div>
-		<div class="member clearfix"><div class="position">총괄</div><div class="name">윤두원</div></div>
-		<div class="member clearfix"><div class="position">연출</div><div class="name">윤두원, 오찬영</div></div>
-		<div class="member clearfix"><div class="position">촬영</div><div class="name">윤두원, 오찬영</div></div>
+		<h2 class="title">영상 및 미디어</h2>
+		<div class="member clearfix"><div class="position">연출 및 촬영</div><div class="name">윤두원, 오찬영</div></div>
 		<div class="member clearfix"><div class="position">2D Graphics</div><div class="name">권주오</div></div>
 		<div class="member clearfix"><div class="position">성우</div><div class="name">이은숙 선생님</div></div>
 		<div class="member clearfix"><div class="position">녹음</div><div class="name">서윤호 선생님</div></div>
@@ -291,9 +284,8 @@
 		<div class="member clearfix multi-line"><div class="position"></div><div class="name">김재원, 안병찬, 이강원, 이영수</div></div>
 	</div>
 	<div class="team">
-		<div class="title">Special thanks to</div>
+		<h2 class="title">Special thanks to</h2>
 		<div class="member clearfix member-center">박주현 교감선생님</div>
-		<div class="member clearfix member-center">정희범 선생님</div>
 		<div class="member clearfix member-center">임재훈 선생님</div>
 		<div class="member clearfix member-center">김혁준 선생님</div>
 		<div class="member clearfix member-center">서윤호 선생님</div>
@@ -302,11 +294,6 @@
 		<div class="member clearfix member-center">한국디지털미디어고등학교 생활관</div>
 		<div class="member clearfix member-center">한국디지털미디어고등학교 IT특성화부</div>
 		<div class="member clearfix member-center">한국디지털미디어고등학교 학생지원부</div>
-		<div class="member clearfix member-center"></div>
-		<div class="member clearfix member-center">윤건영</div>
-		<div class="member clearfix member-center">이기호</div>
-		<div class="member clearfix member-center">김도형</div>
-		<div class="member clearfix member-center">김동현</div>
 		<div class="member clearfix logo logo1">
 			<ul class="logo-box">
 				<li><div id="synergy"></div></li>

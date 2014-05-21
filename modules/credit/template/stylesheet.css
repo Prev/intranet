@@ -4,6 +4,10 @@
   color: white;
 }
 
+body{
+	cursor: default !important;
+}
+
 html,body{ margin:0; padding:0; }
 body{ overflow-x: hidden; overflow-y: scroll; font-family: 나눔고딕, NanumGothic, serif; position: absolute; top: 0; left: 0; width: 100%; max-width: 100%; height: auto }
 ul,ol { margin: 0; padding: 0; list-style: none }
@@ -24,9 +28,10 @@ a img{ border:none; outline:none }
 	margin:0;
 	margin-left:-1000px;
 	left:50%;
+	overflow: hidden;
  }
 a#yeosu {text-decoration: none; color: black;}
-#tile-box{ width:2000px; margin:0 auto;height:3750px }
+#tile-box{ width:2000px; margin:0 auto; /*height:3340px*/ }
 .tiles{ width:250px; height:250px; float:left; }
 .long-tiles{ width:500px; }
 li.final > a#youknow-ent-link {text-decoration: none; color: black}
@@ -110,7 +115,7 @@ li.final > a#youknow-ent-link {text-decoration: none; color: black}
 .tiles #t-15-8{ background-color:#b3b3b3; }
 
 .tiles #tile-admin{ position:absolute; background-image:url(./img/admin.png); background-repeat:no-repeat; width:500px; height:250px; z-index:999;  }
-.tiles #tile-player{ position:absolute; background-image:url(./img/player.png); background-repeat:no-repeat; width:1000px; height:500px; z-index:999; top:250px; }
+/*.tiles #tile-player{ position:absolute; background-image:url(./img/player.png); background-repeat:no-repeat; width:1000px; height:500px; z-index:999; top:250px; }*/
 .tiles #tile-app{ position:absolute; background-image:url(./img/bgimg_02.png); background-repeat:no-repeat; width:250px; height:500px; z-index:999; top:500px; }
 .tiles #tile-tablet{ position:absolute; background-image:url(./img/bgimg_03.png); background-repeat:no-repeat; width:546px; height:418px; z-index:999; top:933px; right:260px }
 
@@ -119,18 +124,20 @@ li.final > a#youknow-ent-link {text-decoration: none; color: black}
 	width:100%;
 	margin:0 auto;
 	position:absolute;
-	top:780px;
-	height:3020px;
+	top:320px;
+	height:2930px;
  }
-.team{ width:1000px; margin:0 auto; padding:15px 0px; text-align:center;margin-bottom:25px }
+.team{ width:1000px; margin:0 auto; padding:15px 0px; text-align:center;margin-bottom:40px }
 .team-cancelled{ color:#c4c4c4; width:1000px; margin:0 auto; padding:15px 0px; text-align:center; }
-.title{ font-size:16px; font-weight:bold; margin-bottom:18px; text-align:center; }
+
+h2.title{ font-size:17px; font-weight:bold; margin: 0; margin-bottom:18px; text-align:center; }
+h3.sub-title{ font-size:15px; font-weight:bold; margin: 27px 0 13px 0; text-align:center; }
 
 .member{ font-size:13px; height:13px; margin:10px 0px; }
 .member .position{ width:495px; font-weight:bold; text-align:right; float:left; }
 .member .name{ width:495px; text-align:left; float:right; }
 
-.member.logo1{ height:26px; width:464px; margin:30px auto 23px auto; }
+.member.logo1{ height:26px; width:464px; margin:85px auto 23px auto; }
 .member.logo2{ height:30px; width:350px; margin:10px auto 5px auto; }
 .member.logo ul.logo-box{ height:26px; padding:0 }
 .member.logo ul.logo-box li{ float:left; margin-right:50px; }
@@ -160,7 +167,7 @@ li.final > a#youknow-ent-link {text-decoration: none; color: black}
 }
 .hidden{  visibility:hidden; }
 
-.removed-mark{ 
+/*.removed-mark{ 
 	background-repeat:no-repeat;
 	width:133px;
 	height:80px;
@@ -177,4 +184,4 @@ li.final > a#youknow-ent-link {text-decoration: none; color: black}
 .removed-mark3{ background-image:url(./img/img_pg03.png) }
 .removed-mark4{ background-image:url(./img/img_pg04.png) }
 .removed-mark5{ background-image:url(./img/img_pg05.png) }
-.removed-mark6{ background-image:url(./img/img_pg06.png) }
+.removed-mark6{ background-image:url(./img/img_pg06.png) }*/

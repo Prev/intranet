@@ -16,7 +16,9 @@
 			if (!$fp) $fp = fopen(LOG_FILE_PATH, 'a');
 			if (!$backtrace) $backtrace = debug_backtrace();
 			
-			$output = $str . '  - ' . date('Y-m-d H:i:s') . '  - ' . $_SERVER['REMOTE_ADDR'];
+			$user = User::getCurrent();
+
+			$output = $str . '  - ' . date('Y-m-d H:i:s') . '  - ' . $_SERVER['REMOTE_ADDR'] . ($user ? ' - ['.$user->id.']'.$user->user_name : '');
 			for ($i=0; $i<count($backtrace); $i++) {
 				$path = getFilePathClear($backtrace[$i]['file']);
 				

@@ -50,7 +50,7 @@
 #history-list #song-applicant{ width: 85px; }
 #history-list #song-request-date{ width: 100px; }
 #history-list #favorite-count{ width: 42px; }
-#history-list #recommend-btns{ width: 108px; }
+#history-list #recommend-btns{ width: 105px; }
 
 #history-list #scroll-box{ width: 700px; height: 268px; margin: 0; padding: 0; overflow:auto; border-bottom: 1px solid #e0e0e0; }
 #history-list #scroll-box form{ display: inline; }
@@ -62,7 +62,7 @@
 #history-list #scroll-box .song-applicant{ width: 85px; text-align: center; padding-top: 3px; }
 #history-list #scroll-box .song-request-date{ width: 100px; text-align: center; padding-top: 3px; }
 #history-list #scroll-box .favorite-count{ width: 40px; text-align: center; padding-top: 3px; }
-#history-list #scroll-box .recommend-btns{ width: 110px; text-align: center; padding: 0px 0px; }
+#history-list #scroll-box .recommend-btns{ width: 108px; text-align: center; padding: 0px 0px; }
 #history-list #scroll-box .recommend-btns .recommend-button{ height: 19px; width: 32px; padding: 0; margin: 2px 0px 0px 0px; background:transparent url("../img/morning_song_sprite.png") no-repeat 0px 0px; border: none; cursor: pointer; margin-right: 2px }
 #history-list #scroll-box .recommend-btns .recommend-cancel-button{ height: 19px; width: 52px; padding: 0; margin: 2px 0px 0px 0px; background:transparent url("../img/btn_cancel-reccommend.png") no-repeat 0px 0px; border: none; cursor: pointer }
 

@@ -1,3 +1,64 @@
+var names = {
+	"10기 디컨" : ["지주희"],
+	"10기 웹플" : ["강성일"],
+	"10기 해방" : ["한수훈", "이수호", "한바환"],
+	"11기 디컨" : [
+		"오찬영",
+		"박채영",
+		"김정연",
+		"윤두원",
+		"고수영",
+		"구본욱",
+		"홍순민",
+		"권주오"
+	],
+	"11기 웹플" : [
+		"이영수",
+		"김재원",
+		"김동현",
+		"이강원",
+		"김도형",
+		"이재훈",
+		"안병찬",
+		"권우빈"
+	],
+	"11기 해방" : [
+		"윤건영",
+		"김준식",
+		"권동주"
+	],
+	"12기 디컨" : [
+		"송진경",
+		"최예지",
+		"권지수",
+		"윤지선",
+		"이현정",
+		"이예령"
+	],
+	"12기 웹플" : [
+		"김태영",
+		"이관형",
+		"서유림"
+	],
+	"12기 해방" : [
+		"서승완",
+		"조영호",
+		"송연주",
+		"김상훈"
+	]
+}
+
+window.onload = function () {
+	var str = document.getElementById("contain").innerHTML;
+	for (key in names) {
+		var arr = names[key];
+		for (var i=0; i<arr.length; i++) {
+			str = str.split(arr[i]).join('<span title="'+key+'">'+arr[i]+'</span>');
+		}
+	}
+	document.getElementById("contain").innerHTML = str;
+}
+
 var clickCount = 0;
 var ester_shown = false;
 
