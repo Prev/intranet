@@ -206,6 +206,8 @@
 				'</script>'
 			);
 
+			$this->addHeaderTag('<link rel="apple-touch-icon" href="'.RELATIVE_URL.'/static/img/touch_icon.png">');
+
 			// DEBUG_MODE가 활성화 되 있을때, var_dump2로 출력한 결과를 하이라이팅 해 주는 js
 			if (DEBUG_MODE)
 				$this->addHeaderFile('/static/js/vdump.js');
