@@ -90,6 +90,13 @@ body{
 #header #gnb ul li.menu-els:hover { background-position:-430px -32px; width:116px }
 #header #gnb ul li.menu-els-disabled { background-position:-430px -64px; width:116px }
 
+#header #gnb ul li.menu-survey { background-position:-546px 0px; width:94px }
+#header #gnb ul li.menu-survey-selected,
+#header #gnb ul li.menu-survey:hover { background-position:-546px -32px; width:94px }
+#header #gnb ul li.menu-survey-disabled { background-position:-546px -64px; width:94px }
+
+
+
 #wrap {
 	width: 1000px;
 	margin: 30px auto 20px auto;
