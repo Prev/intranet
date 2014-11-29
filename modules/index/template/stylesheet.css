@@ -127,6 +127,11 @@
 	margin-bottom: 8px;
 }
 
+#main #meal h3 a{
+	color: black;
+	text-decoration: none;
+}
+
 #main #meal #meal-content{
 	margin-left: -20px;
 }

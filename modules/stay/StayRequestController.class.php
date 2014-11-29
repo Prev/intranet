@@ -165,7 +165,7 @@
 
 			if ($_REQUEST['continuous_dates']) {
 				$dateArr = array('일','월','화','수','목','금','토');
-				$dates = explode(',', $_REQUEST['date']);
+				$dates = explode(',', $_GET['date']);
 				$dates_kr = array();
 				
 				for ($i=count($dates) - 1; $i>= 0; $i--) {
@@ -190,7 +190,7 @@
 					$timeStamp = strtotime($date);
 					array_push($dates_kr, date('Y년 m월 d일', $timeStamp) . '('.$dateArr[date('w', $timeStamp)].')');
 				}
-
+				sort($dates_kr);
 				goBack($dates_kr[0]. '부터 '.$dates_kr[count($dates_kr)-1].'까지의 잔류신청이 모두 취소되었습니다.');
 				
 			}else {
