@@ -1,7 +1,7 @@
 # intranet
 한국디지털미디어고등학교에서 2013년~2014년 동안 내부적으로 사용했던 포털 '인트라넷' 프로젝트입니다.
 
-![ScreenShot](http://prev.kr/wp-content/uploads/2015/05/intranet-940x588.png)
+![ScreenShot](https://prev.kr/attachs/dimigoshift/intranet-screen.png)
 
 
 # credit
