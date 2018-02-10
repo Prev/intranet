@@ -6,7 +6,7 @@
 
 # credit
 개발, 디자인/미디어, 보안지원 등 모두 30명 이상이 참여한 프로젝트입니다.  
-[크레딧 복구 페이지](https://lab.prev.kr/intranet/credit/)에서 크레딧을 보실 수 있습니다.
+[크레딧 복구 페이지](https://lab.prev.kr/dimigo/credit/)에서 크레딧을 보실 수 있습니다.
 
 
 # 기반
